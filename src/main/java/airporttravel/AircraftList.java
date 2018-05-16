@@ -29,22 +29,6 @@ public class AircraftList extends ArrayList<Aircraft>{
 		}
 	}
 	
-	public boolean isIn(String name_)
-	{
-		Iterator<Aircraft> _itr = this.iterator();
-		Aircraft _tmp;
-		
-		while (_itr.hasNext())
-		{
-			_tmp = _itr.next();
-			if (_tmp.getName() == name_)
-			{
-				return true;
-			}
-		}
-		return false;
-	}
-	
 	public int indexOf(String name_)
 	{
 		Iterator<Aircraft> _itr = this.iterator();
@@ -61,5 +45,14 @@ public class AircraftList extends ArrayList<Aircraft>{
 			_count++;
 		}
 		return -1;
+	}
+		
+	public boolean isIn(String name_)
+	{
+		if(indexOf(name_) == -1) {
+			return false;
+		}
+	
+		return true;
 	}
 }
