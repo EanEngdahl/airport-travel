@@ -1,6 +1,7 @@
 package airporttravel;
 
 public class Employee extends Person{
+	
 	private int id;
 	private String job;
 	
