@@ -17,7 +17,8 @@ public class Person {
 		this("","", false, "");
 	}
 
-	public Person(String fn_, String ln_, boolean inFlight_, String location_) {
+	public Person(String fn_, String ln_, boolean inFlight_,
+			String location_) {
 		firstName = fn_;
 		lastName = ln_;
 		inFlight = inFlight_;
