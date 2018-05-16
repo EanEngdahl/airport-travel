@@ -1,28 +1,21 @@
 package airporttravel;
 
-public class Employee {
-	private String firstName;
-	private String lastName;
+public class Employee extends Person{
 	private int id;
 	private String job;
-	private String location;
 	
-	public String getFirstName() {
-		return firstName;
-	}
-	public void setFirstName(String _firstName) {
-		this.firstName = _firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String _lastName) {
-		this.lastName = _lastName;
-	}
-	public int getID() {
+	public int getId() {
 		return id;
 	}
-	public void setID(int _id) {
-		id = _id;
+	public void setId(int id_) {
+		id = id_;
 	}
+	public String getJob() {
+		return job;
+	}
+	public void setJob(String job_) {
+		job = job_;
+	}
+	
+	
 }

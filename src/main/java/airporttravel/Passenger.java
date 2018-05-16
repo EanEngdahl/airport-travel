@@ -1,20 +1,15 @@
 package airporttravel;
 
-public class Passenger {
-	private String firstName;
-	private String lastName;
+public class Passenger extends Person{
 	
-	public String getFirstName() {
-		return firstName;
+	private String seatNumber;
+
+	public String getSeatNumber() {
+		return seatNumber;
 	}
-	public void setFirstName(String firstName) {
-		this.firstName = firstName;
-	}
-	public String getLastName() {
-		return lastName;
-	}
-	public void setLastName(String lastName) {
-		this.lastName = lastName;
+
+	public void setSeatNumber(String seatNumber_) {
+		seatNumber = seatNumber_;
 	}
 	
 }
