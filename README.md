@@ -5,7 +5,7 @@
 * Ean
 * Bryson
 
-#Goal
+# Goal
 You have been hired by the airline executives, and your goal is to estimate total income to the airline on any given day.
 This should be able to run through several different scenarios, providing projections to the airline executives.
 
