@@ -7,7 +7,8 @@ public class FlightDispatcher {
 	private String destination;
 	private int distanceTravelled;
 	private int seatsFilledPerSection[];
-	private int maxSeatsPerSection[];
+	private AircraftPilot pilot;
+	private AircraftPilot coPilot;
 
 	public FlightDispatcher(String source_, String dest_, int seatsFilledPerSection_[],
 			int maxSeatsPerSection_[]) {
