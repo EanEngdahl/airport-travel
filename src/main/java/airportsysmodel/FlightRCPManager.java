@@ -13,14 +13,16 @@ public class FlightRCPManager {
 	}
 	
 	public BigDecimal findRevenue(Flight flightToCalculate_) {
-		/*TODO get seat class information from flight*/
 		revenue = new BigDecimal("0");
+		for (int i = 0; i < flightToCalculate_.getSeatsFilledPerSection().length; i++) {
+			BigDecimal _numberOfPeopleInClass = new BigDecimal(flightToCalculate_.getSeatsFilledPerSectionAtIndex(i));
+			revenue = revenue.add(_numberOfPeopleInClass.multiply(flightToCalculate_.getSeatCostPerSectionAtIndex(i)));
+		}
 		return revenue;
 	}
 	
 	public BigDecimal findCost(Flight flightToCalculate_) {
-		/*TODO Get edge weight for finding cost*/
-		cost = new BigDecimal("0");
+		cost = new BigDecimal(flightToCalculate_.getDistanceTravelled());
 		cost = cost.multiply(FUELCOST);
 		cost = cost.add(flightToCalculate_.getCoPilot().getCostPerFlight());
 		cost = cost.add(flightToCalculate_.getPilot().getCostPerFlight());
