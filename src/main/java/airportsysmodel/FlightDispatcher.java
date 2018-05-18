@@ -1,20 +1,27 @@
 package airportsysmodel;
 
-public class FlightDispatcher {
-	private static final int SHORT_RANGE_BOUND = 500;
-	private static final int MEDIUM_RANGE_BOUND = 1000;
-	private String source;
-	private String destination;
-	private int distanceTravelled;
-	private int seatsFilledPerSection[];
-	private AircraftPilot pilot;
-	private AircraftPilot coPilot;
+import java.math.BigDecimal;
 
-	public FlightDispatcher(String source_, String dest_, int seatsFilledPerSection_[],
-			int maxSeatsPerSection_[]) {
-		source = source_;
-		destination = dest_;
-		seatsFilledPerSection = seatsFilledPerSection_;
-		maxSeatsPerSection = maxSeatsPerSection_;
+public class FlightDispatcher {
+	
+	public void flightDispatchService(char aircraftSize_, int maxSeatsPerSection_[], 
+			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
+			String source_, String dest_, int distanceTravelled_ ) {
+	
+		AircraftPilot _pilot;
+		AircraftPilot _coPilot;
+
+		PilotDispatcher assignPilots = new PilotDispatcher();
+
+		_pilot = assignPilots.assignPilotToAircraft(aircraftSize_);
+		_coPilot = assignPilots.assignPilotToAircraft(aircraftSize_);	
+
+		Flight newFlightFromData = new Flight(aircraftSize_, maxSeatsPerSection_, 
+				seatsFilledPerSection_, seatCostPerSection_, source_, dest_, 
+				distanceTravelled_, _pilot, _coPilot);
+		
+		/* TODO: newFlightFromData will go to a database/file storing all the flights for 
+		 * querying etc.
+		 */
 	}
 }

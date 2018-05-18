@@ -6,10 +6,7 @@ public class Aircraft {
 	private char aircraftSize;
 	private AircraftSectionList sectionList;
 	private int maxAircraftSeats;
-	
-	private static final int SMALL_PLANE_SEATS = 50;
-	private static final int MEDIUM_PLANE_SEATS = 200;
-	private static final int LARGE_PLANE_SEATS = 400;
+
 		
 	public Aircraft(char aircraftSize_, int seatsFilledPerSection_[]) {
 		aircraftSize = aircraftSize_;
