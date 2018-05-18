@@ -18,7 +18,8 @@ public class Flight {
 		seatsFilledPerSection = seatsFilledPerSection_;
 		pilot = pilot_;
 		coPilot = coPilot_;
-		aircraftAssigned = new Aircraft(aircraftSize, seatsFilledPerSection);
+		aircraftAssigned = new Aircraft(aircraftSize, seatsFilledPerSection, 
+				seatCostPerSection_, maxSeatsPerSection_);
 		
 	}
 	
