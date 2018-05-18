@@ -3,83 +3,47 @@ package airportsysmodel;
 import java.math.BigDecimal;
 
 public class AircraftSection {
+	private String classSectionName;
 	private int maxNumOfSeats;
 	private int filledSeats;
 	private BigDecimal costOfSeat;
-	private String classSectionName;
-	
-	private static final int SMALL_MAX_SEATS = 50;
-	private static final int MEDIUM_MAX_BASIC_SEATS = 100;
-	private static final int MEDIUM_MAX_BUSINESS_SEATS = 70;
-	private static final int MEDIUM_MAX_FIRST_SEATS = 30;
-	private static final int LARGE_MAX_BASIC_SEATS = 150;
-	private static final int LARGE_MAX_PLUS_SEATS = 100;
-	private static final int LARGE_MAX_BUSINESS_SEATS = 100;
-	private static final int LARGE_MAX_FIRST_SEATS = 50;
-	
+
 	public AircraftSection(int filledSeats_, String classSectionName_,
-			char aircraftSize_) {
+			BigDecimal costOfSeat_) {
 		filledSeats = filledSeats_;
 		classSectionName = classSectionName_;
-		setMaxNumOfSeatsAndSeatCost(aircraftSize_);
-		
+		costOfSeat = costOfSeat_;
 	}
-	
-	private void setCostOfSeat(char aircraftSize_) {
-		int _aircraftSizeCostModifier;
-		int _baseCost = 500;
 
-		if(aircraftSize_ == 's') {
-			_aircraftSizeCostModifier = 1;
-		} else if (aircraftSize_ == 'm') {
-			_aircraftSizeCostModifier = 2;
-		} else {
-			_aircraftSizeCostModifier = 3;
-		}
-
-		costOfSeat = new BigDecimal(_baseCost * (_aircraftSizeCostModifier * maxNumOfSeats));
-		
+	public String getClassSectionName() {
+		return classSectionName;
 	}
-	
-	private void setMaxNumOfSeatsAndSeatCost(char aircraftSize_) {
-		if (aircraftSize_ == 's') {
-			maxNumOfSeats = SMALL_MAX_SEATS;
-		}
-		else if (aircraftSize_ == 'm') {
-			switch(classSectionName) {
-				case "econ_basic":
-					maxNumOfSeats = MEDIUM_MAX_BASIC_SEATS;
-					setCostOfSeat(aircraftSize_);
-					break;
-				case "business":
-					maxNumOfSeats = MEDIUM_MAX_BUSINESS_SEATS;
-					setCostOfSeat(aircraftSize_);
-					break;
-				case "first":
-					maxNumOfSeats = MEDIUM_MAX_FIRST_SEATS;
-					setCostOfSeat(aircraftSize_);
-					break;
-			}
-		}
-		else {
-			switch(classSectionName) {
-				case "econ_basic":
-					maxNumOfSeats = LARGE_MAX_BASIC_SEATS;
-					setCostOfSeat(aircraftSize_);
-					break;
-				case "econ_plus":
-					maxNumOfSeats = LARGE_MAX_PLUS_SEATS;
-					setCostOfSeat(aircraftSize_);
-					break;
-				case "business":
-					maxNumOfSeats = LARGE_MAX_BUSINESS_SEATS;
-					setCostOfSeat(aircraftSize_);
-					break;
-				case "first":
-					maxNumOfSeats = LARGE_MAX_FIRST_SEATS;
-					setCostOfSeat(aircraftSize_);
-					break;
-			}
-		}
+
+	public void setClassSectionName(String classSectionName_) {
+		this.classSectionName = classSectionName_;
+	}
+
+	public int getMaxNumOfSeats() {
+		return maxNumOfSeats;
+	}
+
+	public void setMaxNumOfSeats(int maxNumOfSeats_) {
+		this.maxNumOfSeats = maxNumOfSeats_;
+	}
+
+	public int getFilledSeats() {
+		return filledSeats;
+	}
+
+	public void setFilledSeats(int filledSeats_) {
+		this.filledSeats = filledSeats_;
+	}
+
+	public BigDecimal getCostOfSeat() {
+		return costOfSeat;
+	}
+
+	public void setCostOfSeat(BigDecimal costOfSeat_) {
+		this.costOfSeat = costOfSeat_;
 	}
 }

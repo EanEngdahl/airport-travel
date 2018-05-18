@@ -37,4 +37,8 @@ public class Flight {
 	public AircraftPilot getCoPilot() {
 		return coPilot;
 	}
+	
+	public Aircraft getAircraftAssigned() {
+		return aircraftAssigned;
+	}
 }
