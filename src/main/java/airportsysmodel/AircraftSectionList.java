@@ -10,7 +10,7 @@ public class AircraftSectionList extends ArrayList<AircraftSection> {
 	}
 
 	public AircraftSectionList(char aircraftSize_, int seatsFilledPerSection_[], BigDecimal costOfSeat_) {
-		createSections(aircraftSize_, seatsFilledPerSection_);
+		createSections(aircraftSize_, seatsFilledPerSection_, costOfSeat_);
 	}
 	
 	public void createSections(char aircraftSize_, int seatsFilledPerSection_[], BigDecimal costOfSeat_) {
