@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import java.util.StringTokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.io.IOException;
 
 public class ReadPSVIntoState {
 	
@@ -14,7 +15,7 @@ public class ReadPSVIntoState {
 	
 	/*Read information from the input file then sends that information properly
 	 * formatted to be added to the FlightList */
-	public void ReadFileInputIntoFlightList(FlightList listOfFlights_) {
+	public void ReadFileInputIntoFlightList(FlightList listOfFlights_) throws IOException{
 		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 		debugLogger.debug("Reading input file");
 		String _source;
@@ -25,9 +26,6 @@ public class ReadPSVIntoState {
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
 		String _fileToRead = "/sample-data.txt";
-
-		
-		
 		
 		try (InputStream _is = ReadPSVIntoState.class.getResourceAsStream(_fileToRead)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
@@ -58,9 +56,6 @@ public class ReadPSVIntoState {
 			}
 			debugLogger.debug("Successfully read file");
 			reader.close();
-		}
-		catch (Exception e_) {
-			debugLogger.error("Could not open file " + _fileToRead);
 		}
 	}
 	

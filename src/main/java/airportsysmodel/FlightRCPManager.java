@@ -22,7 +22,7 @@ public class FlightRCPManager {
 		}
 		return revenue;
 	}
-	
+
 	public BigDecimal findCost(Flight flightToCalculate_) {
 		cost = new BigDecimal(flightToCalculate_.getDistanceTravelled());
 		cost = cost.multiply(FUELCOST);
@@ -35,6 +35,18 @@ public class FlightRCPManager {
 		profit = new BigDecimal("0");
 		profit = profit.add(findRevenue(flightToCalculate_));
 		profit = profit.subtract(findCost(flightToCalculate_));
+		return profit;
+	}
+	
+	public BigDecimal getRevenue() {
+		return revenue;
+	}
+
+	public BigDecimal getCost() {
+		return cost;
+	}
+
+	public BigDecimal getProfit() {
 		return profit;
 	}
 }
