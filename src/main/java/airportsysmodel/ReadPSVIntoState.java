@@ -11,8 +11,11 @@ public class ReadPSVIntoState {
 	
 	private static final String DELIM = "|";
 	
+	/*Read information from the input file then sends that information properly
+	 * formatted to be added to the FlightList */
 	public void ReadFileInputIntoFlightList(FlightList listOfFlights_) {
-		
+		Logger logger = LoggerFactory.getLogger(ReadPSVIntoState.class);
+		logger.info("Reading input file");
 		String _source;
 		String _dest;
 		int _distanceTravelled;
@@ -47,10 +50,15 @@ public class ReadPSVIntoState {
 						_seatsFilledPerSection, _seatCostPerSection, _source,
 						_dest, _distanceTravelled);
 			}
+			fileReader.close();
 		}
 		catch (Exception e_) {
-			//TODO logging
-		}	
+			logger.error("Could not open file");
+		}
+	}
+	
+	public int setDistanceTravelled(String distanceTravelled_) {
+		return Integer.parseInt(distanceTravelled_);
 	}
 	
 	public char setAircraftSize(String aircraftSize_) {
@@ -69,9 +77,5 @@ public class ReadPSVIntoState {
 	public BigDecimal setSeatCostPerSection(String seatCostInSection_) {
 		BigDecimal _decimalReturn = new BigDecimal(seatCostInSection_);
 		return _decimalReturn;
-	}
-	
-	public int setDistanceTravelled(String distanceTravelled_) {
-		return Integer.parseInt(distanceTravelled_);
 	}
 }
