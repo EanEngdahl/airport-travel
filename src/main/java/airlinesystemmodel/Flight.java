@@ -10,6 +10,8 @@ public class Flight {
 	private int seatsFilledPerSection[];
 	private BigDecimal seatCostPerSection[];
 	private int distanceTravelled;
+	private String source;
+	private String dest;
 	
 	public Flight(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
@@ -20,19 +22,17 @@ public class Flight {
 		seatsFilledPerSection = seatsFilledPerSection_;
 		seatCostPerSection = seatCostPerSection_;
 		distanceTravelled = distanceTravelled_;
+		source = source_;
+		dest = dest_;
 		pilot = pilot_;
 		coPilot = coPilot_;
 		aircraftAssigned = new Aircraft(aircraftSize, seatsFilledPerSection, 
-				seatCostPerSection_, maxSeatsPerSection_);
+				seatCostPerSection, maxSeatsPerSection_);
 		
 	}
 	
 	public char getAircraftSize() {
 		return aircraftSize;
-	}
-	
-	public void setAircraftSize(char airplaneSize) {
-		this.aircraftSize = airplaneSize;
 	}
 	
 	public AircraftPilot getPilot() {
@@ -65,6 +65,14 @@ public class Flight {
 
 	public int getDistanceTravelled() {
 		return distanceTravelled;
+	}
+
+	public String getSource() {
+		return source;
+	}
+
+	public String getDest() {
+		return dest;
 	}
 	
 }
