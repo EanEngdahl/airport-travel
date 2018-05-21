@@ -21,7 +21,7 @@ public class CommandHandler {
 		for (Flight i : _listOfFlights) {
 			_profitSum = _profitSum.add(flightProfit.findProfit(i));
 		}
-		logger.debug("Total profit" + _profitSum.toString());
+		logger.info("Total profit" + _profitSum.toString());
 	}
 	
 	public static void main(String[] args) {

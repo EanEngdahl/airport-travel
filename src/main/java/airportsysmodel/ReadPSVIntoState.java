@@ -1,7 +1,9 @@
 package airportsysmodel;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.Reader;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.StringTokenizer;
 import org.slf4j.Logger;
@@ -24,8 +26,10 @@ public class ReadPSVIntoState {
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
 
-		try (FileReader fileReader = new FileReader("/sample-data")) {
-			BufferedReader reader = new BufferedReader(fileReader);
+		InputStream _is = ReadPSVIntoState.class.getResourceAsStream("/sample-data.txt");
+		InputStreamReader _sr = new InputStreamReader(_is);
+		
+		try (BufferedReader reader = new BufferedReader(_sr)) {
 			StringTokenizer tokenizer;
 			String line = null;
 			while ((line = reader.readLine()) != null) {
@@ -50,7 +54,7 @@ public class ReadPSVIntoState {
 						_seatsFilledPerSection, _seatCostPerSection, _source,
 						_dest, _distanceTravelled);
 			}
-			fileReader.close();
+			reader.close();
 		}
 		catch (Exception e_) {
 			logger.error("Could not open file" + e_.getMessage());
