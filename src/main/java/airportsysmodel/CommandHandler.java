@@ -14,14 +14,13 @@ public class CommandHandler {
 		ReadPSVIntoState _input = new ReadPSVIntoState();
 		
 		_input.ReadFileInputIntoFlightList(_listOfFlights);
-		logger.debug("Successfully read file");
 		
 		BigDecimal _profitSum = new BigDecimal("0");
 		FlightRCPManager flightProfit = new FlightRCPManager();
 		for (Flight i : _listOfFlights) {
 			_profitSum = _profitSum.add(flightProfit.findProfit(i));
 		}
-		logger.info("Total profit" + _profitSum.toString());
+		logger.info("Total profit = $" + _profitSum.toString());
 	}
 	
 	public static void main(String[] args) {

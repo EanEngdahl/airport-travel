@@ -1,7 +1,6 @@
 package airportsysmodel;
 
 import java.io.BufferedReader;
-import java.io.Reader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
@@ -25,11 +24,14 @@ public class ReadPSVIntoState {
 		int _maxSeatsPerSection[] = new int [4];
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
+		String _fileToRead = "/sample-data.txt";
 
-		InputStream _is = ReadPSVIntoState.class.getResourceAsStream("/sample-data.txt");
-		InputStreamReader _sr = new InputStreamReader(_is);
 		
-		try (BufferedReader reader = new BufferedReader(_sr)) {
+		
+		
+		try (InputStream _is = ReadPSVIntoState.class.getResourceAsStream(_fileToRead)) {
+			InputStreamReader _sr = new InputStreamReader(_is);
+			BufferedReader reader = new BufferedReader(_sr);
 			StringTokenizer tokenizer;
 			String line = null;
 			while ((line = reader.readLine()) != null) {
@@ -54,10 +56,11 @@ public class ReadPSVIntoState {
 						_seatsFilledPerSection, _seatCostPerSection, _source,
 						_dest, _distanceTravelled);
 			}
+			logger.debug("Successfully read file");
 			reader.close();
 		}
 		catch (Exception e_) {
-			logger.error("Could not open file" + e_.getMessage());
+			logger.error("Could not open file " + _fileToRead);
 		}
 	}
 	
