@@ -1,4 +1,4 @@
-package airportsysmodel;
+package airlinesystemmodel;
 
 import java.util.ArrayList;
 import java.math.BigDecimal;

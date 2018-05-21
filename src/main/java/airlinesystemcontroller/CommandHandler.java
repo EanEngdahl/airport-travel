@@ -1,7 +1,11 @@
-package airportsysmodel;
+package airlinesystemcontroller;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
+import airlinesystemmodel.Flight;
+import airlinesystemmodel.FlightList;
+
 import java.math.BigDecimal;
 
 public class CommandHandler {

@@ -1,6 +1,8 @@
-package airportsysmodel;
+package airlinesystemcontroller;
 
 import java.math.BigDecimal;
+
+import airlinesystemmodel.Flight;
 
 public class FlightRCPManager {
 	private static final BigDecimal FUELCOST = new BigDecimal("15");
