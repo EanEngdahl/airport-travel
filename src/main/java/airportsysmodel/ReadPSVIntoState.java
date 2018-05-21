@@ -24,7 +24,7 @@ public class ReadPSVIntoState {
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
 
-		try (FileReader fileReader = new FileReader("sample-data")) {
+		try (FileReader fileReader = new FileReader("/sample-data")) {
 			BufferedReader reader = new BufferedReader(fileReader);
 			StringTokenizer tokenizer;
 			String line = null;

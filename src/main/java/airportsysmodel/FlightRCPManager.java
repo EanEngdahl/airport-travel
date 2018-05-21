@@ -8,6 +8,8 @@ public class FlightRCPManager {
 	private BigDecimal cost;
 	private BigDecimal profit;
 	
+	public FlightRCPManager() {}
+	
 	public FlightRCPManager(Flight flightToCalculate_) {
 		findProfit(flightToCalculate_);
 	}
