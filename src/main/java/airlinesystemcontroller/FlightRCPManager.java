@@ -6,6 +6,7 @@ import airlinesystemmodel.Flight;
 
 public class FlightRCPManager {
 	private static final BigDecimal FUELCOST = new BigDecimal("15");
+
 	private BigDecimal revenue;
 	private BigDecimal cost;
 	private BigDecimal profit;
@@ -50,5 +51,8 @@ public class FlightRCPManager {
 
 	public BigDecimal getProfit() {
 		return profit;
+	}
+	public static BigDecimal getFuelcost() {
+		return FUELCOST;
 	}
 }
