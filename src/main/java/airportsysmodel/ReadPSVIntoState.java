@@ -53,7 +53,7 @@ public class ReadPSVIntoState {
 			fileReader.close();
 		}
 		catch (Exception e_) {
-			logger.error("Could not open file");
+			logger.error("Could not open file" + e_.getMessage());
 		}
 	}
 	
