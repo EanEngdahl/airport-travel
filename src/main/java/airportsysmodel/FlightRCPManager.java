@@ -3,7 +3,7 @@ package airportsysmodel;
 import java.math.BigDecimal;
 
 public class FlightRCPManager {
-	private static final BigDecimal FUELCOST = new BigDecimal("10");
+	private static final BigDecimal FUELCOST = new BigDecimal("15");
 	private BigDecimal revenue;
 	private BigDecimal cost;
 	private BigDecimal profit;

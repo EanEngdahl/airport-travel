@@ -8,19 +8,23 @@ import java.math.BigDecimal;
 public class CommandHandler {
 
 	public CommandHandler(String fname_) throws IOException {
-		Logger logger = LoggerFactory.getLogger(CommandHandler.class);
-		logger.info("Command Handler");
+		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
+		Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
+		debugLogger.debug("Command Handler");
 		FlightList _listOfFlights = new FlightList();
 		ReadPSVIntoState _input = new ReadPSVIntoState();
 		
 		_input.ReadFileInputIntoFlightList(_listOfFlights);
 		
 		BigDecimal _profitSum = new BigDecimal("0");
-		FlightRCPManager flightProfit = new FlightRCPManager();
+		BigDecimal _singleFlightProfit = new BigDecimal("0");
+		FlightRCPManager flightProfitManager = new FlightRCPManager();
 		for (Flight i : _listOfFlights) {
-			_profitSum = _profitSum.add(flightProfit.findProfit(i));
+			_singleFlightProfit = flightProfitManager.findProfit(i);
+			_profitSum = _profitSum.add(_singleFlightProfit);
+			resultsLogger.info("Individual flight profit = $" + _singleFlightProfit.toString());
 		}
-		logger.info("Total profit = $" + _profitSum.toString());
+		resultsLogger.info("Total profit = $" + _profitSum.toString());
 	}
 	
 	public static void main(String[] args) {

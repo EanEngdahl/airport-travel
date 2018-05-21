@@ -15,8 +15,8 @@ public class ReadPSVIntoState {
 	/*Read information from the input file then sends that information properly
 	 * formatted to be added to the FlightList */
 	public void ReadFileInputIntoFlightList(FlightList listOfFlights_) {
-		Logger logger = LoggerFactory.getLogger(ReadPSVIntoState.class);
-		logger.info("Reading input file");
+		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
+		debugLogger.debug("Reading input file");
 		String _source;
 		String _dest;
 		int _distanceTravelled;
@@ -56,11 +56,11 @@ public class ReadPSVIntoState {
 						_seatsFilledPerSection, _seatCostPerSection, _source,
 						_dest, _distanceTravelled);
 			}
-			logger.debug("Successfully read file");
+			debugLogger.debug("Successfully read file");
 			reader.close();
 		}
 		catch (Exception e_) {
-			logger.error("Could not open file " + _fileToRead);
+			debugLogger.error("Could not open file " + _fileToRead);
 		}
 	}
 	
