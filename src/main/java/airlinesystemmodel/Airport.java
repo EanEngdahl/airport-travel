@@ -6,7 +6,7 @@
 package airlinesystemmodel;
 
 public class Airport {
-    private String _name;
+    private String name;
 
 
 
@@ -16,7 +16,9 @@ public class Airport {
      * @param src_ 
      *
      */
-    public Airport(String src_) {}
+    public Airport(String name_) {
+    	name = name_;
+    }
 
 
 
@@ -26,7 +28,7 @@ public class Airport {
      * 
      */
     public final String getName() {
-        return _name;
+        return name;
     }
 
 
@@ -37,7 +39,7 @@ public class Airport {
      * 
      */
     public final void setName(String name_) {
-        _name = name_;
+        name = name_;
     }
 
 
@@ -49,7 +51,7 @@ public class Airport {
      */
     @Override
     public String toString() {
-        return "Airport [_name=" + _name + "]";
+        return "Airport [name=" + name + "]";
     }
 
 
