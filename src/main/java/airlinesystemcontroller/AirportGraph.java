@@ -2,6 +2,7 @@ package airlinesystemcontroller;
 
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import java.util.HashMap;
 
 import airlinesystemmodel.Airport;
 
@@ -45,9 +46,9 @@ public class AirportGraph {
 		return graphOfAirports.containsEdge(source_, destination_);
 	}
 	
-	public Airport getAirport(String airportName_, AirportNameMap nameMap_) {
+	public Airport getAirport(String airportName_, HashMap<String, Airport> nameMap_) {
 		return nameMap_.get(airportName_);
 	}
-	
+
 	
 }
