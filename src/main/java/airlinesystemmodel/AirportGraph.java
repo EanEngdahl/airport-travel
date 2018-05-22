@@ -3,6 +3,7 @@ package airlinesystemmodel;
 import java.util.LinkedList;
 import javafx.util.Pair;
 
+@SuppressWarnings("restriction")
 public class AirportGraph {
 	
 	    private final LinkedList< Pair<Integer, Integer> >[] adjacencyList;
