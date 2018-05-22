@@ -36,6 +36,9 @@ public class Aircraft {
 		return maxAircraftSeats;
 	}
 
+	/**
+	 * TODO
+	 */
 	public void setMaxAircraftSeats(int maxSeatsPerSection_[]) {
 		maxAircraftSeats = IntStream.of(maxSeatsPerSection_).sum();
 	}

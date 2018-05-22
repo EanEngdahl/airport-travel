@@ -1,4 +1,6 @@
-package airlinesystemmodel;
+package airlinesystemcontroller;
+
+import airlinesystemmodel.AircraftPilot;
 
 public class PilotDispatcher {
 	

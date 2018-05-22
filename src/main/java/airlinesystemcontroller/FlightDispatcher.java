@@ -1,6 +1,9 @@
-package airlinesystemmodel;
+package airlinesystemcontroller;
 
 import java.math.BigDecimal;
+
+import airlinesystemmodel.AircraftPilot;
+import airlinesystemmodel.Flight;
 
 public class FlightDispatcher {
 	

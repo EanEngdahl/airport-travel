@@ -1,6 +1,9 @@
 package airlinesystemmodel;
 
 import java.util.ArrayList;
+
+import airlinesystemcontroller.FlightDispatcher;
+
 import java.math.BigDecimal;
 
 public class FlightList extends ArrayList<Flight> {

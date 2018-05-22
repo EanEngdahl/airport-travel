@@ -6,6 +6,8 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
+import airlinesystemcontroller.FlightDispatcher;
+
 public class FlightDispatcherTest {
 
 	@Test
