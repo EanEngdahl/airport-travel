@@ -18,16 +18,19 @@ public class PilotDispatcher {
         AircraftPilot returnPilot;
         switch (aircraftSize_) {
             case SENIOR:
-                returnPilot = new AircraftPilot(0);
+                returnPilot = new AircraftPilot();
+                returnPilot.setSeniority(2);
                 returnPilot.setCostPerFlight(_seniorCost);
                 return returnPilot;
             case MIDLEVEL:
-                returnPilot = new AircraftPilot(1);
+                returnPilot = new AircraftPilot();
+                returnPilot.setSeniority(1);
                 returnPilot.setCostPerFlight(_midCost);
                 return returnPilot;
             case JUNIOR:
             default:
-                returnPilot = new AircraftPilot(2);
+                returnPilot = new AircraftPilot();
+                returnPilot.setSeniority(0);
                 returnPilot.setCostPerFlight(_juniorCost);
                 return returnPilot;
         }

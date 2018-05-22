@@ -13,9 +13,7 @@ public class AircraftPilot {
     /**
      *
      */
-    public AircraftPilot(int seniority_) {
-        seniority = seniority_;
-    }
+    public AircraftPilot() {    }
 
 
 

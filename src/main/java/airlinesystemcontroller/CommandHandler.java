@@ -7,6 +7,7 @@ import airlinesystemmodel.Flight;
 import airlinesystemmodel.FlightList;
 
 import java.math.BigDecimal;
+import airlinesystemmodel.AirportGraph;
 
 public class CommandHandler {
 
@@ -47,5 +48,15 @@ public class CommandHandler {
         catch (Exception e_) {
         	logger.error("IOException" + e_.getMessage());
         }
+        //TODO temporary test for graph, remove later
+        AirportGraph testGraph = new AirportGraph(5);
+        testGraph.addEdge(1, 2, 10);
+        testGraph.addEdge(2, 3, 7);
+        testGraph.addEdge(3, 4, 4);
+        testGraph.addEdge(4, 2, 13);
+        testGraph.addEdge(4, 1, 8);
+        testGraph.printAdjacencyList();
+        testGraph.removeEdge(1, 2);    
+        testGraph.printAdjacencyList();
     }
 }

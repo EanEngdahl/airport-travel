@@ -37,7 +37,7 @@ public class Aircraft {
 	}
 
 	/**
-	 * TODO
+	 * TODO move logic
 	 */
 	public void setMaxAircraftSeats(int maxSeatsPerSection_[]) {
 		maxAircraftSeats = IntStream.of(maxSeatsPerSection_).sum();
