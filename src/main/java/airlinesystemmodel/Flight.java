@@ -10,12 +10,12 @@ public class Flight {
 	private int seatsFilledPerSection[];
 	private BigDecimal seatCostPerSection[];
 	private int distanceTravelled;
-	private String source;
-	private String dest;
+	private Airport source;
+	private Airport dest;
 	
 	public Flight(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
-			String source_, String dest_, int distanceTravelled_,
+			Airport source_, Airport dest_, int distanceTravelled_,
 			AircraftPilot pilot_, AircraftPilot coPilot_) {
 
 		aircraftSize = aircraftSize_;
@@ -51,6 +51,10 @@ public class Flight {
 		return seatCostPerSection;
 	}
 	
+	
+	/**
+	 * TODO: NO LOGIC IN IDENTITY CLASSES
+	 */
 	public BigDecimal getSeatCostPerSectionAtIndex(int index) {
 		return seatCostPerSection[index];
 	}
@@ -67,11 +71,11 @@ public class Flight {
 		return distanceTravelled;
 	}
 
-	public String getSource() {
+	public Airport getSource() {
 		return source;
 	}
 
-	public String getDest() {
+	public Airport getDest() {
 		return dest;
 	}
 	
