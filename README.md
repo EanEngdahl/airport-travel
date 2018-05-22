@@ -24,7 +24,7 @@ We can assume that there are sections to an airplane (business, first class, eco
 		
 ## Airports
 Airports are nodes on a graph, and all nodes have connections to other nodes. However, all nodes are not connected to each other. This is NOT an optimization problem, and I am not looking for how to travel b/w disconnected nodes.
-Each node connection has a weight indicating how far away from each othe the ndoe is. So, for example:
+Each node connection has a weight indicating how far away from each other node is. So, for example:
 
 	A - 7 - B - 5 - C
             |      /
