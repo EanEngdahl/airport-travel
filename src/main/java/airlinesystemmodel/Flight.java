@@ -51,18 +51,6 @@ public class Flight {
 		return seatCostPerSection;
 	}
 	
-	
-	/**
-	 * TODO: NO LOGIC IN IDENTITY CLASSES
-	 */
-	public BigDecimal getSeatCostPerSectionAtIndex(int index) {
-		return seatCostPerSection[index];
-	}
-
-	public int getSeatsFilledPerSectionAtIndex(int index) {
-		return seatsFilledPerSection[index];
-	}
-	
 	public int[] getSeatsFilledPerSection() {
 		return seatsFilledPerSection;
 	}

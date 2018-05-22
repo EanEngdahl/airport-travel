@@ -19,9 +19,12 @@ public class FlightRCPManager {
 	
 	public BigDecimal findRevenue(Flight flightToCalculate_) {
 		revenue = new BigDecimal("0");
+		int seatsFilledPerSection_[] = flightToCalculate_.getSeatsFilledPerSection();
+		BigDecimal seatCostPerSection_[] = flightToCalculate_.getSeatCostPerSection();
+		
 		for (int i = 0; i < flightToCalculate_.getSeatsFilledPerSection().length; i++) {
-			BigDecimal _numberOfPeopleInClass = new BigDecimal(flightToCalculate_.getSeatsFilledPerSectionAtIndex(i));
-			revenue = revenue.add(_numberOfPeopleInClass.multiply(flightToCalculate_.getSeatCostPerSectionAtIndex(i)));
+			BigDecimal _numberOfPeopleInClass = new BigDecimal(seatsFilledPerSection_[i]);
+			revenue = revenue.add(_numberOfPeopleInClass.multiply(seatCostPerSection_[i]));
 		}
 		return revenue;
 	}
