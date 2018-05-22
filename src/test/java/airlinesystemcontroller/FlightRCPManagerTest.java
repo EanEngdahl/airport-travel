@@ -14,7 +14,7 @@ public class FlightRCPManagerTest {
 	private final static BigDecimal SEAT_COST[] =  {new BigDecimal(10), new BigDecimal(15), new BigDecimal(20),
 			new BigDecimal(25)};
 
-	FlightDispatcher fd = new FlightDispatcher();
+	FlightBuilder fd = new FlightBuilder();
 	Flight testFlight = fd.flightDispatchService('l', MAX_SEATS, SEATS_FILLED, SEAT_COST, "1", "2", 100);
 	FlightRCPManager testRcp = new FlightRCPManager();
 	

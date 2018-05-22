@@ -2,7 +2,7 @@ package airlinesystemmodel;
 
 import java.util.ArrayList;
 
-import airlinesystemcontroller.FlightDispatcher;
+import airlinesystemcontroller.FlightBuilder;
 
 import java.math.BigDecimal;
 
@@ -19,7 +19,7 @@ public class FlightList extends ArrayList<Flight> {
 		String source_, String destination_, int distanceTravelled_ ) {
 
 			Flight _addedFlight;
-			FlightDispatcher _createFlight = new FlightDispatcher();
+			FlightBuilder _createFlight = new FlightBuilder();
 
 			_addedFlight = _createFlight.flightDispatchService(aircraftSize_, maxSeatsPerSection_, 
 					seatsFilledPerSection_, seatCostPerSection_, 

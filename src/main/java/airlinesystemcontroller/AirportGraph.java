@@ -49,5 +49,8 @@ public class AirportGraph {
 		return nameMap_.get(airportName_);
 	}
 	
-	
+	//TODO temporary method for testing graph, remove later
+	public void printGraph() {
+		System.out.print(graphOfAirports.toString() + areAirportsConnected("B", "A") + getDistance("B", "A"));
+	}
 }

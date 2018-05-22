@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 import airlinesystemmodel.AircraftPilot;
 
-public class PilotDispatcher {
+public class PilotBuilder {
     
     private BigDecimal _juniorCost = new BigDecimal("400.00");
     private BigDecimal _midCost = new BigDecimal("600.00");

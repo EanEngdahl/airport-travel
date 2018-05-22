@@ -20,7 +20,7 @@ public class AircraftSection {
 	}
 
 	public void setClassSectionName(String classSectionName_) {
-		this.classSectionName = classSectionName_;
+		classSectionName = classSectionName_;
 	}
 
 	public int getMaxNumOfSeats() {
@@ -28,7 +28,7 @@ public class AircraftSection {
 	}
 
 	public void setMaxNumOfSeats(int maxNumOfSeats_) {
-		this.maxNumOfSeats = maxNumOfSeats_;
+		maxNumOfSeats = maxNumOfSeats_;
 	}
 
 	public int getFilledSeats() {
@@ -36,7 +36,7 @@ public class AircraftSection {
 	}
 
 	public void setFilledSeats(int filledSeats_) {
-		this.filledSeats = filledSeats_;
+		filledSeats = filledSeats_;
 	}
 
 	public BigDecimal getCostOfSeat() {
@@ -44,6 +44,6 @@ public class AircraftSection {
 	}
 
 	public void setCostOfSeat(BigDecimal costOfSeat_) {
-		this.costOfSeat = costOfSeat_;
+		costOfSeat = costOfSeat_;
 	}
 }

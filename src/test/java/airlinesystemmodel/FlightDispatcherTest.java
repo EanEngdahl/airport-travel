@@ -6,13 +6,13 @@ import java.math.BigDecimal;
 
 import org.junit.Test;
 
-import airlinesystemcontroller.FlightDispatcher;
+import airlinesystemcontroller.FlightBuilder;
 
 public class FlightDispatcherTest {
 
 	@Test
 	public void testFlightDispatchService() {
-		FlightDispatcher tester = new FlightDispatcher();
+		FlightBuilder tester = new FlightBuilder();
 		char _aircraftSize = 'l';
 		int _maxSeats[] = new int[] {150, 100, 100, 50};
 		int _seatsFilled[] = new int[] {73, 42, 10, 5};

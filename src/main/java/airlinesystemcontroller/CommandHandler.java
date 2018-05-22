@@ -5,6 +5,7 @@ import org.slf4j.LoggerFactory;
 
 import airlinesystemmodel.Flight;
 import airlinesystemmodel.FlightList;
+import airlinesystemmodel.Airport;
 
 import java.math.BigDecimal;
 
@@ -48,14 +49,19 @@ public class CommandHandler {
         	logger.error("IOException" + e_.getMessage());
         }
         //TODO temporary test for graph, remove later
-        AirportGraph testGraph = new AirportGraph(5);
-        testGraph.addEdge(1, 2, 10);
-        testGraph.addEdge(2, 3, 7);
-        testGraph.addEdge(3, 4, 4);
-        testGraph.addEdge(4, 2, 13);
-        testGraph.addEdge(4, 1, 8);
-        testGraph.printAdjacencyList();
-        testGraph.removeEdge(1, 2);    
-        testGraph.printAdjacencyList();
+        AirportGraph testGraph = new AirportGraph();
+        Airport testAirport = new Airport("A");
+        testGraph.addAirport(testAirport);
+        testAirport = new Airport("B");
+        testGraph.addAirport(testAirport);
+        testAirport = new Airport("C");
+        testGraph.addAirport(testAirport);
+        testGraph.createEdge("A", "B", 5);
+        testGraph.createEdge("B", "C", 3);
+        testAirport = new Airport("D");
+        testGraph.addAirport(testAirport);
+        testGraph.createEdge("D", "B", 8);
+        testGraph.printGraph();
+        
     }
 }

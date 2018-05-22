@@ -6,7 +6,7 @@ import airlinesystemmodel.AircraftPilot;
 import airlinesystemmodel.Airport;
 import airlinesystemmodel.Flight;
 
-public class FlightDispatcher {
+public class FlightBuilder {
 	
 	public Flight flightDispatchService(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
@@ -15,7 +15,7 @@ public class FlightDispatcher {
 		AircraftPilot _pilot;
 		AircraftPilot _coPilot;
 
-		PilotDispatcher assignPilots = new PilotDispatcher();
+		PilotBuilder assignPilots = new PilotBuilder();
 
 		_pilot = assignPilots.assignPilotToAircraft(aircraftSize_);
 		_coPilot = assignPilots.assignPilotToAircraft(aircraftSize_);	
