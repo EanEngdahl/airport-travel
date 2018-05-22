@@ -7,7 +7,6 @@ import airlinesystemmodel.Flight;
 import airlinesystemmodel.FlightList;
 
 import java.math.BigDecimal;
-import airlinesystemmodel.AirportGraph;
 
 public class CommandHandler {
 
