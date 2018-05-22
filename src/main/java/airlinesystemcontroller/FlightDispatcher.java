@@ -10,7 +10,7 @@ public class FlightDispatcher {
 	
 	public Flight flightDispatchService(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
-			String src_, String dst_, int distanceTravelled_ ) {
+			String source_, String distance_, int distanceTravelled_ ) {
 	
 		AircraftPilot _pilot;
 		AircraftPilot _coPilot;
@@ -19,8 +19,8 @@ public class FlightDispatcher {
 
 		_pilot = assignPilots.assignPilotToAircraft(aircraftSize_);
 		_coPilot = assignPilots.assignPilotToAircraft(aircraftSize_);	
-		Airport source = new Airport(src_);
-		Airport destination = new Airport(dst_);
+		Airport source = new Airport(source_);
+		Airport destination = new Airport(distance_);
 		
 		Flight _newFlightFromData = new Flight(aircraftSize_, maxSeatsPerSection_, 
 				seatsFilledPerSection_, seatCostPerSection_, source, destination, 

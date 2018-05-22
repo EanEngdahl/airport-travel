@@ -16,14 +16,14 @@ public class FlightList extends ArrayList<Flight> {
 	
 	public void addFlightToList(char aircraftSize_, int maxSeatsPerSection_[], 
 		int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
-		String source_, String dest_, int distanceTravelled_ ) {
+		String source_, String destination_, int distanceTravelled_ ) {
 
 			Flight _addedFlight;
 			FlightDispatcher _createFlight = new FlightDispatcher();
 
 			_addedFlight = _createFlight.flightDispatchService(aircraftSize_, maxSeatsPerSection_, 
 					seatsFilledPerSection_, seatCostPerSection_, 
-					source_, dest_, distanceTravelled_ );
+					source_, destination_, distanceTravelled_ );
 
 			addFlightToList(_addedFlight);
 	}

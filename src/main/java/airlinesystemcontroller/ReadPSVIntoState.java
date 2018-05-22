@@ -21,8 +21,9 @@ public class ReadPSVIntoState {
 	public void ReadFileInputIntoFlightList(FlightList listOfFlights_) throws IOException{
 		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 		debugLogger.debug("Reading input file");
+		
 		String _source;
-		String _dest;
+		String _destination;
 		int _distanceTravelled;
 		char _aircraftSize;
 		int _maxSeatsPerSection[] = new int [4];
@@ -41,7 +42,7 @@ public class ReadPSVIntoState {
 				}
 				tokenizer = new StringTokenizer(line, DELIM);
 				_source = tokenizer.nextToken();
-				_dest = tokenizer.nextToken();
+				_destination = tokenizer.nextToken();
 				_distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
 				_aircraftSize = setAircraftSize(tokenizer.nextToken());
 				for (int i = 0; i < 4; i++) {
@@ -55,7 +56,7 @@ public class ReadPSVIntoState {
 				}
 				listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
 						_seatsFilledPerSection, _seatCostPerSection, _source,
-						_dest, _distanceTravelled);
+						_destination, _distanceTravelled);
 			}
 			debugLogger.debug("Successfully read file");
 			reader.close();
