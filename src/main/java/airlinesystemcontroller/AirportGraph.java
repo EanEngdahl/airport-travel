@@ -26,7 +26,7 @@ public class AirportGraph {
 	}
 	
 	public double getDistance(String source_, String destination_) {
-		return graphOfAirports.getEdgeWeight(graphOfAirports.getEdge(soarg0urce_, destination_));
+		return graphOfAirports.getEdgeWeight(graphOfAirports.getEdge(source_, destination_));
 	}
 
 	public void removeEdge(String source_, String destination_) {
