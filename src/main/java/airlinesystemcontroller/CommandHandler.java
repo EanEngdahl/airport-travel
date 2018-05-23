@@ -5,7 +5,6 @@ import org.slf4j.LoggerFactory;
 
 import airlinesystemmodel.Flight;
 import airlinesystemmodel.FlightList;
-import airlinesystemmodel.Airport;
 
 import java.math.BigDecimal;
 
@@ -15,13 +14,25 @@ public class CommandHandler {
 		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 		Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
+		
 		consoleLogger.info("Calculating flight results...");
 		debugLogger.debug("Command Handler");
+		
 		FlightList _listOfFlights = new FlightList();
-		ReadPSVIntoState _input = new ReadPSVIntoState();
+		AirportGraph _graphOfAirports = new AirportGraph();
+		ReadGraphFromPSV _graphInput = new ReadGraphFromPSV();
+		ReadPSVIntoState _informationInput = new ReadPSVIntoState();
 		
 		try {
-			_input.ReadFileInputIntoFlightList(_listOfFlights);
+			_graphInput.ReadFileInputIntoGraph(_graphOfAirports);
+			_graphOfAirports.printGraph();
+		}
+		catch (Exception e_) {
+			debugLogger.debug("Error reading graph file");
+			consoleLogger.error("Graph file reading error.");
+		}
+		try {
+			_informationInput.ReadFileInputIntoFlightList(_listOfFlights);
 			BigDecimal _profitSum = new BigDecimal("0");
 			BigDecimal _singleFlightProfit = new BigDecimal("0");
 			FlightRCPManager flightProfitManager = new FlightRCPManager();
@@ -35,8 +46,8 @@ public class CommandHandler {
 			
 		}
 		catch (Exception e_) {
-			debugLogger.debug("Error reading file");
-			consoleLogger.info("File reading error, no profits calculated.");
+			debugLogger.debug("Error reading information file");
+			consoleLogger.error("Information file reading error, no profits calculated.");
 		}
 	}
 	
@@ -47,21 +58,6 @@ public class CommandHandler {
         }
         catch (Exception e_) {
         	logger.error("IOException" + e_.getMessage());
-        }
-        //TODO temporary test for graph, remove later
-        AirportGraph testGraph = new AirportGraph();
-        Airport testAirport = new Airport("A");
-        testGraph.addAirport(testAirport);
-        testAirport = new Airport("B");
-        testGraph.addAirport(testAirport);
-        testAirport = new Airport("C");
-        testGraph.addAirport(testAirport);
-        testGraph.createEdge("A", "B", 5);
-        testGraph.createEdge("B", "C", 3);
-        testAirport = new Airport("D");
-        testGraph.addAirport(testAirport);
-        testGraph.createEdge("D", "B", 8);
-        testGraph.printGraph();
-        
+        }        
     }
 }
