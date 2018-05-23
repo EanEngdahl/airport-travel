@@ -12,6 +12,9 @@ public class Flight {
 	private int distanceTravelled;
 	private Airport source;
 	private Airport destination;
+	private BigDecimal cost;
+	private BigDecimal revenue;
+	private BigDecimal profit;
 	
 	public Flight(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
@@ -27,6 +30,9 @@ public class Flight {
 		pilot = pilot_;
 		coPilot = coPilot_;
 		aircraftAssigned = aircraftAssigned_;
+		cost = new BigDecimal("0");
+		revenue = new BigDecimal("0");
+		profit = new BigDecimal("0");
 	}
 	
 	public char getAircraftSize() {
@@ -63,6 +69,30 @@ public class Flight {
 
 	public Airport getDestination() {
 		return destination;
+	}
+
+	public void setCost(BigDecimal cost_) {
+		cost = cost_;
+	}
+
+	public void setRevenue(BigDecimal revenue_) {
+		revenue = revenue_;
+	}
+
+	public void setProfit(BigDecimal profit_) {
+		profit = profit_;
+	}
+
+	public BigDecimal getCost() {
+		return cost;
+	}
+
+	public BigDecimal getRevenue() {
+		return revenue;
+	}
+
+	public BigDecimal getProfit() {
+		return profit;
 	}
 	
 }

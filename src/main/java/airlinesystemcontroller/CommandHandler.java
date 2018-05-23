@@ -28,25 +28,18 @@ public class CommandHandler {
 			_graphOfAirports.printGraph();
 		}
 		catch (Exception e_) {
-			debugLogger.debug("Error reading graph file");
+			debugLogger.error("Error reading graph file");
 			consoleLogger.error("Graph file reading error.");
 		}
 		try {
 			_informationInput.ReadFileInputIntoFlightList(_listOfFlights);
-			BigDecimal _profitSum = new BigDecimal("0");
-			BigDecimal _singleFlightProfit = new BigDecimal("0");
-			FlightRCPManager flightProfitManager = new FlightRCPManager();
-			for (Flight i : _listOfFlights) {
-				_singleFlightProfit = flightProfitManager.findProfit(i);
-				_profitSum = _profitSum.add(_singleFlightProfit);
-				resultsLogger.info("Individual flight profit = $" + _singleFlightProfit.toString());
-			}
-			resultsLogger.info("Total Profit = $" + _profitSum.toString());
-			consoleLogger.info("Total Profit = $" + _profitSum.toString());
-			
+			FlightRCPManager _flightProfitManager = new FlightRCPManager();
+			BigDecimal _totalProfit = _flightProfitManager.findTotalProfitOfFlightList(_listOfFlights);
+			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
+			consoleLogger.info("Total Profit = $" + _totalProfit.toString());
 		}
 		catch (Exception e_) {
-			debugLogger.debug("Error reading information file");
+			debugLogger.error("Error reading information file");
 			consoleLogger.error("Information file reading error, no profits calculated.");
 		}
 	}
