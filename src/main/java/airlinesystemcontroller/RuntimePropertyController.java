@@ -1,7 +1,7 @@
 package airlinesystemcontroller;
 
 import java.util.Properties;
-import java.io.FileInputStream;
+import java.io.InputStream;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import org.slf4j.Logger;
@@ -15,8 +15,10 @@ public class RuntimePropertyController {
 
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 
-		try (FileInputStream _readIn = new FileInputStream("/default.properties")) {
-			_defaultProperties.load(_readIn);
+
+		try (InputStream _is = RuntimePropertyController.class.getResourceAsStream("/default.properties")) {
+			_defaultProperties.load(_is);
+			_debugLogger.debug("defaults loaded...");
 		} catch(FileNotFoundException e_){
 			_debugLogger.error("Could not find default.properties file" + e_.getMessage());
 		} catch(IOException e_) {
@@ -31,8 +33,8 @@ public class RuntimePropertyController {
 
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 
-		try (FileInputStream _readIn = new FileInputStream("/default.properties")) {
-			_defaultProperties.load(_readIn);
+		try (InputStream _is = RuntimePropertyController.class.getResourceAsStream(fileName_)) {
+			_defaultProperties.load(_is);
 		} catch(FileNotFoundException e_){
 			_debugLogger.error("Could not find" + fileName_ + "file" + e_.getMessage());
 		} catch(IOException e_) {
