@@ -46,8 +46,9 @@ public class RuntimePropertyController {
 	
 	public Properties loadRuntimeProperties(String[] args_) {
 		Properties returnProperties;
-		
-		if( args_.equals(null)) {
+
+		// TODO: (Temp) check that all properties are input on cl
+		if(args_.length != 6) {
 			returnProperties = loadDefaultProperties();
 		} else {
 			returnProperties = createRuntimeProperties(args_[0], args_[1], args_[2],
