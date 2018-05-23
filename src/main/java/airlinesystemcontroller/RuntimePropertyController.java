@@ -44,16 +44,15 @@ public class RuntimePropertyController {
 	
 	
 	public Properties loadRuntimeProperties(String[] args_) {
-		Properties returnProperties;
+		Properties _returnProperties;
 
-		// TODO: (Temp) check that all properties are input on cl
 		if(args_.length != 1) {
-			returnProperties = loadDefaultProperties();
+			_returnProperties = loadDefaultProperties();
 		} else {
-			returnProperties = createRuntimeProperties(args_[0]);
+			_returnProperties = createRuntimeProperties(args_[0]);
 		}
 		
-		return returnProperties;
+		return _returnProperties;
 	}
 }
 
