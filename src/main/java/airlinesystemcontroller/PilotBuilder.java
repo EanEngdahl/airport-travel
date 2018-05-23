@@ -1,3 +1,8 @@
+/*
+ * PilotBuilder class
+ *		Creates a new pilot object given specific requirements
+ */
+
 package airlinesystemcontroller;
 
 import java.math.BigDecimal;
@@ -14,6 +19,15 @@ public class PilotBuilder {
     private static final char MIDLEVEL = 'm';
     private static final char JUNIOR = 's';
 
+    /*
+     * Create new pilot based off size of plane they will be flying
+     * 
+     * @param aircraftSize_
+     * 		character that represents the size of plane that will be
+     * 		passed in and used to determine the pilot assigned
+     * @return
+     * 		a new pilot to be assigned to the flight
+     */
     public AircraftPilot assignPilotToAircraft(char aircraftSize_) {
         AircraftPilot returnPilot;
         switch (aircraftSize_) {

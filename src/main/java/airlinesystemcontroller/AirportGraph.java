@@ -1,3 +1,11 @@
+/*
+ * AirportGraph class
+ *		Creates an undirected weighted graph that allows 
+ *		changes to the graph such as adding airports (vertexes),
+ *		adding flights (edges), removing airports or flights.
+ *		and finding information about the graph
+ */
+
 package airlinesystemcontroller;
 
 import org.jgrapht.*;

@@ -74,6 +74,15 @@ public class FlightRCPManager {
 		return _profit;
 	}
 	
+	/*
+	 * Find Revenue, Cost, and Profit for an array
+	 * 
+	 * @param flightToCalculate_
+	 * 		flight with information to use for calculations
+	 * @return
+	 * 		BigDecimal type array holding revenue, cost, and profit
+	 * 		to be stored in the flight
+	 */
 	public BigDecimal[] getRCPAsArray(Flight flightToCalculate_) {
 		BigDecimal[] _flightRCPArray = new BigDecimal[3];
 		_flightRCPArray[0] = findRevenue(flightToCalculate_);
@@ -82,6 +91,16 @@ public class FlightRCPManager {
 		return _flightRCPArray;
 	}
 	
+	/*
+	 * Calculate Overall profit for an entire list of flights
+	 * 
+	 * @param listOfFlights_
+	 * 		the FlightList that will be iterated through until there are
+	 * 		no more new flights remaining
+	 * @return
+	 * 		BigDecimal type _totalProfit that is the result of all flight profits
+	 * 		may be positive or negative depending on flights input
+	 */
 	public BigDecimal findTotalProfitOfFlightList (FlightList listOfFlights_) {
 		Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 		Iterator<Flight> _flightListItr = listOfFlights_.iterator();
