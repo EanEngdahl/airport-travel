@@ -2,6 +2,9 @@ package airlinesystemcontroller;
 
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -11,7 +14,8 @@ import airlinesystemmodel.Airport;
 public class AirportGraph {
 	
 	Graph<String, DefaultEdge> graphOfAirports;
-	
+	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
+
 	/*
 	 * Constructor, initializes graph
 	 */
@@ -85,9 +89,9 @@ public class AirportGraph {
 	public Airport getAirport(String airportName_, HashMap<String, Airport> nameMap_) {
 		return nameMap_.get(airportName_);
 	}
-	//TODO temporary method using system out for testing graph, remove later
+	//TODO temporary method using logging to console for testing graph, remove later
 	public void printGraph() {
-		System.out.println(graphOfAirports.toString());
+		consoleLogger.info(graphOfAirports.toString());
 		Iterator<String> _vertexItr = graphOfAirports.vertexSet().iterator();
 		Iterator<DefaultEdge> _edgeItr;
 		String _vertex;
@@ -95,7 +99,7 @@ public class AirportGraph {
 		DefaultEdge _edgeTracker;
 		while(_vertexItr.hasNext()) {
 			_vertex = _vertexItr.next();
-			System.out.print("Vertex: " + _vertex);
+			consoleLogger.info("Vertex: " + _vertex);
 			_edgeItr = graphOfAirports.edgesOf(_vertex).iterator();
 			while (_edgeItr.hasNext()) {
 				_edgeTracker = _edgeItr.next();
@@ -103,10 +107,11 @@ public class AirportGraph {
 				if(_destinationVertex.equals(_vertex)) {
 					_destinationVertex = graphOfAirports.getEdgeSource(_edgeTracker);
 				}
-				System.out.print("-> " + _destinationVertex + "(" + graphOfAirports.getEdgeWeight(_edgeTracker) + ")");
+				consoleLogger.info("-> " + _destinationVertex + "(" 
+				+ graphOfAirports.getEdgeWeight(_edgeTracker) + ")");
 			}
-			System.out.println();
 		}
+		/* Some old testing
 		System.out.println("A and B connected: " + areAirportsConnected("A", "B") 
 		+ "\nB and A connected: " + areAirportsConnected("B", "A")
 		+ "\nD and A connected: " + areAirportsConnected("D", "A")
@@ -116,5 +121,6 @@ public class AirportGraph {
 		+ "\nD and C connected: " + areAirportsConnected("D", "C")
 		+ "\nC and D connected: " + areAirportsConnected("C", "D")
 		+ "\nD and D connected: " + areAirportsConnected("D", "D"));
+		*/
 	}
 }
