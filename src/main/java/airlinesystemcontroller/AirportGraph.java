@@ -12,13 +12,21 @@ public class AirportGraph {
 	
 	Graph<String, DefaultEdge> graphOfAirports;
 	
+	/*
+	 * Constructor, initializes graph
+	 */
 	public AirportGraph() {
 		graphOfAirports = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
 	}
 	
+	/*
+	 * Add a new airport by creating a new vertex on the graph
+	 * based on the airport object input
+	 */
 	public void addAirport(Airport airport_) {
 		graphOfAirports.addVertex(airport_.getName());
 	}
+	
 	/*
 	 *  TODO: Try creating temp DefualtEdge
 	 */
@@ -27,26 +35,53 @@ public class AirportGraph {
 		graphOfAirports.setEdgeWeight(graphOfAirports.getEdge(source_, destination_), distance_);
 	}
 	
+	/*
+	 * Return distance between two airports in the graph
+	 * only if they are connected, otherwise return 0
+	 */
 	public double getDistance(String source_, String destination_) {
-		return graphOfAirports.getEdgeWeight(graphOfAirports.getEdge(source_, destination_));
+		if (areAirportsConnected(source_, destination_)) {
+			return graphOfAirports.getEdgeWeight(graphOfAirports.getEdge(source_, destination_));
+		}
+		return 0;
 	}
 
+	/*
+	 * Remove a connection between two airports
+	 * only if there exists a connection
+	 */
 	public void removeEdge(String source_, String destination_) {
 		graphOfAirports.removeEdge(source_, destination_);
 	}
 
+	/*
+	 * Remove an airport from the graph and all connections
+	 * only if it exists
+	 */
 	public void removeAirport(String airport_) {
 		graphOfAirports.removeVertex(airport_);
 	}
 
+	/*
+	 * Returns true if airport is found in graph as vertex,
+	 * otherwise returns false
+	 */
 	public boolean isAirportInGraph(String airport_) {
 		return graphOfAirports.containsVertex(airport_);
 	}
 	
+	/*
+	 * Returns true if two airports are connected,
+	 * otherwise returns false
+	 */
 	public boolean areAirportsConnected(String source_, String destination_) {
 		return graphOfAirports.containsEdge(source_, destination_);
 	}
 	
+	/*
+	 * Returns airport object taken from hash map
+	 * that is based on the name
+	 */
 	public Airport getAirport(String airportName_, HashMap<String, Airport> nameMap_) {
 		return nameMap_.get(airportName_);
 	}

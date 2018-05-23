@@ -10,11 +10,11 @@ import java.math.BigDecimal;
 
 public class CommandHandler {
 
+	private Logger debugLogger = LoggerFactory.getLogger("debugLogger");
+	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
+	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
+	
 	public CommandHandler(String fname_) {
-		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
-		Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
-		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
-		
 		consoleLogger.info("Calculating flight results...");
 		debugLogger.debug("Command Handler");
 		

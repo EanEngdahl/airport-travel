@@ -16,8 +16,10 @@ public class ReadPSVIntoState {
 	
 	private static final String DELIM = "|";
 	
-	/*Read information from the input file then sends that information properly
-	 * formatted to be added to the FlightList */
+	/*
+	 * Read information from the input file then sends that information properly
+	 * formatted to be added to the FlightList 
+	 * */
 	public void ReadFileInputIntoFlightList(FlightList listOfFlights_) throws IOException{
 		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 		debugLogger.debug("Reading input file");
