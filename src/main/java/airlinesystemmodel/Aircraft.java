@@ -1,7 +1,6 @@
 package airlinesystemmodel;
 
 import java.math.BigDecimal;
-import java.util.stream.IntStream;
 
 public class Aircraft {
 
@@ -12,12 +11,12 @@ public class Aircraft {
 	private int totalNumOfPassengers;
 
 		
-	public Aircraft(char aircraftSize_, int seatsFilledPerSection_[], 
-			BigDecimal costOfSeat_[], int maxSeatsPerSection_[]) {
+	public Aircraft(char aircraftSize_, int totalNumOfPassengers_, int seatsFilledPerSection_[], 
+			BigDecimal costOfSeat_[], int maxAircraftSeats_) {
 		aircraftSize = aircraftSize_;
 		sectionList = new AircraftSectionList(aircraftSize_, seatsFilledPerSection_, costOfSeat_);
-		setMaxAircraftSeats(maxSeatsPerSection_);
-		setTotalNumOfPassengers(seatsFilledPerSection_);
+		maxAircraftSeats = maxAircraftSeats_;
+		totalNumOfPassengers = totalNumOfPassengers_;
 	}
 
 	public char getAircraftSize() {
@@ -35,16 +34,13 @@ public class Aircraft {
 	public int getMaxAircraftSeats() {
 		return maxAircraftSeats;
 	}
-
-	/**
-	 * TODO move logic
-	 */
-	public void setMaxAircraftSeats(int maxSeatsPerSection_[]) {
-		maxAircraftSeats = IntStream.of(maxSeatsPerSection_).sum();
+	
+	public void setMaxAircraftSeats(int maxAircraftSeats_) {
+		maxAircraftSeats = maxAircraftSeats_;
 	}
 	
-	public void setTotalNumOfPassengers(int seatsFilledPerSection_[]) {
-		totalNumOfPassengers = IntStream.of(seatsFilledPerSection_).sum();
+	public void setTotalNumOfPassengers(int totalNumOfPassengers_) {
+		totalNumOfPassengers = totalNumOfPassengers_;
 	}
 	
 	public int getTotalNumOfPassengers() {

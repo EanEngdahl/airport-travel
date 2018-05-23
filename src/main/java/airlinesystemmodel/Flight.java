@@ -16,7 +16,7 @@ public class Flight {
 	public Flight(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
 			Airport source_, Airport destination_, int distanceTravelled_,
-			AircraftPilot pilot_, AircraftPilot coPilot_) {
+			AircraftPilot pilot_, AircraftPilot coPilot_, Aircraft aircraftAssigned_) {
 
 		aircraftSize = aircraftSize_;
 		seatsFilledPerSection = seatsFilledPerSection_;
@@ -26,9 +26,7 @@ public class Flight {
 		destination = destination_;
 		pilot = pilot_;
 		coPilot = coPilot_;
-		aircraftAssigned = new Aircraft(aircraftSize, seatsFilledPerSection, 
-				seatCostPerSection, maxSeatsPerSection_);
-		
+		aircraftAssigned = aircraftAssigned_;
 	}
 	
 	public char getAircraftSize() {
