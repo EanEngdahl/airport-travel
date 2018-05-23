@@ -3,20 +3,18 @@ package airlinesystemcontroller;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import airlinesystemmodel.Flight;
 import airlinesystemmodel.FlightList;
 
 import java.math.BigDecimal;
 
 public class CommandHandler {
 
-	private Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 	
 	public CommandHandler(String fname_) {
 		consoleLogger.info("Calculating flight results...");
-		debugLogger.debug("Command Handler");
+		consoleLogger.debug("Command Handler");
 		
 		FlightList _listOfFlights = new FlightList();
 		AirportGraph _graphOfAirports = new AirportGraph();
@@ -28,7 +26,6 @@ public class CommandHandler {
 			_graphOfAirports.printGraph();
 		}
 		catch (Exception e_) {
-			debugLogger.error("Error reading graph file");
 			consoleLogger.error("Graph file reading error.");
 		}
 		try {
@@ -39,7 +36,6 @@ public class CommandHandler {
 			consoleLogger.info("Total Profit = $" + _totalProfit.toString());
 		}
 		catch (Exception e_) {
-			debugLogger.error("Error reading information file");
 			consoleLogger.error("Information file reading error, no profits calculated.");
 		}
 	}
