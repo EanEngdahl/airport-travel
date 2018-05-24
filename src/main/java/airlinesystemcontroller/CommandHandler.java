@@ -37,6 +37,7 @@ public class CommandHandler {
 		}
 		catch (Exception e_) {
 			consoleLogger.error("Information file reading error, no profits calculated.");
+			resultsLogger.error("No profits calculated.");
 		}
 	}
 	

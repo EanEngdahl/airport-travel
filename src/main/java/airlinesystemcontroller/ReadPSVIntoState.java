@@ -20,9 +20,9 @@ public class ReadPSVIntoState {
 	 * Read information from the input file then sends that information properly
 	 * formatted to be added to the FlightList 
 	 * */
-	public void ReadFileInputIntoFlightList(FlightList listOfFlights_) throws IOException{
-		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
-		debugLogger.debug("Reading input file");
+	public void ReadFileInputIntoFlightList(FlightList listOfFlights_) throws IOException {
+		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
+		consoleLogger.debug("Reading input file");
 		
 		String _source;
 		String _destination;
@@ -42,11 +42,13 @@ public class ReadPSVIntoState {
 				if ("".equals(line)) {
 					continue;
 				}
+				
 				tokenizer = new StringTokenizer(line, DELIM);
 				_source = tokenizer.nextToken();
 				_destination = tokenizer.nextToken();
 				_distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
 				_aircraftSize = setAircraftSize(tokenizer.nextToken());
+				
 				for (int i = 0; i < 4; i++) {
 					_maxSeatsPerSection[i] = setMaxSeatsPerSection(tokenizer.nextToken());
 				}
@@ -60,7 +62,7 @@ public class ReadPSVIntoState {
 						_seatsFilledPerSection, _seatCostPerSection, _source,
 						_destination, _distanceTravelled);
 			}
-			debugLogger.debug("Successfully read file");
+			consoleLogger.debug("Successfully read file");
 			reader.close();
 		}
 	}
