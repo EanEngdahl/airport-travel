@@ -22,6 +22,7 @@ import airlinesystemmodel.Airport;
 public class AirportGraph {
 	
 	Graph<String, DefaultEdge> graphOfAirports;
+	HashMap<String, Airport> mapAirportToName;
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 
 	/*
@@ -29,6 +30,7 @@ public class AirportGraph {
 	 */
 	public AirportGraph() {
 		graphOfAirports = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
+		mapAirportToName = new HashMap<String, Airport>();
 	}
 	
 	/*
@@ -37,11 +39,9 @@ public class AirportGraph {
 	 */
 	public void addAirport(Airport airport_) {
 		graphOfAirports.addVertex(airport_.getName());
+		mapAirportToName.put(airport_.getName(), airport_);
 	}
 	
-	/*
-	 *  TODO: Try creating temp DefualtEdge
-	 */
 	public boolean createEdge(String source_, String destination_, double distance_) {		
 		if (source_.equals(destination_) || areAirportsConnected(source_, destination_)
 				|| distance_ <= 0) {
@@ -78,6 +78,7 @@ public class AirportGraph {
 	 */
 	public void removeAirport(String airport_) {
 		graphOfAirports.removeVertex(airport_);
+		mapAirportToName.remove(airport_);
 	}
 
 	/*
@@ -100,8 +101,8 @@ public class AirportGraph {
 	 * Returns airport object taken from hash map
 	 * that is based on the name
 	 */
-	public Airport getAirport(String airportName_, HashMap<String, Airport> nameMap_) {
-		return nameMap_.get(airportName_);
+	public Airport getAirport(String airportName_) {
+		return mapAirportToName.get(airportName_);
 	}
 	//TODO temporary method using logging to console for testing graph, remove later
 	public void printGraph() {

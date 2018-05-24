@@ -23,7 +23,10 @@ public class RuntimePropertyController {
 			_consoleLogger.error("Could not find default.properties file" + e_.getMessage());
 		} catch(IOException e_) {
 			_consoleLogger.error("Error reading default.properties file" + e_.getMessage());
+		} catch (Exception e_) {
+			e_.printStackTrace();
 		}
+		
 		
 		return _defaultProperties;
 	}
@@ -35,10 +38,12 @@ public class RuntimePropertyController {
 
 		try (InputStream _is = RuntimePropertyController.class.getResourceAsStream(fileName_)) {
 			_defaultProperties.load(_is);
-		} catch(FileNotFoundException e_){
-			_consoleLogger.error("Could not find" + fileName_ + "file" + e_.getMessage());
-		} catch(IOException e_) {
-			_consoleLogger.error("Error reading" + fileName_ + "file" + e_.getMessage());
+		} catch(IOException e_){
+			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties");
+			_defaultProperties = loadDefaultProperties();
+		} catch(NullPointerException e_) {
+			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties");
+			_defaultProperties = loadDefaultProperties();	
 		}
 		
 		return _defaultProperties;
@@ -47,14 +52,12 @@ public class RuntimePropertyController {
 	
 	public Properties loadRuntimeProperties(String fileName_) {
 		Properties _returnProperties;
-/*
-		if(fileName_.equals(null)) {
+
+		if(fileName_.equals("default.properties")) {
 			_returnProperties = loadDefaultProperties();
 		} else {
 			_returnProperties = createRuntimeProperties(fileName_);
 		}
-*/
-		_returnProperties = loadDefaultProperties();
 		return _returnProperties;
 	}
 }

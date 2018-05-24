@@ -27,39 +27,28 @@ public class CommandHandler {
 		
 		try {
 			_graphInput.ReadFileInputIntoGraph(_graphOfAirports);
+			consoleLogger.debug("Graph successfully read.");
 			_graphOfAirports.printGraph();
 		}
 		catch (Exception e_) {
 			consoleLogger.error("Graph file reading error.");
 		}
+
 		try {
 			_modelProperty = _propertyCreator.loadRuntimeProperties(propertiesFileName_);
-			consoleLogger.info("Made it past model loading");
-			_dataCreator.generateCurrentStateModel(_modelProperty, _graphOfAirports, _listOfFlights, _flightInput);
-			consoleLogger.info("Made it past model datacreator");			
+			consoleLogger.debug("Created property model from file");
+			_dataCreator.generateCurrentStateModel(_modelProperty, _graphOfAirports,
+					_listOfFlights, _flightInput);
+			consoleLogger.debug("Generated data");			
 			FlightRCPManager _flightProfitManager = new FlightRCPManager();
 			BigDecimal _totalProfit = _flightProfitManager.findTotalProfitOfFlightList(_listOfFlights);
 			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
 			consoleLogger.info("Total Profit = $" + _totalProfit.toString());
 		}
 		catch (Exception e_) {
-			consoleLogger.error("Information file reading error, no profits calculated.");
+			consoleLogger.error("Unable to generate data, no profits calculated.");
 			resultsLogger.error("No profits calculated.");
 		}
-		/*
-		try {
-			_flightData = _dataCreator.generateRandomFlight(_modelProperty, _graphOfAirports);
-			_flightInput.ReadSingleFlightIntoFlightList(_listOfFlights, _flightData);
-			FlightRCPManager _flightProfitManager = new FlightRCPManager();
-			BigDecimal _totalProfit = _flightProfitManager.findTotalProfitOfFlightList(_listOfFlights);
-			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
-			consoleLogger.info("Total Profit = $" + _totalProfit.toString());
-		}
-		catch (Exception e_) {
-			consoleLogger.error("Information file reading error, no profits calculated.");
-			resultsLogger.error("No profits calculated.");
-		}
-		*/
 	}
 	
 	public static void main(String[] args) {

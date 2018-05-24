@@ -8,7 +8,7 @@ import org.junit.Test;
 
 import airlinesystemcontroller.FlightBuilder;
 
-public class FlightDispatcherTest {
+public class FlightBuilderTest {
 
 	@Test
 	public void testFlightDispatchService() {

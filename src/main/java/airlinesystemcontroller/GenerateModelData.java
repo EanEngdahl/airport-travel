@@ -174,7 +174,7 @@ public class GenerateModelData {
 				_seatsFilledPerSection, _seatPricePerSection);
 		
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
-		_consoleLogger.info("Model gen string output: {}", _flight);		
+		_consoleLogger.debug("Model gen string output: {}", _flight);		
 		
 		return _flight;
 	}
