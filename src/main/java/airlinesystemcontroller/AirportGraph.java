@@ -42,12 +42,15 @@ public class AirportGraph {
 	/*
 	 *  TODO: Try creating temp DefualtEdge
 	 */
-	public void createEdge(String source_, String destination_, double distance_) {
-		if (source_.equals(destination_) || areAirportsConnected(source_, destination_)) {
-			return;
+	public boolean createEdge(String source_, String destination_, double distance_) {		
+		if (source_.equals(destination_) || areAirportsConnected(source_, destination_)
+				|| distance_ <= 0) {
+			consoleLogger.debug("Invalid graph input found, input ignored.");
+			return false;
 		}
 		graphOfAirports.addEdge(source_, destination_);
 		graphOfAirports.setEdgeWeight(graphOfAirports.getEdge(source_, destination_), distance_);
+		return true;
 	}
 	
 	/*

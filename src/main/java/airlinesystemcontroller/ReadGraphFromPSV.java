@@ -16,13 +16,14 @@ public class ReadGraphFromPSV {
 	private static final String DELIM = "|";
 	
 	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_) throws IOException{
-		Logger debugLogger = LoggerFactory.getLogger("debugLogger");
-		debugLogger.debug("Reading graph input file");
+		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
+		consoleLogger.debug("Reading graph input file");
 		
 		String _source;
 		String _destination;
 		double _distanceTravelled;
 		String _fileToRead = "/airports";
+		int _counter = 1;
 		
 		try (InputStream _is = ReadGraphFromPSV.class.getResourceAsStream(_fileToRead)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
@@ -33,6 +34,7 @@ public class ReadGraphFromPSV {
 			Airport _sourceAirport;
 			Airport _destinationAirport;
 			while ((line = reader.readLine()) != null) {
+				_counter++;
 				if ("".equals(line)) {
 					continue;
 				}
@@ -44,9 +46,11 @@ public class ReadGraphFromPSV {
 				_destinationAirport = new Airport(_destination);
 				graphOfAirports_.addAirport(_sourceAirport);
 				graphOfAirports_.addAirport(_destinationAirport);
-				graphOfAirports_.createEdge(_source, _destination, _distanceTravelled);
+				if (!graphOfAirports_.createEdge(_source, _destination, _distanceTravelled)) {
+					consoleLogger.debug("Ignored at line " + Integer.toString(_counter) + " in file");
+				}
 			}
-			debugLogger.debug("Successfully read graph file");
+			consoleLogger.debug("Successfully read graph file");
 			reader.close();
 		}
 	}
