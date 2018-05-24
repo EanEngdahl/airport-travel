@@ -35,6 +35,9 @@ public class FlightDispatcherTest {
 				testDispatch.getDistanceTravelled());
 		assertEquals("Pilot should be senior level", 2, testDispatch.getPilot().getSeniority());
 		assertEquals("CoPilot should be senior level", 2, testDispatch.getCoPilot().getSeniority());
+		for(int i = 0; i < _seatCost.length; i ++) {
+			assertEquals("Seat cost for this section should be " + _seatCost[i], _seatCost[i], testDispatch.getSeatCostPerSection()[i]);
+		}
 		
 		_aircraftSize = 'm';
 		_maxSeats = new int[] {100, 0, 70, 30};
@@ -57,7 +60,10 @@ public class FlightDispatcherTest {
 		assertEquals("Plane travel distance should be 1237", _distanceTravelled, 
 				testDispatch.getDistanceTravelled());
 		assertEquals("Pilot should be middle level", 1, testDispatch.getPilot().getSeniority());
-		assertEquals("Pilot should be middle level", 1, testDispatch.getPilot().getSeniority());
+		assertEquals("CoPilot should be middle level", 1, testDispatch.getCoPilot().getSeniority());
+		for(int i = 0; i < _seatCost.length; i ++) {
+			assertEquals("Seat cost for this section should be " + _seatCostMedium[i], _seatCostMedium[i], testDispatch.getSeatCostPerSection()[i]);
+		}
 		
 		_aircraftSize = 's';
 		_maxSeats = new int[] {50, 0, 0, 0};
@@ -80,6 +86,9 @@ public class FlightDispatcherTest {
 		assertEquals("Plane travel distance should be 232", _distanceTravelled, 
 				testDispatch.getDistanceTravelled());
 		assertEquals("Pilot should be bottom level", 0, testDispatch.getPilot().getSeniority());
-		assertEquals("Pilot should be bottom level", 0, testDispatch.getPilot().getSeniority());
+		assertEquals("CoPilot should be bottom level", 0, testDispatch.getCoPilot().getSeniority());
+		for(int i = 0; i < _seatCost.length; i ++) {
+			assertEquals("Seat cost for this section should be " + _seatCostSmall[i], _seatCostSmall[i], testDispatch.getSeatCostPerSection()[i]);
+		}
 	}
 }
