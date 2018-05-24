@@ -20,7 +20,7 @@ public class FlightDispatcherTest {
 				new BigDecimal("450"), new BigDecimal("650")};
 		String _source = "1";
 		String _dest = "2";
-		int _distanceTravelled = 2500;
+		double _distanceTravelled = 2500;
 		
 		Flight testDispatch = tester.flightDispatchService(_aircraftSize, _maxSeats, 
 				_seatsFilled, _seatCost, _source, _dest, _distanceTravelled);
@@ -32,7 +32,7 @@ public class FlightDispatcherTest {
 		assertEquals("Plane source should be 1", _source, testDispatch.getSource().getName());
 		assertEquals("Plane destination should be 2", _dest, testDispatch.getDestination().getName());
 		assertEquals("Plane travel distance should be 2500", _distanceTravelled, 
-				testDispatch.getDistanceTravelled());
+				testDispatch.getDistanceTravelled(), .1);
 		assertEquals("Pilot should be senior level", 2, testDispatch.getPilot().getSeniority());
 		assertEquals("CoPilot should be senior level", 2, testDispatch.getCoPilot().getSeniority());
 		
@@ -55,7 +55,7 @@ public class FlightDispatcherTest {
 		assertEquals("Plane source should be 2", _source, testDispatch.getSource().getName());
 		assertEquals("Plane destination should be 3", _dest, testDispatch.getDestination().getName());
 		assertEquals("Plane travel distance should be 1237", _distanceTravelled, 
-				testDispatch.getDistanceTravelled());
+				testDispatch.getDistanceTravelled(), .1);
 		assertEquals("Pilot should be middle level", 1, testDispatch.getPilot().getSeniority());
 		assertEquals("Pilot should be middle level", 1, testDispatch.getPilot().getSeniority());
 		
@@ -78,7 +78,7 @@ public class FlightDispatcherTest {
 		assertEquals("Plane source should be 3", _source, testDispatch.getSource().getName());
 		assertEquals("Plane destination should be 1", _dest, testDispatch.getDestination().getName());
 		assertEquals("Plane travel distance should be 232", _distanceTravelled, 
-				testDispatch.getDistanceTravelled());
+				testDispatch.getDistanceTravelled(), .1);
 		assertEquals("Pilot should be bottom level", 0, testDispatch.getPilot().getSeniority());
 		assertEquals("Pilot should be bottom level", 0, testDispatch.getPilot().getSeniority());
 	}

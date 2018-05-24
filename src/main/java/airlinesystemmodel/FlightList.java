@@ -16,7 +16,7 @@ public class FlightList extends ArrayList<Flight> {
 	
 	public void addFlightToList(char aircraftSize_, int maxSeatsPerSection_[], 
 		int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
-		String source_, String destination_, int distanceTravelled_ ) {
+		String source_, String destination_, double distanceTravelled_ ) {
 
 			Flight _addedFlight;
 			FlightBuilder _createFlight = new FlightBuilder();

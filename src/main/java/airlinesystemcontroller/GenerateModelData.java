@@ -18,6 +18,10 @@ public class GenerateModelData {
 
 	private Random rand = new Random();
 	
+	private static final char LARGE = 'l';
+    private static final char MEDIUM = 'm';
+    private static final char SMALL = 's';
+	
 	public DefaultEdge getRandomEdge(Set<DefaultEdge> edgeSet_) {
 		int _bound = edgeSet_.size();
 		int _stop;
@@ -48,86 +52,86 @@ public class GenerateModelData {
 			int _first;
 		
 			switch(airplaneSize_) {
-			case 's':
-				_maxSeats = modelProperties_.getProperty("SMALL_PLANE_SEAT_MAX_PER_SECTION").split("|");
-
-				if(!_maxSeats[0].equals("0")) {
-					_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
-				} else {
-					_econBasic = 0;
-				}
-				if(!_maxSeats[1].equals("0")) {
-					_econPlus = rand.nextInt(Integer.parseInt(_maxSeats[1]));
-				} else {
-					_econPlus = 0;
-				}
-				if(!_maxSeats[2].equals("0")) {
-					_business = rand.nextInt(Integer.parseInt(_maxSeats[2]));	
-				} else {
-					_business = 0;
-				}
-				if(!_maxSeats[3].equals("0")) {
-					_first = rand.nextInt(Integer.parseInt(_maxSeats[3]));
-				} else {
-					_first = 0;
-				}
-
-				genString_ = String.format("%d|%d|%d|%d", _econBasic, _econPlus, _business, _first);
-				break;
-
-			case 'm':
-				_maxSeats = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_MAX_PER_SECTION").split("|");
-
-				if(!_maxSeats[0].equals("0")) {
-					_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
-				} else {
-					_econBasic = 0;
-				}
-				if(!_maxSeats[1].equals("0")) {
-					_econPlus = rand.nextInt(Integer.parseInt(_maxSeats[1]));
-				} else {
-					_econPlus = 0;
-				}
-				if(!_maxSeats[2].equals("0")) {
-					_business = rand.nextInt(Integer.parseInt(_maxSeats[2]));	
-				} else {
-					_business = 0;
-				}
-				if(!_maxSeats[3].equals("0")) {
-					_first = rand.nextInt(Integer.parseInt(_maxSeats[3]));
-				} else {
-					_first = 0;
-				}
-
-				genString_ = String.format("%d|%d|%d|%d", _econBasic, _econPlus, _business, _first);
-				break;
-
-			case 'l':
-				_maxSeats = modelProperties_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION").split("|");
-
-				if(!_maxSeats[0].equals("0")) {
-					_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
-				} else {
-					_econBasic = 0;
-				}
-				if(!_maxSeats[1].equals("0")) {
-					_econPlus = rand.nextInt(Integer.parseInt(_maxSeats[1]));
-				} else {
-					_econPlus = 0;
-				}
-				if(!_maxSeats[2].equals("0")) {
-					_business = rand.nextInt(Integer.parseInt(_maxSeats[2]));	
-				} else {
-					_business = 0;
-				}
-				if(!_maxSeats[3].equals("0")) {
-					_first = rand.nextInt(Integer.parseInt(_maxSeats[3]));
-				} else {
-					_first = 0;
-				}
-
-				genString_ = String.format("%d|%d|%d|%d", _econBasic, _econPlus, _business, _first);
-				break;
+				case SMALL:
+					_maxSeats = modelProperties_.getProperty("SMALL_PLANE_SEAT_MAX_PER_SECTION").split("|");
+	
+					if(!_maxSeats[0].equals("0")) {
+						_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
+					} else {
+						_econBasic = 0;
+					}
+					if(!_maxSeats[1].equals("0")) {
+						_econPlus = rand.nextInt(Integer.parseInt(_maxSeats[1]));
+					} else {
+						_econPlus = 0;
+					}
+					if(!_maxSeats[2].equals("0")) {
+						_business = rand.nextInt(Integer.parseInt(_maxSeats[2]));	
+					} else {
+						_business = 0;
+					}
+					if(!_maxSeats[3].equals("0")) {
+						_first = rand.nextInt(Integer.parseInt(_maxSeats[3]));
+					} else {
+						_first = 0;
+					}
+	
+					genString_ = String.format("%d|%d|%d|%d", _econBasic, _econPlus, _business, _first);
+					break;
+	
+				case MEDIUM:
+					_maxSeats = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_MAX_PER_SECTION").split("|");
+	
+					if(!_maxSeats[0].equals("0")) {
+						_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
+					} else {
+						_econBasic = 0;
+					}
+					if(!_maxSeats[1].equals("0")) {
+						_econPlus = rand.nextInt(Integer.parseInt(_maxSeats[1]));
+					} else {
+						_econPlus = 0;
+					}
+					if(!_maxSeats[2].equals("0")) {
+						_business = rand.nextInt(Integer.parseInt(_maxSeats[2]));	
+					} else {
+						_business = 0;
+					}
+					if(!_maxSeats[3].equals("0")) {
+						_first = rand.nextInt(Integer.parseInt(_maxSeats[3]));
+					} else {
+						_first = 0;
+					}
+	
+					genString_ = String.format("%d|%d|%d|%d", _econBasic, _econPlus, _business, _first);
+					break;
+	
+				case LARGE:
+					_maxSeats = modelProperties_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION").split("|");
+	
+					if(!_maxSeats[0].equals("0")) {
+						_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
+					} else {
+						_econBasic = 0;
+					}
+					if(!_maxSeats[1].equals("0")) {
+						_econPlus = rand.nextInt(Integer.parseInt(_maxSeats[1]));
+					} else {
+						_econPlus = 0;
+					}
+					if(!_maxSeats[2].equals("0")) {
+						_business = rand.nextInt(Integer.parseInt(_maxSeats[2]));	
+					} else {
+						_business = 0;
+					}
+					if(!_maxSeats[3].equals("0")) {
+						_first = rand.nextInt(Integer.parseInt(_maxSeats[3]));
+					} else {
+						_first = 0;
+					}
+	
+					genString_ = String.format("%d|%d|%d|%d", _econBasic, _econPlus, _business, _first);
+					break;
 				}
 		} catch(Exception e) {
 			e.printStackTrace();

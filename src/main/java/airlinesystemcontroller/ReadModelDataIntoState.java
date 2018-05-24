@@ -26,7 +26,7 @@ public class ReadModelDataIntoState {
 		
 		String _source;
 		String _destination;
-		int _distanceTravelled;
+		double _distanceTravelled;
 		char _aircraftSize;
 		int _maxSeatsPerSection[] = new int [4];
 		int _seatsFilledPerSection[] = new int [4];
@@ -71,7 +71,7 @@ public class ReadModelDataIntoState {
 		flightInformation_ = flightInformation_.replaceAll("\\s", "");
 		String _source;
 		String _destination;
-		int _distanceTravelled;
+		double _distanceTravelled;
 		char _aircraftSize;
 		int _maxSeatsPerSection[] = new int [4];
 		int _seatsFilledPerSection[] = new int [4];
@@ -98,8 +98,8 @@ public class ReadModelDataIntoState {
 				_destination, _distanceTravelled);
 	}
 	
-	public int setDistanceTravelled(String distanceTravelled_) {
-		return Integer.parseInt(distanceTravelled_);
+	public double setDistanceTravelled(String distanceTravelled_) {
+		return Double.parseDouble(distanceTravelled_);
 	}
 	
 	public char setAircraftSize(String aircraftSize_) {

@@ -17,9 +17,33 @@ import airlinesystemmodel.Aircraft;
 
 public class FlightBuilder {
 	
+    /*
+     * Create new flight based off requirements passed in
+     * 
+     * @param aircraftSize_
+     * 		character that represents the size of plane that will be
+     * 		passed in and used to determine the pilot assigned
+     * @param maxSeatsPerSection_
+     * 		integer array used to determine total number of seats on
+     * 		the flight for each section
+     * @param seatsFilledPerSection_
+     * 		integer array used to determine total number of passengers
+     * 		and the number of filled seats in each section for the flight
+     * @param seatCostPerSection_
+     * 		BigDecimal type array that determines the cost of a single seat
+     * 		in each section
+     * @param source_
+     * 		String that represents the first node on the graph for the flight
+     * @param destination_
+     * 		String that represents the second node on the graph for the flight
+     * @param distanceTravelled_
+     * 		
+     * @return
+     * 		a new pilot to be assigned to the flight
+     */
 	public Flight flightDispatchService(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
-			String source_, String distance_, int distanceTravelled_ ) {
+			String source_, String destination_, double distanceTravelled_) {
 	
 		AircraftPilot _pilot;
 		AircraftPilot _coPilot;
@@ -32,7 +56,7 @@ public class FlightBuilder {
 		_aircraftAssigned = new Aircraft(aircraftSize_, getTotalNumOfPassengers(seatsFilledPerSection_),
 				seatsFilledPerSection_, seatCostPerSection_, getMaxAircraftSeats(maxSeatsPerSection_));
 		Airport source = new Airport(source_);
-		Airport destination = new Airport(distance_);
+		Airport destination = new Airport(destination_);
 		
 		Flight _newFlightFromData = new Flight(aircraftSize_, maxSeatsPerSection_, 
 				seatsFilledPerSection_, seatCostPerSection_, source, destination, 
