@@ -1,4 +1,4 @@
-package airlinesystemmodel;
+package airlinesystemcontroller;
 
 import static org.junit.Assert.*;
 
@@ -7,6 +7,7 @@ import java.math.BigDecimal;
 import org.junit.Test;
 
 import airlinesystemcontroller.FlightBuilder;
+import airlinesystemmodel.Flight;
 
 public class FlightBuilderTest {
 
