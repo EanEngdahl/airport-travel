@@ -23,8 +23,16 @@ public class RuntimePropertyControllerTest {
 
 	@Test
 	public void testCreateRuntimeProperties() throws IOException, NullPointerException {
-		RuntimePropertyController propController = new RuntimePropertyController();
-		propController.createRuntimeProperties("this is not a file");
+		RuntimePropertyController propController_ = new RuntimePropertyController();
+		Properties createTest_;
+
+		// Check that it handles the exceptions
+		createTest_ = propController_.createRuntimeProperties("this is not a file");
+		
+		// Check that it loaded the default
+		assertEquals("15", createTest_.getProperty("FUEL_COST"));
+		assertEquals("100", createTest_.getProperty("NUMBER_OF_FLIGHTS"));
+		assertEquals("150|100|100|50", createTest_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION"));
 	}
 
 	@Test
