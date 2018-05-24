@@ -12,14 +12,14 @@ public class CommandHandler {
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 	
-	public CommandHandler(String fname_) {
+	public CommandHandler(String fileName_) {
 		consoleLogger.info("Calculating flight results...");
 		consoleLogger.debug("Command Handler");
 		
 		FlightList _listOfFlights = new FlightList();
 		AirportGraph _graphOfAirports = new AirportGraph();
 		ReadGraphFromPSV _graphInput = new ReadGraphFromPSV();
-		ReadPSVIntoState _informationInput = new ReadPSVIntoState();
+		ReadModelDataIntoState _informationInput = new ReadModelDataIntoState();
 		
 		try {
 			_graphInput.ReadFileInputIntoGraph(_graphOfAirports);
@@ -29,7 +29,7 @@ public class CommandHandler {
 			consoleLogger.error("Graph file reading error.");
 		}
 		try {
-			_informationInput.ReadFileInputIntoFlightList(_listOfFlights);
+			_informationInput.ReadFileInputIntoFlightList(_listOfFlights, fileName_);
 			FlightRCPManager _flightProfitManager = new FlightRCPManager();
 			BigDecimal _totalProfit = _flightProfitManager.findTotalProfitOfFlightList(_listOfFlights);
 			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
