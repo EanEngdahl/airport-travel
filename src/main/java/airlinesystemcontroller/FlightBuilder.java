@@ -37,9 +37,9 @@ public class FlightBuilder {
      * @param destination_
      * 		String that represents the second node on the graph for the flight
      * @param distanceTravelled_
-     * 		
+     * 		Double that represents that edge weight from the graph for the flight
      * @return
-     * 		a new pilot to be assigned to the flight
+     * 		A new flight that has all variables set
      */
 	public Flight flightDispatchService(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
@@ -69,6 +69,14 @@ public class FlightBuilder {
 		 */
 	}
 	
+	/*
+	 * Sets a given flight's revenue, cost, and profit data
+	 * 
+	 * @param flightToSet_
+	 * 		the flight object that will be set
+	 * @return
+	 * 		N/A
+	 */
 	public void setFlightRCPData(Flight flightToSet_) {
 		FlightRCPManager _revenueCostProfitFinder = new FlightRCPManager();
 		BigDecimal[] _flightRCPArray = _revenueCostProfitFinder.getRCPAsArray(flightToSet_);
@@ -77,10 +85,26 @@ public class FlightBuilder {
 		flightToSet_.setProfit(_flightRCPArray[2]);
 	}
 	
+	/*
+	 * Finds the number of passengers that are actually on a flight
+	 * 
+	 * @param seatsFilledPerSection_
+	 * 		Integer array that is summed to find passenger number
+	 * @return
+	 * 		total number of passengers as an integer
+	 */
 	public int getTotalNumOfPassengers(int seatsFilledPerSection_[]) {
 		return IntStream.of(seatsFilledPerSection_).sum();
 	}
 	
+	/*
+	 * Find the number of seats on a flight
+	 * 
+	 * @param maxSeatsPerSection_
+	 * 		Integer array that is summed to find number of seats
+	 * @return
+	 * 		total number of seats as an integer
+	 */
 	public int getMaxAircraftSeats(int maxSeatsPerSection_[]) {
 		return IntStream.of(maxSeatsPerSection_).sum();
 				
