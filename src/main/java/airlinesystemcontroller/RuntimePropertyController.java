@@ -38,9 +38,12 @@ public class RuntimePropertyController {
 
 		try (InputStream _is = RuntimePropertyController.class.getResourceAsStream(fileName_)) {
 			_defaultProperties.load(_is);
-		} catch(Exception e_){
+		} catch(IOException e_){
 			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties");
 			_defaultProperties = loadDefaultProperties();
+		} catch(NullPointerException e_) {
+			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties");
+			_defaultProperties = loadDefaultProperties();	
 		}
 		
 		return _defaultProperties;
