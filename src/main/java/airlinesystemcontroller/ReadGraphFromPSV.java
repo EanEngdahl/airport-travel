@@ -1,3 +1,10 @@
+/*
+ * ReadGraphFromPSV Class
+ * 		Reads a file input line by line with | as delimiters
+ * 		this information is then converted to needed data types
+ * 		and adds the vertexes (if not already present) and 
+ * 		edge (if allowed)
+ */
 package airlinesystemcontroller;
 
 import java.io.BufferedReader;
@@ -14,7 +21,7 @@ import airlinesystemmodel.Airport;
 public class ReadGraphFromPSV {
 
 	private static final String DELIM = "|";
-	
+
 	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_) throws IOException{
 		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		consoleLogger.debug("Reading graph input file");
@@ -22,7 +29,7 @@ public class ReadGraphFromPSV {
 		String _source;
 		String _destination;
 		double _distanceTravelled;
-		String _fileToRead = "/airports";
+		String _fileToRead = "/airports"; //TODO allowing user to change graph file
 		int _counter = 1;
 		
 		try (InputStream _is = ReadGraphFromPSV.class.getResourceAsStream(_fileToRead)) {
