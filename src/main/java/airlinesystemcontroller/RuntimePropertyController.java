@@ -47,13 +47,14 @@ public class RuntimePropertyController {
 	
 	public Properties loadRuntimeProperties(String fileName_) {
 		Properties _returnProperties;
-
+/*
 		if(fileName_.equals(null)) {
 			_returnProperties = loadDefaultProperties();
 		} else {
 			_returnProperties = createRuntimeProperties(fileName_);
 		}
-		
+*/
+		_returnProperties = loadDefaultProperties();
 		return _returnProperties;
 	}
 }

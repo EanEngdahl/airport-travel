@@ -36,7 +36,7 @@ public class CommandHandler {
 			_modelProperty = _propertyCreator.loadRuntimeProperties(propertiesFileName_);
 			consoleLogger.info("Made it past model loading");
 			_dataCreator.generateCurrentStateModel(_modelProperty, _graphOfAirports, _listOfFlights, _flightInput);
-			
+			consoleLogger.info("Made it past model datacreator");			
 			FlightRCPManager _flightProfitManager = new FlightRCPManager();
 			BigDecimal _totalProfit = _flightProfitManager.findTotalProfitOfFlightList(_listOfFlights);
 			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
