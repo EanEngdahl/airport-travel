@@ -3,8 +3,9 @@ package airlinesystemcontroller;
 import java.util.Random;
 import java.util.Properties;
 import java.util.Set;
-//import org.jgrapht.*;
 import org.jgrapht.graph.*;
+
+import airlinesystemmodel.FlightList;
 
 /*
  *  Generates the data for the airport system based on the configuration file and 
@@ -99,10 +100,22 @@ public class GenerateModelData {
 	
 		String _seatsFilledPerSection = generateRandomSeatsFilled(modelProperties_, _airplaneSize);
 		
-		_flight = String.format("%s|%s|%f|%c|%s|%s|%s", _source, _dest, _distance, _airplaneSize, _maxSeatsPerSection,
+		_flight = String.format("%s|%s|%f|%c|%s|%s|%s", _source, _dest, 
+				_distance, _airplaneSize, _maxSeatsPerSection, 
 				_seatsFilledPerSection, _seatPricePerSection);
 		
 		return _flight;
+	}
+	
+	public void generateCurrentStateModel(Properties modelProperties_,
+			AirportGraph airportGraph_, FlightList listOfFlights_, ReadModelDataIntoState flightInput_) {
+		int _flightsNeeded = Integer.parseInt(modelProperties_.getProperty("NUMBER_OF_FLIGHTS"));
+		String _flightData;
+		for (int i = 0; i < _flightsNeeded; i++)
+		{
+			_flightData = generateRandomFlight(modelProperties_, airportGraph_);
+			flightInput_.ReadSingleFlightIntoFlightList(listOfFlights_, _flightData);
+		}
 	}
 	
 }

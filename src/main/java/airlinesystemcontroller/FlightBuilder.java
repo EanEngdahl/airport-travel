@@ -1,3 +1,10 @@
+/*
+ * FlightBuilder class
+ *		Creates a new flight using given data by adding 
+ *		pilots, aircraft, and airports that will be stored
+ *		in the flight itself
+ */
+
 package airlinesystemcontroller;
 
 import java.math.BigDecimal;
