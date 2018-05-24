@@ -65,7 +65,12 @@ public class CommandHandler {
 	public static void main(String[] args) {
 		Logger logger = LoggerFactory.getLogger(CommandHandler.class);
 		String _propertiesFileName = "default.properties";
-		//String _propertiesFileName = args[0];
+	
+		// Check if there was a filename passed and then prefer that file
+		if(args.length != 0) {
+			_propertiesFileName = args[0];
+		}
+		
         try {
             new CommandHandler(_propertiesFileName);
         }

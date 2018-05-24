@@ -44,7 +44,7 @@ public class GenerateModelData {
 	public String generateRandomSeatsFilled(Properties modelProperties_, char airplaneSize_) {
 		String genString_ = null;
 		String[] _maxSeats;
-		
+
 		try {
 			int _econBasic;
 			int _econPlus;
@@ -53,8 +53,9 @@ public class GenerateModelData {
 		
 			switch(airplaneSize_) {
 				case SMALL:
-					_maxSeats = modelProperties_.getProperty("SMALL_PLANE_SEAT_MAX_PER_SECTION").split("|");
-	
+					_maxSeats = modelProperties_.getProperty("SMALL_PLANE_SEAT_MAX_PER_SECTION").split("\\|");
+					
+
 					if(!_maxSeats[0].equals("0")) {
 						_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
 					} else {
@@ -80,7 +81,7 @@ public class GenerateModelData {
 					break;
 	
 				case MEDIUM:
-					_maxSeats = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_MAX_PER_SECTION").split("|");
+					_maxSeats = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_MAX_PER_SECTION").split("\\|");
 	
 					if(!_maxSeats[0].equals("0")) {
 						_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
@@ -107,7 +108,7 @@ public class GenerateModelData {
 					break;
 	
 				case LARGE:
-					_maxSeats = modelProperties_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION").split("|");
+					_maxSeats = modelProperties_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION").split("\\|");
 	
 					if(!_maxSeats[0].equals("0")) {
 						_econBasic = rand.nextInt(Integer.parseInt(_maxSeats[0]));
