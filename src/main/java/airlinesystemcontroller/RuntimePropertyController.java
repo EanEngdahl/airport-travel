@@ -45,13 +45,13 @@ public class RuntimePropertyController {
 	}
 	
 	
-	public Properties loadRuntimeProperties(String[] args_) {
+	public Properties loadRuntimeProperties(String fileName_) {
 		Properties _returnProperties;
 
-		if(args_.length != 1) {
+		if(fileName_.equals(null)) {
 			_returnProperties = loadDefaultProperties();
 		} else {
-			_returnProperties = createRuntimeProperties(args_[0]);
+			_returnProperties = createRuntimeProperties(fileName_);
 		}
 		
 		return _returnProperties;

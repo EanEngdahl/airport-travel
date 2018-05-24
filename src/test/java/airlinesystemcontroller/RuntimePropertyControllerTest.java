@@ -24,10 +24,17 @@ public class RuntimePropertyControllerTest {
 	public void testCreateRuntimeProperties() {
 		fail("Not yet implemented");
 	}
-
+*/
 	@Test
 	public void testLoadRuntimeProperties() {
-		fail("Not yet implemented");
+		Properties loadTest_;
+		RuntimePropertyController propController_ = new RuntimePropertyController();
+		
+		loadTest_ = propController_.loadRuntimeProperties("/loadTest.properties");
+
+		// Check a few of the default file properties to assure they are loaded correctly
+		assertEquals("15", loadTest_.getProperty("FUEL_COST"));
+		assertEquals("100", loadTest_.getProperty("NUMBER_OF_FLIGHTS"));
+		assertEquals("150|100|100|50", loadTest_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION"));
 	}
-*/
 }
