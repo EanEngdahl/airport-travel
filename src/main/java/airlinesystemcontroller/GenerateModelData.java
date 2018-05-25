@@ -173,8 +173,8 @@ public class GenerateModelData {
 				_distance, _airplaneSize, _maxSeatsPerSection, 
 				_seatsFilledPerSection, _seatPricePerSection);
 		
-		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
-		_consoleLogger.debug("Model gen string output: {}", _flight);		
+		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
+		_debugLogger.debug("Model gen string output: {}", _flight);		
 		
 		return _flight;
 	}

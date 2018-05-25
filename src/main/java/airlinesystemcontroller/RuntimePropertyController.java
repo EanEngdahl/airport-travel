@@ -11,12 +11,12 @@ public class RuntimePropertyController {
 	public Properties loadDefaultProperties() {
 		Properties _defaultProperties = new Properties();
 
+		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
-
 
 		try (InputStream _is = RuntimePropertyController.class.getResourceAsStream("/default.properties")) {
 			_defaultProperties.load(_is);
-			_consoleLogger.debug("defaults loaded...");
+			_debugLogger.debug("defaults loaded...");
 		} catch(NullPointerException e_){
 			_consoleLogger.error("Could not find default.properties file");
 		} catch(IOException e_) {

@@ -25,8 +25,8 @@ public class ReadGraphFromPSV {
 
 	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_, String graphFileName_) 
 			throws IOException, NullPointerException, Exception{
-		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
-		consoleLogger.debug("Reading graph input file");
+		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
+		_debugLogger.debug("Reading graph input file");
 		
 		String _source;
 		String _destination;
@@ -56,10 +56,10 @@ public class ReadGraphFromPSV {
 				graphOfAirports_.addAirport(_sourceAirport);
 				graphOfAirports_.addAirport(_destinationAirport);
 				if (!graphOfAirports_.createEdge(_source, _destination, _distanceTravelled)) {
-					consoleLogger.debug("Ignored at line " + Integer.toString(_counter) + " in file");
+					_debugLogger.debug("Ignored at line " + Integer.toString(_counter) + " in file");
 				}
 			}
-			consoleLogger.debug("Successfully read graph file");
+			_debugLogger.debug("Successfully read graph file");
 			reader.close();
 		}
 		catch (IOException e_) {

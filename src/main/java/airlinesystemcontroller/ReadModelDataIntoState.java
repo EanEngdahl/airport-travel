@@ -23,8 +23,9 @@ public class ReadModelDataIntoState {
 	 * */
 	public void ReadFileInputIntoFlightList(FlightList listOfFlights_, 
 			String fileToRead_, Properties modelProperties_) {
-		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
-		consoleLogger.debug("Reading input file");
+		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
+		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
+		_debugLogger.debug("Reading input file");
 		
 		String _source;
 		String _destination;
@@ -65,18 +66,18 @@ public class ReadModelDataIntoState {
 						_seatsFilledPerSection, _seatCostPerSection, _source,
 						_destination, _distanceTravelled, modelProperties_);
 			}
-			consoleLogger.debug("Successfully read file");
+			_debugLogger.debug("Successfully read file");
 			reader.close();
 		}
 		catch (IOException e_) {
-			consoleLogger.error("IOException: could not read data");
+			_consoleLogger.error("IOException: could not read data");
 		}
 		catch (NullPointerException e_) {
-			consoleLogger.error("NullPointerException: data file error,"
+			_consoleLogger.error("NullPointerException: data file error,"
 					+ " could not find file- " + fileToRead_);
 		}
 		catch (Exception e_) {
-			consoleLogger.error("Unexpected error occured while reading data file");
+			_consoleLogger.error("Unexpected error occured while reading data file");
 		}
 	}
 	

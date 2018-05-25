@@ -12,10 +12,11 @@ public class CommandHandler {
 
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
+	private Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 	
 	public CommandHandler(String propertiesFileName_, String graphFileName_) {
 		consoleLogger.info("Calculating flight results...");
-		consoleLogger.debug("Command Handler");
+		debugLogger.debug("Command Handler");
 		
 		FlightList _listOfFlights = new FlightList();
 		AirportGraph _graphOfAirports = new AirportGraph();
@@ -27,7 +28,7 @@ public class CommandHandler {
 		
 		try {
 			_graphInput.ReadFileInputIntoGraph(_graphOfAirports, graphFileName_);
-			consoleLogger.debug("Graph successfully read.");
+			debugLogger.debug("Graph successfully read.");
 			_graphOfAirports.printGraph();
 		}
 		catch (Exception e_) {
@@ -36,10 +37,10 @@ public class CommandHandler {
 
 		try {
 			_modelProperty = _propertyCreator.loadRuntimeProperties(propertiesFileName_);
-			consoleLogger.debug("Created property model from file");
+			debugLogger.debug("Created property model from file");
 			_dataCreator.generateCurrentStateModel(_modelProperty, _graphOfAirports,
 					_listOfFlights, _flightInput);
-			consoleLogger.debug("Generated data");			
+			debugLogger.debug("Generated data");			
 			FlightRCPManager _flightProfitManager = new FlightRCPManager();
 			BigDecimal _totalProfit = _flightProfitManager.findTotalProfitOfFlightList(_listOfFlights);
 			resultsLogger.info("Total Profit = $" + _totalProfit.toString());

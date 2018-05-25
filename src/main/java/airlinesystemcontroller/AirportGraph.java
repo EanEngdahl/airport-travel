@@ -23,8 +23,7 @@ public class AirportGraph {
 	
 	Graph<String, DefaultEdge> graphOfAirports;
 	HashMap<String, Airport> mapAirportToName;
-	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
-
+	
 	/*
 	 * Constructor, initializes graph
 	 */
@@ -42,10 +41,12 @@ public class AirportGraph {
 		mapAirportToName.put(airport_.getName(), airport_);
 	}
 	
-	public boolean createEdge(String source_, String destination_, double distance_) {		
+	public boolean createEdge(String source_, String destination_, double distance_) {	
+		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
+		
 		if (source_.equals(destination_) || areAirportsConnected(source_, destination_)
 				|| distance_ <= 0) {
-			consoleLogger.debug("Invalid graph input found, input ignored.");
+			_debugLogger.debug("Invalid graph input found, input ignored.");
 			return false;
 		}
 		graphOfAirports.addEdge(source_, destination_);
@@ -106,7 +107,9 @@ public class AirportGraph {
 	}
 	//TODO temporary method using logging to console for testing graph, remove later
 	public void printGraph() {
-		consoleLogger.info(graphOfAirports.toString());
+		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
+		
+		_consoleLogger.info(graphOfAirports.toString());
 		Iterator<String> _vertexItr = graphOfAirports.vertexSet().iterator();
 		Iterator<DefaultEdge> _edgeItr;
 		String _vertex;
@@ -114,7 +117,7 @@ public class AirportGraph {
 		DefaultEdge _edgeTracker;
 		while(_vertexItr.hasNext()) {
 			_vertex = _vertexItr.next();
-			consoleLogger.info("Vertex: " + _vertex);
+			_consoleLogger.info("Vertex: " + _vertex);
 			_edgeItr = graphOfAirports.edgesOf(_vertex).iterator();
 			while (_edgeItr.hasNext()) {
 				_edgeTracker = _edgeItr.next();
@@ -122,20 +125,9 @@ public class AirportGraph {
 				if(_destinationVertex.equals(_vertex)) {
 					_destinationVertex = graphOfAirports.getEdgeSource(_edgeTracker);
 				}
-				consoleLogger.info("-> " + _destinationVertex + "(" 
+				_consoleLogger.info("-> " + _destinationVertex + "(" 
 				+ graphOfAirports.getEdgeWeight(_edgeTracker) + ")");
 			}
 		}
-		/* Some old testing
-		System.out.println("A and B connected: " + areAirportsConnected("A", "B") 
-		+ "\nB and A connected: " + areAirportsConnected("B", "A")
-		+ "\nD and A connected: " + areAirportsConnected("D", "A")
-		+ "\nA and D connected: " + areAirportsConnected("A", "D")
-		+ "\nD and B connected: " + areAirportsConnected("D", "B")
-		+ "\nB and D connected: " + areAirportsConnected("B", "D")
-		+ "\nD and C connected: " + areAirportsConnected("D", "C")
-		+ "\nC and D connected: " + areAirportsConnected("C", "D")
-		+ "\nD and D connected: " + areAirportsConnected("D", "D"));
-		*/
 	}
 }

@@ -102,7 +102,7 @@ public class FlightRCPManager {
 	 * 		may be positive or negative depending on flights input
 	 */
 	public BigDecimal findTotalProfitOfFlightList (FlightList listOfFlights_) {
-		Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
+		Logger _resultsLogger = LoggerFactory.getLogger("resultsLogger");
 		Iterator<Flight> _flightListItr = listOfFlights_.iterator();
 		BigDecimal _totalProfit = new BigDecimal("0");
 		Flight _currentFlight;
@@ -110,7 +110,7 @@ public class FlightRCPManager {
 		while (_flightListItr.hasNext()) {
 			_currentFlight = _flightListItr.next();
 			_totalProfit = _totalProfit.add(_currentFlight.getProfit());
-			resultsLogger.info("Individual flight profit = $" + 
+			_resultsLogger.info("Individual flight profit = $" + 
 			_currentFlight.getProfit().toString());
 		}
 		return _totalProfit;
