@@ -13,7 +13,7 @@ public class CommandHandler {
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 	
-	public CommandHandler(String propertiesFileName_) {
+	public CommandHandler(String propertiesFileName_, String graphFileName_) {
 		consoleLogger.info("Calculating flight results...");
 		consoleLogger.debug("Command Handler");
 		
@@ -26,12 +26,12 @@ public class CommandHandler {
 		Properties _modelProperty;
 		
 		try {
-			_graphInput.ReadFileInputIntoGraph(_graphOfAirports);
+			_graphInput.ReadFileInputIntoGraph(_graphOfAirports, graphFileName_);
 			consoleLogger.debug("Graph successfully read.");
 			_graphOfAirports.printGraph();
 		}
 		catch (Exception e_) {
-			consoleLogger.error("Graph file reading error.");
+			consoleLogger.error(e_.getMessage());
 		}
 
 		try {
@@ -54,14 +54,17 @@ public class CommandHandler {
 	public static void main(String[] args) {
 		Logger logger = LoggerFactory.getLogger(CommandHandler.class);
 		String _propertiesFileName = "default.properties";
-	
-		// Check if there was a filename passed and then prefer that file
-		if(args.length != 0) {
+		String _graphFileName = "airports123";
+		
+		// Check if there were filenames passed and then prefer those files
+		if(args.length > 0) {
 			_propertiesFileName = args[0];
 		}
-		
+		if (args.length > 1) {
+			_graphFileName = args[1];
+		}
         try {
-            new CommandHandler(_propertiesFileName);
+            new CommandHandler(_propertiesFileName, _graphFileName);
         }
         catch (Exception e_) {
         	logger.error("IOException" + e_.getMessage());

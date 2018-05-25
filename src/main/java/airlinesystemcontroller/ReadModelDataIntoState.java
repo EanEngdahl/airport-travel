@@ -4,6 +4,7 @@ import java.io.BufferedReader;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
+import java.util.Properties;
 import java.util.StringTokenizer;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,7 +21,8 @@ public class ReadModelDataIntoState {
 	 * Read information from the input file then sends that information properly
 	 * formatted to be added to the FlightList 
 	 * */
-	public void ReadFileInputIntoFlightList(FlightList listOfFlights_, String fileToRead_) throws IOException {
+	public void ReadFileInputIntoFlightList(FlightList listOfFlights_, 
+			String fileToRead_, Properties modelProperties_) throws IOException {
 		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		consoleLogger.debug("Reading input file");
 		
@@ -61,14 +63,14 @@ public class ReadModelDataIntoState {
 				
 				listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
 						_seatsFilledPerSection, _seatCostPerSection, _source,
-						_destination, _distanceTravelled);
+						_destination, _distanceTravelled, modelProperties_);
 			}
 			consoleLogger.debug("Successfully read file");
 			reader.close();
 		}
 	}
 	
-	public void ReadSingleFlightIntoFlightList(FlightList listOfFlights_, String flightInformation_) {
+	public void ReadSingleFlightIntoFlightList(FlightList listOfFlights_, String flightInformation_, Properties modelProperties_) {
 		flightInformation_ = flightInformation_.replaceAll("\\s", "");
 		String _source;
 		String _destination;
@@ -96,7 +98,7 @@ public class ReadModelDataIntoState {
 		
 		listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
 				_seatsFilledPerSection, _seatCostPerSection, _source,
-				_destination, _distanceTravelled);
+				_destination, _distanceTravelled, modelProperties_);
 	}
 	
 	public double setDistanceTravelled(String distanceTravelled_) {

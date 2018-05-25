@@ -5,6 +5,7 @@
  * 		and adds the vertexes (if not already present) and 
  * 		edge (if allowed)
  */
+
 package airlinesystemcontroller;
 
 import java.io.BufferedReader;
@@ -22,17 +23,17 @@ public class ReadGraphFromPSV {
 
 	private static final String DELIM = "|";
 
-	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_) throws IOException{
+	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_, String fileToRead_) 
+			throws IOException, NullPointerException, Exception{
 		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		consoleLogger.debug("Reading graph input file");
 		
 		String _source;
 		String _destination;
 		double _distanceTravelled;
-		String _fileToRead = "/airports"; //TODO allowing user to change graph file
 		int _counter = 1;
 		
-		try (InputStream _is = ReadGraphFromPSV.class.getResourceAsStream(_fileToRead)) {
+		try (InputStream _is = ReadGraphFromPSV.class.getResourceAsStream(fileToRead_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
 			BufferedReader reader = new BufferedReader(_sr);
 			reader.readLine();
@@ -59,6 +60,16 @@ public class ReadGraphFromPSV {
 			}
 			consoleLogger.debug("Successfully read graph file");
 			reader.close();
+		}
+		catch (IOException e_) {
+			throw new IOException("IOException: could not read graph.");
+		}
+		catch (NullPointerException e_) {
+			throw new NullPointerException("NullPointerException: Graph file error,"
+					+ " could not find file- " + fileToRead_);
+		}
+		catch (Exception e_) {
+			throw new Exception("Unexpected error occured while reading graph file");
 		}
 	}
 	
