@@ -3,17 +3,24 @@ package airlinesystemcontroller;
 import static org.junit.Assert.*;
 
 import java.math.BigDecimal;
+import java.util.Properties;
 
 import org.junit.Test;
 
 import airlinesystemcontroller.FlightBuilder;
+import airlinesystemcontroller.RuntimePropertyController;
 import airlinesystemmodel.Flight;
 
 public class FlightBuilderTest {
 
 	@Test
 	public void testFlightDispatchService() {
+
 		FlightBuilder tester = new FlightBuilder();
+		RuntimePropertyController propManager = new RuntimePropertyController();
+		Properties _testProps = propManager.createRuntimeProperties("/default.properties");
+		
+
 		char _aircraftSize = 'l';
 		int _maxSeats[] = new int[] {150, 100, 100, 50};
 		int _seatsFilled[] = new int[] {73, 42, 10, 5};
@@ -24,7 +31,8 @@ public class FlightBuilderTest {
 		double _distanceTravelled = 2500;
 		
 		Flight testDispatch = tester.flightDispatchService(_aircraftSize, _maxSeats, 
-				_seatsFilled, _seatCost, _source, _dest, _distanceTravelled);
+				_seatsFilled, _seatCost, _source, _dest, _distanceTravelled, _testProps);
+
 		assertEquals("Plane size should be large", 'l', testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 400", 400, 
 				testDispatch.getAircraftAssigned().getMaxAircraftSeats());
@@ -50,7 +58,7 @@ public class FlightBuilderTest {
 		_distanceTravelled = 1237;
 		
 		testDispatch = tester.flightDispatchService(_aircraftSize, _maxSeats, 
-				_seatsFilled, _seatCostMedium, _source, _dest, _distanceTravelled);
+				_seatsFilled, _seatCostMedium, _source, _dest, _distanceTravelled, _testProps);
 		assertEquals("Plane size should be medium", 'm', testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 200", 200, 
 				testDispatch.getAircraftAssigned().getMaxAircraftSeats());
@@ -76,7 +84,7 @@ public class FlightBuilderTest {
 		_distanceTravelled = 232;
 		
 		testDispatch = tester.flightDispatchService(_aircraftSize, _maxSeats, 
-				_seatsFilled, _seatCostSmall, _source, _dest, _distanceTravelled);
+				_seatsFilled, _seatCostSmall, _source, _dest, _distanceTravelled, _testProps);
 		assertEquals("Plane size should be small", 's', testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 50", 50, 
 				testDispatch.getAircraftAssigned().getMaxAircraftSeats());

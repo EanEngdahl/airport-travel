@@ -4,8 +4,10 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 import java.math.BigDecimal;
+import java.util.Properties;
 
 import airlinesystemmodel.Flight;
+import airlinesystemcontroller.RuntimePropertyController;
 
 public class FlightRCPManagerTest {
 	
@@ -14,8 +16,10 @@ public class FlightRCPManagerTest {
 	private final static BigDecimal SEAT_COST[] =  {new BigDecimal(10), new BigDecimal(15), new BigDecimal(20),
 			new BigDecimal(25)};
 
+	RuntimePropertyController propManager = new RuntimePropertyController();
+	Properties testProps = propManager.createRuntimeProperties("/default.properties");
 	FlightBuilder fd = new FlightBuilder();
-	Flight testFlight = fd.flightDispatchService('l', MAX_SEATS, SEATS_FILLED, SEAT_COST, "1", "2", 100);
+	Flight testFlight = fd.flightDispatchService('l', MAX_SEATS, SEATS_FILLED, SEAT_COST, "1", "2", 100, testProps);
 	FlightRCPManager testRcp = new FlightRCPManager();
 	
 	@Test
