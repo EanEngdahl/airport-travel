@@ -22,7 +22,7 @@ public class ReadModelDataIntoState {
 	 * formatted to be added to the FlightList 
 	 * */
 	public void ReadFileInputIntoFlightList(FlightList listOfFlights_, 
-			String fileToRead_, Properties modelProperties_) throws IOException {
+			String fileToRead_, Properties modelProperties_) {
 		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		consoleLogger.debug("Reading input file");
 		
@@ -68,9 +68,21 @@ public class ReadModelDataIntoState {
 			consoleLogger.debug("Successfully read file");
 			reader.close();
 		}
+		catch (IOException e_) {
+			consoleLogger.error("IOException: could not read data");
+		}
+		catch (NullPointerException e_) {
+			consoleLogger.error("NullPointerException: data file error,"
+					+ " could not find file- " + fileToRead_);
+		}
+		catch (Exception e_) {
+			consoleLogger.error("Unexpected error occured while reading data file");
+		}
 	}
 	
-	public void ReadSingleFlightIntoFlightList(FlightList listOfFlights_, String flightInformation_, Properties modelProperties_) {
+	public void ReadSingleFlightIntoFlightList(FlightList listOfFlights_, 
+			String flightInformation_, Properties modelProperties_) {
+		
 		flightInformation_ = flightInformation_.replaceAll("\\s", "");
 		String _source;
 		String _destination;

@@ -23,7 +23,7 @@ public class ReadGraphFromPSV {
 
 	private static final String DELIM = "|";
 
-	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_, String fileToRead_) 
+	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_, String graphFileName_) 
 			throws IOException, NullPointerException, Exception{
 		Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		consoleLogger.debug("Reading graph input file");
@@ -32,6 +32,7 @@ public class ReadGraphFromPSV {
 		String _destination;
 		double _distanceTravelled;
 		int _counter = 1;
+		String fileToRead_ = "/" + graphFileName_;
 		
 		try (InputStream _is = ReadGraphFromPSV.class.getResourceAsStream(fileToRead_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
@@ -66,7 +67,7 @@ public class ReadGraphFromPSV {
 		}
 		catch (NullPointerException e_) {
 			throw new NullPointerException("NullPointerException: Graph file error,"
-					+ " could not find file- " + fileToRead_);
+					+ " could not find file- " + graphFileName_);
 		}
 		catch (Exception e_) {
 			throw new Exception("Unexpected error occured while reading graph file");

@@ -54,7 +54,7 @@ public class CommandHandler {
 	public static void main(String[] args) {
 		Logger logger = LoggerFactory.getLogger(CommandHandler.class);
 		String _propertiesFileName = "default.properties";
-		String _graphFileName = "airports123";
+		String _graphFileName = "airports";
 		
 		// Check if there were filenames passed and then prefer those files
 		if(args.length > 0) {
