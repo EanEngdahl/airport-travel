@@ -9,6 +9,7 @@ package airlinesystemcontroller;
 
 import java.math.BigDecimal;
 import java.util.stream.IntStream;
+import java.util.Properties;
 
 import airlinesystemmodel.AircraftPilot;
 import airlinesystemmodel.Airport;
@@ -43,13 +44,14 @@ public class FlightBuilder {
      */
 	public Flight flightDispatchService(char aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
-			String source_, String destination_, double distanceTravelled_) {
+			String source_, String destination_, double distanceTravelled_,
+			Properties modelProperties_) {
 	
 		AircraftPilot _pilot;
 		AircraftPilot _coPilot;
 		Aircraft _aircraftAssigned;
 		
-		PilotBuilder assignPilots = new PilotBuilder();
+		PilotBuilder assignPilots = new PilotBuilder(modelProperties_);
 
 		_pilot = assignPilots.assignPilotToAircraft(aircraftSize_);
 		_coPilot = assignPilots.assignPilotToAircraft(aircraftSize_);	

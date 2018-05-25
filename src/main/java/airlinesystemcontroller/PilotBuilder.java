@@ -6,19 +6,27 @@
 package airlinesystemcontroller;
 
 import java.math.BigDecimal;
+import java.util.Properties;
 
 import airlinesystemmodel.AircraftPilot;
 
 public class PilotBuilder {
     
-    private BigDecimal _juniorCost = new BigDecimal("400.00");
-    private BigDecimal _midCost = new BigDecimal("600.00");
-    private BigDecimal _seniorCost = new BigDecimal("800.00");
+    private BigDecimal _juniorCost;
+    private BigDecimal _midlevelCost;
+    private BigDecimal _seniorCost;
     
 	private static final char SENIOR = 'l';
     private static final char MIDLEVEL = 'm';
     private static final char JUNIOR = 's';
 
+    
+    public PilotBuilder(Properties modelProperties_) {
+    	_juniorCost = new BigDecimal(modelProperties_.getProperty("JUNIOR_PILOT_PAY"));
+    	_midlevelCost = new BigDecimal(modelProperties_.getProperty("MIDLEVEL_PILOT_PAY"));
+    	_seniorCost = new BigDecimal(modelProperties_.getProperty("SENIOR_PILOT_PAY"));
+    }
+    
     /*
      * Create new pilot based off size of plane they will be flying
      * 
@@ -39,7 +47,7 @@ public class PilotBuilder {
             case MIDLEVEL:
                 returnPilot = new AircraftPilot();
                 returnPilot.setSeniority(1);
-                returnPilot.setCostPerFlight(_midCost);
+                returnPilot.setCostPerFlight(_midlevelCost);
                 return returnPilot;
             case JUNIOR:
             default:
