@@ -36,7 +36,7 @@ public class ReadModelDataIntoState {
 	 * 		it can be used by the flightBuilder
 	 * @return
 	 * 		N/A
-	 * */
+	 */
 	public void ReadFileInputIntoFlightList(FlightList listOfFlights_, 
 			String fileToRead_, Properties modelProperties_) {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
@@ -165,7 +165,7 @@ public class ReadModelDataIntoState {
 	 * @return
 	 * 		character that represented the size of the aircraft to use for the
 	 * 		flight (s, m, l)
-	 * */
+	 */
 	public char setAircraftSize(String aircraftSize_) {
 		
 		return aircraftSize_.charAt(0);
@@ -179,7 +179,7 @@ public class ReadModelDataIntoState {
 	 * @return
 	 * 		integer that represented the max number of seats in a section
 	 * 		for the flight
-	 * */
+	 */
 	public int setMaxSeatsPerSection(String maxSeatsInSection_) {
 		return Integer.parseInt(maxSeatsInSection_);
 	}
@@ -193,7 +193,7 @@ public class ReadModelDataIntoState {
 	 * @return
 	 * 		integer that represented the number of seats filled
 	 * 		in a section for the flight
-	 * */
+	 */
 	public int setSeatsFilledPerSection(String seatsFilledInSection_) {
 		return Integer.parseInt(seatsFilledInSection_);
 	}
@@ -207,7 +207,7 @@ public class ReadModelDataIntoState {
 	 * @return
 	 * 		BigDecimal type that represented the cost for a seat
 	 * 		in a section for the flight
-	 * */
+	 */
 	public BigDecimal setSeatCostPerSection(String seatCostInSection_) {
 		BigDecimal _decimalReturn = new BigDecimal(seatCostInSection_);
 		return _decimalReturn;

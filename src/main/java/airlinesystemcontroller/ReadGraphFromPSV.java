@@ -2,7 +2,7 @@
  * ReadGraphFromPSV Class
  * 		Reads a file input line by line with | as delimiters
  * 		this information is then converted to needed data types
- * 		and adds the vertexes (if not already present) and 
+ * 		and adds the vertices (if not already present) and 
  * 		edge (if allowed)
  */
 
@@ -23,6 +23,17 @@ public class ReadGraphFromPSV {
 
 	private static final String DELIM = "|";
 
+	/*
+	 * Reads a given file where each line contains two vertices (airports) that have an edge
+	 * between them and a weight (distance) between them
+	 * 
+	 * @param graphOfAirports_
+	 * 		AirportGraph type object that will have any new vertices and edges added to the graph
+	 * @param graphFileName_
+	 * 		String of the file to attempt to open and read for the graph data
+	 * @return
+	 * 		N/A
+	 */
 	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_, String graphFileName_) 
 			throws IOException, NullPointerException, Exception{
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
@@ -74,6 +85,14 @@ public class ReadGraphFromPSV {
 		}
 	}
 	
+	/*
+	 * Finds the distance travelled by converting a passed String to a double
+	 * 
+	 * @param distanceTravelled_
+	 * 		String to be converted into a double
+	 * @return
+	 * 		double that represented the distance travelled by a flight
+	 */
 	public double setDistanceTravelled(String distanceTravelled_) {
 		return Double.parseDouble(distanceTravelled_);
 	}
