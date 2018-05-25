@@ -1,3 +1,8 @@
+/*
+ * ReadModelDataIntoState
+ * 		Reads data into a given flight list either from
+ * 		an entire file or a single string
+ */
 package airlinesystemcontroller;
 
 import java.io.BufferedReader;
@@ -19,7 +24,18 @@ public class ReadModelDataIntoState {
 	
 	/*
 	 * Read information from the input file then sends that information properly
-	 * formatted to be added to the FlightList 
+	 * formatted to be added to the FlightList line by line
+	 * 
+	 * @param listOfFlights_
+	 * 		FlightList type object that is the list that will have the flights
+	 * 		added to it
+	 * @param fileToRead_
+	 * 		String that tells what file should be attempted to be opened and read
+	 * @param modelProperties_
+	 * 		Properties type object that will be passed to the FlightList so that
+	 * 		it can be used by the flightBuilder
+	 * @return
+	 * 		N/A
 	 * */
 	public void ReadFileInputIntoFlightList(FlightList listOfFlights_, 
 			String fileToRead_, Properties modelProperties_) {
@@ -81,6 +97,20 @@ public class ReadModelDataIntoState {
 		}
 	}
 	
+	/*
+	 * Read information from a String then formats it and sends it to a FlightList
+	 * 
+	 * @param listOfFlights_
+	 * 		FlightList type object that is the list that will have the flights
+	 * 		added to it
+	 * @param flightInformation_
+	 * 		String that contains the information needed for a flight
+	 * @param modelProperties_
+	 * 		Properties type object that will be passed to the FlightList so that
+	 * 		it can be used by the flightBuilder
+	 * @return
+	 * 		N/A
+	 * */
 	public void ReadSingleFlightIntoFlightList(FlightList listOfFlights_, 
 			String flightInformation_, Properties modelProperties_) {
 		
@@ -114,23 +144,70 @@ public class ReadModelDataIntoState {
 				_destination, _distanceTravelled, modelProperties_);
 	}
 	
+	/*
+	 * Finds the distance travelled by converting a passed String to a double
+	 * 
+	 * @param distanceTravelled_
+	 * 		String to be converted into a double
+	 * @return
+	 * 		double that represented the distance travelled by a flight
+	 * */
 	public double setDistanceTravelled(String distanceTravelled_) {
 		return Double.parseDouble(distanceTravelled_);
 	}
 	
+	/*
+	 * Finds the aircraftSize that a flight will use by taking the first
+	 * character of a passed String and returning it
+	 * 
+	 * @param aircraftSize_
+	 * 		String to be converted into a char
+	 * @return
+	 * 		character that represented the size of the aircraft to use for the
+	 * 		flight (s, m, l)
+	 * */
 	public char setAircraftSize(String aircraftSize_) {
 		
 		return aircraftSize_.charAt(0);
 	}
 	
+	/*
+	 * Finds the max seats in a section by converting a passed String to an integer
+	 * 
+	 * @param maxSeatsInSection_
+	 * 		String to be converted into an integer
+	 * @return
+	 * 		integer that represented the max number of seats in a section
+	 * 		for the flight
+	 * */
 	public int setMaxSeatsPerSection(String maxSeatsInSection_) {
 		return Integer.parseInt(maxSeatsInSection_);
 	}
 	
+	/*
+	 * Finds the number of seats filled in a section by converting 
+	 * a passed String to an integer
+	 * 
+	 * @param seatsFilledInSection_
+	 * 		String to be converted into an integer
+	 * @return
+	 * 		integer that represented the number of seats filled
+	 * 		in a section for the flight
+	 * */
 	public int setSeatsFilledPerSection(String seatsFilledInSection_) {
 		return Integer.parseInt(seatsFilledInSection_);
 	}
 	
+	/*
+	 * Finds the cost of an individual seat in a section by converting 
+	 * a passed String to a BigDecimal
+	 * 
+	 * @param seatCostInSection_
+	 * 		String to be converted into a BigDecimal
+	 * @return
+	 * 		BigDecimal type that represented the cost for a seat
+	 * 		in a section for the flight
+	 * */
 	public BigDecimal setSeatCostPerSection(String seatCostInSection_) {
 		BigDecimal _decimalReturn = new BigDecimal(seatCostInSection_);
 		return _decimalReturn;
