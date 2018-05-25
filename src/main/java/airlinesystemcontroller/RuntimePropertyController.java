@@ -1,3 +1,8 @@
+/*
+ * RuntimePropertyController class
+ *  	Manages the loading of the properties file that are specific
+ *  	to this program.
+ */
 package airlinesystemcontroller;
 
 import java.util.Properties;
@@ -8,6 +13,12 @@ import org.slf4j.LoggerFactory;
 
 public class RuntimePropertyController {
 
+	/*
+	 * Loads the default.properties file and throws exceptions
+	 * if it is unable to.
+	 * 
+	 * @return the Properties object with the defaults loaded
+	 */
 	public Properties loadDefaultProperties() {
 		Properties _defaultProperties = new Properties();
 
@@ -27,7 +38,14 @@ public class RuntimePropertyController {
 		
 		return _defaultProperties;
 	}
-	
+
+	/*
+	 *  Loads in the runtime properties for a specified properties file and
+	 *  reverts to default if it is not readable
+	 *  
+	 *  @param the string filename/path of the custom properties file
+	 *  @return the loaded properties file, default or custom
+	 */
 	public Properties createRuntimeProperties(String fileName_) {
 		Properties _defaultProperties = new Properties();
 
@@ -45,7 +63,14 @@ public class RuntimePropertyController {
 		
 		return _defaultProperties;
 	}
-	
+
+	/*
+	 *  Decides whether to load the defaults or use the custom properties 
+	 *  file, then calls the appropriate method for loading.
+	 *  
+	 *  @param the string filename/path of the properties file
+	 *  @return the loaded Properties object
+	 */
 	public Properties loadRuntimeProperties(String fileName_) {
 		Properties _returnProperties;
 
