@@ -39,6 +39,10 @@ public class AirportGraphTest {
 		_graphOfAirports.removeAirport("D");
 		assertFalse("D should no longer be in the graph", _graphOfAirports.isAirportInGraph("D"));
 		assertFalse("D and A should not be connected", _graphOfAirports.areAirportsConnected("D", "A"));
+		assertFalse("Should not be able to make an edge with the same airport as source and destination",
+				_graphOfAirports.createEdge("A", "A", 5));
+		assertFalse("SHould not create an otherwise valid edge if weight is negative",
+				_graphOfAirports.createEdge("A", "B", -2));
 	}
 	
 	@Test
@@ -48,6 +52,8 @@ public class AirportGraphTest {
 		_graphOfAirports.addAirport(new Airport("C"));
 		assertTrue("Airport C is now in graph after adding it",_graphOfAirports.isAirportInGraph("C"));
 		
+		assertFalse("Airport should not be connected to itself", 
+				_graphOfAirports.areAirportsConnected("A", "A"));
 		assertEquals("Hashmap should return airport with correct name field", "A", 
 				_graphOfAirports.getAirport("A").getName());
 		
