@@ -108,6 +108,7 @@ public class CommandHandler {
 	public CommandHandler() {
 	}
 
+	/*
 	public static void main(String[] args) {
 		Logger logger = LoggerFactory.getLogger(CommandHandler.class);
 		String _propertiesFileName = "default.properties";
@@ -128,4 +129,5 @@ public class CommandHandler {
         	logger.error("IOException" + e_.getMessage());
         }        
     }
+    */
 }
