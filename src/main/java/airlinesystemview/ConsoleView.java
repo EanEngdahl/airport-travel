@@ -3,13 +3,14 @@ package airlinesystemview;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import java.util.Scanner;
+import java.math.BigDecimal;
 
 
 public class ConsoleView {
 	
 	public String[] promptUserForFilenames(Logger output_) {
 		String _fileNames[] = new String [2];
-		int _command;
+		int _selection;
 
 		try(Scanner _input = new Scanner(System.in)) {
 			do {
@@ -18,9 +19,9 @@ public class ConsoleView {
 						+ "2. Enter custom graph file path\n"
 						+ "3. Run program");
 			
-				_command = _input.nextInt();
+				_selection = _input.nextInt();
 				
-				switch(_command) {
+				switch(_selection) {
 					case 1:
 						output_.info("Filepath: ");
 						_fileNames[0] = _input.nextLine();
@@ -37,7 +38,7 @@ public class ConsoleView {
 						break; 
 				}
 
-			} while(_command != 3);
+			} while(_selection != 3);
 
 		} catch(Exception e) {
 		}
@@ -46,7 +47,38 @@ public class ConsoleView {
 	}	
 
 	public int showMainMenu(Logger output_) {
+		int _selection;
+		
 		output_.info("MAIN MENU:");
-		return 0;
+		output_.info("1. Input custom files"
+				+	 "2. Run simulation"
+				+	 "3. Show results"
+				+	 "4. Quit");
+
+		try(Scanner _input = new Scanner(System.in)) {
+		
+			for(;;) {
+				_selection = _input.nextInt();
+
+				switch(_selection) {
+						case 1:
+							return 1;
+						case 2:
+							return 2;
+						case 3:
+							return 3;
+						case 4:
+							return 4;
+						default:
+							output_.info("Input a valid option");
+							break;
+				}
+			}
+		}
+	}
+	
+	public void resultsView(BigDecimal profit_, BigDecimal cost_, BigDecimal revenue_,
+			int totalFlights_) {
+		
 	}
 }
