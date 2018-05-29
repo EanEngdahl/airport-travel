@@ -53,6 +53,7 @@ public class AirlineSystemMain {
 		
 		do {
 			_selection = _consoleOut.showMainMenu(_consoleLogger);
+			// TODO: Finish handling menu options
 		} while(_selection != 4);
 		
 	}
