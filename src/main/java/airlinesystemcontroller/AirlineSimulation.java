@@ -10,6 +10,10 @@ import java.util.Properties;
 
 public class AirlineSimulation {
 
+	private FlightList listOfFlights = new FlightList();
+	private AirportGraph graphOfAirports = new AirportGraph();
+	private Properties modelProperties;
+
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 	private Logger debugLogger = LoggerFactory.getLogger("debugLogger");
@@ -37,12 +41,12 @@ public class AirlineSimulation {
 		}
 	}
 	
-	public void generateData(Properties modelProperty_, AirportGraph graphOfAirports_,
+	public void generateData(Properties modelProperties_, AirportGraph graphOfAirports_,
 			FlightList listOfFlights_) throws Exception{
 		ReadModelDataIntoState _flightInput = new ReadModelDataIntoState();
 		GenerateModelData _dataCreator = new GenerateModelData();
 		try {
-			_dataCreator.generateCurrentStateModel(modelProperty_, graphOfAirports_,
+			_dataCreator.generateCurrentStateModel(modelProperties_, graphOfAirports_,
 					listOfFlights_, _flightInput);
 			debugLogger.debug("Generated data");
 		}
@@ -64,29 +68,28 @@ public class AirlineSimulation {
 		}
 	
 	}
-	public void runSimulation(String propertiesFileName_, String graphFileName_,
-			FlightList listOfFlights_, AirportGraph graphOfAirports_, 
-			Properties modelProperties_) {
+	
+	public void runSimulation(String propertiesFileName_, String graphFileName_) {
 		consoleLogger.info("Calculating flight results...");
 		debugLogger.debug("runSimulation");
 				
 		try {
-			processGraph(graphOfAirports_, graphFileName_);
-			graphOfAirports_.printGraph();
+			processGraph(graphOfAirports, graphFileName_);
+			graphOfAirports.printGraph();
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
 		}
 
 		try {
-			modelProperties_ = processProperties(modelProperties_, propertiesFileName_);
+			modelProperties = processProperties(modelProperties, propertiesFileName_);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
 		}
 		
 		try {
-			generateData(modelProperties_, graphOfAirports_, listOfFlights_);
+			generateData(modelProperties, graphOfAirports, listOfFlights);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
@@ -94,7 +97,7 @@ public class AirlineSimulation {
 		
 		try {		
 			BigDecimal _totalProfit = new BigDecimal("0");
-			_totalProfit = findTotalProfit(listOfFlights_);
+			_totalProfit = findTotalProfit(listOfFlights);
 			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
 			consoleLogger.info("Total Profit = $" + _totalProfit.toString());	
 		}
@@ -102,6 +105,18 @@ public class AirlineSimulation {
 			consoleLogger.error(e_.getMessage());
 			resultsLogger.error(e_.getMessage());
 		}
+	}
+	
+	public FlightList getListOfFlights() {
+		return listOfFlights;
+	}
+
+	public AirportGraph getGraphOfAirports() {
+		return graphOfAirports;
+	}
+
+	public Properties getModelProperties() {
+		return modelProperties;
 	}
 	
 	public AirlineSimulation() {
