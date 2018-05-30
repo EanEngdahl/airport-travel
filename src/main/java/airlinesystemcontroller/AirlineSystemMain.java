@@ -12,6 +12,7 @@ public class AirlineSystemMain {
 	
 		String _propertiesFileName = "default.properties";
 		String _graphFileName = "default-graph";
+		String [] _fileNameList = new String [2];
 		boolean _menuFlag = false;
 		int _selection = 0;
 		
@@ -51,9 +52,20 @@ public class AirlineSystemMain {
 			return;
 		}
 		
+		
 		do {
 			_selection = _consoleOut.showMainMenu(_consoleLogger);
-			// TODO: Finish handling menu options
+			
+			switch(_selection) {
+				case 1:
+					_fileNameList = _consoleOut.promptUserForFilenames(_consoleLogger);
+					_propertiesFileName = _fileNameList[0];
+					_graphFileName = _fileNameList[1];
+					break;
+				case 2:
+					
+			}
+			
 		} while(_selection != 4);
 		
 	}
