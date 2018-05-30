@@ -22,7 +22,7 @@ public class AirlineSystemMain {
 		
 		ConsoleView _consoleOut = new ConsoleView();
 		CommandLineParser _parser = new DefaultParser();
-		CommandHandler _commandHandler = new CommandHandler();
+		AirlineSimulation _commandHandler = new AirlineSimulation();
 		
 		Options _options = new Options();
 		

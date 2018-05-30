@@ -8,7 +8,7 @@ import airlinesystemmodel.FlightList;
 import java.math.BigDecimal;
 import java.util.Properties;
 
-public class CommandHandler {
+public class AirlineSimulation {
 
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
@@ -68,7 +68,7 @@ public class CommandHandler {
 			FlightList listOfFlights_, AirportGraph graphOfAirports_, 
 			Properties modelProperties_) {
 		consoleLogger.info("Calculating flight results...");
-		debugLogger.debug("NoUserInput");
+		debugLogger.debug("runSimulation");
 				
 		try {
 			processGraph(graphOfAirports_, graphFileName_);
@@ -94,7 +94,7 @@ public class CommandHandler {
 		
 		try {		
 			BigDecimal _totalProfit = new BigDecimal("0");
-			_totalProfit = findTotalProfit(_totalProfit, listOfFlights_);
+			_totalProfit = findTotalProfit(listOfFlights_);
 			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
 			consoleLogger.info("Total Profit = $" + _totalProfit.toString());	
 		}
@@ -104,29 +104,6 @@ public class CommandHandler {
 		}
 	}
 	
-	public CommandHandler() {
+	public AirlineSimulation() {
 	}
-
-	/*
-	public static void main(String[] args) {
-		Logger logger = LoggerFactory.getLogger(CommandHandler.class);
-		String _propertiesFileName = "default.properties";
-		String _graphFileName = "airports";
-		
-		// Check if there were filenames passed and then prefer those files
-		if(args.length > 0) {
-			_propertiesFileName = args[0];
-		}
-		if (args.length > 1) {
-			_graphFileName = args[1];
-		}
-        try {
-        	CommandHandler _ch = new CommandHandler();
-        	_ch.NoUserInput(_propertiesFileName, _graphFileName);
-        }
-        catch (Exception e_) {
-        	logger.error("IOException" + e_.getMessage());
-        }        
-    }
-    */
 }
