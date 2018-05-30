@@ -1,20 +1,14 @@
 package airlinesystemcontroller;
 
-import airlinesystemview.*;
-import airlinesystemmodel.*;
-
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import java.util.Properties;
 
 public class AirlineSystemMain {
 
 	public static void main(String[] args_) {
-	
 		String _propertiesFileName = "default.properties";
 		String _graphFileName = "default-graph";
-		String [] _fileNameList = {_propertiesFileName, _graphFileName};
 		boolean _menuFlag = false;
 		
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
@@ -25,7 +19,7 @@ public class AirlineSystemMain {
 
 		
 		/*
-		 *  Handles the parsing of command line arguements passed to the main
+		 *  Handles the parsing of command line arguments passed to the main
 		 */
 		Options _options = new Options();
 		
@@ -63,8 +57,7 @@ public class AirlineSystemMain {
 		/*
 		 *  Runs the console menu if it is applicable
 		 */
-		_consoleOut.menuController(_consoleLogger, _fileNameList, _simulation);
-		
+		String _fileNameList[] = {_propertiesFileName, _graphFileName};
+		_consoleOut.menuController(_consoleLogger, _fileNameList, _simulation);	
 	}
-
 }

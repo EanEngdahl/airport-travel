@@ -54,7 +54,7 @@ public class ConsoleView {
 		output_.info("1. Input custom files"
 				+	 "2. Run simulation"
 				+	 "3. Show results"
-				+	 "00 Quit");
+				+	 "0. Quit");
 
 		try(Scanner _input = new Scanner(System.in)) {
 		
@@ -62,14 +62,14 @@ public class ConsoleView {
 				_selection = _input.nextInt();
 
 				switch(_selection) {
+						case 0:
+							return 0;
 						case 1:
 							return 1;
 						case 2:
 							return 2;
 						case 3:
 							return 3;
-						case 0:
-							return 0;
 						default:
 							output_.info("Input a valid option");
 							break;

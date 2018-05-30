@@ -6,11 +6,10 @@ import org.slf4j.Logger;
 
 public class ConsoleViewController {
 
-	void menuController(Logger consoleLogger_, String [] filenameList_, AirlineSimulation sim_) {
-		
+	public void menuController(Logger consoleLogger_, String [] fileNameList_, AirlineSimulation sim_) {
 		int _selection;
-		String _propertiesFileName = filenameList_[0];
-		String _graphFileName = filenameList_[1];
+		String _propertiesFileName = fileNameList_[0];
+		String _graphFileName = fileNameList_[1];
 		ConsoleView _consoleOut = new ConsoleView();
 		
 		do {
@@ -18,9 +17,9 @@ public class ConsoleViewController {
 			
 			switch(_selection) {
 				case 1:
-					filenameList_ = _consoleOut.promptUserForFilenames(consoleLogger_);
-					_propertiesFileName = filenameList_[0];
-					_graphFileName = filenameList_[1];
+					fileNameList_ = _consoleOut.promptUserForFilenames(consoleLogger_);
+					_propertiesFileName = fileNameList_[0];
+					_graphFileName = fileNameList_[1];
 					break;
 				case 2:
 					sim_.runSimulation(_propertiesFileName, _graphFileName);
@@ -28,11 +27,8 @@ public class ConsoleViewController {
 				case 3:
 					break;
 				case 0:
-					return;
-				
+					return;		
 			}
-			
 		} while(_selection != 0);
 	}
-	
 }
