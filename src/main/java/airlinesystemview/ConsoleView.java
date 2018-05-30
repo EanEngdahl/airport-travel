@@ -1,7 +1,6 @@
 package airlinesystemview;
 
 import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import java.util.Scanner;
 import java.math.BigDecimal;
 
@@ -81,8 +80,12 @@ public class ConsoleView {
 		}
 	}
 	
-	public void resultsView(BigDecimal profit_, BigDecimal cost_, BigDecimal revenue_,
-			int totalFlights_) {
-		
+	public void resultsView(Logger output_, BigDecimal profit_, BigDecimal cost_, 
+			BigDecimal revenue_, int totalFlights_) {
+		output_.info("*****Flight Results*****");
+		output_.info("Total number of flights: " + Integer.toString(totalFlights_)
+				+ "Total revenue: " + revenue_.toString()
+				+ "Total cost: " + cost_.toString()
+				+ "Total Profit: " + profit_.toString());
 	}
 }

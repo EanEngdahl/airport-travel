@@ -26,7 +26,7 @@ public class ConsoleViewController {
 					break;
 				case 3:
 					if(sim_.getListOfFlights().size() > 0) {
-					_consoleOut.resultsView(sim_.getTotalProfit(), sim_.getTotalCost(), 
+					_consoleOut.resultsView(consoleLogger_, sim_.getTotalProfit(), sim_.getTotalCost(), 
 							sim_.getTotalRevenue(), sim_.getListOfFlights().size());
 					}
 					else {
