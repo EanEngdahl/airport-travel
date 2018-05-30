@@ -16,7 +16,7 @@ public class ConsoleView {
 				output_.info("Input custom file paths. If none are input, use defaults.");
 				output_.info("1. Enter custom properties file path\n"
 						+ "2. Enter custom graph file path\n"
-						+ "3. Run program");
+						+ "3. Run program\n");
 			
 				_selection = _input.nextInt();
 				
@@ -50,10 +50,10 @@ public class ConsoleView {
 		int _selection;
 		
 		output_.info("MAIN MENU:");
-		output_.info("1. Input custom files"
-				+	 "2. Run simulation"
-				+	 "3. Show results"
-				+	 "0. Quit");
+		output_.info("1. Input custom files\n"
+				+	 "2. Run simulation\n"
+				+	 "3. Show results\n"
+				+	 "0. Quit\n");
 
 		try(Scanner _input = new Scanner(System.in)) {
 		
@@ -84,8 +84,8 @@ public class ConsoleView {
 			BigDecimal revenue_, int totalFlights_) {
 		output_.info("*****Flight Results*****");
 		output_.info("Total number of flights: " + Integer.toString(totalFlights_)
-				+ "Total revenue: " + revenue_.toString()
-				+ "Total cost: " + cost_.toString()
-				+ "Total Profit: " + profit_.toString());
+				+ "\nTotal revenue: " + revenue_.toString()
+				+ "\nTotal cost: " + cost_.toString()
+				+ "\nTotal Profit: " + profit_.toString());
 	}
 }
