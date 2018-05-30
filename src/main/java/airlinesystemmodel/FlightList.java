@@ -3,16 +3,16 @@ package airlinesystemmodel;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.math.BigDecimal;
-import java.util.HashMap;
+//import java.util.HashMap;
 
-import org.jgrapht.graph.DefaultEdge;
+//import org.jgrapht.graph.DefaultEdge;
 
 import airlinesystemcontroller.FlightBuilder;
 import airlinesystemcontroller.AirportGraph;
 
 public class FlightList extends ArrayList<Flight> {
 
-	private HashMap<DefaultEdge, FlightList> mapEdgeToFlights;
+	//private HashMap<DefaultEdge, FlightList> mapEdgeToFlights;
 	private static final long serialVersionUID = 4575157870451051348L;
 
 	public FlightList() {}
@@ -21,22 +21,24 @@ public class FlightList extends ArrayList<Flight> {
 		int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
 		String source_, String destination_, double distanceTravelled_, 
 		Properties modelProperties_, AirportGraph airportGraph_) {
+		
+		Flight _addedFlight;
+		FlightBuilder _createFlight = new FlightBuilder();
 
-			Flight _addedFlight;
-			FlightBuilder _createFlight = new FlightBuilder();
+		_addedFlight = _createFlight.flightDispatchService(aircraftSize_, maxSeatsPerSection_, 
+				seatsFilledPerSection_, seatCostPerSection_, 
+				source_, destination_, distanceTravelled_, modelProperties_);
 
-			_addedFlight = _createFlight.flightDispatchService(aircraftSize_, maxSeatsPerSection_, 
-					seatsFilledPerSection_, seatCostPerSection_, 
-					source_, destination_, distanceTravelled_, modelProperties_);
+		addFlightToList(_addedFlight);
 
-			addFlightToList(_addedFlight);
-			mapFlight(airportGraph_, _addedFlight, source_, destination_);
+		//mapFlight(airportGraph_, _addedFlight, source_, destination_);
 	}
 	
 	public void addFlightToList(Flight flight_) {
 		add(flight_);
 	}
 	
+	/* TODO under construction
 	public void mapFlight(AirportGraph airportGraph_, Flight addedFlight_, 
 			String source_, String destination_) {
 		
@@ -44,6 +46,7 @@ public class FlightList extends ArrayList<Flight> {
 
 		if(mapEdgeToFlights.containsKey(_testEdge)) {
 			mapEdgeToFlights.get(_testEdge).addFlightToList(addedFlight_);
+
 		} else {
 			FlightList _list = new FlightList();
 			_list.addFlightToList(addedFlight_);
@@ -54,4 +57,5 @@ public class FlightList extends ArrayList<Flight> {
 	public HashMap<DefaultEdge, FlightList> getFlightMap() {
 		return mapEdgeToFlights;
 	}
+	*/
 }

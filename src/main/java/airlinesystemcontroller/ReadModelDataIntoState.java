@@ -138,7 +138,6 @@ public class ReadModelDataIntoState {
 		for (int i = 0; i < 4; i++) {
 			_seatCostPerSection[i] = setSeatCostPerSection(tokenizer.nextToken());
 		}
-		
 		listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
 				_seatsFilledPerSection, _seatCostPerSection, _source,
 				_destination, _distanceTravelled, modelProperties_, airportGraph_);

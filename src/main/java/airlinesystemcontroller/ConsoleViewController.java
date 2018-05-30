@@ -3,6 +3,7 @@ package airlinesystemcontroller;
 import airlinesystemview.*;
 
 import java.util.Scanner;
+//import java.math.BigDecimal;
 
 import org.slf4j.Logger;
 
@@ -12,7 +13,10 @@ public class ConsoleViewController {
 		int _selection;
 		String _propertiesFileName = fileNameList_[0];
 		String _graphFileName = fileNameList_[1];
+		//String[] _airportNames;
+		//BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
+		//FlightRCPManager _flightRCPManager;
 		
 		Scanner _input = new Scanner(System.in);
 		
@@ -36,6 +40,21 @@ public class ConsoleViewController {
 					else {
 						consoleLogger_.error("No simulation run, unable to show results");
 					}
+					break;
+				case 4:
+					System.out.println("Currently under construction");
+					/* under construction
+					_flightRCPManager = new FlightRCPManager(sim_.getModelProperties());
+					_airportNames = _consoleOut.findAverageBetweenAirports(_input);
+					if(sim_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
+						_averageProfit = _flightRCPManager.findAverageRCPPerEdge(sim_.getListOfFlights(),
+								sim_.getGraphOfAirports(), _airportNames[1], _airportNames[2]);
+						_consoleOut.displayAverageBetweenAirports(_averageProfit);
+					}
+					else {
+						consoleLogger_.error("Airports are not connected, cannot find average");
+					}
+					*/
 					break;
 				case 0:
 					return;		

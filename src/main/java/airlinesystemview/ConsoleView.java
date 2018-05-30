@@ -54,7 +54,7 @@ public class ConsoleView {
 				+	 "2. Run simulation\n"
 				+	 "3. Show results\n"
 				+	 "4. Find average profit between airports\n"
-				+	 "0. Quit");
+				+	 "0. Quit\n");
 
 		try {
 		
@@ -83,12 +83,27 @@ public class ConsoleView {
 		}
 	}
 	
+	public String[] findAverageBetweenAirports(Scanner input_) {
+		String[] _airportNames = new String[2];
+		
+		System.out.print("Input first airport name: ");
+		_airportNames[0] = input_.nextLine();
+		System.out.print("Input second airport name: ");
+		_airportNames[1] = input_.nextLine();
+		
+		return _airportNames;
+	}
+	
+	public void displayAverageBetweenAirports(BigDecimal averageProfit_) {
+		System.out.println("The average profit is $" + averageProfit_.toString());
+	}
+	
 	public void resultsView(Logger output_, BigDecimal profit_, BigDecimal cost_, 
 			BigDecimal revenue_, int totalFlights_) {
-		System.out.println("*****Flight Results*****");
+		System.out.println("\n\n*****Flight Results*****");
 		System.out.println("Total number of flights: " + Integer.toString(totalFlights_)
 				+ "\nTotal revenue: " + revenue_.toString()
 				+ "\nTotal cost: " + cost_.toString()
-				+ "\nTotal Profit: " + profit_.toString());
+				+ "\nTotal Profit: " + profit_.toString() + "\n\n");
 	}
 }

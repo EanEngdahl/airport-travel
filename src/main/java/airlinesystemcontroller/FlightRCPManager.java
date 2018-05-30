@@ -12,7 +12,7 @@ import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.jgrapht.graph.DefaultEdge;
+//import org.jgrapht.graph.DefaultEdge;
 
 import airlinesystemmodel.Flight;
 import airlinesystemmodel.FlightList;
@@ -145,6 +145,8 @@ public class FlightRCPManager {
 	 *  @return
 	 *  	   the BigDecimal value of the average profit for the specific edge requested
 	 */
+	
+	/* under construction
 	public BigDecimal findAverageRCPPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_, 
 			String source_, String destination_) {
 
@@ -156,9 +158,8 @@ public class FlightRCPManager {
 			_averageProfit.add(_f.getProfit());
 			_counter++;
 		}
-		
-		
 		return _averageProfit.divide(new BigDecimal(_counter));
 	}
+	*/
 	
 }

@@ -230,6 +230,5 @@ public class GenerateModelData {
 			_flightData = generateRandomFlight(modelProperties_, airportGraph_);
 			flightInput_.readSingleFlightIntoFlightList(listOfFlights_, _flightData, modelProperties_, airportGraph_);
 		}
-	}
-	
+	}	
 }
