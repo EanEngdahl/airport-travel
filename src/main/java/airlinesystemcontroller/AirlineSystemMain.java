@@ -51,6 +51,7 @@ public class AirlineSystemMain {
 		 */
 		if(!_menuFlag) {
 			_simulation.runSimulation(_propertiesFileName, _graphFileName);
+			_consoleLogger.info("Total Profit = $" + _simulation.getTotalProfit().toString());
 			return;
 		}
 		

@@ -105,7 +105,6 @@ public class AirlineSimulation {
 			totalCost = arrayOfRCP[1];
 			totalProfit = arrayOfRCP[2];
 			resultsLogger.info("Total Profit = $" + arrayOfRCP[2].toString());
-			consoleLogger.info("Total Profit = $" + arrayOfRCP[2].toString());	
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
