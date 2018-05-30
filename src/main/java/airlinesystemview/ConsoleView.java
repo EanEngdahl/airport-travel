@@ -23,7 +23,7 @@ public class ConsoleView {
 				
 				switch(_selection) {
 					case 1:
-						output_.info("Filepath: ");
+						output_.info("File path: ");
 						_fileNames[0] = _input.nextLine();
 						break;
 					case 2:
@@ -40,7 +40,8 @@ public class ConsoleView {
 
 			} while(_selection != 3);
 
-		} catch(Exception e) {
+		} catch(Exception e_) {
+			output_.error("Prompt input error");
 		}
 		
 		return _fileNames;
@@ -74,6 +75,9 @@ public class ConsoleView {
 							break;
 				}
 			}
+		} catch(Exception e_) {
+			output_.error("Menu input error");
+			return 4;
 		}
 	}
 	
