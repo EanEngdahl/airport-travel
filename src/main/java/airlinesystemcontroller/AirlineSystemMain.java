@@ -1,10 +1,12 @@
 package airlinesystemcontroller;
 
 import airlinesystemview.*;
+import airlinesystemmodel.*;
 
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import java.util.Properties;
 
 public class AirlineSystemMain {
 
@@ -28,6 +30,10 @@ public class AirlineSystemMain {
 		_options.addOption("g", "graph", true, "Graph file");
 		_options.addOption("m", "menu", false, "Load terminal menu");
 		
+		FlightList _listOfFlights = new FlightList();
+		AirportGraph _airportGraph = new AirportGraph();
+		Properties _modelProperties;
+		
 		try {
 			CommandLine _cl = _parser.parse(_options, args_);
 		
@@ -48,7 +54,8 @@ public class AirlineSystemMain {
 		}
 
 		if(!_menuFlag) {
-			_commandHandler.runSimulation(_propertiesFileName, _graphFileName);
+			_commandHandler.runSimulation(_propertiesFileName, _graphFileName, 
+					_listOfFlights, _airportGraph, _modelProperties);
 			return;
 		}
 		
@@ -63,10 +70,14 @@ public class AirlineSystemMain {
 					_graphFileName = _fileNameList[1];
 					break;
 				case 2:
-					
+					_commandHandler.runSimulation(_propertiesFileName, _graphFileName, 
+							_listOfFlights, _airportGraph, _modelProperties);
+					break;
+				case 3:
+					_consoleOut.resultsView(_commandHandler.findTotalProfit(_listOfFlights), cost_, revenue_, totalFlights_);
 			}
 			
-		} while(_selection != 4);
+		} while(_selection != 0);
 		
 	}
 

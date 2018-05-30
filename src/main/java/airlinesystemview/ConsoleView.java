@@ -68,8 +68,8 @@ public class ConsoleView {
 							return 2;
 						case 3:
 							return 3;
-						case 4:
-							return 4;
+						case 0:
+							return 0;
 						default:
 							output_.info("Input a valid option");
 							break;
@@ -77,7 +77,7 @@ public class ConsoleView {
 			}
 		} catch(Exception e_) {
 			output_.error("Menu input error");
-			return 4;
+			return 0;
 		}
 	}
 	

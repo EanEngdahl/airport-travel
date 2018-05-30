@@ -51,43 +51,42 @@ public class CommandHandler {
 		}
 	}
 	
-	public BigDecimal findTotalProfit(BigDecimal totalProfit_, FlightList listOfFlights_) throws Exception{
+	public BigDecimal findTotalProfit(FlightList listOfFlights_) throws Exception{
 		FlightRCPManager _flightProfitManager = new FlightRCPManager();
+		BigDecimal _totalProfit = new BigDecimal(0);
 		
 		try {		
-			totalProfit_ = _flightProfitManager.findTotalProfitOfFlightList(listOfFlights_);
-			return totalProfit_;
+			_totalProfit = _flightProfitManager.findTotalProfitOfFlightList(listOfFlights_);
+			return _totalProfit;
 		}
 		catch (Exception e_) {
 			throw new Exception("Error, cannot find total profit");
 		}
 	
 	}
-	public void runSimulation(String propertiesFileName_, String graphFileName_) {
+	public void runSimulation(String propertiesFileName_, String graphFileName_,
+			FlightList listOfFlights_, AirportGraph graphOfAirports_, 
+			Properties modelProperties_) {
 		consoleLogger.info("Calculating flight results...");
 		debugLogger.debug("NoUserInput");
-		
-		FlightList _listOfFlights = new FlightList();
-		AirportGraph _graphOfAirports = new AirportGraph();
-		Properties _modelProperty = new Properties();
 				
 		try {
-			processGraph(_graphOfAirports, graphFileName_);
-			_graphOfAirports.printGraph();
+			processGraph(graphOfAirports_, graphFileName_);
+			graphOfAirports_.printGraph();
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
 		}
 
 		try {
-			_modelProperty = processProperties(_modelProperty, propertiesFileName_);
+			modelProperties_ = processProperties(modelProperties_, propertiesFileName_);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
 		}
 		
 		try {
-			generateData(_modelProperty, _graphOfAirports, _listOfFlights);
+			generateData(modelProperties_, graphOfAirports_, listOfFlights_);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
@@ -95,7 +94,7 @@ public class CommandHandler {
 		
 		try {		
 			BigDecimal _totalProfit = new BigDecimal("0");
-			_totalProfit = findTotalProfit(_totalProfit, _listOfFlights);
+			_totalProfit = findTotalProfit(_totalProfit, listOfFlights_);
 			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
 			consoleLogger.info("Total Profit = $" + _totalProfit.toString());	
 		}
