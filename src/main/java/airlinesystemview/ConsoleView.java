@@ -7,24 +7,27 @@ import java.math.BigDecimal;
 
 public class ConsoleView {
 	
-	public String[] promptUserForFilenames(Logger output_) {
+	public String[] promptUserForFilenames(Logger output_, Scanner input_) {
 		String _fileNames[] = new String [2];
 		int _selection;
 
-		try(Scanner _input = new Scanner(System.in)) {
+		try {
 			do {
 				System.out.println("Input custom file paths. If none are input, use defaults.");
 				System.out.println("1. Enter custom properties file path\n"
 						+ "2. Enter custom graph file path\n"
-						+ "3. Run program");
+						+ "3. Return to Main Menu");
 			
-				_selection = _input.nextInt();
+				_selection = input_.nextInt();
+				
+				// Remove newline from next input
+				input_.nextLine();
 				
 				switch(_selection) {
 					case 1:
 					case 2:
 						System.out.print("Input file path: ");
-						_fileNames[_selection] = _input.nextLine();
+						_fileNames[_selection - 1] = input_.nextLine();
 						break;
 					case 3:
 						System.out.println("Running program");
@@ -43,7 +46,7 @@ public class ConsoleView {
 		return _fileNames;
 	}	
 
-	public int showMainMenu(Logger output_) {
+	public int showMainMenu(Logger output_, Scanner input_) {
 		int _selection;
 		
 		System.out.println("MAIN MENU:");
@@ -52,10 +55,10 @@ public class ConsoleView {
 				+	 "3. Show results\n"
 				+	 "0. Quit");
 
-		try(Scanner _input = new Scanner(System.in)) {
+		try {
 		
 			for(;;) {
-				_selection = _input.nextInt();
+				_selection = input_.nextInt();
 
 				switch(_selection) {
 						case 0:

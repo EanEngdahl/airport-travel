@@ -2,6 +2,8 @@ package airlinesystemcontroller;
 
 import airlinesystemview.*;
 
+import java.util.Scanner;
+
 import org.slf4j.Logger;
 
 public class ConsoleViewController {
@@ -12,12 +14,14 @@ public class ConsoleViewController {
 		String _graphFileName = fileNameList_[1];
 		ConsoleView _consoleOut = new ConsoleView();
 		
+		Scanner _input = new Scanner(System.in);
+		
 		do {
-			_selection = _consoleOut.showMainMenu(consoleLogger_);
+			_selection = _consoleOut.showMainMenu(consoleLogger_, _input);
 			
 			switch(_selection) {
 				case 1:
-					fileNameList_ = _consoleOut.promptUserForFilenames(consoleLogger_);
+					fileNameList_ = _consoleOut.promptUserForFilenames(consoleLogger_, _input);
 					_propertiesFileName = fileNameList_[0];
 					_graphFileName = fileNameList_[1];
 					break;
