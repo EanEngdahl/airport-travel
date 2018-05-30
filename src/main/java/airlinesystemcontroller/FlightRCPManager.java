@@ -124,11 +124,41 @@ public class FlightRCPManager {
 		BigDecimal[] _totalFlightRCPArray = {_totalRevenue, _totalCost, _totalProfit};
 		return _totalFlightRCPArray;
 	}
-	
+
+	/*
+	 *  Finds the average profit over all the flights from a source to a destination airport.
+	 *  
+	 * 	@param listOfFlights_
+	 * 		   the FlightList that will be iterated through until there are
+	 * 		   no more new flights remaining
+	 *  
+	 *  @param airportGraph_
+	 *  	   the AirportGraph corresponding to the current model used to access
+	 *  	   the graphs unique edges
+	 *  
+	 *  @param source_
+	 *  	   string representing the source airport
+	 *  
+	 *  @param destination_
+	 *  	   string representing the destination airport
+	 *  
+	 *  @return
+	 *  	   the BigDecimal value of the average profit for the specific edge requested
+	 */
 	public BigDecimal findAverageRCPPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_, 
 			String source_, String destination_) {
 
-		return new BigDecimal(0);
+		DefaultEdge _testEdge_ = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
+		BigDecimal _averageProfit = new BigDecimal(0);
+		int _counter = 0;
+		
+		for(Flight _f : listOfFlights_.getFlightMap().get(_testEdge_)) {
+			_averageProfit.add(_f.getProfit());
+			_counter++;
+		}
+		
+		
+		return _averageProfit.divide(new BigDecimal(_counter));
 	}
 	
 }
