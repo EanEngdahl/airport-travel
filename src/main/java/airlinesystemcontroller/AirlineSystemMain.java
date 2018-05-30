@@ -1,7 +1,6 @@
 package airlinesystemcontroller;
 
 import org.apache.commons.cli.*;
-import org.apache.commons.cli.ParseException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
