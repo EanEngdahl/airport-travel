@@ -13,6 +13,9 @@ public class AirlineSimulation {
 	private FlightList listOfFlights = new FlightList();
 	private AirportGraph graphOfAirports = new AirportGraph();
 	private Properties modelProperties;
+	private BigDecimal totalCost;
+	private BigDecimal totalRevenue;
+	private BigDecimal totalProfit;
 
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
@@ -55,12 +58,12 @@ public class AirlineSimulation {
 		}
 	}
 	
-	public BigDecimal findTotalProfit(FlightList listOfFlights_) throws Exception{
+	public BigDecimal[] findTotalRCP(FlightList listOfFlights_) throws Exception{
 		FlightRCPManager _flightProfitManager = new FlightRCPManager(modelProperties);
-		BigDecimal _totalProfit = new BigDecimal(0);
+		BigDecimal[] _totalProfit;
 		
 		try {		
-			_totalProfit = _flightProfitManager.findTotalProfitOfFlightList(listOfFlights_);
+			_totalProfit = _flightProfitManager.findTotalRCPOfFlightList(listOfFlights_);
 			return _totalProfit;
 		}
 		catch (Exception e_) {
@@ -96,10 +99,13 @@ public class AirlineSimulation {
 		}
 		
 		try {		
-			BigDecimal _totalProfit = new BigDecimal("0");
-			_totalProfit = findTotalProfit(listOfFlights);
-			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
-			consoleLogger.info("Total Profit = $" + _totalProfit.toString());	
+			BigDecimal arrayOfRCP[];
+			arrayOfRCP = findTotalRCP(listOfFlights);
+			totalRevenue = arrayOfRCP[0];
+			totalCost = arrayOfRCP[1];
+			totalProfit = arrayOfRCP[2];
+			resultsLogger.info("Total Profit = $" + arrayOfRCP[2].toString());
+			consoleLogger.info("Total Profit = $" + arrayOfRCP[2].toString());	
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
@@ -107,6 +113,18 @@ public class AirlineSimulation {
 		}
 	}
 	
+	public BigDecimal getTotalCost() {
+		return totalCost;
+	}
+
+	public BigDecimal getTotalRevenue() {
+		return totalRevenue;
+	}
+
+	public BigDecimal getTotalProfit() {
+		return totalProfit;
+	}
+
 	public FlightList getListOfFlights() {
 		return listOfFlights;
 	}

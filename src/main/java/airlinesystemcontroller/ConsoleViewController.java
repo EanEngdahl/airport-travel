@@ -25,6 +25,13 @@ public class ConsoleViewController {
 					sim_.runSimulation(_propertiesFileName, _graphFileName);
 					break;
 				case 3:
+					if(sim_.getListOfFlights().size() > 0) {
+					_consoleOut.resultsView(sim_.getTotalProfit(), sim_.getTotalCost(), 
+							sim_.getTotalRevenue(), sim_.getListOfFlights().size());
+					}
+					else {
+						consoleLogger_.error("No simulation run, unable to show results");
+					}
 					break;
 				case 0:
 					return;		
