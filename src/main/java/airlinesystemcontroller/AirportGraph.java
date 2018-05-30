@@ -109,7 +109,7 @@ public class AirportGraph {
 	public void printGraph() {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		
-		_consoleLogger.info(graphOfAirports.toString());
+		//_consoleLogger.info(graphOfAirports.toString());
 		Iterator<String> _vertexItr = graphOfAirports.vertexSet().iterator();
 		Iterator<DefaultEdge> _edgeItr;
 		String _vertex;
