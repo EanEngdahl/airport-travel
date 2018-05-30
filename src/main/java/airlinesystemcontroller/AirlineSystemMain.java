@@ -47,7 +47,7 @@ public class AirlineSystemMain {
 		}
 
 		if(!_menuFlag) {
-			_commandHandler.NoUserInput(_propertiesFileName, _graphFileName);
+			_commandHandler.runSimulation(_propertiesFileName, _graphFileName);
 			return;
 		}
 		

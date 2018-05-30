@@ -37,7 +37,7 @@ public class ReadModelDataIntoState {
 	 * @return
 	 * 		N/A
 	 */
-	public void ReadFileInputIntoFlightList(FlightList listOfFlights_, 
+	public void readFileInputIntoFlightList(FlightList listOfFlights_, 
 			String fileToRead_, Properties modelProperties_) {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
@@ -111,7 +111,7 @@ public class ReadModelDataIntoState {
 	 * @return
 	 * 		N/A
 	 * */
-	public void ReadSingleFlightIntoFlightList(FlightList listOfFlights_, 
+	public void readSingleFlightIntoFlightList(FlightList listOfFlights_, 
 			String flightInformation_, Properties modelProperties_) {
 		
 		flightInformation_ = flightInformation_.replaceAll("\\s", "");

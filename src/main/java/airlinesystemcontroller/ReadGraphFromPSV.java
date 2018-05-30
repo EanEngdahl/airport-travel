@@ -34,7 +34,7 @@ public class ReadGraphFromPSV {
 	 * @return
 	 * 		N/A
 	 */
-	public void ReadFileInputIntoGraph(AirportGraph graphOfAirports_, String graphFileName_) 
+	public void readFileInputIntoGraph(AirportGraph graphOfAirports_, String graphFileName_) 
 			throws IOException, NullPointerException, Exception{
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		_debugLogger.debug("Reading graph input file");

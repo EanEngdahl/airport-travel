@@ -228,7 +228,7 @@ public class GenerateModelData {
 		for (int i = 0; i < _flightsNeeded; i++)
 		{
 			_flightData = generateRandomFlight(modelProperties_, airportGraph_);
-			flightInput_.ReadSingleFlightIntoFlightList(listOfFlights_, _flightData, modelProperties_);
+			flightInput_.readSingleFlightIntoFlightList(listOfFlights_, _flightData, modelProperties_);
 		}
 	}
 	

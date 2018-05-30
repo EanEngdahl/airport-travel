@@ -14,10 +14,10 @@ public class CommandHandler {
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 	private Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 	
-	public void ProcessGraph(AirportGraph graphOfAirports_, String graphFileName_) throws Exception{
+	public void processGraph(AirportGraph graphOfAirports_, String graphFileName_) throws Exception{
 		ReadGraphFromPSV _graphInput = new ReadGraphFromPSV();
 		try {
-		_graphInput.ReadFileInputIntoGraph(graphOfAirports_, graphFileName_);
+		_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFileName_);
 		debugLogger.debug("Graph successfully read.");
 		}
 		catch(Exception e_) {
@@ -25,7 +25,7 @@ public class CommandHandler {
 		}
 	}
 	
-	public Properties ProcessProperties(Properties modelProperty_, String propertiesFileName_) throws Exception{
+	public Properties processProperties(Properties modelProperty_, String propertiesFileName_) throws Exception{
 		RuntimePropertyController _propertyCreator = new RuntimePropertyController();
 		try {
 			modelProperty_ = _propertyCreator.loadRuntimeProperties(propertiesFileName_);
@@ -37,7 +37,7 @@ public class CommandHandler {
 		}
 	}
 	
-	public void GenerateData(Properties modelProperty_, AirportGraph graphOfAirports_,
+	public void generateData(Properties modelProperty_, AirportGraph graphOfAirports_,
 			FlightList listOfFlights_) throws Exception{
 		ReadModelDataIntoState _flightInput = new ReadModelDataIntoState();
 		GenerateModelData _dataCreator = new GenerateModelData();
@@ -51,7 +51,7 @@ public class CommandHandler {
 		}
 	}
 	
-	public BigDecimal FindTotalProfit(BigDecimal totalProfit_, FlightList listOfFlights_) throws Exception{
+	public BigDecimal findTotalProfit(BigDecimal totalProfit_, FlightList listOfFlights_) throws Exception{
 		FlightRCPManager _flightProfitManager = new FlightRCPManager();
 		
 		try {		
@@ -63,7 +63,7 @@ public class CommandHandler {
 		}
 	
 	}
-	public void NoUserInput(String propertiesFileName_, String graphFileName_) {
+	public void runSimulation(String propertiesFileName_, String graphFileName_) {
 		consoleLogger.info("Calculating flight results...");
 		debugLogger.debug("NoUserInput");
 		
@@ -72,7 +72,7 @@ public class CommandHandler {
 		Properties _modelProperty = new Properties();
 				
 		try {
-			ProcessGraph(_graphOfAirports, graphFileName_);
+			processGraph(_graphOfAirports, graphFileName_);
 			_graphOfAirports.printGraph();
 		}
 		catch (Exception e_) {
@@ -80,14 +80,14 @@ public class CommandHandler {
 		}
 
 		try {
-			_modelProperty = ProcessProperties(_modelProperty, propertiesFileName_);
+			_modelProperty = processProperties(_modelProperty, propertiesFileName_);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
 		}
 		
 		try {
-			GenerateData(_modelProperty, _graphOfAirports, _listOfFlights);
+			generateData(_modelProperty, _graphOfAirports, _listOfFlights);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
@@ -95,7 +95,7 @@ public class CommandHandler {
 		
 		try {		
 			BigDecimal _totalProfit = new BigDecimal("0");
-			_totalProfit = FindTotalProfit(_totalProfit, _listOfFlights);
+			_totalProfit = findTotalProfit(_totalProfit, _listOfFlights);
 			resultsLogger.info("Total Profit = $" + _totalProfit.toString());
 			consoleLogger.info("Total Profit = $" + _totalProfit.toString());	
 		}
