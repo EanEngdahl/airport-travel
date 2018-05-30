@@ -53,6 +53,7 @@ public class ConsoleView {
 		System.out.println("1. Input custom files\n"
 				+	 "2. Run simulation\n"
 				+	 "3. Show results\n"
+				+	 "4. Find average profit between airports\n"
 				+	 "0. Quit");
 
 		try {
@@ -69,6 +70,8 @@ public class ConsoleView {
 							return 2;
 						case 3:
 							return 3;
+						case 4:
+							return 4;
 						default:
 							System.out.println("Input a valid option");
 							break;
