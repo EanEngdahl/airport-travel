@@ -13,27 +13,24 @@ public class ConsoleView {
 
 		try(Scanner _input = new Scanner(System.in)) {
 			do {
-				output_.info("Input custom file paths. If none are input, use defaults.");
-				output_.info("1. Enter custom properties file path\n"
+				System.out.println("Input custom file paths. If none are input, use defaults.");
+				System.out.println("1. Enter custom properties file path\n"
 						+ "2. Enter custom graph file path\n"
-						+ "3. Run program\n");
+						+ "3. Run program");
 			
 				_selection = _input.nextInt();
 				
 				switch(_selection) {
 					case 1:
-						output_.info("File path: ");
-						_fileNames[0] = _input.nextLine();
-						break;
 					case 2:
-						output_.info("File path: ");
-						_fileNames[1] = _input.nextLine();
+						System.out.print("Input file path: ");
+						_fileNames[_selection] = _input.nextLine();
 						break;
 					case 3:
-						output_.info("Running program");
+						System.out.println("Running program");
 						break;
 					default:
-						output_.info("Input a valid option");
+						System.out.println("Input a valid option");
 						break; 
 				}
 
@@ -49,11 +46,11 @@ public class ConsoleView {
 	public int showMainMenu(Logger output_) {
 		int _selection;
 		
-		output_.info("MAIN MENU:");
-		output_.info("1. Input custom files\n"
+		System.out.println("MAIN MENU:");
+		System.out.println("1. Input custom files\n"
 				+	 "2. Run simulation\n"
 				+	 "3. Show results\n"
-				+	 "0. Quit\n");
+				+	 "0. Quit");
 
 		try(Scanner _input = new Scanner(System.in)) {
 		
@@ -70,7 +67,7 @@ public class ConsoleView {
 						case 3:
 							return 3;
 						default:
-							output_.info("Input a valid option");
+							System.out.println("Input a valid option");
 							break;
 				}
 			}
@@ -82,8 +79,8 @@ public class ConsoleView {
 	
 	public void resultsView(Logger output_, BigDecimal profit_, BigDecimal cost_, 
 			BigDecimal revenue_, int totalFlights_) {
-		output_.info("*****Flight Results*****");
-		output_.info("Total number of flights: " + Integer.toString(totalFlights_)
+		System.out.println("*****Flight Results*****");
+		System.out.println("Total number of flights: " + Integer.toString(totalFlights_)
 				+ "\nTotal revenue: " + revenue_.toString()
 				+ "\nTotal cost: " + cost_.toString()
 				+ "\nTotal Profit: " + profit_.toString());
