@@ -12,7 +12,7 @@ import airlinesystemcontroller.AirportGraph;
 
 public class FlightList extends ArrayList<Flight> {
 
-	private HashMap<DefaultEdge, Flight> mapEdgeToFlights;
+	private HashMap<DefaultEdge, FlightList> mapEdgeToFlights;
 	private static final long serialVersionUID = 4575157870451051348L;
 
 	public FlightList() {}
@@ -39,7 +39,19 @@ public class FlightList extends ArrayList<Flight> {
 	
 	public void mapFlight(AirportGraph airportGraph_, Flight addedFlight_, 
 			String source_, String destination_) {
-		mapEdgeToFlights.put(airportGraph_.getGraphOfAirports().getEdge(source_, destination_),
-				addedFlight_);
+		
+		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
+
+		if(mapEdgeToFlights.containsKey(_testEdge)) {
+			mapEdgeToFlights.get(_testEdge).addFlightToList(addedFlight_);
+		} else {
+			FlightList _list = new FlightList();
+			_list.addFlightToList(addedFlight_);
+			mapEdgeToFlights.put(_testEdge, _list);
+		}
+	}
+	
+	public HashMap<DefaultEdge, FlightList> getFlightMap() {
+		return mapEdgeToFlights;
 	}
 }
