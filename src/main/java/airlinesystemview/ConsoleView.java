@@ -54,7 +54,7 @@ public class ConsoleView {
 		output_.info("1. Input custom files"
 				+	 "2. Run simulation"
 				+	 "3. Show results"
-				+	 "4. Quit");
+				+	 "00 Quit");
 
 		try(Scanner _input = new Scanner(System.in)) {
 		

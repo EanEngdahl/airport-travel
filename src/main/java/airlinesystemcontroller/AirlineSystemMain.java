@@ -14,25 +14,24 @@ public class AirlineSystemMain {
 	
 		String _propertiesFileName = "default.properties";
 		String _graphFileName = "default-graph";
-		String [] _fileNameList = new String [2];
+		String [] _fileNameList = {_propertiesFileName, _graphFileName};
 		boolean _menuFlag = false;
-		int _selection = 0;
 		
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		
-		ConsoleView _consoleOut = new ConsoleView();
 		CommandLineParser _parser = new DefaultParser();
-		AirlineSimulation _commandHandler = new AirlineSimulation();
+		AirlineSimulation _simulation = new AirlineSimulation();
+		ConsoleViewController _consoleOut = new ConsoleViewController();
+
 		
+		/*
+		 *  Handles the parsing of command line arguements passed to the main
+		 */
 		Options _options = new Options();
 		
 		_options.addOption("p", "properties", true, "Properties file");
 		_options.addOption("g", "graph", true, "Graph file");
 		_options.addOption("m", "menu", false, "Load terminal menu");
-		
-		FlightList _listOfFlights = new FlightList();
-		AirportGraph _airportGraph = new AirportGraph();
-		Properties _modelProperties;
 		
 		try {
 			CommandLine _cl = _parser.parse(_options, args_);
@@ -53,31 +52,18 @@ public class AirlineSystemMain {
 			_e.getMessage();
 		}
 
+		/*
+		 *  Decides whether or not a console menu was requested
+		 */
 		if(!_menuFlag) {
-			_commandHandler.runSimulation(_propertiesFileName, _graphFileName, 
-					_listOfFlights, _airportGraph, _modelProperties);
+			_simulation.runSimulation(_propertiesFileName, _graphFileName);
 			return;
 		}
 		
-		
-		do {
-			_selection = _consoleOut.showMainMenu(_consoleLogger);
-			
-			switch(_selection) {
-				case 1:
-					_fileNameList = _consoleOut.promptUserForFilenames(_consoleLogger);
-					_propertiesFileName = _fileNameList[0];
-					_graphFileName = _fileNameList[1];
-					break;
-				case 2:
-					_commandHandler.runSimulation(_propertiesFileName, _graphFileName, 
-							_listOfFlights, _airportGraph, _modelProperties);
-					break;
-				case 3:
-					_consoleOut.resultsView(_commandHandler.findTotalProfit(_listOfFlights), cost_, revenue_, totalFlights_);
-			}
-			
-		} while(_selection != 0);
+		/*
+		 *  Runs the console menu if it is applicable
+		 */
+		_consoleOut.menuController(_consoleLogger, _fileNameList, _simulation);
 		
 	}
 
