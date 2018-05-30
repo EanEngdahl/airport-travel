@@ -173,11 +173,11 @@ public class GenerateModelData {
 		String _maxSeatsPerSection;
 		String _seatPricePerSection;
 		
-		DefaultEdge _randomEdge = getRandomEdge(airportGraph_.graphOfAirports.edgeSet());
-		String _source = airportGraph_.graphOfAirports.getEdgeSource(_randomEdge);
-		String _dest = airportGraph_.graphOfAirports.getEdgeTarget(_randomEdge);
+		DefaultEdge _randomEdge = getRandomEdge(airportGraph_.getGraphOfAirports().edgeSet());
+		String _source = airportGraph_.getGraphOfAirports().getEdgeSource(_randomEdge);
+		String _dest = airportGraph_.getGraphOfAirports().getEdgeTarget(_randomEdge);
 	
-		double _distance = airportGraph_.graphOfAirports.getEdgeWeight(_randomEdge);
+		double _distance = airportGraph_.getGraphOfAirports().getEdgeWeight(_randomEdge);
 	
 		if(_distance < Double.parseDouble(modelProperties_.getProperty("SMALL_PLANE_MAX_RANGE"))) {
 			_airplaneSize = 's';
@@ -228,7 +228,7 @@ public class GenerateModelData {
 		for (int i = 0; i < _flightsNeeded; i++)
 		{
 			_flightData = generateRandomFlight(modelProperties_, airportGraph_);
-			flightInput_.readSingleFlightIntoFlightList(listOfFlights_, _flightData, modelProperties_);
+			flightInput_.readSingleFlightIntoFlightList(listOfFlights_, _flightData, modelProperties_, airportGraph_);
 		}
 	}
 	

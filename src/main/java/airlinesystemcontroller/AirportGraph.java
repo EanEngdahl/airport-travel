@@ -21,9 +21,9 @@ import airlinesystemmodel.Airport;
 
 public class AirportGraph {
 	
-	Graph<String, DefaultEdge> graphOfAirports;
-	HashMap<String, Airport> mapAirportToName;
-	
+	private Graph<String, DefaultEdge> graphOfAirports;
+	private HashMap<String, Airport> mapAirportToName;
+
 	/*
 	 * Constructor, initializes graph
 	 */
@@ -129,5 +129,13 @@ public class AirportGraph {
 				+ graphOfAirports.getEdgeWeight(_edgeTracker) + ")");
 			}
 		}
+	}
+	
+	public Graph<String, DefaultEdge> getGraphOfAirports() {
+		return graphOfAirports;
+	}
+
+	public HashMap<String, Airport> getMapAirportToName() {
+		return mapAirportToName;
 	}
 }

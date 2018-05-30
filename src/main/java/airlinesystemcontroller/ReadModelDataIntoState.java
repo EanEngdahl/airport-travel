@@ -38,7 +38,7 @@ public class ReadModelDataIntoState {
 	 * 		N/A
 	 */
 	public void readFileInputIntoFlightList(FlightList listOfFlights_, 
-			String fileToRead_, Properties modelProperties_) {
+			String fileToRead_, Properties modelProperties_, AirportGraph airportGraph_) {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		_debugLogger.debug("Reading input file");
@@ -80,7 +80,7 @@ public class ReadModelDataIntoState {
 				
 				listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
 						_seatsFilledPerSection, _seatCostPerSection, _source,
-						_destination, _distanceTravelled, modelProperties_);
+						_destination, _distanceTravelled, modelProperties_, airportGraph_);
 			}
 			_debugLogger.debug("Successfully read file");
 			reader.close();
@@ -112,7 +112,7 @@ public class ReadModelDataIntoState {
 	 * 		N/A
 	 * */
 	public void readSingleFlightIntoFlightList(FlightList listOfFlights_, 
-			String flightInformation_, Properties modelProperties_) {
+			String flightInformation_, Properties modelProperties_, AirportGraph airportGraph_) {
 		
 		flightInformation_ = flightInformation_.replaceAll("\\s", "");
 		String _source;
@@ -141,7 +141,7 @@ public class ReadModelDataIntoState {
 		
 		listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
 				_seatsFilledPerSection, _seatCostPerSection, _source,
-				_destination, _distanceTravelled, modelProperties_);
+				_destination, _distanceTravelled, modelProperties_, airportGraph_);
 	}
 	
 	/*
