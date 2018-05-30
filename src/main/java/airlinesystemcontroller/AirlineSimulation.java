@@ -56,7 +56,7 @@ public class AirlineSimulation {
 	}
 	
 	public BigDecimal findTotalProfit(FlightList listOfFlights_) throws Exception{
-		FlightRCPManager _flightProfitManager = new FlightRCPManager();
+		FlightRCPManager _flightProfitManager = new FlightRCPManager(modelProperties);
 		BigDecimal _totalProfit = new BigDecimal(0);
 		
 		try {		

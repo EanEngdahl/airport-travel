@@ -8,6 +8,7 @@ package airlinesystemcontroller;
 
 import java.math.BigDecimal;
 import java.util.Iterator;
+import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -16,12 +17,14 @@ import airlinesystemmodel.Flight;
 import airlinesystemmodel.FlightList;
 
 public class FlightRCPManager {
-	private static final BigDecimal FUELCOST = new BigDecimal("15");
+	private BigDecimal fuelCost;
 	
 	/*
 	 * Default constructor
 	 */
-	public FlightRCPManager() {}
+	public FlightRCPManager(Properties modelProperties_) {
+		fuelCost = new BigDecimal(modelProperties_.getProperty("FUEL_COST"));
+	}
 	
 	/*
 	 * Calculate and set revenue class variable
@@ -53,7 +56,7 @@ public class FlightRCPManager {
 	 */
 	public BigDecimal findCost(Flight flightToCalculate_) {
 		BigDecimal _cost = new BigDecimal(flightToCalculate_.getDistanceTravelled());
-		_cost = _cost.multiply(FUELCOST);
+		_cost = _cost.multiply(fuelCost);
 		_cost = _cost.add(flightToCalculate_.getCoPilot().getCostPerFlight());
 		_cost = _cost.add(flightToCalculate_.getPilot().getCostPerFlight());
 		return _cost;
@@ -116,7 +119,4 @@ public class FlightRCPManager {
 		return _totalProfit;
 	}
 	
-	public static BigDecimal getFuelcost() {
-		return FUELCOST;
-	}
 }

@@ -20,7 +20,7 @@ public class FlightRCPManagerTest {
 	Properties testProps = propManager.createRuntimeProperties("/default.properties");
 	FlightBuilder fd = new FlightBuilder();
 	Flight testFlight = fd.flightDispatchService('l', MAX_SEATS, SEATS_FILLED, SEAT_COST, "1", "2", 100, testProps);
-	FlightRCPManager testRcp = new FlightRCPManager();
+	FlightRCPManager testRcp = new FlightRCPManager(testProps);
 	
 	@Test
 	public void testFindRevenue() {

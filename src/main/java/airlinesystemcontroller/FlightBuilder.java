@@ -63,7 +63,7 @@ public class FlightBuilder {
 		Flight _newFlightFromData = new Flight(aircraftSize_, maxSeatsPerSection_, 
 				seatsFilledPerSection_, seatCostPerSection_, source, destination, 
 				distanceTravelled_, _pilot, _coPilot, _aircraftAssigned);
-		setFlightRCPData(_newFlightFromData);
+		setFlightRCPData(_newFlightFromData, modelProperties_);
 		
 		return _newFlightFromData;
 		/* TODO: newFlightFromData will go to a database/file storing all the flights for 
@@ -79,8 +79,8 @@ public class FlightBuilder {
 	 * @return
 	 * 		N/A
 	 */
-	public void setFlightRCPData(Flight flightToSet_) {
-		FlightRCPManager _revenueCostProfitFinder = new FlightRCPManager();
+	public void setFlightRCPData(Flight flightToSet_, Properties modelProperties_) {
+		FlightRCPManager _revenueCostProfitFinder = new FlightRCPManager(modelProperties_);
 		BigDecimal[] _flightRCPArray = _revenueCostProfitFinder.getRCPAsArray(flightToSet_);
 		flightToSet_.setRevenue(_flightRCPArray[0]);
 		flightToSet_.setCost(_flightRCPArray[1]);
