@@ -43,9 +43,7 @@ public class ReadGraphFromPSV {
 		String _destination;
 		double _distanceTravelled;
 		int _counter = 1;
-		String fileToRead_ = graphFileName_;
-		
-		try (InputStream _is = ReadGraphFromPSV.class.getResourceAsStream(fileToRead_)) {
+		try (InputStream _is = ReadGraphFromPSV.class.getResourceAsStream(graphFileName_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
 			BufferedReader reader = new BufferedReader(_sr);
 			reader.readLine();
@@ -78,7 +76,7 @@ public class ReadGraphFromPSV {
 		}
 		catch (NullPointerException e_) {
 			throw new NullPointerException("NullPointerException: Graph file error,"
-					+ " could not find file on path- " + graphFileName_);
+					+ " could not find file on path- " + graphFileName_ );
 		}
 		catch (Exception e_) {
 			throw new Exception("Unexpected error occured while reading graph file");

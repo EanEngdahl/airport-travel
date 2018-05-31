@@ -138,4 +138,9 @@ public class AirportGraph {
 	public HashMap<String, Airport> getMapAirportToName() {
 		return mapAirportToName;
 	}
+	
+	public void clearGraph() {
+		mapAirportToName.clear();
+		graphOfAirports = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
+	}
 }

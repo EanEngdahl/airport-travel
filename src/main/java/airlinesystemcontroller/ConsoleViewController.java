@@ -28,15 +28,17 @@ public class ConsoleViewController {
 			switch(_selection) {
 				case 1:
 					fileNameList_ = _consoleOut.promptUserForFilenames(consoleLogger_, _input);
-					if(fileNameList_[0] != null) {
+					if(fileNameList_[0] != null && !(fileNameList_[0].isEmpty())) {
 						_propertiesFileName = fileNameList_[0];
 					}
-					if(fileNameList_[1] != null) {
+					if(fileNameList_[1] != null && !(fileNameList_[1].isEmpty())) {
 						_graphFileName = fileNameList_[1];
 					}
+					_hasSimBeenRun = false;
 					break;
 				case 2:
 					sim_.getListOfFlights().clear();
+					sim_.getGraphOfAirports().clearGraph();
 					sim_.runSimulation(_propertiesFileName, _graphFileName);
 					if(sim_.getListOfFlights().size() != 0) {
 					_hasSimBeenRun = true;

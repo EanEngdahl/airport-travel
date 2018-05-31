@@ -79,8 +79,12 @@ public class AirlineSimulation {
 		try {
 			processGraph(graphOfAirports, graphFileName_);
 			graphOfAirports.printGraph();
+		}
+		catch (Exception e_) {
+			consoleLogger.error(e_.getMessage());
+		}
+		try {
 			modelProperties = processProperties(modelProperties, propertiesFileName_);
-
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
