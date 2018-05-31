@@ -14,6 +14,7 @@ public class AirlineSystemMain {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		
 		CommandLineParser _parser = new DefaultParser();
+		HelpFormatter _formatter = new HelpFormatter();
 		AirlineSimulation _simulation = new AirlineSimulation();
 		ConsoleViewController _consoleOut = new ConsoleViewController();
 
@@ -26,9 +27,15 @@ public class AirlineSystemMain {
 		_options.addOption("p", "properties", true, "Properties file");
 		_options.addOption("g", "graph", true, "Graph file");
 		_options.addOption("m", "menu", false, "Load terminal menu");
+		_options.addOption("h", "help", false, "Outputs the help descriptions");
 		
 		try {
 			CommandLine _cl = _parser.parse(_options, args_);
+			
+			if(_cl.hasOption("h")) {
+				_formatter.printHelp("airporttravel", _options, true);
+				return;
+			}
 		
 			if(_cl.hasOption('p')) {
 				_propertiesFileName = _cl.getOptionValue('p');
