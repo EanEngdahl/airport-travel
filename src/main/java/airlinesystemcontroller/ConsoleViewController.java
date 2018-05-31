@@ -27,8 +27,12 @@ public class ConsoleViewController {
 			switch(_selection) {
 				case 1:
 					fileNameList_ = _consoleOut.promptUserForFilenames(consoleLogger_, _input);
-					_propertiesFileName = fileNameList_[0];
-					_graphFileName = fileNameList_[1];
+					if(fileNameList_[0] != null) {
+						_propertiesFileName = fileNameList_[0];
+					}
+					if(fileNameList_[1] != null) {
+						_graphFileName = fileNameList_[1];
+					}
 					break;
 				case 2:
 					sim_.getListOfFlights().clear();

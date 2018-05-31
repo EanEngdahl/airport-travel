@@ -74,10 +74,10 @@ public class RuntimePropertyController {
 	public Properties loadRuntimeProperties(String fileName_) {
 		Properties _returnProperties;
 
-		if(fileName_.equals("default.properties")) {
+		if(fileName_.equals("/default.properties")) {
 			_returnProperties = loadDefaultProperties();
 		} else {
-			_returnProperties = createRuntimeProperties("/" + fileName_);
+			_returnProperties = createRuntimeProperties(fileName_);
 		}
 		return _returnProperties;
 	}

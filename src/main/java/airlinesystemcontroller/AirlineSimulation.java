@@ -79,13 +79,8 @@ public class AirlineSimulation {
 		try {
 			processGraph(graphOfAirports, graphFileName_);
 			graphOfAirports.printGraph();
-		}
-		catch (Exception e_) {
-			consoleLogger.error(e_.getMessage());
-		}
-
-		try {
 			modelProperties = processProperties(modelProperties, propertiesFileName_);
+
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
@@ -93,12 +88,6 @@ public class AirlineSimulation {
 		
 		try {
 			generateData(modelProperties, graphOfAirports, listOfFlights);
-		}
-		catch (Exception e_) {
-			consoleLogger.error(e_.getMessage());
-		}
-		
-		try {		
 			BigDecimal arrayOfRCP[];
 			arrayOfRCP = findTotalRCP(listOfFlights);
 			totalRevenue = arrayOfRCP[0];

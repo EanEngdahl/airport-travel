@@ -10,8 +10,6 @@ public class ConsoleView {
 	public String[] promptUserForFilenames(Logger output_, Scanner input_) {
 		String _fileNames[] = new String [2];
 		int _selection;
-		_fileNames[0] = "default.properties";
-		_fileNames[1] = "default-graph";
 
 		try {
 			do {

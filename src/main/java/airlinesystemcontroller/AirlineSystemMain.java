@@ -7,8 +7,8 @@ import org.slf4j.LoggerFactory;
 public class AirlineSystemMain {
 
 	public static void main(String[] args_) {
-		String _propertiesFileName = "default.properties";
-		String _graphFileName = "default-graph";
+		String _propertiesFileName = "/default.properties";
+		String _graphFileName = "/default-graph";
 		boolean _menuFlag = false;
 		
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
