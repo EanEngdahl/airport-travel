@@ -61,7 +61,8 @@ public class FlightList extends ArrayList<Flight> {
 	
 	@Override
 	public void clear() {
-		this.clear();
-		mapEdgeToFlights.clear();
+		mapEdgeToFlights.clear(); 
+		super.clear();
 	}
+	
 }
