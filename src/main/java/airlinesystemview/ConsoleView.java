@@ -16,7 +16,7 @@ public class ConsoleView {
 				System.out.println("Input custom file paths. If none are input, use defaults.");
 				System.out.println("1. Enter custom properties file path\n"
 						+ "2. Enter custom graph file path\n"
-						+ "3. Return to Main Menu");
+						+ "3. Return to Main Menu\n");
 			
 				_selection = input_.nextLine();
 				
@@ -30,10 +30,10 @@ public class ConsoleView {
 						System.out.println("Running program");
 						break;
 					default:
-						System.out.println("Input a valid option");
+						System.out.println("Input a valid option\n");
 				}
 
-			} while(_selection.contentEquals("3"));
+			} while(!_selection.equals("3"));
 
 		} catch(Exception e_) {
 			output_.error("Prompt input error");
@@ -83,7 +83,6 @@ public class ConsoleView {
 		String[] _airportNames = new String[2];
 		
 		System.out.print("Input first airport name: ");
-		input_.nextLine();
 		_airportNames[0] = input_.nextLine().toUpperCase();
 		System.out.print("Input second airport name: ");
 		_airportNames[1] = input_.nextLine().toUpperCase();

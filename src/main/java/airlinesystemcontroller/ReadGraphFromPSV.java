@@ -59,8 +59,8 @@ public class ReadGraphFromPSV {
 					continue;
 				}
 				tokenizer = new StringTokenizer(line, DELIM);
-				_source = tokenizer.nextToken();
-				_destination = tokenizer.nextToken();
+				_source = tokenizer.nextToken().toUpperCase();
+				_destination = tokenizer.nextToken().toUpperCase();
 				_distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
 				_sourceAirport = new Airport(_source);
 				_destinationAirport = new Airport(_destination);
