@@ -12,10 +12,12 @@ import airlinesystemcontroller.AirportGraph;
 
 public class FlightList extends ArrayList<Flight> {
 
-	private HashMap<DefaultEdge, FlightList> mapEdgeToFlights = new HashMap<DefaultEdge, FlightList>();
+	private HashMap<DefaultEdge, FlightList> mapEdgeToFlights;
 	private static final long serialVersionUID = 4575157870451051348L;
 
-	public FlightList() {}
+	public FlightList() {
+		mapEdgeToFlights = new HashMap<DefaultEdge, FlightList>();
+	}
 	
 	public void addFlightToList(char aircraftSize_, int maxSeatsPerSection_[], 
 		int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
@@ -31,7 +33,7 @@ public class FlightList extends ArrayList<Flight> {
 
 		addFlightToList(_addedFlight);
 
-		mapFlight(airportGraph_, _addedFlight, source_, destination_);
+		//mapFlight(airportGraph_, _addedFlight, source_, destination_);
 	}
 	
 	public void addFlightToList(Flight flight_) {

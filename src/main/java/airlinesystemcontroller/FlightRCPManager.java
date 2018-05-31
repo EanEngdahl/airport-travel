@@ -149,11 +149,11 @@ public class FlightRCPManager {
 	public BigDecimal findAverageRCPPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_, 
 			String source_, String destination_) {
 
-		DefaultEdge _testEdge_ = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
+		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
 		BigDecimal _averageProfit = new BigDecimal(0);
 		int _counter = 0;
 		
-		for(Flight _f : listOfFlights_.getFlightMap().get(_testEdge_)) {
+		for(Flight _f : listOfFlights_.getFlightMap().get(_testEdge)) {
 			_averageProfit.add(_f.getProfit());
 			_counter++;
 		}

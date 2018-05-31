@@ -30,6 +30,7 @@ public class ConsoleViewController {
 					_graphFileName = fileNameList_[1];
 					break;
 				case 2:
+					sim_.getListOfFlights().clear();
 					sim_.runSimulation(_propertiesFileName, _graphFileName);
 					break;
 				case 3:
@@ -46,7 +47,7 @@ public class ConsoleViewController {
 					_airportNames = _consoleOut.findAverageBetweenAirports(_input);
 					if(sim_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
 						_averageProfit = _flightRCPManager.findAverageRCPPerEdge(sim_.getListOfFlights(),
-								sim_.getGraphOfAirports(), _airportNames[1], _airportNames[2]);
+								sim_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
 						_consoleOut.displayAverageBetweenAirports(_averageProfit);
 					}
 					else {
