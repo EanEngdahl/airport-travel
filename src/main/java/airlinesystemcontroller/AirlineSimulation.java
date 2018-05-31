@@ -25,7 +25,7 @@ public class AirlineSimulation {
 		ReadGraphFromPSV _graphInput = new ReadGraphFromPSV();
 		try {
 		_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFileName_);
-		debugLogger.debug("Graph successfully read.");
+		debugLogger.debug("Graph successfully read");
 		}
 		catch(Exception e_) {
 			throw new Exception(e_.getMessage());
@@ -105,6 +105,7 @@ public class AirlineSimulation {
 			totalCost = arrayOfRCP[1];
 			totalProfit = arrayOfRCP[2];
 			resultsLogger.info("Total Profit = $" + arrayOfRCP[2].toString());
+			consoleLogger.info("Flights successfully created\n");
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());

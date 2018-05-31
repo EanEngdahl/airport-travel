@@ -3,16 +3,16 @@ package airlinesystemmodel;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.math.BigDecimal;
-//import java.util.HashMap;
+import java.util.HashMap;
 
-//import org.jgrapht.graph.DefaultEdge;
+import org.jgrapht.graph.DefaultEdge;
 
 import airlinesystemcontroller.FlightBuilder;
 import airlinesystemcontroller.AirportGraph;
 
 public class FlightList extends ArrayList<Flight> {
 
-	//private HashMap<DefaultEdge, FlightList> mapEdgeToFlights;
+	private HashMap<DefaultEdge, FlightList> mapEdgeToFlights = new HashMap<DefaultEdge, FlightList>();
 	private static final long serialVersionUID = 4575157870451051348L;
 
 	public FlightList() {}
@@ -31,14 +31,13 @@ public class FlightList extends ArrayList<Flight> {
 
 		addFlightToList(_addedFlight);
 
-		//mapFlight(airportGraph_, _addedFlight, source_, destination_);
+		mapFlight(airportGraph_, _addedFlight, source_, destination_);
 	}
 	
 	public void addFlightToList(Flight flight_) {
 		add(flight_);
 	}
 	
-	/* TODO under construction
 	public void mapFlight(AirportGraph airportGraph_, Flight addedFlight_, 
 			String source_, String destination_) {
 		
@@ -57,5 +56,4 @@ public class FlightList extends ArrayList<Flight> {
 	public HashMap<DefaultEdge, FlightList> getFlightMap() {
 		return mapEdgeToFlights;
 	}
-	*/
 }
