@@ -58,4 +58,10 @@ public class FlightList extends ArrayList<Flight> {
 	public HashMap<DefaultEdge, FlightList> getFlightMap() {
 		return mapEdgeToFlights;
 	}
+	
+	@Override
+	public void clear() {
+		this.clear();
+		mapEdgeToFlights.clear();
+	}
 }
