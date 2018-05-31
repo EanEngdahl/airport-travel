@@ -10,6 +10,8 @@ public class ConsoleView {
 	public String[] promptUserForFilenames(Logger output_, Scanner input_) {
 		String _fileNames[] = new String [2];
 		int _selection;
+		_fileNames[0] = "default.properties";
+		_fileNames[1] = "default-graph";
 
 		try {
 			do {
@@ -96,15 +98,16 @@ public class ConsoleView {
 	}
 	
 	public void displayAverageBetweenAirports(BigDecimal averageProfit_) {
-		System.out.println("The average profit is $" + averageProfit_.toString());
+		System.out.println("The average profit is $" + averageProfit_.toString() + "\n");
 	}
 	
 	public void resultsView(Logger output_, BigDecimal profit_, BigDecimal cost_, 
-			BigDecimal revenue_, int totalFlights_) {
+			BigDecimal revenue_, int totalFlights_, BigDecimal averageFlightProfit_) {
 		System.out.println("\n\n*****Flight Results*****");
 		System.out.println("Total number of flights: " + Integer.toString(totalFlights_)
 				+ "\nTotal revenue: " + revenue_.toString()
 				+ "\nTotal cost: " + cost_.toString()
-				+ "\nTotal Profit: " + profit_.toString() + "\n\n");
+				+ "\nTotal Profit: " + profit_.toString() 
+				+ "\nAverage Profit: " + averageFlightProfit_.toString() + "\n\n");
 	}
 }

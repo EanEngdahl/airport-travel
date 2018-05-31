@@ -4,6 +4,7 @@ import airlinesystemview.*;
 
 import java.util.Scanner;
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 
 import org.slf4j.Logger;
 
@@ -36,7 +37,9 @@ public class ConsoleViewController {
 				case 3:
 					if(sim_.getListOfFlights().size() > 0) {
 					_consoleOut.resultsView(consoleLogger_, sim_.getTotalProfit(), sim_.getTotalCost(), 
-							sim_.getTotalRevenue(), sim_.getListOfFlights().size());
+							sim_.getTotalRevenue(), sim_.getListOfFlights().size(), 
+							sim_.getTotalCost().divide(new BigDecimal(sim_.getListOfFlights().size()),
+									2, RoundingMode.FLOOR));
 					}
 					else {
 						consoleLogger_.error("No simulation run, unable to show results");
