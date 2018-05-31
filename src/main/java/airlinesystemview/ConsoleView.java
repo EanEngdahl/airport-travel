@@ -88,9 +88,9 @@ public class ConsoleView {
 		
 		System.out.print("Input first airport name: ");
 		input_.nextLine();
-		_airportNames[0] = input_.nextLine();
+		_airportNames[0] = input_.nextLine().toUpperCase();
 		System.out.print("Input second airport name: ");
-		_airportNames[1] = input_.nextLine();
+		_airportNames[1] = input_.nextLine().toUpperCase();
 		
 		return _airportNames;
 	}

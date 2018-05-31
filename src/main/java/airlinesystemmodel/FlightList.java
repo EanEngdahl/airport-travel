@@ -33,9 +33,9 @@ public class FlightList extends ArrayList<Flight> {
 
 		addFlightToList(_addedFlight);
 
-		//mapFlight(airportGraph_, _addedFlight, source_, destination_);
+		mapFlight(airportGraph_, _addedFlight, source_, destination_);
 	}
-	
+
 	public void addFlightToList(Flight flight_) {
 		add(flight_);
 	}

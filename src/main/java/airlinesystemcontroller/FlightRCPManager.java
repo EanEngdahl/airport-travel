@@ -7,6 +7,7 @@
 package airlinesystemcontroller;
 
 import java.math.BigDecimal;
+import java.math.RoundingMode;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -146,17 +147,21 @@ public class FlightRCPManager {
 	 *  	   the BigDecimal value of the average profit for the specific edge requested
 	 */
 	
-	public BigDecimal findAverageRCPPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_, 
-			String source_, String destination_) {
+	public BigDecimal findAverageRCPPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_,
+			String source_, String destination_) throws NullPointerException {
 
 		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
 		BigDecimal _averageProfit = new BigDecimal(0);
 		int _counter = 0;
+	
+		if(!listOfFlights_.getFlightMap().containsKey(_testEdge)) {
+			throw new NullPointerException();
+		}
 		
 		for(Flight _f : listOfFlights_.getFlightMap().get(_testEdge)) {
-			_averageProfit.add(_f.getProfit());
+			_averageProfit = _averageProfit.add(_f.getProfit());
 			_counter++;
 		}
-		return _averageProfit.divide(new BigDecimal(_counter));
+		return _averageProfit.divide(new BigDecimal(_counter), 2, RoundingMode.FLOOR);
 	}	
 }

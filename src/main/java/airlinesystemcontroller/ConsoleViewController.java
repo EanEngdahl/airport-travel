@@ -46,9 +46,13 @@ public class ConsoleViewController {
 					_flightRCPManager = new FlightRCPManager(sim_.getModelProperties());
 					_airportNames = _consoleOut.findAverageBetweenAirports(_input);
 					if(sim_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
-						_averageProfit = _flightRCPManager.findAverageRCPPerEdge(sim_.getListOfFlights(),
-								sim_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
-						_consoleOut.displayAverageBetweenAirports(_averageProfit);
+						try {
+							_averageProfit = _flightRCPManager.findAverageRCPPerEdge(sim_.getListOfFlights(),
+									sim_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
+							_consoleOut.displayAverageBetweenAirports(_averageProfit);
+						} catch(NullPointerException _e) {
+							consoleLogger_.error("There are no flights between the two airports");
+						}
 					}
 					else {
 						consoleLogger_.error("Airports are not connected, cannot find average");
