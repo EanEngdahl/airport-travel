@@ -50,7 +50,7 @@ public class ConsoleViewController {
 									2, RoundingMode.FLOOR));
 					}
 					else {
-						consoleLogger_.error("No simulation run, unable to show results");
+						consoleLogger_.error("No simulation run, unable to show results\n");
 					}
 					break;
 				case 4:
@@ -63,14 +63,18 @@ public class ConsoleViewController {
 										sim_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
 								_consoleOut.displayAverageBetweenAirports(_averageProfit);
 							} catch(NullPointerException _e) {
-								consoleLogger_.error("There are no flights between the two airports");
+								consoleLogger_.error("There are no flights between the two airports\n");
 							}
 						}
+						else if(!(sim_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[0]))
+								|| !(sim_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[1]))) {
+							consoleLogger_.error("Airport input not present in graph, cannot find average\n");
+						}
 						else {
-							consoleLogger_.error("Airports are not connected, cannot find average");
+							consoleLogger_.error("Airports are not connected, cannot find average\n");
 						}
 					} else {
-						consoleLogger_.error("No simulation run");
+						consoleLogger_.error("No simulation run, unable to find profit\n");
 					}
 					break;
 				case 0:
