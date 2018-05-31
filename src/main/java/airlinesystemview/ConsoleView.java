@@ -9,7 +9,7 @@ public class ConsoleView {
 	
 	public String[] promptUserForFilenames(Logger output_, Scanner input_) {
 		String _fileNames[] = new String [2];
-		int _selection;
+		String _selection;
 
 		try {
 			do {
@@ -18,26 +18,22 @@ public class ConsoleView {
 						+ "2. Enter custom graph file path\n"
 						+ "3. Return to Main Menu");
 			
-				_selection = input_.nextInt();
-				
-				// Remove newline from next input
-				input_.nextLine();
+				_selection = input_.nextLine();
 				
 				switch(_selection) {
-					case 1:
-					case 2:
+					case "1":
+					case "2":
 						System.out.print("Input file path: ");
-						_fileNames[_selection - 1] = input_.nextLine();
+						_fileNames[Integer.parseInt(_selection) - 1] = input_.nextLine();
 						break;
-					case 3:
+					case "3":
 						System.out.println("Running program");
 						break;
 					default:
 						System.out.println("Input a valid option");
-						break; 
 				}
 
-			} while(_selection != 3);
+			} while(_selection.contentEquals("3"));
 
 		} catch(Exception e_) {
 			output_.error("Prompt input error");
@@ -47,7 +43,7 @@ public class ConsoleView {
 	}	
 
 	public int showMainMenu(Logger output_, Scanner input_) {
-		int _selection;
+		String _selection;
 		
 		System.out.println("MAIN MENU:");
 		System.out.println("1. Input custom files\n"
@@ -59,18 +55,18 @@ public class ConsoleView {
 		try {
 		
 			for(;;) {
-				_selection = input_.nextInt();
+				_selection = input_.nextLine();
 
 				switch(_selection) {
-						case 0:
+						case "0":
 							return 0;
-						case 1:
+						case "1":
 							return 1;
-						case 2:
+						case "2":
 							return 2;
-						case 3:
+						case "3":
 							return 3;
-						case 4:
+						case "4":
 							return 4;
 						default:
 							System.out.println("Input a valid option");

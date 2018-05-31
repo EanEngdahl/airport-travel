@@ -18,6 +18,7 @@ public class ConsoleViewController {
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
 		FlightRCPManager _flightRCPManager;
+		Boolean _hasSimBeenRun = false;
 		
 		Scanner _input = new Scanner(System.in);
 		
@@ -37,9 +38,12 @@ public class ConsoleViewController {
 				case 2:
 					sim_.getListOfFlights().clear();
 					sim_.runSimulation(_propertiesFileName, _graphFileName);
+					if(sim_.getListOfFlights().size() != 0) {
+					_hasSimBeenRun = true;
+					}
 					break;
 				case 3:
-					if(sim_.getListOfFlights().size() > 0) {
+					if(_hasSimBeenRun) {
 					_consoleOut.resultsView(consoleLogger_, sim_.getTotalProfit(), sim_.getTotalCost(), 
 							sim_.getTotalRevenue(), sim_.getListOfFlights().size(), 
 							sim_.getTotalCost().divide(new BigDecimal(sim_.getListOfFlights().size()),
@@ -50,19 +54,23 @@ public class ConsoleViewController {
 					}
 					break;
 				case 4:
-					_flightRCPManager = new FlightRCPManager(sim_.getModelProperties());
-					_airportNames = _consoleOut.findAverageBetweenAirports(_input);
-					if(sim_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
-						try {
-							_averageProfit = _flightRCPManager.findAverageRCPPerEdge(sim_.getListOfFlights(),
-									sim_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
-							_consoleOut.displayAverageBetweenAirports(_averageProfit);
-						} catch(NullPointerException _e) {
-							consoleLogger_.error("There are no flights between the two airports");
+					if(_hasSimBeenRun) {
+						_flightRCPManager = new FlightRCPManager(sim_.getModelProperties());
+						_airportNames = _consoleOut.findAverageBetweenAirports(_input);
+						if(sim_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
+							try {
+								_averageProfit = _flightRCPManager.findAverageRCPPerEdge(sim_.getListOfFlights(),
+										sim_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
+								_consoleOut.displayAverageBetweenAirports(_averageProfit);
+							} catch(NullPointerException _e) {
+								consoleLogger_.error("There are no flights between the two airports");
+							}
 						}
-					}
-					else {
-						consoleLogger_.error("Airports are not connected, cannot find average");
+						else {
+							consoleLogger_.error("Airports are not connected, cannot find average");
+						}
+					} else {
+						consoleLogger_.error("No simulation run");
 					}
 					break;
 				case 0:
