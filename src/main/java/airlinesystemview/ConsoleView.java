@@ -3,6 +3,7 @@ package airlinesystemview;
 import org.slf4j.Logger;
 import java.util.Scanner;
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 
 
 public class ConsoleView {
@@ -91,16 +92,18 @@ public class ConsoleView {
 	}
 	
 	public void displayAverageBetweenAirports(BigDecimal averageProfit_) {
-		System.out.println("The average profit is $" + averageProfit_.toString() + "\n");
+		NumberFormat _numberFormatter = NumberFormat.getInstance();
+		System.out.println("The average profit is $" + _numberFormatter.format(averageProfit_) + "\n");
 	}
 	
 	public void resultsView(Logger output_, BigDecimal profit_, BigDecimal cost_, 
 			BigDecimal revenue_, int totalFlights_, BigDecimal averageFlightProfit_) {
+		NumberFormat _numberFormatter = NumberFormat.getInstance();
 		System.out.println("\n\n*****Flight Results*****");
-		System.out.println("Total number of flights: " + Integer.toString(totalFlights_)
-				+ "\nTotal revenue: " + revenue_.toString()
-				+ "\nTotal cost: " + cost_.toString()
-				+ "\nTotal Profit: " + profit_.toString() 
-				+ "\nAverage Profit: " + averageFlightProfit_.toString() + "\n\n");
+		System.out.println("Total number of flights: " + _numberFormatter.format(totalFlights_)
+				+ "\nTotal revenue: " + _numberFormatter.format(revenue_)
+				+ "\nTotal cost: " + _numberFormatter.format(cost_)
+				+ "\nTotal Profit: " + _numberFormatter.format(profit_) 
+				+ "\nAverage Profit: " + _numberFormatter.format(averageFlightProfit_) + "\n\n");
 	}
 }
