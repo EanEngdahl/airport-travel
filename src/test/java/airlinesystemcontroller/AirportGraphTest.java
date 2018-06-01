@@ -1,9 +1,12 @@
 package airlinesystemcontroller;
 
 import static org.junit.Assert.*;
-
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.ArrayList;
+
+import org.jgrapht.graph.DefaultEdge;
 
 import airlinesystemmodel.Airport;
 
@@ -19,6 +22,7 @@ public class AirportGraphTest {
 		_graphOfAirports.addAirport(new Airport("A"));
 		_graphOfAirports.addAirport(new Airport("B"));
 		_graphOfAirports.addAirport(new Airport("D"));
+		_graphOfAirports.addAirport(new Airport("E"));
 	}
 	
 	@Test
@@ -41,7 +45,7 @@ public class AirportGraphTest {
 		assertFalse("D and A should not be connected", _graphOfAirports.areAirportsConnected("D", "A"));
 		assertFalse("Should not be able to make an edge with the same airport as source and destination",
 				_graphOfAirports.createEdge("A", "A", 5));
-		assertFalse("SHould not create an otherwise valid edge if weight is negative",
+		assertFalse("Should not create an otherwise valid edge if weight is negative",
 				_graphOfAirports.createEdge("A", "B", -2));
 	}
 	
@@ -57,5 +61,31 @@ public class AirportGraphTest {
 		assertEquals("Hashmap should return airport with correct name field", "A", 
 				_graphOfAirports.getAirport("A").getName());
 		
+	}
+	
+	@Test
+	public void testGetSortedListOfEdges() {
+		_graphOfAirports.createEdge("A", "B", 5);
+		_graphOfAirports.createEdge("A", "D", 3);
+		_graphOfAirports.createEdge("B", "D", 4);
+		_graphOfAirports.createEdge("A", "E", 1);
+		_graphOfAirports.createEdge("D", "E", 2);
+		
+		ArrayList<DefaultEdge>	_sortedEdges;
+		
+		_sortedEdges = _graphOfAirports.getSortedListOfEdges();
+		
+		assertTrue("Index 0 less than index 1",
+				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(0)) <=
+				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(1)));
+		assertTrue("Index 1 less than index 2",
+				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(1)) <=
+				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(2)));
+		assertTrue("Index 2 less than index 3",
+				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(2)) <=
+				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(3)));
+		assertTrue("Index 3 less than index 4",
+				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(3)) <=
+				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(4)));
 	}
 }

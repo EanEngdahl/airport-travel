@@ -110,16 +110,18 @@ public class AirportGraph {
 	
 	public ArrayList<DefaultEdge> getSortedListOfEdges() {
 		ArrayList<DefaultEdge> _sortedEdges = new ArrayList<DefaultEdge>();
-		
-		_sortedEdges.addAll(graphOfAirports.edgeSet());
-		_sortedEdges.sort(new Comparator<DefaultEdge>() {
+
+		Comparator<DefaultEdge> _compareEdges = new Comparator<DefaultEdge>() {
 			public int compare(DefaultEdge e1, DefaultEdge e2) {
 				if(graphOfAirports.getEdgeWeight(e1) == graphOfAirports.getEdgeWeight(e2)) {
 					return 0;
 				}
 				return graphOfAirports.getEdgeWeight(e1) < graphOfAirports.getEdgeWeight(e2) ? -1 : 1;
 			}
-		});
+		};
+		
+		_sortedEdges.addAll(graphOfAirports.edgeSet());
+		_sortedEdges.sort(_compareEdges);
 		
 		return _sortedEdges;
 	}
