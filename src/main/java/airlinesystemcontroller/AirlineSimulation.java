@@ -79,7 +79,6 @@ public class AirlineSimulation {
 				
 		try {
 			processGraph(graphOfAirports, graphFileName_);
-			graphOfAirports.printGraph();
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
@@ -108,18 +107,21 @@ public class AirlineSimulation {
 		}
 	}
 	
-	public void runFromDataFile(String propertiesFileName_, String dataFileName_) {
+	public void runFromDataFile(String propertiesFileName_, String dataFileName_) 
+		throws Exception{
 		ReadModelDataIntoState _readData = new ReadModelDataIntoState();
 		try {
 			modelProperties = processProperties(modelProperties, propertiesFileName_);
 		} 
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
+			throw new Exception();
 		}
 		BigDecimal arrayOfRCP[];
 		try {
 			_readData.readFileInputIntoFlightList(listOfFlights, dataFileName_,
 					modelProperties, graphOfAirports);
+			System.out.println("read file");
 			arrayOfRCP = findTotalRCP(listOfFlights);
 			totalRevenue = arrayOfRCP[0];
 			totalCost = arrayOfRCP[1];
@@ -127,6 +129,7 @@ public class AirlineSimulation {
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
+			throw new Exception();
 		}
 	}
 	

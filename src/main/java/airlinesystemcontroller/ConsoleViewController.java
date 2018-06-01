@@ -84,8 +84,22 @@ public class ConsoleViewController {
 					sim_.getListOfFlights().clear();
 					sim_.getGraphOfAirports().clearGraph();
 					_dataFile = _consoleOut.promptForDataFile(_input);
+					try {
 					sim_.runFromDataFile(_propertiesFileName, _dataFile);
 					_hasSimBeenRun = true;
+					}
+					catch (Exception e_) {
+						_hasSimBeenRun = false;
+						consoleLogger_.error("Error reading data, cannot run simulation\n");
+					}
+					break;
+				case 6:
+					if(_hasSimBeenRun) {
+						sim_.getGraphOfAirports().printGraph();
+					}
+					else {
+						consoleLogger_.error("No simulation run, unable to display graph\n");
+					}
 					break;
 				case 0:
 					return;		
