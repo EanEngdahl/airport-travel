@@ -21,6 +21,7 @@ public class GenerateModelData {
 	private static final char LARGE = 'l';
     private static final char MEDIUM = 'm';
     private static final char SMALL = 's';
+    private static final char NO_SIZE_PREF = 'n';
     
 	/*
 	 *  Chooses a random edge from the graph to act as the path for a flight.
@@ -41,6 +42,8 @@ public class GenerateModelData {
 			case LARGE:
 				_weight = 0.5;
 				break;
+			case NO_SIZE_PREF:
+				return edgeList_.get(rand.nextInt(edgeList_.size()));
 		}
 	
 		int _selection = (int)(edgeList_.size() * Math.pow(rand.nextDouble(), _weight));
