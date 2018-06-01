@@ -2,7 +2,7 @@ package airlinesystemcontroller;
 
 import java.util.Random;
 import java.util.Properties;
-import java.util.Set;
+import java.util.ArrayList;
 import org.jgrapht.graph.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -28,21 +28,23 @@ public class GenerateModelData {
 	 *  @param edgeSet_ The set of all the edges provided by the model's graph
 	 *  @return The randomly selected edge
 	 */
-	public DefaultEdge getRandomEdge(Set<DefaultEdge> edgeSet_) {
-		int _bound = edgeSet_.size();
-		int _stop;
-		int _counter = 0;
+	public DefaultEdge getRandomEdge(ArrayList<DefaultEdge> edgeList_, char preferredAirplaneSize_) {
 		DefaultEdge _returnEdge = new DefaultEdge();
+		int _sizeWeight = 1;
 		
-		_stop = rand.nextInt(_bound);
-	
-		for(DefaultEdge _e : edgeSet_) {
-			if(_counter == _stop) {
-				_returnEdge = _e;
+		switch(preferredAirplaneSize_) {
+			case SMALL:
+				_sizeWeight = 3;
 				break;
-			}
-			_counter++;
+			case MEDIUM:
+				_sizeWeight = 2;
+				break;
+			case LARGE:
+				_sizeWeight = 1;
+				break;
 		}
+		
+		_returnEdge = edgeList_.get((int)rand.nextGaussian() / _sizeWeight);
 		
 		return _returnEdge;
 	}
@@ -167,13 +169,14 @@ public class GenerateModelData {
 	 *  @param airportGraph_	The AirportGraph of the current model
 	 *  @return The pipe separated string value representation of the Flight. 
 	 */
-	public String generateRandomFlight(Properties modelProperties_, AirportGraph airportGraph_) {
+	public String generateRandomFlight(Properties modelProperties_, AirportGraph airportGraph_, 
+			ArrayList<DefaultEdge> sortedEdges_) {
 		String _flight;
 		char _airplaneSize;
 		String _maxSeatsPerSection;
 		String _seatPricePerSection;
 		
-		DefaultEdge _randomEdge = getRandomEdge(airportGraph_.getGraphOfAirports().edgeSet());
+		DefaultEdge _randomEdge = getRandomEdge(sortedEdges_, modelProperties_.getProperty("PREFERRED_AIRCRAFT_SIZE").charAt(0));
 		String _source = airportGraph_.getGraphOfAirports().getEdgeSource(_randomEdge);
 		String _dest = airportGraph_.getGraphOfAirports().getEdgeTarget(_randomEdge);
 	
@@ -224,10 +227,13 @@ public class GenerateModelData {
 
 		int _flightsNeeded = Integer.parseInt(modelProperties_.getProperty("NUMBER_OF_FLIGHTS"));
 		String _flightData;
+		ArrayList<DefaultEdge> _sortedEdges;
+		
+		_sortedEdges = airportGraph_.getSortedListOfEdges();
 
 		for (int i = 0; i < _flightsNeeded; i++)
 		{
-			_flightData = generateRandomFlight(modelProperties_, airportGraph_);
+			_flightData = generateRandomFlight(modelProperties_, airportGraph_, _sortedEdges);
 			flightInput_.readSingleFlightIntoFlightList(listOfFlights_, _flightData, modelProperties_, airportGraph_);
 		}
 	}	

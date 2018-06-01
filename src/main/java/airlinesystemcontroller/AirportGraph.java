@@ -14,7 +14,9 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
+import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Comparator;
 
 import airlinesystemmodel.Airport;
 
@@ -105,6 +107,23 @@ public class AirportGraph {
 	public Airport getAirport(String airportName_) {
 		return mapAirportToName.get(airportName_);
 	}
+	
+	public ArrayList<DefaultEdge> getSortedListOfEdges() {
+		ArrayList<DefaultEdge> _sortedEdges = new ArrayList<DefaultEdge>();
+		
+		_sortedEdges.addAll(graphOfAirports.edgeSet());
+		_sortedEdges.sort(new Comparator<DefaultEdge>() {
+			public int compare(DefaultEdge e1, DefaultEdge e2) {
+				if(graphOfAirports.getEdgeWeight(e1) == graphOfAirports.getEdgeWeight(e2)) {
+					return 0;
+				}
+				return graphOfAirports.getEdgeWeight(e1) < graphOfAirports.getEdgeWeight(e2) ? -1 : 1;
+			}
+		});
+		
+		return _sortedEdges;
+	}
+	
 	//TODO temporary method using logging to console for testing graph, remove later
 	public void printGraph() {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
