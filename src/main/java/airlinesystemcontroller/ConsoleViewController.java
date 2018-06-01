@@ -10,11 +10,11 @@ import org.slf4j.Logger;
 
 public class ConsoleViewController {
 
-	public void menuController(Logger consoleLogger_, String [] fileNameList_, AirlineSimulation sim_) {
+	public void menuController(Logger consoleLogger_, String [] fileNameList_,
+			AirlineSimulation sim_, String dataFile_) {
 		int _selection;
 		String _propertiesFileName = fileNameList_[0];
 		String _graphFileName = fileNameList_[1];
-		String _dataFile;
 		String[] _airportNames;
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
@@ -76,20 +76,21 @@ public class ConsoleViewController {
 						else {
 							consoleLogger_.error("Airports are not connected, cannot find average\n");
 						}
-					} else {
+					} 
+					else {
 						consoleLogger_.error("No simulation run, unable to find profit\n");
 					}
 					break;
 				case 5:
 					sim_.getListOfFlights().clear();
 					sim_.getGraphOfAirports().clearGraph();
-					_dataFile = _consoleOut.promptForDataFile(_input);
-					if(_dataFile == (null) || _dataFile.equals("")) {
-						_dataFile = "/default-data";
-						consoleLogger_.error("Invalid entry, using default data file\n");
+					dataFile_ = _consoleOut.promptForDataFile(_input);
+					if(dataFile_ == (null) || dataFile_.equals("")) {
+						dataFile_ = "/default-data";
+						consoleLogger_.error("Invalid entry, reverting to default-data file\n");
 					}
 					try {
-						sim_.runFromDataFile(_propertiesFileName, _dataFile);
+						sim_.runFromDataFile(_propertiesFileName, dataFile_);
 						_hasSimBeenRun = true;
 					}
 					catch (Exception e_) {
@@ -109,5 +110,6 @@ public class ConsoleViewController {
 					return;		
 			}
 		} while(_selection != 0);
+		_input.close();
 	}
 }
