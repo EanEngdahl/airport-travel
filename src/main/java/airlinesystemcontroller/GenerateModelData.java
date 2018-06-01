@@ -34,24 +34,31 @@ public class GenerateModelData {
 	 *  @return The randomly selected edge
 	 */
 	public DefaultEdge getRandomEdge(ArrayList<DefaultEdge> edgeList_, char preferredAirplaneSize_) {
-		double _weight = 1;
+		double _weight = 0.5;
 		
 		switch(preferredAirplaneSize_) {
 			case SMALL:
-				_weight = 1.5;
+				_weight = 0.25;
 				break;
 			case MEDIUM:
-				_weight = 1;
+				_weight = 0.5;
 				break;
 			case LARGE:
-				_weight = 0.5;
+				_weight = 0.75;
 				break;
 			case NO_SIZE_PREF:
 				return edgeList_.get(rand.nextInt(edgeList_.size()));
 		}
-	
-		int _selection = (int)(edgeList_.size() * Math.pow(rand.nextDouble(), _weight));
 
+		// Generate an index based on a binomial distribution weighted by the distance
+		int _selection = 0;
+		for(int _i = 0; _i < edgeList_.size(); _i++) {
+			if(rand.nextDouble() < _weight) {
+				_selection++;
+
+			}
+		}
+		
 		return edgeList_.get(_selection);
 	}
 
