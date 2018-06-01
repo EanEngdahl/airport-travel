@@ -60,6 +60,7 @@ public class GenerateModelData {
 		
 		// Saving non-binomial distribution
 		//int _selection = (int)(edgeList_.size() * Math.pow(rand.nextDouble(), _weight));
+
 		return edgeList_.get(_selection);
 	}
 
@@ -190,7 +191,8 @@ public class GenerateModelData {
 		String _maxSeatsPerSection;
 		String _seatPricePerSection;
 		
-		DefaultEdge _randomEdge = getRandomEdge(sortedEdges_, modelProperties_.getProperty("PREFERRED_AIRCRAFT_SIZE").charAt(0));
+		DefaultEdge _randomEdge = getRandomEdge(sortedEdges_, 
+				modelProperties_.getProperty("PREFERRED_AIRCRAFT_SIZE").charAt(0));
 		String _source = airportGraph_.getGraphOfAirports().getEdgeSource(_randomEdge);
 		String _dest = airportGraph_.getGraphOfAirports().getEdgeTarget(_randomEdge);
 	
