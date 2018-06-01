@@ -28,7 +28,7 @@ public class ConsoleViewController {
 			
 			switch(_selection) {
 				case 1:
-					fileNameList_ = _consoleOut.promptUserForFilenames(consoleLogger_, _input);
+					fileNameList_ = _consoleOut.promptUserForFileNames(consoleLogger_, _input);
 					if(fileNameList_[0] != null && !(fileNameList_[0].isEmpty())) {
 						_propertiesFileName = fileNameList_[0];
 					}

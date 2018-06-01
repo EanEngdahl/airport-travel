@@ -1,3 +1,9 @@
+/*
+ * ConsoleView Class
+ * 		Contains displays that are shown to the user
+ * 		when necessary
+ */
+
 package airlinesystemview;
 
 import org.slf4j.Logger;
@@ -12,7 +18,18 @@ public class ConsoleView {
 	
 	private Logger menuLogger = LoggerFactory.getLogger("menuLogger");
 
-	public String[] promptUserForFilenames(Logger output_, Scanner input_) {
+	/*
+	 * Prompts a user to choose to input either a new properties or graph file
+	 * uses default files if nothing is entered
+	 * 
+	 * @param output_
+	 * 		logger for if any errors occur
+	 * @param input_
+	 * 		scanner for reading user input
+	 * @return
+	 * 		String array containing input file names
+	 */
+	public String[] promptUserForFileNames(Logger output_, Scanner input_) {
 		String _fileNames[] = new String [2];
 		String _selection;
 
@@ -47,6 +64,16 @@ public class ConsoleView {
 		return _fileNames;
 	}	
 
+	/*
+	 * Displays main menu where all other options can be accessed from
+	 * 
+	 * @param output_
+	 * 		logger for if any errors occur
+	 * @param input_
+	 * 		scanner for reading user input
+	 * @return
+	 * 		integer representing user choice
+	 */
 	public int showMainMenu(Logger output_, Scanner input_) {
 		String _selection;
 		
@@ -60,7 +87,6 @@ public class ConsoleView {
 				+	 "0. Quit\n\n");
 
 		try {
-		
 			for(;;) {
 				_selection = input_.nextLine();
 
@@ -90,6 +116,15 @@ public class ConsoleView {
 		}
 	}
 	
+	/*
+	 * Prompts a user to choose to input two airport names
+	 * to be used for finding average profit for flights between them
+	 * 
+	 * @param input_
+	 * 		scanner for reading user input
+	 * @return
+	 * 		String array containing input airport names
+	 */
 	public String[] findAverageBetweenAirports(Scanner input_) {
 		String[] _airportNames = new String[2];
 		
@@ -101,16 +136,53 @@ public class ConsoleView {
 		return _airportNames;
 	}
 	
+	/*
+	 * Prompts a user to choose to input either a new data file
+	 * to read from
+	 * 
+	 * @param input_
+	 * 		scanner for reading user input
+	 * @return
+	 * 		String of the data file name input
+	 */
 	public String promptForDataFile(Scanner input_) {
 		menuLogger.info("Input data file to read: ");
 		return input_.nextLine();
 	}
 	
+	/*
+	 * Displays the average profit found between two airports
+	 * that were entered by the user
+	 * 
+	 * @param averageProfit_
+	 * 		BigDecimal that represents the average profit of flights
+	 * 		on the requested edge, will be shown to user
+	 * @return
+	 * 		N/A
+	 */
 	public void displayAverageBetweenAirports(BigDecimal averageProfit_) {
 		NumberFormat _numberFormatter = NumberFormat.getInstance();
 		menuLogger.info("The average profit is $" + _numberFormatter.format(averageProfit_) + "\n\n");
 	}
 	
+	/*
+	 * Displays general results found from used data
+	 * 
+	 * @param output_
+	 * 		logger for if any errors occur
+	 * @param profit_
+	 * 		BigDecimal representation of overall profit of the flight list
+	 * @param cost_
+	 * 		BigDecimal representation of overall cost of the flight list
+	 * @param revenue_
+	 * 		BigDecimal representation of overall revenue of the flight list
+	 * @param totalFlights_
+	 * 		Integer representation of total number of flights in flight list
+	 * @param averageFlightProfit_
+	 * 		BigDecimal representation of the average flight's profit
+	 * @return
+	 * 		N/A
+	 */
 	public void resultsView(Logger output_, BigDecimal profit_, BigDecimal cost_, 
 			BigDecimal revenue_, int totalFlights_, BigDecimal averageFlightProfit_) {
 		NumberFormat _numberFormatter = NumberFormat.getInstance();

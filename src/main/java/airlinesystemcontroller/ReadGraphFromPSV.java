@@ -83,6 +83,20 @@ public class ReadGraphFromPSV {
 		}
 	}
 	
+	/*
+	 * Reads a single 'edge' into the graph where each edge is two vertices (airports) with a weight
+	 * 
+	 * @param graphOfAirports_
+	 * 		AirportGraph type object that will have any new edge added to the graph
+	 * @param source_
+	 * 		String of the first vertex
+	 * @param destination_
+	 * 		String of second vertex
+	 * @param distanceTravelled_
+	 * 		Double of the weight
+	 * @return
+	 * 		N/A
+	 */
 	public void readEdgeIntoGraph(AirportGraph graphOfAirports_, String source_,
 			String destination_, double distanceTravelled_) {
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
