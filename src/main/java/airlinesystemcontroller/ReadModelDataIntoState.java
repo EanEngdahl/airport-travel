@@ -55,6 +55,7 @@ public class ReadModelDataIntoState {
 		try (InputStream _is = ReadModelDataIntoState.class.getResourceAsStream(fileToRead_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
 			BufferedReader reader = new BufferedReader(_sr);
+			reader.readLine();
 			StringTokenizer tokenizer;
 			String line = null;
 			while ((line = reader.readLine()) != null) {
