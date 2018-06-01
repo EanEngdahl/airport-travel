@@ -107,7 +107,12 @@ public class AirportGraph {
 	public Airport getAirport(String airportName_) {
 		return mapAirportToName.get(airportName_);
 	}
+
 	
+	/*
+	 *  Returns an ArrayList of DefaultEdge that is sorted in ascending order by 
+	 *  that edge's weight on the graph.
+	 */
 	public ArrayList<DefaultEdge> getSortedListOfEdges() {
 		ArrayList<DefaultEdge> _sortedEdges = new ArrayList<DefaultEdge>();
 

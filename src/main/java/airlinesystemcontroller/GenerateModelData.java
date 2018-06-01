@@ -26,7 +26,11 @@ public class GenerateModelData {
 	/*
 	 *  Chooses a random edge from the graph to act as the path for a flight.
 	 *  
-	 *  @param edgeSet_ The set of all the edges provided by the model's graph
+	 *  @param edgeList_ The list of sorted edges returned by the sort method
+	 *  @param preferredAirplaneSize_ Character value of the airplane size to
+	 *                                give preference to certain distance ranges
+	 *                                as on of s, m, l, n
+	 *  		
 	 *  @return The randomly selected edge
 	 */
 	public DefaultEdge getRandomEdge(ArrayList<DefaultEdge> edgeList_, char preferredAirplaneSize_) {
