@@ -29,24 +29,23 @@ public class GenerateModelData {
 	 *  @return The randomly selected edge
 	 */
 	public DefaultEdge getRandomEdge(ArrayList<DefaultEdge> edgeList_, char preferredAirplaneSize_) {
-		DefaultEdge _returnEdge = new DefaultEdge();
-		int _sizeWeight = 1;
+		double _weight = 1;
 		
 		switch(preferredAirplaneSize_) {
 			case SMALL:
-				_sizeWeight = 1;
+				_weight = 1.5;
 				break;
 			case MEDIUM:
-				_sizeWeight = 2;
+				_weight = 1;
 				break;
 			case LARGE:
-				_sizeWeight = 3;
+				_weight = 0.5;
 				break;
 		}
-		
-		_returnEdge = edgeList_.get(((int)(rand.nextGaussian() * _sizeWeight)) * edgeList_.size());
-		
-		return _returnEdge;
+	
+		int _selection = (int)(edgeList_.size() * Math.pow(rand.nextDouble(), _weight));
+
+		return edgeList_.get(_selection);
 	}
 
 	/*
