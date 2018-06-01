@@ -34,17 +34,17 @@ public class GenerateModelData {
 		
 		switch(preferredAirplaneSize_) {
 			case SMALL:
-				_sizeWeight = 3;
+				_sizeWeight = 1;
 				break;
 			case MEDIUM:
 				_sizeWeight = 2;
 				break;
 			case LARGE:
-				_sizeWeight = 1;
+				_sizeWeight = 3;
 				break;
 		}
 		
-		_returnEdge = edgeList_.get((int)rand.nextGaussian() / _sizeWeight);
+		_returnEdge = edgeList_.get(((int)(rand.nextGaussian() * _sizeWeight)) * edgeList_.size());
 		
 		return _returnEdge;
 	}

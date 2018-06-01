@@ -38,11 +38,12 @@ public class ReadModelDataIntoState {
 	 * 		N/A
 	 */
 	public void readFileInputIntoFlightList(FlightList listOfFlights_, 
-			String fileToRead_, Properties modelProperties_, AirportGraph airportGraph_) {
-		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
+			String fileToRead_, Properties modelProperties_, AirportGraph airportGraph_)
+			throws IOException, NullPointerException, Exception {
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		_debugLogger.debug("Reading input file");
 		
+		ReadGraphFromPSV _addEdgeToGraph = new ReadGraphFromPSV();
 		String _source;
 		String _destination;
 		double _distanceTravelled;
@@ -77,7 +78,7 @@ public class ReadModelDataIntoState {
 				for (int i = 0; i < 4; i++) {
 					_seatCostPerSection[i] = setSeatCostPerSection(tokenizer.nextToken());
 				}
-				
+				_addEdgeToGraph.readEdgeIntoGraph(airportGraph_, _source, _destination, _distanceTravelled);
 				listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
 						_seatsFilledPerSection, _seatCostPerSection, _source,
 						_destination, _distanceTravelled, modelProperties_, airportGraph_);
@@ -86,14 +87,14 @@ public class ReadModelDataIntoState {
 			reader.close();
 		}
 		catch (IOException e_) {
-			_consoleLogger.error("IOException: could not read data");
+			throw new IOException("IOException: could not read data");
 		}
 		catch (NullPointerException e_) {
-			_consoleLogger.error("NullPointerException: data file error,"
+			throw new NullPointerException("NullPointerException: data file error,"
 					+ " could not find file- " + fileToRead_);
 		}
 		catch (Exception e_) {
-			_consoleLogger.error("Unexpected error occured while reading data file");
+			throw new Exception("Unexpected error occured while reading data file");
 		}
 	}
 	

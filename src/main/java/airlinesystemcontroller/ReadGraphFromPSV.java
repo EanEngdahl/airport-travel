@@ -83,6 +83,20 @@ public class ReadGraphFromPSV {
 		}
 	}
 	
+	public void readEdgeIntoGraph(AirportGraph graphOfAirports_, String source_,
+			String destination_, double distanceTravelled_) {
+		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
+
+		Airport _sourceAirport = new Airport(source_);
+		Airport _destinationAirport = new Airport(destination_);
+		
+		graphOfAirports_.addAirport(_sourceAirport);
+		graphOfAirports_.addAirport(_destinationAirport);
+		if (!graphOfAirports_.createEdge(source_, destination_, distanceTravelled_)) {
+			_debugLogger.debug("Ignored edge input");
+		}
+	}
+	
 	/*
 	 * Finds the distance travelled by converting a passed String to a double
 	 * 

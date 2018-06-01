@@ -55,6 +55,7 @@ public class ConsoleView {
 				+	 "2. Run simulation\n"
 				+	 "3. Show results\n"
 				+	 "4. Find average profit between airports\n"
+				+	 "5. Read flights from file and simulate\n"
 				+	 "0. Quit\n\n");
 
 		try {
@@ -73,6 +74,8 @@ public class ConsoleView {
 							return 3;
 						case "4":
 							return 4;
+						case "5":
+							return 5;
 						default:
 							_menuLogger.info("Input a valid option\n");
 							break;
@@ -93,6 +96,11 @@ public class ConsoleView {
 		_airportNames[1] = input_.nextLine().toUpperCase();
 		
 		return _airportNames;
+	}
+	
+	public String promptForDataFile(Scanner input_) {
+		_menuLogger.info("Input data file to read: ");
+		return input_.nextLine();
 	}
 	
 	public void displayAverageBetweenAirports(BigDecimal averageProfit_) {

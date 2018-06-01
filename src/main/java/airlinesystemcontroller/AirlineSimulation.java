@@ -108,6 +108,28 @@ public class AirlineSimulation {
 		}
 	}
 	
+	public void runFromDataFile(String propertiesFileName_, String dataFileName_) {
+		ReadModelDataIntoState _readData = new ReadModelDataIntoState();
+		try {
+			modelProperties = processProperties(modelProperties, propertiesFileName_);
+		} 
+		catch (Exception e_) {
+			consoleLogger.error(e_.getMessage());
+		}
+		BigDecimal arrayOfRCP[];
+		try {
+			_readData.readFileInputIntoFlightList(listOfFlights, dataFileName_,
+					modelProperties, graphOfAirports);
+			arrayOfRCP = findTotalRCP(listOfFlights);
+			totalRevenue = arrayOfRCP[0];
+			totalCost = arrayOfRCP[1];
+			totalProfit = arrayOfRCP[2];
+		}
+		catch (Exception e_) {
+			consoleLogger.error(e_.getMessage());
+		}
+	}
+	
 	public BigDecimal getTotalCost() {
 		return totalCost;
 	}

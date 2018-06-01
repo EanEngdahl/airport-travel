@@ -14,6 +14,7 @@ public class ConsoleViewController {
 		int _selection;
 		String _propertiesFileName = fileNameList_[0];
 		String _graphFileName = fileNameList_[1];
+		String _dataFile;
 		String[] _airportNames;
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
@@ -78,6 +79,13 @@ public class ConsoleViewController {
 					} else {
 						consoleLogger_.error("No simulation run, unable to find profit\n");
 					}
+					break;
+				case 5:
+					sim_.getListOfFlights().clear();
+					sim_.getGraphOfAirports().clearGraph();
+					_dataFile = _consoleOut.promptForDataFile(_input);
+					sim_.runFromDataFile(_propertiesFileName, _dataFile);
+					_hasSimBeenRun = true;
 					break;
 				case 0:
 					return;		
