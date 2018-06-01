@@ -52,7 +52,6 @@ public class GenerateModelData {
 		}
 
 		// Generate an index based on a binomial distribution weighted by the distance
-		System.out.println("EDGE LIST SIZE: " + edgeList_.size());
 		for(int _i = 0; _i < edgeList_.size() - 1; _i++) {
 			if(rand.nextDouble() < _weight) {
 				_selection++;
