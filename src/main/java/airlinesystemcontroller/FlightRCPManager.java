@@ -8,6 +8,7 @@ package airlinesystemcontroller;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.Properties;
 
@@ -113,6 +114,7 @@ public class FlightRCPManager {
 		BigDecimal _totalCost = new BigDecimal("0");
 		BigDecimal _totalRevenue = new BigDecimal("0");
 		Flight _currentFlight;
+		NumberFormat _numberFormatter = NumberFormat.getInstance();
 		
 		while (_flightListItr.hasNext()) {
 			_currentFlight = _flightListItr.next();
@@ -120,7 +122,7 @@ public class FlightRCPManager {
 			_totalRevenue = _totalRevenue.add(_currentFlight.getRevenue());
 			_totalProfit = _totalProfit.add(_currentFlight.getProfit());
 			_resultsLogger.info("Individual flight profit = $" + 
-			_currentFlight.getProfit().toString());
+			_numberFormatter.format(_currentFlight.getProfit()));
 		}
 		BigDecimal[] _totalFlightRCPArray = {_totalRevenue, _totalCost, _totalProfit};
 		return _totalFlightRCPArray;

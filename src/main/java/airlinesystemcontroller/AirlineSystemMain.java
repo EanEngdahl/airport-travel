@@ -1,5 +1,7 @@
 package airlinesystemcontroller;
 
+import java.text.NumberFormat;
+
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -58,7 +60,8 @@ public class AirlineSystemMain {
 		 */
 		if(!_menuFlag) {
 			_simulation.runSimulation(_propertiesFileName, _graphFileName);
-			_consoleLogger.info("Total Profit = $" + _simulation.getTotalProfit().toString());
+			NumberFormat _numberFormatter = NumberFormat.getInstance();
+			_consoleLogger.info("Total Profit = $" + _numberFormatter.format(_simulation.getTotalProfit()));
 			return;
 		}
 		

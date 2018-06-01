@@ -6,6 +6,7 @@ import org.slf4j.LoggerFactory;
 import airlinesystemmodel.FlightList;
 
 import java.math.BigDecimal;
+import java.text.NumberFormat;
 import java.util.Properties;
 
 public class AirlineSimulation {
@@ -97,7 +98,8 @@ public class AirlineSimulation {
 			totalRevenue = arrayOfRCP[0];
 			totalCost = arrayOfRCP[1];
 			totalProfit = arrayOfRCP[2];
-			resultsLogger.info("Total Profit = $" + arrayOfRCP[2].toString());
+			NumberFormat _numberFormatter = NumberFormat.getInstance();
+			resultsLogger.info("Total Profit = $" + _numberFormatter.format(arrayOfRCP[2]));
 			consoleLogger.info("Flights successfully created\n");
 		}
 		catch (Exception e_) {
