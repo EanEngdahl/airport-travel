@@ -143,7 +143,7 @@ public class AirportGraph {
 		DefaultEdge _edgeTracker;
 		while(_vertexItr.hasNext()) {
 			_vertex = _vertexItr.next();
-			_consoleLogger.info("Vertex: " + _vertex);
+			_consoleLogger.info("Vertex: {}", _vertex);
 			_edgeItr = graphOfAirports.edgesOf(_vertex).iterator();
 			while (_edgeItr.hasNext()) {
 				_edgeTracker = _edgeItr.next();
@@ -151,8 +151,7 @@ public class AirportGraph {
 				if(_destinationVertex.equals(_vertex)) {
 					_destinationVertex = graphOfAirports.getEdgeSource(_edgeTracker);
 				}
-				_consoleLogger.info("-> " + _destinationVertex + "(" 
-				+ graphOfAirports.getEdgeWeight(_edgeTracker) + ")");
+				_consoleLogger.info("-> {}({})", _destinationVertex, graphOfAirports.getEdgeWeight(_edgeTracker));
 			}
 		}
 	}

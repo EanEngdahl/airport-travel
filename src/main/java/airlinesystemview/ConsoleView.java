@@ -60,7 +60,6 @@ public class ConsoleView {
 		} catch(Exception e_) {
 			output_.error("Prompt input error");
 		}
-		
 		return _fileNames;
 	}	
 
@@ -162,7 +161,7 @@ public class ConsoleView {
 	 */
 	public void displayAverageBetweenAirports(BigDecimal averageProfit_) {
 		NumberFormat _numberFormatter = NumberFormat.getInstance();
-		menuLogger.info("The average profit is $" + _numberFormatter.format(averageProfit_) + "\n\n");
+		menuLogger.info("The average profit is ${}\n\n", _numberFormatter.format(averageProfit_));
 	}
 	
 	/*
@@ -187,10 +186,10 @@ public class ConsoleView {
 			BigDecimal revenue_, int totalFlights_, BigDecimal averageFlightProfit_) {
 		NumberFormat _numberFormatter = NumberFormat.getInstance();
 		menuLogger.info("\n\n*****Flight Results*****\n\n");
-		menuLogger.info("Total number of flights: " + _numberFormatter.format(totalFlights_)
-				+ "\nTotal revenue: " + _numberFormatter.format(revenue_)
-				+ "\nTotal cost: " + _numberFormatter.format(cost_)
-				+ "\nTotal Profit: " + _numberFormatter.format(profit_) 
-				+ "\nAverage Profit: " + _numberFormatter.format(averageFlightProfit_) + "\n\n");
+		menuLogger.info("Total number of flights: {}\nTotal revenue: {}\nTotal cost: {}" 
+				+ "\nTotal Profit: {}\nAverage Profit: {}\n\n", 
+				_numberFormatter.format(totalFlights_), _numberFormatter.format(revenue_),
+				_numberFormatter.format(cost_), _numberFormatter.format(profit_), 
+				_numberFormatter.format(averageFlightProfit_));
 	}
 }

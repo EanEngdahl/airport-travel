@@ -98,7 +98,7 @@ public class AirlineSimulation {
 			totalCost = arrayOfRCP[1];
 			totalProfit = arrayOfRCP[2];
 			NumberFormat _numberFormatter = NumberFormat.getInstance();
-			resultsLogger.info("Total Profit = $" + _numberFormatter.format(arrayOfRCP[2]));
+			resultsLogger.info("Total Profit = ${}", _numberFormatter.format(arrayOfRCP[2]));
 			consoleLogger.info("Flights successfully created\n");
 		}
 		catch (Exception e_) {

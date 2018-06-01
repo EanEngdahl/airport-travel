@@ -121,7 +121,7 @@ public class FlightRCPManager {
 			_totalCost = _totalCost.add(_currentFlight.getCost());
 			_totalRevenue = _totalRevenue.add(_currentFlight.getRevenue());
 			_totalProfit = _totalProfit.add(_currentFlight.getProfit());
-			_resultsLogger.info("Individual flight profit = $" + 
+			_resultsLogger.info("Individual flight profit = ${}", 
 			_numberFormatter.format(_currentFlight.getProfit()));
 		}
 		BigDecimal[] _totalFlightRCPArray = {_totalRevenue, _totalCost, _totalProfit};
