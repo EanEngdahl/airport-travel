@@ -49,7 +49,7 @@ public class ConsoleViewController {
 					if(_hasSimBeenRun) {
 					_consoleOut.resultsView(consoleLogger_, sim_.getTotalProfit(), sim_.getTotalCost(), 
 							sim_.getTotalRevenue(), sim_.getListOfFlights().size(), 
-							sim_.getTotalCost().divide(new BigDecimal(sim_.getListOfFlights().size()),
+							sim_.getTotalProfit().divide(new BigDecimal(sim_.getListOfFlights().size()),
 									2, RoundingMode.FLOOR));
 					}
 					else {
@@ -84,9 +84,13 @@ public class ConsoleViewController {
 					sim_.getListOfFlights().clear();
 					sim_.getGraphOfAirports().clearGraph();
 					_dataFile = _consoleOut.promptForDataFile(_input);
+					if(_dataFile == (null) || _dataFile.equals("")) {
+						_dataFile = "/default-data";
+						consoleLogger_.error("Invalid entry, using default data file\n");
+					}
 					try {
-					sim_.runFromDataFile(_propertiesFileName, _dataFile);
-					_hasSimBeenRun = true;
+						sim_.runFromDataFile(_propertiesFileName, _dataFile);
+						_hasSimBeenRun = true;
 					}
 					catch (Exception e_) {
 						_hasSimBeenRun = false;

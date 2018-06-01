@@ -121,7 +121,6 @@ public class AirlineSimulation {
 		try {
 			_readData.readFileInputIntoFlightList(listOfFlights, dataFileName_,
 					modelProperties, graphOfAirports);
-			System.out.println("read file");
 			arrayOfRCP = findTotalRCP(listOfFlights);
 			totalRevenue = arrayOfRCP[0];
 			totalCost = arrayOfRCP[1];
