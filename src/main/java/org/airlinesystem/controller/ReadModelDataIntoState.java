@@ -3,6 +3,7 @@
  * 		Reads data into a given flight list either from
  * 		an entire file or a single string
  */
+
 package org.airlinesystem.controller;
 
 import java.io.BufferedReader;

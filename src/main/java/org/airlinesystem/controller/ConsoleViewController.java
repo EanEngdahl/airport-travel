@@ -1,3 +1,9 @@
+/*
+ * ConsoleViewController class
+ *		Controllers user display and input
+ *		options available
+ */
+
 package org.airlinesystem.controller;
 
 import java.util.Scanner;
@@ -9,6 +15,20 @@ import org.slf4j.Logger;
 
 public class ConsoleViewController {
 
+	/*
+	 * Main menu controller for user, handles all main menu input
+	 * 
+	 * @param consoleLogger_
+	 * 		logger that will be used for error displays
+	 * @param fileNameList_
+	 * 		String array that contains list of file names to be used
+	 * @param sim_
+	 * 		AirlineSimulation object used to run the simulation
+	 * @param dataFile_
+	 * 		String of data file to be used
+	 * @return
+	 * 		N/A
+	 */
 	public void menuController(Logger consoleLogger_, String [] fileNameList_,
 			AirlineSimulation sim_, String dataFile_) {
 		int _selection;
