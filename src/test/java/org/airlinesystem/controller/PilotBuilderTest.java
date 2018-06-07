@@ -1,4 +1,4 @@
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
 import static org.junit.Assert.*;
 import java.util.Properties;
