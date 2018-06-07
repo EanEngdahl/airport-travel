@@ -3,12 +3,12 @@
  *		Creates a new pilot object given specific requirements
  */
 
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
 import java.math.BigDecimal;
 import java.util.Properties;
 
-import airlinesystemmodel.AircraftPilot;
+import org.airlinesystem.model.AircraftPilot;
 
 public class PilotBuilder {
     

@@ -4,10 +4,10 @@ import static org.junit.Assert.*;
 import java.util.Properties;
 import java.math.BigDecimal;
 
+import org.airlinesystem.controller.PilotBuilder;
+import org.airlinesystem.controller.RuntimePropertyController;
+import org.airlinesystem.model.AircraftPilot;
 import org.junit.Test;
-
-import airlinesystemmodel.AircraftPilot;
-import airlinesystemcontroller.RuntimePropertyController;
 
 
 public class PilotBuilderTest {

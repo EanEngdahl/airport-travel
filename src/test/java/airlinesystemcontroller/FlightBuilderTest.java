@@ -5,11 +5,10 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.util.Properties;
 
+import org.airlinesystem.controller.FlightBuilder;
+import org.airlinesystem.controller.RuntimePropertyController;
+import org.airlinesystem.model.Flight;
 import org.junit.Test;
-
-import airlinesystemcontroller.FlightBuilder;
-import airlinesystemcontroller.RuntimePropertyController;
-import airlinesystemmodel.Flight;
 
 public class FlightBuilderTest {
 

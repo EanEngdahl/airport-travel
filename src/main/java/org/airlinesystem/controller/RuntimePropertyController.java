@@ -3,7 +3,7 @@
  *  	Manages the loading of the properties file that are specific
  *  	to this program.
  */
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
 import java.util.Properties;
 import java.io.InputStream;

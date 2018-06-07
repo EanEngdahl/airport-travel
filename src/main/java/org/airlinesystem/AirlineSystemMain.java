@@ -1,7 +1,9 @@
-package airlinesystemcontroller;
+package org.airlinesystem;
 
 import java.text.NumberFormat;
 
+import org.airlinesystem.controller.AirlineSimulation;
+import org.airlinesystem.controller.ConsoleViewController;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

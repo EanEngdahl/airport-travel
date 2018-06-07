@@ -5,16 +5,17 @@
  *		in the flight itself
  */
 
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
 import java.math.BigDecimal;
 import java.util.stream.IntStream;
-import java.util.Properties;
 
-import airlinesystemmodel.AircraftPilot;
-import airlinesystemmodel.Airport;
-import airlinesystemmodel.Flight;
-import airlinesystemmodel.Aircraft;
+import org.airlinesystem.model.Aircraft;
+import org.airlinesystem.model.AircraftPilot;
+import org.airlinesystem.model.Airport;
+import org.airlinesystem.model.Flight;
+
+import java.util.Properties;
 
 public class FlightBuilder {
 	

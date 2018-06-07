@@ -6,8 +6,9 @@
  *		and finding information about the graph
  */
 
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
+import org.airlinesystem.model.Airport;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
 import org.slf4j.Logger;
@@ -17,8 +18,6 @@ import java.util.HashMap;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Comparator;
-
-import airlinesystemmodel.Airport;
 
 
 public class AirportGraph {

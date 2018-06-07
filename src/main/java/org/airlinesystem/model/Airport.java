@@ -3,7 +3,7 @@
  * DSCRPT:
  ****************************************************************************/
 
-package airlinesystemmodel;
+package org.airlinesystem.model;
 
 public class Airport {
 	

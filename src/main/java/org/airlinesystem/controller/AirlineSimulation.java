@@ -1,9 +1,8 @@
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
+import org.airlinesystem.model.FlightList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import airlinesystemmodel.FlightList;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;

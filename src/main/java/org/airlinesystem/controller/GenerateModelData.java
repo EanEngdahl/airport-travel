@@ -1,13 +1,13 @@
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
 import java.util.Random;
 import java.util.Properties;
 import java.util.ArrayList;
+
+import org.airlinesystem.model.FlightList;
 import org.jgrapht.graph.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import airlinesystemmodel.FlightList;
 
 /*
  *  Generates the data for the airport system based on the configuration file and 

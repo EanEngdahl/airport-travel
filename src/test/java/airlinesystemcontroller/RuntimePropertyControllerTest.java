@@ -1,6 +1,8 @@
 package airlinesystemcontroller;
 
 import static org.junit.Assert.*;
+
+import org.airlinesystem.controller.RuntimePropertyController;
 import org.junit.Test;
 
 import java.util.Properties;

@@ -1,14 +1,13 @@
-package airlinesystemmodel;
+package org.airlinesystem.model;
 
 import java.util.ArrayList;
 import java.util.Properties;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
+import org.airlinesystem.controller.AirportGraph;
+import org.airlinesystem.controller.FlightBuilder;
 import org.jgrapht.graph.DefaultEdge;
-
-import airlinesystemcontroller.FlightBuilder;
-import airlinesystemcontroller.AirportGraph;
 
 public class FlightList extends ArrayList<Flight> {
 

@@ -2,12 +2,13 @@ package airlinesystemcontroller;
 
 import static org.junit.Assert.*;
 
+import org.airlinesystem.controller.FlightBuilder;
+import org.airlinesystem.controller.FlightRCPManager;
+import org.airlinesystem.controller.RuntimePropertyController;
+import org.airlinesystem.model.Flight;
 import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.Properties;
-
-import airlinesystemmodel.Flight;
-import airlinesystemcontroller.RuntimePropertyController;
 
 public class FlightRCPManagerTest {
 	

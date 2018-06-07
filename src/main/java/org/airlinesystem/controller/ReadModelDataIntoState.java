@@ -3,7 +3,7 @@
  * 		Reads data into a given flight list either from
  * 		an entire file or a single string
  */
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
 import java.io.BufferedReader;
 import java.io.InputStream;
@@ -11,10 +11,10 @@ import java.io.InputStreamReader;
 import java.math.BigDecimal;
 import java.util.Properties;
 import java.util.StringTokenizer;
+
+import org.airlinesystem.model.FlightList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
-import airlinesystemmodel.FlightList;
 
 import java.io.IOException;
 

@@ -44,7 +44,7 @@
       <configuration>
         <archive>
           <manifest>
-            <mainClass>airlinesystemcontroller.AirlineSystemMain</mainClass>
+            <mainClass>org.airlinesystem.controller.AirlineSystemMain</mainClass>
           </manifest>
         </archive>
         <descriptorRefs>

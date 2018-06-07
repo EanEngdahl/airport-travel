@@ -1,11 +1,10 @@
-package airlinesystemcontroller;
-
-import airlinesystemview.*;
+package org.airlinesystem.controller;
 
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.airlinesystem.view.*;
 import org.slf4j.Logger;
 
 public class ConsoleViewController {

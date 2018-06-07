@@ -4,7 +4,7 @@
  *		for a given flight
  */
 
-package airlinesystemcontroller;
+package org.airlinesystem.controller;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -14,10 +14,9 @@ import java.util.Properties;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.airlinesystem.model.Flight;
+import org.airlinesystem.model.FlightList;
 import org.jgrapht.graph.DefaultEdge;
-
-import airlinesystemmodel.Flight;
-import airlinesystemmodel.FlightList;
 
 public class FlightRCPManager {
 	private BigDecimal fuelCost;
