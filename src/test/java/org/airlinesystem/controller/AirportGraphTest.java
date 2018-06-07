@@ -1,7 +1,7 @@
 package org.airlinesystem.controller;
 
 import static org.junit.Assert.*;
-import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 import java.util.ArrayList;
@@ -17,7 +17,7 @@ public class AirportGraphTest {
 	
 	AirportGraph _graphOfAirports = new AirportGraph();
 	
-	@Before
+	@BeforeClass
 	public void initialize() {
 		_graphOfAirports.addAirport(new Airport("A"));
 		_graphOfAirports.addAirport(new Airport("B"));

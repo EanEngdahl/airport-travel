@@ -22,9 +22,23 @@ public class RuntimePropertyControllerTest {
 		assertEquals("100", defaultTest.getProperty("NUMBER_OF_FLIGHTS"));
 		assertEquals("150|100|100|50", defaultTest.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION"));
 	}
+	
+	@Test
+	public void testCreateRuntimeProperiesWithValidFile() {
+		Properties createTest_;
+		RuntimePropertyController propController_ = new RuntimePropertyController();
+		
+		createTest_ = propController_.loadRuntimeProperties("/loadTest.properties");
+
+		// Check a few of the default file properties to assure they are loaded correctly
+		assertEquals("15", createTest_.getProperty("FUEL_COST"));
+		assertEquals("100", createTest_.getProperty("NUMBER_OF_FLIGHTS"));
+		assertEquals("150|100|100|50", createTest_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION"));
+		
+	}
 
 	@Test
-	public void testCreateRuntimeProperties() throws IOException, NullPointerException {
+	public void testCreateRuntimePropertiesWithInvalidFile() throws IOException, NullPointerException {
 		RuntimePropertyController propController_ = new RuntimePropertyController();
 		Properties createTest_;
 
