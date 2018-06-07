@@ -38,11 +38,11 @@ public class AirlineSimulation {
 	 * @return
 	 * 		N/A
 	 */
-	public void processGraph(AirportGraph graphOfAirports_, String graphFileName_) throws Exception{
+	public void processGraph(AirportGraph graphOfAirports_, String graphFileName_) throws Exception {
 		ReadGraphFromPSV _graphInput = new ReadGraphFromPSV();
 		try {
-		_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFileName_);
-		debugLogger.debug("Graph successfully read");
+			_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFileName_);
+			debugLogger.debug("Graph successfully read");
 		}
 		catch(Exception e_) {
 			throw new Exception(e_.getMessage());
@@ -58,7 +58,7 @@ public class AirlineSimulation {
 	 * @return
 	 * 		N/A
 	 */
-	public void processProperties(String propertiesFileName_) throws Exception{
+	public void processProperties(String propertiesFileName_) throws Exception {
 		RuntimePropertyController _propertyCreator = new RuntimePropertyController();
 		try {
 			modelProperties = _propertyCreator.loadRuntimeProperties(propertiesFileName_);
@@ -83,8 +83,10 @@ public class AirlineSimulation {
 	 */
 	public void generateData(Properties modelProperties_, AirportGraph graphOfAirports_,
 			FlightList listOfFlights_) throws Exception{
+
 		ReadModelDataIntoState _flightInput = new ReadModelDataIntoState();
 		GenerateModelData _dataCreator = new GenerateModelData();
+
 		try {
 			_dataCreator.generateCurrentStateModel(modelProperties_, graphOfAirports_,
 					listOfFlights_, _flightInput);
@@ -103,7 +105,8 @@ public class AirlineSimulation {
 	 * @return
 	 * 		BigDecimal array holding calculated total revenue, cost and profit of flights
 	 */
-	public BigDecimal[] findTotalRCP(FlightList listOfFlights_) throws Exception{
+	public BigDecimal[] findTotalRCP(FlightList listOfFlights_) throws Exception {
+
 		FlightRCPManager _flightProfitManager = new FlightRCPManager(modelProperties);
 		BigDecimal[] _totalRCP;
 		
@@ -129,6 +132,7 @@ public class AirlineSimulation {
 	 * 		N/A
 	 */
 	public void runSimulation(String propertiesFileName_, String graphFileName_) {
+
 		consoleLogger.info("Calculating flight results...");
 		debugLogger.debug("runSimulation");
 				
@@ -174,8 +178,10 @@ public class AirlineSimulation {
 	 * 		N/A
 	 */
 	public void runFromDataFile(String propertiesFileName_, String dataFileName_) 
-		throws Exception{
+		throws Exception {
+
 		ReadModelDataIntoState _readData = new ReadModelDataIntoState();
+
 		try {
 			processProperties(propertiesFileName_);
 		} 
@@ -183,7 +189,9 @@ public class AirlineSimulation {
 			consoleLogger.error(e_.getMessage());
 			throw new Exception();
 		}
+
 		BigDecimal arrayOfRCP[];
+
 		try {
 			_readData.readFileInputIntoFlightList(listOfFlights, dataFileName_,
 					modelProperties, graphOfAirports);
