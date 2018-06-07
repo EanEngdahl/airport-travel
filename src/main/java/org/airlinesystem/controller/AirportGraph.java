@@ -36,12 +36,31 @@ public class AirportGraph {
 	/*
 	 * Add a new airport by creating a new vertex on the graph
 	 * based on the airport object input
+	 * 
+	 * @param airport_
+	 * 		Airport object to be added to the graph and mapped with
+	 * 		its name
+	 * @return
+	 * 		N/A
 	 */
 	public void addAirport(Airport airport_) {
 		graphOfAirports.addVertex(airport_.getName());
 		mapAirportToName.put(airport_.getName(), airport_);
 	}
 	
+	/*
+	 * Add a new edge (flight) between vertices (airports) if they are not
+	 * connected, not the same airport, and the distance is positive
+	 * 
+	 * @param source_
+	 * 		String that represents name of first airport
+	 * @param destination_
+	 * 		String that represents name of second airport
+	 * @param distance_
+	 * 		double that represents distance between airports (weight)
+	 * @return
+	 * 		true if successfully created, false otherwise
+	 */
 	public boolean createEdge(String source_, String destination_, double distance_) {	
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		
@@ -56,8 +75,15 @@ public class AirportGraph {
 	}
 	
 	/*
-	 * Return distance between two airports in the graph
-	 * only if they are connected, otherwise return 0
+	 * Finds the distance between two airports based on their names
+	 * 
+	 *  @param source_
+	 *  	String of the first airport name
+	 *  @param destination_
+	 *  	String of the second airport name
+	 *  @return
+	 *  	double of the weight (distance) between two airports \
+	 *  	if they are connected, otherwise 0
 	 */
 	public double getDistance(String source_, String destination_) {
 		if (areAirportsConnected(source_, destination_)) {
@@ -69,6 +95,13 @@ public class AirportGraph {
 	/*
 	 * Remove a connection between two airports
 	 * only if there exists a connection
+	 * 
+	 * @param source_
+	 * 		String of the first airport name
+	 * @param destination_
+	 * 		String of the second airport name
+	 * @return
+	 * 		N/A
 	 */
 	public void removeEdge(String source_, String destination_) {
 		graphOfAirports.removeEdge(source_, destination_);
@@ -77,6 +110,11 @@ public class AirportGraph {
 	/*
 	 * Remove an airport from the graph and all connections
 	 * only if it exists
+	 * 
+	 * @param aiport_
+	 * 		String of the name of an airport to remove
+	 * @return
+	 * 		N/A
 	 */
 	public void removeAirport(String airport_) {
 		graphOfAirports.removeVertex(airport_);
@@ -84,24 +122,38 @@ public class AirportGraph {
 	}
 
 	/*
-	 * Returns true if airport is found in graph as vertex,
-	 * otherwise returns false
+	 * Find if an airport is present in the graph
+	 * 
+	 * @param airport_
+	 * 		String of the name of the airport to search for
+	 * @return
+	 * 		true if aiprot found, false otherwise
 	 */
 	public boolean isAirportInGraph(String airport_) {
 		return graphOfAirports.containsVertex(airport_);
 	}
 	
 	/*
-	 * Returns true if two airports are connected,
-	 * otherwise returns false
+	 * Find if two airports are directly connected
+	 * 
+	 * @param source_
+	 * 		String of the name of the first airport
+	 * @param destination_
+	 * 		String of the name of the second airport
+	 * @return
+	 * 		true, if airports are connected, false otherwise
 	 */
 	public boolean areAirportsConnected(String source_, String destination_) {
 		return graphOfAirports.containsEdge(source_, destination_);
 	}
 	
 	/*
-	 * Returns airport object taken from hash map
-	 * that is based on the name
+	 * Returns airport object from hash map based on name
+	 * 
+	 * @param airportName_
+	 * 		name of the airport wanted
+	 * @return
+	 * 		Airport object that corresponds to the name given
 	 */
 	public Airport getAirport(String airportName_) {
 		return mapAirportToName.get(airportName_);
@@ -109,8 +161,10 @@ public class AirportGraph {
 
 	
 	/*
-	 *  Returns an ArrayList of DefaultEdge that is sorted in ascending order by 
-	 *  that edge's weight on the graph.
+	 * 	Sorts edges in ascending order
+	 * 
+	 * @return
+	 * 		ArrayList<DefaultEdge> that is all edges sorted in ascending order
 	 */
 	public ArrayList<DefaultEdge> getSortedListOfEdges() {
 		ArrayList<DefaultEdge> _sortedEdges = new ArrayList<DefaultEdge>();
@@ -130,11 +184,16 @@ public class AirportGraph {
 		return _sortedEdges;
 	}
 	
-	//TODO temporary method using logging to console for testing graph, remove later
+	/*
+	 * Prints the current graph of the airports by iterating
+	 * through the set of vertices and each of their edges
+	 * 
+	 * @return
+	 * 		N/A
+	 */
 	public void printGraph() {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		
-		//_consoleLogger.info(graphOfAirports.toString());
 		Iterator<String> _vertexItr = graphOfAirports.vertexSet().iterator();
 		Iterator<DefaultEdge> _edgeItr;
 		String _vertex;
@@ -150,9 +209,21 @@ public class AirportGraph {
 				if(_destinationVertex.equals(_vertex)) {
 					_destinationVertex = graphOfAirports.getEdgeSource(_edgeTracker);
 				}
-				_consoleLogger.info("-> {}({})", _destinationVertex, graphOfAirports.getEdgeWeight(_edgeTracker));
+				_consoleLogger.info("-> {}({})", _destinationVertex, 
+						graphOfAirports.getEdgeWeight(_edgeTracker));
 			}
 		}
+	}
+	
+	/*
+	 * Completely empties the graph and any airport mappings
+	 * 
+	 * @return
+	 * 		N/A
+	 */
+	public void clearGraph() {
+		mapAirportToName.clear();
+		graphOfAirports = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
 	}
 	
 	public Graph<String, DefaultEdge> getGraphOfAirports() {
@@ -161,10 +232,5 @@ public class AirportGraph {
 
 	public HashMap<String, Airport> getMapAirportToName() {
 		return mapAirportToName;
-	}
-	
-	public void clearGraph() {
-		mapAirportToName.clear();
-		graphOfAirports = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
 	}
 }

@@ -1,3 +1,9 @@
+/*
+ * AirlineSimulation class
+ *		Runs a full simulation with calculations and
+ *		has a graph of the airports with a list of flights
+ */
+
 package org.airlinesystem.controller;
 
 import org.airlinesystem.model.FlightList;
