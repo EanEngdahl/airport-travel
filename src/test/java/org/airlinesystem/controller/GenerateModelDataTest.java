@@ -12,12 +12,12 @@ import org.airlinesystem.model.FlightList;
 
 public class GenerateModelDataTest {
 
-	AirportGraph airportGraph;
-	GenerateModelData gen;
-	Properties props;
+	private static AirportGraph airportGraph;
+	private static GenerateModelData gen;
+	private static Properties props;
 
 	@BeforeClass
-	public void initialize() {
+	public static void initialize() {
 
 		props = new RuntimePropertyController().loadRuntimeProperties("/default.properties");
 		gen = new GenerateModelData();
@@ -35,13 +35,13 @@ public class GenerateModelDataTest {
 	@Test
 	public void testGenerateRandomSeatsFilled() {
 		String[] _seatsFilled = gen.generateRandomSeatsFilled(props, 'm').split("\\|");
-		String[] _maxSeats = props.getProperty("MEDIUM_PLANE_MAX_SEATS_PER_SECTION").split("\\|");
+		String[] _maxSeats = props.getProperty("MEDIUM_PLANE_SEAT_MAX_PER_SECTION").split("\\|");
 		
 		assertTrue("The seats filled for econ basic is between zero and max.", 
 				0 < Integer.parseInt(_seatsFilled[0]) && Integer.parseInt(_seatsFilled[0]) < Integer.parseInt(_maxSeats[0]));
 		
 		assertTrue("The seats filled for first class is between zero and max.", 
-				0 < Integer.parseInt(_seatsFilled[4]) && Integer.parseInt(_seatsFilled[4]) < Integer.parseInt(_maxSeats[4]));
+				0 < Integer.parseInt(_seatsFilled[3]) && Integer.parseInt(_seatsFilled[3]) < Integer.parseInt(_maxSeats[3]));
 		
 	}
 
