@@ -1,7 +1,6 @@
 /*
- * AirlineSimulation class
- *		Runs a full simulation with calculations and
- *		has a graph of the airports with a list of flights
+ * AirlineSimulationBuilder class
+ *		Runs a full simulation with calculations
  */
 
 package org.airlinesystem.controller;
@@ -15,7 +14,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Properties;
 
-public class AirlineSimulator {
+public class AirlineSimulationBuilder {
 
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
@@ -74,8 +73,10 @@ public class AirlineSimulator {
 	/*
 	 * Attempts to find the total revenue, cost, and profit of an entire flight list
 	 * 
-	 * @param listOfFlights
+	 * @param listOfFlights_
 	 * 		FlightList containing all the flights to be included in calculations
+	 * @param modelProperties_
+	 * 		Properties object that holds property file information
 	 * @return
 	 * 		BigDecimal array holding calculated total revenue, cost and profit of flights
 	 */
@@ -102,10 +103,13 @@ public class AirlineSimulator {
 	 * 		String of the file to attempt to open and read for the properties data
 	 * @param graphFileName_
 	 * 		String of the file to attempt to open and read for the graph data
+	 * @param simulation_
+	 * 		AirlineSimulation object of the simulation itself, holds the other objects used
 	 * @return
 	 * 		N/A
 	 */
-	public void runSimulation(String propertiesFileName_, String graphFileName_,  AirlineSimulation simulation_) {
+	public void runSimulation(String propertiesFileName_, String graphFileName_,  
+			AirlineSimulation simulation_) {
 
 		RuntimePropertyController _propertyController = new RuntimePropertyController();
 		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFileName_);
@@ -147,6 +151,8 @@ public class AirlineSimulator {
 	 * 		String of the file to attempt to open and read for the properties data
 	 * @param dataFileName_
 	 * 		String of the file to attempt to open and read for the flight data
+	 * @param simulation_
+	 * 		AirlineSimulation object holding other objects to be used
 	 * @return
 	 * 		N/A
 	 */
@@ -172,5 +178,4 @@ public class AirlineSimulator {
 			throw new Exception();
 		}
 	}
-	
 }

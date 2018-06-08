@@ -31,7 +31,7 @@ public class ConsoleViewController {
 	 * 		N/A
 	 */
 	public void menuController(Logger consoleLogger_, String [] fileNameList_,
-			AirlineSimulation simulation_, AirlineSimulator simulator_, String dataFile_) {
+			AirlineSimulation simulation_, AirlineSimulationBuilder simulator_, String dataFile_) {
 
 		int _selection;
 		String _propertiesFileName = fileNameList_[0];

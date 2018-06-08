@@ -26,39 +26,38 @@ public class AirlineSimulation {
 	public FlightList getListOfFlights() {
 		return listOfFlights;
 	}
-	public void setListOfFlights(FlightList listOfFlights) {
-		this.listOfFlights = listOfFlights;
+	public void setListOfFlights(FlightList listOfFlights_) {
+		listOfFlights = listOfFlights_;
 	}
 	public AirportGraph getGraphOfAirports() {
 		return graphOfAirports;
 	}
-	public void setGraphOfAirports(AirportGraph graphOfAirports) {
-		this.graphOfAirports = graphOfAirports;
+	public void setGraphOfAirports(AirportGraph graphOfAirports_) {
+		graphOfAirports = graphOfAirports_;
 	}
 	public BigDecimal getTotalCost() {
 		return totalCost;
 	}
-	public void setTotalCost(BigDecimal totalCost) {
-		this.totalCost = totalCost;
+	public void setTotalCost(BigDecimal totalCost_) {
+		totalCost = totalCost_;
 	}
 	public BigDecimal getTotalRevenue() {
 		return totalRevenue;
 	}
-	public void setTotalRevenue(BigDecimal totalRevenue) {
-		this.totalRevenue = totalRevenue;
+	public void setTotalRevenue(BigDecimal totalRevenue_) {
+		totalRevenue = totalRevenue_;
 	}
 	public BigDecimal getTotalProfit() {
 		return totalProfit;
 	}
-	public void setTotalProfit(BigDecimal totalProfit) {
-		this.totalProfit = totalProfit;
+	public void setTotalProfit(BigDecimal totalProfit_) {
+		totalProfit = totalProfit_;
 	}
 	public Properties getSimulationProperties() {
 		return simulationProperties;
 	}
 
-	public void setSimulationProperties(Properties simulationProperties) {
-		this.simulationProperties = simulationProperties;
+	public void setSimulationProperties(Properties simulationProperties_) {
+		simulationProperties = simulationProperties_;
 	}
-
 }

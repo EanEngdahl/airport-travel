@@ -2,7 +2,7 @@ package org.airlinesystem;
 
 import java.text.NumberFormat;
 
-import org.airlinesystem.controller.AirlineSimulator;
+import org.airlinesystem.controller.AirlineSimulationBuilder;
 import org.airlinesystem.controller.ConsoleViewController;
 import org.airlinesystem.model.AirlineSimulation;
 import org.apache.commons.cli.*;
@@ -22,7 +22,7 @@ public class AirlineSystemMain {
 		
 		CommandLineParser _parser = new DefaultParser();
 		HelpFormatter _formatter = new HelpFormatter();
-		AirlineSimulator _simulator = new AirlineSimulator();
+		AirlineSimulationBuilder _simulator = new AirlineSimulationBuilder();
 		AirlineSimulation _simulation = new AirlineSimulation();
 		ConsoleViewController _consoleOut = new ConsoleViewController();
 
