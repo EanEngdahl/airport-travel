@@ -10,6 +10,7 @@ import java.util.Scanner;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
 
+import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.view.*;
 import org.slf4j.Logger;
 
@@ -30,7 +31,8 @@ public class ConsoleViewController {
 	 * 		N/A
 	 */
 	public void menuController(Logger consoleLogger_, String [] fileNameList_,
-			AirlineSimulation sim_, String dataFile_) {
+			AirlineSimulation simulation_, AirlineSimulator simulator_, String dataFile_) {
+
 		int _selection;
 		String _propertiesFileName = fileNameList_[0];
 		String _graphFileName = fileNameList_[1];
@@ -57,18 +59,18 @@ public class ConsoleViewController {
 					_hasSimBeenRun = false;
 					break;
 				case 2:
-					sim_.getListOfFlights().clear();
-					sim_.getGraphOfAirports().clearGraph();
-					sim_.runSimulation(_propertiesFileName, _graphFileName);
-					if(sim_.getListOfFlights().size() != 0) {
+					simulation_.getListOfFlights().clear();
+					simulation_.getGraphOfAirports().clearGraph();
+					simulator_.runSimulation(_propertiesFileName, _graphFileName, simulation_);
+					if(simulation_.getListOfFlights().size() != 0) {
 					_hasSimBeenRun = true;
 					}
 					break;
 				case 3:
 					if(_hasSimBeenRun) {
-					_consoleOut.resultsView(consoleLogger_, sim_.getTotalProfit(), sim_.getTotalCost(), 
-							sim_.getTotalRevenue(), sim_.getListOfFlights().size(), 
-							sim_.getTotalProfit().divide(new BigDecimal(sim_.getListOfFlights().size()),
+					_consoleOut.resultsView(consoleLogger_, simulation_.getTotalProfit(), simulation_.getTotalCost(), 
+							simulation_.getTotalRevenue(), simulation_.getListOfFlights().size(), 
+							simulation_.getTotalProfit().divide(new BigDecimal(simulation_.getListOfFlights().size()),
 									2, RoundingMode.FLOOR));
 					}
 					else {
@@ -77,19 +79,19 @@ public class ConsoleViewController {
 					break;
 				case 4:
 					if(_hasSimBeenRun) {
-						_flightRCPManager = new FlightRCPManager(sim_.getModelProperties());
+						_flightRCPManager = new FlightRCPManager(simulation_.getSimulationProperties());
 						_airportNames = _consoleOut.findAverageBetweenAirports(_input);
-						if(sim_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
+						if(simulation_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
 							try {
-								_averageProfit = _flightRCPManager.findAverageRCPPerEdge(sim_.getListOfFlights(),
-										sim_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
+								_averageProfit = _flightRCPManager.findAverageRCPPerEdge(simulation_.getListOfFlights(),
+										simulation_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
 								_consoleOut.displayAverageBetweenAirports(_averageProfit);
 							} catch(NullPointerException _e) {
 								consoleLogger_.error("There are no flights between the two airports\n");
 							}
 						}
-						else if(!(sim_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[0]))
-								|| !(sim_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[1]))) {
+						else if(!(simulation_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[0]))
+								|| !(simulation_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[1]))) {
 							consoleLogger_.error("Airport input not present in graph, cannot find average\n");
 						}
 						else {
@@ -101,15 +103,15 @@ public class ConsoleViewController {
 					}
 					break;
 				case 5:
-					sim_.getListOfFlights().clear();
-					sim_.getGraphOfAirports().clearGraph();
+					simulation_.getListOfFlights().clear();
+					simulation_.getGraphOfAirports().clearGraph();
 					dataFile_ = _consoleOut.promptForDataFile(_input);
 					if(dataFile_ == (null) || dataFile_.equals("")) {
 						dataFile_ = "/default-data";
 						consoleLogger_.error("Invalid entry, reverting to default-data file\n");
 					}
 					try {
-						sim_.runFromDataFile(_propertiesFileName, dataFile_);
+						simulator_.runFromDataFile(_propertiesFileName, dataFile_, simulation_);
 						_hasSimBeenRun = true;
 					}
 					catch (Exception e_) {
@@ -119,7 +121,7 @@ public class ConsoleViewController {
 					break;
 				case 6:
 					if(_hasSimBeenRun) {
-						sim_.getGraphOfAirports().printGraph();
+						simulation_.getGraphOfAirports().printGraph();
 					}
 					else {
 						consoleLogger_.error("No simulation run, unable to display graph\n");

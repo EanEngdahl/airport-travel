@@ -6,6 +6,7 @@
 
 package org.airlinesystem.controller;
 
+import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.model.FlightList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -14,14 +15,7 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Properties;
 
-public class AirlineSimulation {
-
-	private FlightList listOfFlights = new FlightList();
-	private AirportGraph graphOfAirports = new AirportGraph();
-	private Properties modelProperties;
-	private BigDecimal totalCost;
-	private BigDecimal totalRevenue;
-	private BigDecimal totalProfit;
+public class AirlineSimulator {
 
 	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
@@ -46,26 +40,6 @@ public class AirlineSimulation {
 		}
 		catch(Exception e_) {
 			throw new Exception(e_.getMessage());
-		}
-	}
-	
-	/*
-	 * Attempts to process properties by using the class for runtime properties to either
-	 * open a custom properties file or the default file
-	 * 
-	 * @param propertiesFileName_
-	 * 		String of the file to attempt to open and read for the properties data
-	 * @return
-	 * 		N/A
-	 */
-	public void processProperties(String propertiesFileName_) throws Exception {
-		RuntimePropertyController _propertyCreator = new RuntimePropertyController();
-		try {
-			modelProperties = _propertyCreator.loadRuntimeProperties(propertiesFileName_);
-			debugLogger.debug("Created property model from file");
-		}
-		catch (Exception e_) {
-			throw new Exception("Error, cannot create properties");
 		}
 	}
 	
@@ -105,9 +79,9 @@ public class AirlineSimulation {
 	 * @return
 	 * 		BigDecimal array holding calculated total revenue, cost and profit of flights
 	 */
-	public BigDecimal[] findTotalRCP(FlightList listOfFlights_) throws Exception {
+	public BigDecimal[] findTotalRCP(FlightList listOfFlights_, Properties modelProperties_) throws Exception {
 
-		FlightRCPManager _flightProfitManager = new FlightRCPManager(modelProperties);
+		FlightRCPManager _flightProfitManager = new FlightRCPManager(modelProperties_);
 		BigDecimal[] _totalRCP;
 		
 		try {		
@@ -131,31 +105,30 @@ public class AirlineSimulation {
 	 * @return
 	 * 		N/A
 	 */
-	public void runSimulation(String propertiesFileName_, String graphFileName_) {
+	public void runSimulation(String propertiesFileName_, String graphFileName_,  AirlineSimulation simulation_) {
+
+		RuntimePropertyController _propertyController = new RuntimePropertyController();
+		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFileName_);
+		simulation_.setSimulationProperties(_modelProperties);
 
 		consoleLogger.info("Calculating flight results...");
 		debugLogger.debug("runSimulation");
 				
 		try {
-			processGraph(graphOfAirports, graphFileName_);
+			processGraph(simulation_.getGraphOfAirports(), graphFileName_);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
 		}
+
 		try {
-			processProperties(propertiesFileName_);
-		}
-		catch (Exception e_) {
-			consoleLogger.error(e_.getMessage());
-		}
-		
-		try {
-			generateData(modelProperties, graphOfAirports, listOfFlights);
+			generateData(_modelProperties, simulation_.getGraphOfAirports(), simulation_.getListOfFlights());
 			BigDecimal arrayOfRCP[];
-			arrayOfRCP = findTotalRCP(listOfFlights);
-			totalRevenue = arrayOfRCP[0];
-			totalCost = arrayOfRCP[1];
-			totalProfit = arrayOfRCP[2];
+			arrayOfRCP = findTotalRCP(simulation_.getListOfFlights(), _modelProperties);
+			simulation_.setTotalRevenue(arrayOfRCP[0]);
+			simulation_.setTotalCost(arrayOfRCP[1]);
+			simulation_.setTotalProfit(arrayOfRCP[2]);
+
 			NumberFormat _numberFormatter = NumberFormat.getInstance();
 			resultsLogger.info("Total Profit = ${}", _numberFormatter.format(arrayOfRCP[2]));
 			consoleLogger.info("Flights successfully created\n");
@@ -177,28 +150,22 @@ public class AirlineSimulation {
 	 * @return
 	 * 		N/A
 	 */
-	public void runFromDataFile(String propertiesFileName_, String dataFileName_) 
+	public void runFromDataFile(String propertiesFileName_, String dataFileName_, AirlineSimulation simulation_) 
 		throws Exception {
 
 		ReadModelDataIntoState _readData = new ReadModelDataIntoState();
+		RuntimePropertyController _propertyController = new RuntimePropertyController();
+		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFileName_);
+
+		BigDecimal _arrayOfRCP[];
 
 		try {
-			processProperties(propertiesFileName_);
-		} 
-		catch (Exception e_) {
-			consoleLogger.error(e_.getMessage());
-			throw new Exception();
-		}
-
-		BigDecimal arrayOfRCP[];
-
-		try {
-			_readData.readFileInputIntoFlightList(listOfFlights, dataFileName_,
-					modelProperties, graphOfAirports);
-			arrayOfRCP = findTotalRCP(listOfFlights);
-			totalRevenue = arrayOfRCP[0];
-			totalCost = arrayOfRCP[1];
-			totalProfit = arrayOfRCP[2];
+			_readData.readFileInputIntoFlightList(simulation_.getListOfFlights(), dataFileName_,
+					_modelProperties, simulation_.getGraphOfAirports());
+			_arrayOfRCP = findTotalRCP(simulation_.getListOfFlights(), _modelProperties);
+			simulation_.setTotalRevenue(_arrayOfRCP[0]);
+			simulation_.setTotalCost(_arrayOfRCP[1]);
+			simulation_.setTotalProfit(_arrayOfRCP[2]);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
@@ -206,30 +173,4 @@ public class AirlineSimulation {
 		}
 	}
 	
-	public BigDecimal getTotalCost() {
-		return totalCost;
-	}
-
-	public BigDecimal getTotalRevenue() {
-		return totalRevenue;
-	}
-
-	public BigDecimal getTotalProfit() {
-		return totalProfit;
-	}
-
-	public FlightList getListOfFlights() {
-		return listOfFlights;
-	}
-
-	public AirportGraph getGraphOfAirports() {
-		return graphOfAirports;
-	}
-
-	public Properties getModelProperties() {
-		return modelProperties;
-	}
-	
-	public AirlineSimulation() {
-	}
 }
