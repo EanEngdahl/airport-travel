@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import java.util.Properties;
 
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.model.AirportGraph;
 
 
 public class GenerateModelDataTest {

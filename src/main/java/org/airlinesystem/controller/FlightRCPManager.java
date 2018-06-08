@@ -16,6 +16,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.airlinesystem.model.Flight;
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.model.AirportGraph;
 import org.jgrapht.graph.DefaultEdge;
 
 public class FlightRCPManager {
@@ -151,7 +152,7 @@ public class FlightRCPManager {
 	public BigDecimal findAverageRCPPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_,
 			String source_, String destination_) throws NullPointerException {
 
-		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
+		DefaultEdge _testEdge = airportGraph_.getEdge(source_, destination_);
 		BigDecimal _averageProfit = new BigDecimal(0);
 		int _counter = 0;
 	

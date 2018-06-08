@@ -90,8 +90,8 @@ public class ConsoleViewController {
 								consoleLogger_.error("There are no flights between the two airports\n");
 							}
 						}
-						else if(!(simulation_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[0]))
-								|| !(simulation_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[1]))) {
+						else if(!(simulation_.getGraphOfAirports().containsVertex(_airportNames[0]))
+								|| !(simulation_.getGraphOfAirports().containsVertex(_airportNames[1]))) {
 							consoleLogger_.error("Airport input not present in graph, cannot find average\n");
 						}
 						else {

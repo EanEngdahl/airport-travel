@@ -1,4 +1,4 @@
-package org.airlinesystem.controller;
+package org.airlinesystem.model;
 
 import static org.junit.Assert.*;
 import org.junit.Before;
@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import org.airlinesystem.controller.AirportGraph;
+import org.airlinesystem.model.AirportGraph;
 import org.airlinesystem.model.Airport;
 import org.jgrapht.graph.DefaultEdge;
 
@@ -76,16 +76,16 @@ public class AirportGraphTest {
 		_sortedEdges = _graphOfAirports.getSortedListOfEdges();
 		
 		assertTrue("Index 0 less than index 1",
-				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(0)) <=
-				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(1)));
+				_graphOfAirports.getEdgeWeight(_sortedEdges.get(0)) <=
+				_graphOfAirports.getEdgeWeight(_sortedEdges.get(1)));
 		assertTrue("Index 1 less than index 2",
-				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(1)) <=
-				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(2)));
+				_graphOfAirports.getEdgeWeight(_sortedEdges.get(1)) <=
+				_graphOfAirports.getEdgeWeight(_sortedEdges.get(2)));
 		assertTrue("Index 2 less than index 3",
-				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(2)) <=
-				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(3)));
+				_graphOfAirports.getEdgeWeight(_sortedEdges.get(2)) <=
+				_graphOfAirports.getEdgeWeight(_sortedEdges.get(3)));
 		assertTrue("Index 3 less than index 4",
-				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(3)) <=
-				_graphOfAirports.getGraphOfAirports().getEdgeWeight(_sortedEdges.get(4)));
+				_graphOfAirports.getEdgeWeight(_sortedEdges.get(3)) <=
+				_graphOfAirports.getEdgeWeight(_sortedEdges.get(4)));
 	}
 }

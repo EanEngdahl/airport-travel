@@ -5,6 +5,7 @@ import java.util.Properties;
 import java.util.ArrayList;
 
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.model.AirportGraph;
 import org.jgrapht.graph.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -193,10 +194,10 @@ public class GenerateModelData {
 		
 		DefaultEdge _randomEdge = getRandomEdge(sortedEdges_, 
 				modelProperties_.getProperty("PREFERRED_AIRCRAFT_SIZE").charAt(0));
-		String _source = airportGraph_.getGraphOfAirports().getEdgeSource(_randomEdge);
-		String _dest = airportGraph_.getGraphOfAirports().getEdgeTarget(_randomEdge);
+		String _source = airportGraph_.getEdgeSource(_randomEdge);
+		String _dest = airportGraph_.getEdgeTarget(_randomEdge);
 	
-		double _distance = airportGraph_.getGraphOfAirports().getEdgeWeight(_randomEdge);
+		double _distance = airportGraph_.getEdgeWeight(_randomEdge);
 	
 		if(_distance < Double.parseDouble(modelProperties_.getProperty("SMALL_PLANE_MAX_RANGE"))) {
 			_airplaneSize = 's';

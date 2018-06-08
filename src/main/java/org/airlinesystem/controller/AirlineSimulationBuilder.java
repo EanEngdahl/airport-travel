@@ -7,6 +7,7 @@ package org.airlinesystem.controller;
 
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.model.AirportGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 

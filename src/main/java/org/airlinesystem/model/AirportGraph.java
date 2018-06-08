@@ -4,12 +4,11 @@
  *		changes to the graph such as adding airports (vertexes),
  *		adding flights (edges), removing airports or flights.
  *		and finding information about the graph
- */
+*/
 
-package org.airlinesystem.controller;
+package org.airlinesystem.model;
 
 import org.airlinesystem.model.Airport;
-import org.jgrapht.*;
 import org.jgrapht.graph.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -20,19 +19,20 @@ import java.util.Iterator;
 import java.util.Comparator;
 
 
-public class AirportGraph {
+public class AirportGraph extends SimpleWeightedGraph<String, DefaultEdge> {
 	
-	private Graph<String, DefaultEdge> graphOfAirports;
+	private static final long serialVersionUID = 1772306537257159139L;
+
 	private HashMap<String, Airport> mapAirportToName;
 
 	/*
 	 * Constructor, initializes graph
+	 *
 	 */
 	public AirportGraph() {
-		graphOfAirports = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
-		mapAirportToName = new HashMap<String, Airport>();
+		super(DefaultEdge.class);
 	}
-	
+
 	/*
 	 * Add a new airport by creating a new vertex on the graph
 	 * based on the airport object input
@@ -44,7 +44,7 @@ public class AirportGraph {
 	 * 		N/A
 	 */
 	public void addAirport(Airport airport_) {
-		graphOfAirports.addVertex(airport_.getName());
+		addVertex(airport_.getName());
 		mapAirportToName.put(airport_.getName(), airport_);
 	}
 	
@@ -69,8 +69,8 @@ public class AirportGraph {
 			_debugLogger.debug("Invalid graph input found, input ignored.");
 			return false;
 		}
-		graphOfAirports.addEdge(source_, destination_);
-		graphOfAirports.setEdgeWeight(graphOfAirports.getEdge(source_, destination_), distance_);
+		addEdge(source_, destination_);
+		setEdgeWeight(getEdge(source_, destination_), distance_);
 		return true;
 	}
 	
@@ -87,24 +87,9 @@ public class AirportGraph {
 	 */
 	public double getDistance(String source_, String destination_) {
 		if (areAirportsConnected(source_, destination_)) {
-			return graphOfAirports.getEdgeWeight(graphOfAirports.getEdge(source_, destination_));
+			return getEdgeWeight(getEdge(source_, destination_));
 		}
 		return 0;
-	}
-
-	/*
-	 * Remove a connection between two airports
-	 * only if there exists a connection
-	 * 
-	 * @param source_
-	 * 		String of the first airport name
-	 * @param destination_
-	 * 		String of the second airport name
-	 * @return
-	 * 		N/A
-	 */
-	public void removeEdge(String source_, String destination_) {
-		graphOfAirports.removeEdge(source_, destination_);
 	}
 
 	/*
@@ -117,7 +102,7 @@ public class AirportGraph {
 	 * 		N/A
 	 */
 	public void removeAirport(String airport_) {
-		graphOfAirports.removeVertex(airport_);
+		removeVertex(airport_);
 		mapAirportToName.remove(airport_);
 	}
 
@@ -130,7 +115,7 @@ public class AirportGraph {
 	 * 		true if aiprot found, false otherwise
 	 */
 	public boolean isAirportInGraph(String airport_) {
-		return graphOfAirports.containsVertex(airport_);
+		return containsVertex(airport_);
 	}
 	
 	/*
@@ -144,7 +129,7 @@ public class AirportGraph {
 	 * 		true, if airports are connected, false otherwise
 	 */
 	public boolean areAirportsConnected(String source_, String destination_) {
-		return graphOfAirports.containsEdge(source_, destination_);
+		return containsEdge(source_, destination_);
 	}
 	
 	/*
@@ -159,7 +144,22 @@ public class AirportGraph {
 		return mapAirportToName.get(airportName_);
 	}
 
-	
+	/*
+	 * Completely empties the graph and any airport mappings
+	 * 
+	 * @return
+	 * 		N/A
+	 */
+	public void clearGraph() {
+		mapAirportToName.clear();
+		removeAllEdges(edgeSet());
+		removeAllVertices(vertexSet());
+	}
+
+	public HashMap<String, Airport> getMapAirportToName() {
+		return mapAirportToName;
+	}
+
 	/*
 	 * 	Sorts edges in ascending order
 	 * 
@@ -171,14 +171,14 @@ public class AirportGraph {
 
 		Comparator<DefaultEdge> _compareEdges = new Comparator<DefaultEdge>() {
 			public int compare(DefaultEdge e1, DefaultEdge e2) {
-				if(graphOfAirports.getEdgeWeight(e1) == graphOfAirports.getEdgeWeight(e2)) {
+				if(getEdgeWeight(e1) == getEdgeWeight(e2)) {
 					return 0;
 				}
-				return graphOfAirports.getEdgeWeight(e1) < graphOfAirports.getEdgeWeight(e2) ? -1 : 1;
+				return getEdgeWeight(e1) < getEdgeWeight(e2) ? -1 : 1;
 			}
 		};
 		
-		_sortedEdges.addAll(graphOfAirports.edgeSet());
+		_sortedEdges.addAll(edgeSet());
 		_sortedEdges.sort(_compareEdges);
 		
 		return _sortedEdges;
@@ -194,7 +194,7 @@ public class AirportGraph {
 	public void printGraph() {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		
-		Iterator<String> _vertexItr = graphOfAirports.vertexSet().iterator();
+		Iterator<String> _vertexItr = vertexSet().iterator();
 		Iterator<DefaultEdge> _edgeItr;
 		String _vertex;
 		String _destinationVertex;
@@ -202,35 +202,16 @@ public class AirportGraph {
 		while(_vertexItr.hasNext()) {
 			_vertex = _vertexItr.next();
 			_consoleLogger.info("Vertex: {}", _vertex);
-			_edgeItr = graphOfAirports.edgesOf(_vertex).iterator();
+			_edgeItr = edgesOf(_vertex).iterator();
 			while (_edgeItr.hasNext()) {
 				_edgeTracker = _edgeItr.next();
-				_destinationVertex = graphOfAirports.getEdgeTarget(_edgeTracker);
+				_destinationVertex = getEdgeTarget(_edgeTracker);
 				if(_destinationVertex.equals(_vertex)) {
-					_destinationVertex = graphOfAirports.getEdgeSource(_edgeTracker);
+					_destinationVertex = getEdgeSource(_edgeTracker);
 				}
 				_consoleLogger.info("-> {}({})", _destinationVertex, 
-						graphOfAirports.getEdgeWeight(_edgeTracker));
+						getEdgeWeight(_edgeTracker));
 			}
 		}
-	}
-	
-	/*
-	 * Completely empties the graph and any airport mappings
-	 * 
-	 * @return
-	 * 		N/A
-	 */
-	public void clearGraph() {
-		mapAirportToName.clear();
-		graphOfAirports = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
-	}
-	
-	public Graph<String, DefaultEdge> getGraphOfAirports() {
-		return graphOfAirports;
-	}
-
-	public HashMap<String, Airport> getMapAirportToName() {
-		return mapAirportToName;
 	}
 }

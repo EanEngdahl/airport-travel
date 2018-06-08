@@ -5,7 +5,7 @@ import java.util.Properties;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
-import org.airlinesystem.controller.AirportGraph;
+import org.airlinesystem.model.AirportGraph;
 import org.airlinesystem.controller.FlightBuilder;
 import org.jgrapht.graph.DefaultEdge;
 
@@ -42,7 +42,7 @@ public class FlightList extends ArrayList<Flight> {
 	public void mapFlight(AirportGraph airportGraph_, Flight addedFlight_, 
 			String source_, String destination_) {
 		
-		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
+		DefaultEdge _testEdge = airportGraph_.getEdge(source_, destination_);
 
 		if(mapEdgeToFlights.containsKey(_testEdge)) {
 			mapEdgeToFlights.get(_testEdge).addFlightToList(addedFlight_);

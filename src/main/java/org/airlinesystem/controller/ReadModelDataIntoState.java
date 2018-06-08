@@ -14,6 +14,7 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.model.AirportGraph;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
