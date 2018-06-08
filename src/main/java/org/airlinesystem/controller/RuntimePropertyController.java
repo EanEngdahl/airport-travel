@@ -9,7 +9,9 @@ package org.airlinesystem.controller;
 import java.util.Properties;
 import java.io.InputStream;
 import java.io.FileInputStream;
+import java.io.File;
 import java.io.IOException;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -23,11 +25,10 @@ public class RuntimePropertyController {
 	 */
 	public Properties loadDefaultProperties() {
 		Properties _defaultProperties = new Properties();
-
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 
-		try (InputStream _is = RuntimePropertyController.class.getResourceAsStream("/default.properties")) {
+		try (InputStream _is = this.getClass().getResourceAsStream("/default.properties")) {
 			_defaultProperties.load(_is);
 			_debugLogger.debug("defaults loaded...");
 		} catch(NullPointerException e_){
@@ -37,7 +38,6 @@ public class RuntimePropertyController {
 		} catch (Exception e_) {
 			e_.printStackTrace();
 		}	
-		
 		return _defaultProperties;
 	}
 
@@ -48,22 +48,22 @@ public class RuntimePropertyController {
 	 *  @param the string filename/path of the custom properties file
 	 *  @return the loaded properties file, default or custom
 	 */
-	public Properties createRuntimeProperties(String fileName_) {
-		Properties _defaultProperties = new Properties();
+	public Properties createRuntimeProperties(File file_) {
+		Properties _properties = new Properties();
 
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 
-		try (FileInputStream _is = new FileInputStream(fileName_)) {
-			_defaultProperties.load(_is);
+		try (InputStream _is = new FileInputStream(file_)) {
+			_properties.load(_is);
 		} catch(IOException e_){
-			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties" + e_.getMessage());
-			_defaultProperties = loadDefaultProperties();
+			_properties = loadDefaultProperties();
+			_consoleLogger.error("Unable to use {}, reverting to default properties. {}", file_, e_.getStackTrace());
 		} catch(NullPointerException e_) {
-			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties" + "NULL POINTER");
-			_defaultProperties = loadDefaultProperties();	
+			_consoleLogger.error("Unable to use {}, reverting to default properties. {}", file_, e_.getStackTrace());
+			_properties = loadDefaultProperties();	
 		}
 		
-		return _defaultProperties;
+		return _properties;
 	}
 
 	/*
@@ -73,13 +73,14 @@ public class RuntimePropertyController {
 	 *  @param the string filename/path of the properties file
 	 *  @return the loaded Properties object
 	 */
-	public Properties loadRuntimeProperties(String fileName_) {
+	public Properties loadRuntimeProperties(File file_) {
 		Properties _returnProperties;
 
-		if(fileName_.equals("/default.properties")) {
+		//TODO: This is probably broken
+		if(file_.getName().matches("^.??default.properties")) {
 			_returnProperties = loadDefaultProperties();
 		} else {
-			_returnProperties = createRuntimeProperties(fileName_);
+			_returnProperties = createRuntimeProperties(file_);
 		}
 		return _returnProperties;
 	}

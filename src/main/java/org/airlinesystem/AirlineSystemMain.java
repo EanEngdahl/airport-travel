@@ -1,6 +1,7 @@
 package org.airlinesystem;
 
 import java.text.NumberFormat;
+import java.io.File;
 
 import org.airlinesystem.controller.AirlineSimulationBuilder;
 import org.airlinesystem.controller.ConsoleViewController;
@@ -12,9 +13,10 @@ import org.slf4j.LoggerFactory;
 public class AirlineSystemMain {
 
 	public static void main(String[] args_) {
-		String _propertiesFileName = "/default.properties";
-		String _graphFileName = "/default-graph";
-		String _dataFileName = "/default-data";
+		String _propertiesFileName = "default.properties";
+		String _graphFileName = new File("src/resources/default-graph").getPath();
+		System.out.println(_graphFileName + "GRAPH FILE NAME");
+		String _dataFileName = new File("src/resources/default-data").getAbsolutePath();
 		boolean _menuFlag = false;
 		boolean _dataFileFlag = false;
 		

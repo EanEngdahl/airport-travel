@@ -13,6 +13,7 @@ import org.slf4j.LoggerFactory;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Properties;
+import java.io.File;
 
 public class AirlineSimulationBuilder {
 
@@ -31,10 +32,10 @@ public class AirlineSimulationBuilder {
 	 * @return
 	 * 		N/A
 	 */
-	public void processGraph(AirportGraph graphOfAirports_, String graphFileName_) throws Exception {
+	public void processGraph(AirportGraph graphOfAirports_, File graphFile_) throws Exception {
 		ReadGraphFromPSV _graphInput = new ReadGraphFromPSV();
 		try {
-			_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFileName_);
+			_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFile_);
 			debugLogger.debug("Graph successfully read");
 		}
 		catch(Exception e_) {
@@ -108,18 +109,18 @@ public class AirlineSimulationBuilder {
 	 * @return
 	 * 		N/A
 	 */
-	public void runSimulation(String propertiesFileName_, String graphFileName_,  
+	public void runSimulation(File propertiesFile_, File graphFile_,  
 			AirlineSimulation simulation_) {
 
 		RuntimePropertyController _propertyController = new RuntimePropertyController();
-		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFileName_);
+		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFile_);
 		simulation_.setSimulationProperties(_modelProperties);
 
 		consoleLogger.info("Calculating flight results...");
 		debugLogger.debug("runSimulation");
 				
 		try {
-			processGraph(simulation_.getGraphOfAirports(), graphFileName_);
+			processGraph(simulation_.getGraphOfAirports(), graphFile_);
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());
@@ -156,17 +157,17 @@ public class AirlineSimulationBuilder {
 	 * @return
 	 * 		N/A
 	 */
-	public void runFromDataFile(String propertiesFileName_, String dataFileName_, AirlineSimulation simulation_) 
+	public void runFromDataFile(File propertiesFile_, File dataFile_, AirlineSimulation simulation_) 
 		throws Exception {
 
 		ReadModelDataIntoState _readData = new ReadModelDataIntoState();
 		RuntimePropertyController _propertyController = new RuntimePropertyController();
-		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFileName_);
+		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFile_);
 
 		BigDecimal _arrayOfRCP[];
 
 		try {
-			_readData.readFileInputIntoFlightList(simulation_.getListOfFlights(), dataFileName_,
+			_readData.readFileInputIntoFlightList(simulation_.getListOfFlights(), dataFile_,
 					_modelProperties, simulation_.getGraphOfAirports());
 			_arrayOfRCP = findTotalRCP(simulation_.getListOfFlights(), _modelProperties);
 			simulation_.setTotalRevenue(_arrayOfRCP[0]);

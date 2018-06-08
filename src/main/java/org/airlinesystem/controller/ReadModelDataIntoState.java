@@ -7,6 +7,8 @@
 package org.airlinesystem.controller;
 
 import java.io.BufferedReader;
+import java.io.File;
+import java.io.FileInputStream;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.math.BigDecimal;
@@ -39,8 +41,9 @@ public class ReadModelDataIntoState {
 	 * 		N/A
 	 */
 	public void readFileInputIntoFlightList(FlightList listOfFlights_, 
-			String fileToRead_, Properties modelProperties_, AirportGraph airportGraph_)
+			File fileToRead_, Properties modelProperties_, AirportGraph airportGraph_)
 			throws IOException, NullPointerException, Exception {
+
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		_debugLogger.debug("Reading input file");
 		
@@ -53,7 +56,7 @@ public class ReadModelDataIntoState {
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
 		
-		try (InputStream _is = ReadModelDataIntoState.class.getResourceAsStream(fileToRead_)) {
+		try (InputStream _is = new FileInputStream(fileToRead_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
 			BufferedReader reader = new BufferedReader(_sr);
 			reader.readLine();
