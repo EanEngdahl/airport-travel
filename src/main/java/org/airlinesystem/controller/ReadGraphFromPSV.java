@@ -10,7 +10,7 @@ package org.airlinesystem.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
-import java.io.InputStream;
+import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
@@ -42,7 +42,7 @@ public class ReadGraphFromPSV {
 		String _destination;
 		double _distanceTravelled;
 		int _counter = 1;
-		try (InputStream _is = ReadGraphFromPSV.class.getResourceAsStream(graphFileName_)) {
+		try (FileInputStream _is = new FileInputStream(graphFileName_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
 			BufferedReader reader = new BufferedReader(_sr);
 			reader.readLine();
