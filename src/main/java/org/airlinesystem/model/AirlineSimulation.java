@@ -1,7 +1,6 @@
 /*
  * AirlineSimulation class
- *		Runs a full simulation with calculations and
- *		has a graph of the airports with a list of flights
+ *		Model class representing the simulation's state
  */
 
 package org.airlinesystem.model;

@@ -8,6 +8,7 @@ package org.airlinesystem.controller;
 
 import java.util.Properties;
 import java.io.InputStream;
+import java.io.FileInputStream;
 import java.io.IOException;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -52,13 +53,13 @@ public class RuntimePropertyController {
 
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 
-		try (InputStream _is = RuntimePropertyController.class.getResourceAsStream(fileName_)) {
+		try (FileInputStream _is = new FileInputStream(fileName_)) {
 			_defaultProperties.load(_is);
 		} catch(IOException e_){
-			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties");
+			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties" + e_.getMessage());
 			_defaultProperties = loadDefaultProperties();
 		} catch(NullPointerException e_) {
-			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties");
+			_consoleLogger.error("Unable to use " + fileName_ + ", reverting to default properties" + "NULL POINTER");
 			_defaultProperties = loadDefaultProperties();	
 		}
 		
