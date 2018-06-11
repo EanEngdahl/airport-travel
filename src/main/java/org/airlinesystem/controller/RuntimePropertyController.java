@@ -58,9 +58,9 @@ public class RuntimePropertyController {
 			_properties.load(_is);
 		} catch(IOException e_){
 			_properties = loadDefaultProperties();
-			_consoleLogger.error("Unable to use {}, reverting to default properties. {}", file_, e_.getStackTrace());
+			_consoleLogger.error("Unable to use {}, reverting to default properties. {}", file_, e_.getMessage());
 		} catch(NullPointerException e_) {
-			_consoleLogger.error("Unable to use {}, reverting to default properties. {}", file_, e_.getStackTrace());
+			_consoleLogger.error("Unable to use {}, reverting to default properties. {}", file_, e_.getMessage());
 			_properties = loadDefaultProperties();	
 		}
 		
