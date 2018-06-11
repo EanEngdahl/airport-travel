@@ -6,7 +6,7 @@ import org.junit.Test;
 
 import java.util.ArrayList;
 
-import org.airlinesystem.controller.AirportGraph;
+import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.Airport;
 import org.jgrapht.graph.DefaultEdge;
 

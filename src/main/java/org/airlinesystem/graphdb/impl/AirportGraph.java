@@ -5,8 +5,9 @@
  *		adding flights (edges), removing airports or flights.
  *		and finding information about the graph
  */
+package org.airlinesystem.graphdb.impl;
 
-package org.airlinesystem.controller;
+import org.airlinesystem.graphdb.AirportGraphInterface;
 
 import org.airlinesystem.model.Airport;
 import org.jgrapht.*;
@@ -20,7 +21,7 @@ import java.util.Iterator;
 import java.util.Comparator;
 
 
-public class AirportGraph {
+public class AirportGraph implements AirportGraphInterface {
 	
 	private Graph<String, DefaultEdge> graphOfAirports;
 	private HashMap<String, Airport> mapAirportToName;

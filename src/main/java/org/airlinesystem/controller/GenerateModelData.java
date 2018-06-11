@@ -4,6 +4,7 @@ import java.util.Random;
 import java.util.Properties;
 import java.util.ArrayList;
 
+import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
 import org.jgrapht.graph.*;
 import org.slf4j.Logger;

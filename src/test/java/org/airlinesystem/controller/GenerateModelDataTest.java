@@ -8,6 +8,7 @@ import org.junit.BeforeClass;
 import java.util.Properties;
 import java.io.File;
 
+import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
 
 
