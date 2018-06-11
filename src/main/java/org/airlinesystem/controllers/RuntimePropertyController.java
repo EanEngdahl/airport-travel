@@ -78,7 +78,7 @@ public class RuntimePropertyController {
 		Properties _returnProperties;
 
 		//TODO: This is probably broken
-		if(file_.getName().matches("^.??default.properties")) {
+		if(file_.getName().matches("default.properties")) {
 			_returnProperties = loadDefaultProperties();
 		} else {
 			_returnProperties = createRuntimeProperties(file_);
