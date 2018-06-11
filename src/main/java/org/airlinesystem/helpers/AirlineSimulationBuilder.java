@@ -5,8 +5,8 @@
 
 package org.airlinesystem.helpers;
 
-import org.airlinesystem.controller.FlightRCPController;
-import org.airlinesystem.controller.RuntimePropertyController;
+import org.airlinesystem.controllers.FlightRCPController;
+import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.model.FlightList;

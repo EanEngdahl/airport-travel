@@ -1,9 +1,9 @@
-package org.airlinesystem.controller;
+package org.airlinesystem.controllers;
 
 import static org.junit.Assert.*;
 
-import org.airlinesystem.controller.FlightRCPController;
-import org.airlinesystem.controller.RuntimePropertyController;
+import org.airlinesystem.controllers.FlightRCPController;
+import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
 import org.junit.Test;

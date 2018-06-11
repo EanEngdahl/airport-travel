@@ -10,7 +10,7 @@ package org.airlinesystem.helpers;
 import java.math.BigDecimal;
 import java.util.stream.IntStream;
 
-import org.airlinesystem.controller.FlightRCPController;
+import org.airlinesystem.controllers.FlightRCPController;
 import org.airlinesystem.model.Aircraft;
 import org.airlinesystem.model.AircraftPilot;
 import org.airlinesystem.model.Airport;

@@ -1,10 +1,10 @@
-package org.airlinesystem.controller;
+package org.airlinesystem.controllers;
 
 import static org.junit.Assert.*;
 
+import org.airlinesystem.controllers.RuntimePropertyController;
 import org.junit.Test;
 
-import org.airlinesystem.controller.RuntimePropertyController;
 import java.util.Properties;
 import java.io.IOException;
 import java.io.File;

@@ -5,7 +5,7 @@ import static org.junit.Assert.*;
 import java.math.BigDecimal;
 import java.util.Properties;
 
-import org.airlinesystem.controller.RuntimePropertyController;
+import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
 import org.junit.Test;

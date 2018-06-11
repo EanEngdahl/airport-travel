@@ -4,7 +4,7 @@ import java.text.NumberFormat;
 import java.io.File;
 import java.io.IOException;
 
-import org.airlinesystem.controller.ConsoleViewController;
+import org.airlinesystem.controllers.ConsoleViewController;
 import org.airlinesystem.helpers.AirlineSimulationBuilder;
 import org.airlinesystem.helpers.DefaultsLoader;
 import org.airlinesystem.model.AirlineSimulation;

@@ -4,7 +4,7 @@ import static org.junit.Assert.*;
 import java.util.Properties;
 import java.math.BigDecimal;
 
-import org.airlinesystem.controller.RuntimePropertyController;
+import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.PilotBuilder;
 import org.airlinesystem.model.AircraftPilot;
 import org.junit.Test;

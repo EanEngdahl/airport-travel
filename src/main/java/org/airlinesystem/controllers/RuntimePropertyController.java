@@ -4,7 +4,7 @@
  *  	to this program.
  */
 
-package org.airlinesystem.controller;
+package org.airlinesystem.controllers;
 
 import java.util.Properties;
 import java.io.InputStream;

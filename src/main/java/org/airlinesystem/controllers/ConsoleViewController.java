@@ -4,7 +4,7 @@
  *		options available
  */
 
-package org.airlinesystem.controller;
+package org.airlinesystem.controllers;
 
 import java.util.Scanner;
 import java.math.BigDecimal;

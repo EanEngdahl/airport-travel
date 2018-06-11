@@ -4,7 +4,7 @@
  *		for a given flight
  */
 
-package org.airlinesystem.controller;
+package org.airlinesystem.controllers;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
