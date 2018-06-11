@@ -30,7 +30,7 @@ public class RuntimePropertyControllerTest {
 		RuntimePropertyController propController_ = new RuntimePropertyController();
 		File _file = new File("src/test/resources/loadTest.properties");
 		
-		createTest_ = propController_.loadRuntimeProperties(_file.getAbsolutePath());
+		createTest_ = propController_.loadRuntimeProperties(_file);
 
 		// Check a few of the default file properties to assure they are loaded correctly
 		assertEquals("15", createTest_.getProperty("FUEL_COST"));
@@ -45,7 +45,7 @@ public class RuntimePropertyControllerTest {
 		Properties createTest_;
 
 		// Check that it handles the exceptions
-		createTest_ = propController_.createRuntimeProperties("this is not a file");
+		createTest_ = propController_.createRuntimeProperties(new File("this is not a file"));
 		
 		// Check that it loaded the default
 		assertEquals("15", createTest_.getProperty("FUEL_COST"));
@@ -59,7 +59,7 @@ public class RuntimePropertyControllerTest {
 		RuntimePropertyController propController_ = new RuntimePropertyController();
 		File _file = new File("src/test/resources/loadTest.properties");
 		
-		loadTest_ = propController_.loadRuntimeProperties(_file.getAbsolutePath());
+		loadTest_ = propController_.loadRuntimeProperties(_file);
 
 		// Check a few of the default file properties to assure they are loaded correctly
 		assertEquals("15", loadTest_.getProperty("FUEL_COST"));

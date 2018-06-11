@@ -36,7 +36,8 @@ public class RuntimePropertyController {
 		} catch(IOException e_) {
 			_consoleLogger.error("Error reading default.properties file");
 		} catch (Exception e_) {
-			e_.printStackTrace();
+			_consoleLogger.error("Error reading default.properties file");
+
 		}	
 		return _defaultProperties;
 	}
