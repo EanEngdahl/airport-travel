@@ -1,7 +1,7 @@
 # General
 
-- controllers and other classes should be separated. 
-- move graph/database related logic to its own package. Good practice is also to have separate interface from implementation.
+- controllers should exist in their own package.
+- move graph/database related logic to its own package. Good practice is also to have interface separate from implementation.
 Reason is maybe at the moment system relies on custom implementation, but in future it might be required to use e.g. Neo4j.
 
 ```java
@@ -47,7 +47,7 @@ Implementation example:
 		public String getMeInfo(String input) {
 		}
 	}
-``` 
+```
 
 
 # Testing
