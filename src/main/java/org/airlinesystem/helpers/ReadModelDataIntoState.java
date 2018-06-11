@@ -4,7 +4,7 @@
  * 		an entire file or a single string
  */
 
-package org.airlinesystem.controller;
+package org.airlinesystem.helpers;
 
 import java.io.BufferedReader;
 import java.io.File;

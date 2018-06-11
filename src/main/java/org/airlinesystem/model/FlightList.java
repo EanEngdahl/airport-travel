@@ -5,8 +5,8 @@ import java.util.Properties;
 import java.math.BigDecimal;
 import java.util.HashMap;
 
-import org.airlinesystem.controller.FlightBuilder;
 import org.airlinesystem.graphdb.impl.AirportGraph;
+import org.airlinesystem.helpers.FlightBuilder;
 import org.jgrapht.graph.DefaultEdge;
 
 public class FlightList extends ArrayList<Flight> {

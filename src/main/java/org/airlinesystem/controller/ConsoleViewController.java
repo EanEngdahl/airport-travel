@@ -11,6 +11,7 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.io.File;
 
+import org.airlinesystem.helpers.AirlineSimulationBuilder;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.view.*;
 import org.slf4j.Logger;
@@ -40,7 +41,7 @@ public class ConsoleViewController {
 		String[] _airportNames;
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
-		FlightRCPManager _flightRCPManager;
+		FlightRCPController _flightRCPManager;
 		Boolean _hasSimBeenRun = false;
 		
 		Scanner _input = new Scanner(System.in);
@@ -80,7 +81,7 @@ public class ConsoleViewController {
 					break;
 				case 4:
 					if(_hasSimBeenRun) {
-						_flightRCPManager = new FlightRCPManager(simulation_.getSimulationProperties());
+						_flightRCPManager = new FlightRCPController(simulation_.getSimulationProperties());
 						_airportNames = _consoleOut.findAverageBetweenAirports(_input);
 						if(simulation_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
 							try {

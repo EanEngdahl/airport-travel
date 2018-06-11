@@ -1,4 +1,4 @@
-package org.airlinesystem.controller;
+package org.airlinesystem.helpers;
 
 import java.util.Random;
 import java.util.Properties;

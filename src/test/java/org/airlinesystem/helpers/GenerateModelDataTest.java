@@ -1,4 +1,4 @@
-package org.airlinesystem.controller;
+package org.airlinesystem.helpers;
 
 import static org.junit.Assert.*;
 
@@ -8,7 +8,10 @@ import org.junit.BeforeClass;
 import java.util.Properties;
 import java.io.File;
 
+import org.airlinesystem.controller.RuntimePropertyController;
 import org.airlinesystem.graphdb.impl.AirportGraph;
+import org.airlinesystem.helpers.GenerateModelData;
+import org.airlinesystem.helpers.ReadModelDataIntoState;
 import org.airlinesystem.model.FlightList;
 
 

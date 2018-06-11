@@ -1,5 +1,5 @@
 /**
- * FlightRCPManager class
+ * FlightRCPController class
  *		Calculates the revenue, cost, and overall profit
  *		for a given flight
  */
@@ -19,13 +19,13 @@ import org.airlinesystem.model.Flight;
 import org.airlinesystem.model.FlightList;
 import org.jgrapht.graph.DefaultEdge;
 
-public class FlightRCPManager {
+public class FlightRCPController {
 	private BigDecimal fuelCost;
 	
 	/**
 	 * Default constructor
 	 */
-	public FlightRCPManager(Properties modelProperties_) {
+	public FlightRCPController(Properties modelProperties_) {
 		fuelCost = new BigDecimal(modelProperties_.getProperty("FUEL_COST"));
 	}
 	

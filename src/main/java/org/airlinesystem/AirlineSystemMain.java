@@ -4,10 +4,10 @@ import java.text.NumberFormat;
 import java.io.File;
 import java.io.IOException;
 
-import org.airlinesystem.controller.AirlineSimulationBuilder;
 import org.airlinesystem.controller.ConsoleViewController;
+import org.airlinesystem.helpers.AirlineSimulationBuilder;
+import org.airlinesystem.helpers.DefaultsLoader;
 import org.airlinesystem.model.AirlineSimulation;
-import org.airlinesystem.controller.DefaultsLoader;
 import org.apache.commons.cli.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -36,7 +36,7 @@ public class AirlineSystemMain {
 			_e.getMessage();
 		}
 
-		/**
+		/*
 		 *  Handles the parsing of command line arguments passed to the main
 		 */
 		Options _options = new Options();
@@ -76,7 +76,7 @@ public class AirlineSystemMain {
 			_e.getMessage();
 		}
 
-		/**
+		/*
 		 *  Decides whether or not a console menu was requested
 		 */
 		if(!_menuFlag) {
@@ -97,7 +97,7 @@ public class AirlineSystemMain {
 			return;
 		}
 		
-		/**
+		/*
 		 *  Runs the console menu if it is applicable
 		 */
 		String _fileNameList[] = {_propertiesFile.getAbsolutePath(), _graphFile.getAbsolutePath()};

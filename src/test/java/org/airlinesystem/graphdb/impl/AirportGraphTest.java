@@ -1,4 +1,4 @@
-package org.airlinesystem.controller;
+package org.airlinesystem.graphdb.impl;
 
 import static org.junit.Assert.*;
 import org.junit.Before;

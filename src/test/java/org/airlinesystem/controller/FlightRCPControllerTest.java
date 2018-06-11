@@ -2,15 +2,15 @@ package org.airlinesystem.controller;
 
 import static org.junit.Assert.*;
 
-import org.airlinesystem.controller.FlightBuilder;
-import org.airlinesystem.controller.FlightRCPManager;
+import org.airlinesystem.controller.FlightRCPController;
 import org.airlinesystem.controller.RuntimePropertyController;
+import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
 import org.junit.Test;
 import java.math.BigDecimal;
 import java.util.Properties;
 
-public class FlightRCPManagerTest {
+public class FlightRCPControllerTest {
 	
 	private final static int MAX_SEATS[] = {10, 10, 10, 10};
 	private final static int SEATS_FILLED[] = {10, 10, 10, 10};
@@ -21,7 +21,7 @@ public class FlightRCPManagerTest {
 	Properties testProps = propManager.loadDefaultProperties();
 	FlightBuilder fd = new FlightBuilder();
 	Flight testFlight = fd.flightDispatchService('l', MAX_SEATS, SEATS_FILLED, SEAT_COST, "1", "2", 100, testProps);
-	FlightRCPManager testRcp = new FlightRCPManager(testProps);
+	FlightRCPController testRcp = new FlightRCPController(testProps);
 	
 	@Test
 	public void testFindRevenue() {

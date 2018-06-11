@@ -3,8 +3,10 @@
  *		Runs a full simulation with calculations
  */
 
-package org.airlinesystem.controller;
+package org.airlinesystem.helpers;
 
+import org.airlinesystem.controller.FlightRCPController;
+import org.airlinesystem.controller.RuntimePropertyController;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.model.FlightList;
@@ -84,7 +86,7 @@ public class AirlineSimulationBuilder {
 	 */
 	public BigDecimal[] findTotalRCP(FlightList listOfFlights_, Properties modelProperties_) throws Exception {
 
-		FlightRCPManager _flightProfitManager = new FlightRCPManager(modelProperties_);
+		FlightRCPController _flightProfitManager = new FlightRCPController(modelProperties_);
 		BigDecimal[] _totalRCP;
 		
 		try {		

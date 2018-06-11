@@ -3,7 +3,7 @@
  *		Creates a new pilot object given specific requirements
  */
 
-package org.airlinesystem.controller;
+package org.airlinesystem.helpers;
 
 import java.math.BigDecimal;
 import java.util.Properties;

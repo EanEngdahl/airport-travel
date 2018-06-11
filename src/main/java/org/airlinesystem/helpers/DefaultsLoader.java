@@ -1,14 +1,10 @@
-package org.airlinesystem.controller;
+package org.airlinesystem.helpers;
 
 import java.io.File;
 import java.io.InputStream;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
-
-//TODO: Make this create a directory or something and copy default files to it for use throughout
-//      the Rest of the program since resources can only be loaded as resource streams and regular
-//      file io will be handled via File objects
 
 public class DefaultsLoader {
 

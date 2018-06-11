@@ -5,11 +5,12 @@
  *		in the flight itself
  */
 
-package org.airlinesystem.controller;
+package org.airlinesystem.helpers;
 
 import java.math.BigDecimal;
 import java.util.stream.IntStream;
 
+import org.airlinesystem.controller.FlightRCPController;
 import org.airlinesystem.model.Aircraft;
 import org.airlinesystem.model.AircraftPilot;
 import org.airlinesystem.model.Airport;
@@ -67,9 +68,7 @@ public class FlightBuilder {
 		setFlightRCPData(_newFlightFromData, modelProperties_);
 		
 		return _newFlightFromData;
-		/** TODO: newFlightFromData will go to a database/file storing all the flights for 
-		 * querying etc.
-		 */
+
 	}
 	
 	/**
@@ -81,7 +80,7 @@ public class FlightBuilder {
 	 * 		N/A
 	 */
 	public void setFlightRCPData(Flight flightToSet_, Properties modelProperties_) {
-		FlightRCPManager _revenueCostProfitFinder = new FlightRCPManager(modelProperties_);
+		FlightRCPController _revenueCostProfitFinder = new FlightRCPController(modelProperties_);
 		BigDecimal[] _flightRCPArray = _revenueCostProfitFinder.getRCPAsArray(flightToSet_);
 		flightToSet_.setRevenue(_flightRCPArray[0]);
 		flightToSet_.setCost(_flightRCPArray[1]);

@@ -6,7 +6,7 @@
  * 		edge (if allowed)
  */
 
-package org.airlinesystem.controller;
+package org.airlinesystem.helpers;
 
 import java.io.BufferedReader;
 import java.io.IOException;
