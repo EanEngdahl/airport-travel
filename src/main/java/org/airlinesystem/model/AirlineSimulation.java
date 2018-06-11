@@ -8,7 +8,7 @@ package org.airlinesystem.model;
 import java.math.BigDecimal;
 import java.util.Properties;
 
-import org.airlinesystem.controller.AirportGraph;
+import org.airlinesystem.graphdb.impl.AirportGraph;
 
 public class AirlineSimulation {
 

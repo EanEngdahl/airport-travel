@@ -15,6 +15,7 @@ import java.math.BigDecimal;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

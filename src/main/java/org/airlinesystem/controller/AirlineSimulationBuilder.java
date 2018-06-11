@@ -5,6 +5,7 @@
 
 package org.airlinesystem.controller;
 
+import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.model.FlightList;
 import org.slf4j.Logger;
