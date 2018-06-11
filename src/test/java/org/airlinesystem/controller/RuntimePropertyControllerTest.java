@@ -2,11 +2,12 @@ package org.airlinesystem.controller;
 
 import static org.junit.Assert.*;
 
-import org.airlinesystem.controller.RuntimePropertyController;
 import org.junit.Test;
 
+import org.airlinesystem.controller.RuntimePropertyController;
 import java.util.Properties;
 import java.io.IOException;
+import java.io.File;
 
 public class RuntimePropertyControllerTest {
 
@@ -27,8 +28,9 @@ public class RuntimePropertyControllerTest {
 	public void testCreateRuntimeProperiesWithValidFile() {
 		Properties createTest_;
 		RuntimePropertyController propController_ = new RuntimePropertyController();
+		File _file = new File("src/test/resources/loadTest.properties");
 		
-		createTest_ = propController_.loadRuntimeProperties("/loadTest.properties");
+		createTest_ = propController_.loadRuntimeProperties(_file.getAbsolutePath());
 
 		// Check a few of the default file properties to assure they are loaded correctly
 		assertEquals("15", createTest_.getProperty("FUEL_COST"));
@@ -55,8 +57,9 @@ public class RuntimePropertyControllerTest {
 	public void testLoadRuntimeProperties() {
 		Properties loadTest_;
 		RuntimePropertyController propController_ = new RuntimePropertyController();
+		File _file = new File("src/test/resources/loadTest.properties");
 		
-		loadTest_ = propController_.loadRuntimeProperties("/loadTest.properties");
+		loadTest_ = propController_.loadRuntimeProperties(_file.getAbsolutePath());
 
 		// Check a few of the default file properties to assure they are loaded correctly
 		assertEquals("15", loadTest_.getProperty("FUEL_COST"));

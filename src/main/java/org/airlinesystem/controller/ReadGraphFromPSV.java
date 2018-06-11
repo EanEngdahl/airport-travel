@@ -10,6 +10,7 @@ package org.airlinesystem.controller;
 
 import java.io.BufferedReader;
 import java.io.IOException;
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
@@ -33,7 +34,7 @@ public class ReadGraphFromPSV {
 	 * @return
 	 * 		N/A
 	 */
-	public void readFileInputIntoGraph(AirportGraph graphOfAirports_, String graphFileName_) 
+	public void readFileInputIntoGraph(AirportGraph graphOfAirports_, File graphFile_) 
 			throws IOException, NullPointerException, Exception{
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		_debugLogger.debug("Reading graph input file");
@@ -42,7 +43,7 @@ public class ReadGraphFromPSV {
 		String _destination;
 		double _distanceTravelled;
 		int _counter = 1;
-		try (FileInputStream _is = new FileInputStream(graphFileName_)) {
+		try (FileInputStream _is = new FileInputStream(graphFile_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
 			BufferedReader reader = new BufferedReader(_sr);
 			reader.readLine();
@@ -75,7 +76,7 @@ public class ReadGraphFromPSV {
 		}
 		catch (NullPointerException e_) {
 			throw new NullPointerException("NullPointerException: Graph file error,"
-					+ " could not find file on path- " + graphFileName_ );
+					+ " could not find file on path- " + graphFile_.getAbsolutePath());
 		}
 		catch (Exception e_) {
 			throw new Exception("Unexpected error occured while reading graph file");

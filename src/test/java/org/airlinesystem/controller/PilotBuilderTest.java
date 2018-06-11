@@ -15,7 +15,7 @@ public class PilotBuilderTest {
 	@Test
 	public void testAssignPilotToAircraft() {
 		RuntimePropertyController propManager = new RuntimePropertyController();
-		Properties testProps = propManager.createRuntimeProperties("/default.properties");
+		Properties testProps = propManager.loadDefaultProperties();
 		PilotBuilder tester = new PilotBuilder(testProps);
 	
 		char _aircraftSize = 'l';

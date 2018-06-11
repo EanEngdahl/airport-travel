@@ -17,7 +17,7 @@ public class FlightBuilderTest {
 
 		FlightBuilder tester = new FlightBuilder();
 		RuntimePropertyController propManager = new RuntimePropertyController();
-		Properties _testProps = propManager.createRuntimeProperties("/default.properties");
+		Properties _testProps = propManager.createRuntimeProperties("default.properties");
 		
 
 		char _aircraftSize = 'l';
