@@ -2,6 +2,7 @@
 # Project specific excludes
 #
 tomcat
+airlinesystem-defaults/
 
 #
 # Default excludes
