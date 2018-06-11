@@ -1,4 +1,4 @@
-/*
+/**
  * ReadModelDataIntoState
  * 		Reads data into a given flight list either from
  * 		an entire file or a single string
@@ -23,7 +23,7 @@ public class ReadModelDataIntoState {
 	
 	private static final String DELIM = "|";
 	
-	/*
+	/**
 	 * Read information from the input file then sends that information properly
 	 * formatted to be added to the FlightList line by line
 	 * 
@@ -100,7 +100,7 @@ public class ReadModelDataIntoState {
 		}
 	}
 	
-	/*
+	/**
 	 * Read information from a String then formats it and sends it to a FlightList
 	 * 
 	 * @param listOfFlights_
@@ -146,7 +146,7 @@ public class ReadModelDataIntoState {
 				_destination, _distanceTravelled, modelProperties_, airportGraph_);
 	}
 	
-	/*
+	/**
 	 * Finds the distance travelled by converting a passed String to a double
 	 * 
 	 * @param distanceTravelled_
@@ -158,7 +158,7 @@ public class ReadModelDataIntoState {
 		return Double.parseDouble(distanceTravelled_);
 	}
 	
-	/*
+	/**
 	 * Finds the aircraftSize that a flight will use by taking the first
 	 * character of a passed String and returning it
 	 * 
@@ -173,7 +173,7 @@ public class ReadModelDataIntoState {
 		return aircraftSize_.charAt(0);
 	}
 	
-	/*
+	/**
 	 * Finds the max seats in a section by converting a passed String to an integer
 	 * 
 	 * @param maxSeatsInSection_
@@ -186,7 +186,7 @@ public class ReadModelDataIntoState {
 		return Integer.parseInt(maxSeatsInSection_);
 	}
 	
-	/*
+	/**
 	 * Finds the number of seats filled in a section by converting 
 	 * a passed String to an integer
 	 * 
@@ -200,7 +200,7 @@ public class ReadModelDataIntoState {
 		return Integer.parseInt(seatsFilledInSection_);
 	}
 	
-	/*
+	/**
 	 * Finds the cost of an individual seat in a section by converting 
 	 * a passed String to a BigDecimal
 	 * 

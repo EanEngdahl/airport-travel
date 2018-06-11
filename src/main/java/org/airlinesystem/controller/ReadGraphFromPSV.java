@@ -1,4 +1,4 @@
-/*
+/**
  * ReadGraphFromPSV Class
  * 		Reads a file input line by line with | as delimiters
  * 		this information is then converted to needed data types
@@ -22,7 +22,7 @@ public class ReadGraphFromPSV {
 
 	private static final String DELIM = "|";
 
-	/*
+	/**
 	 * Reads a given file where each line contains two vertices (airports) that have an edge
 	 * between them and a weight (distance) between them
 	 * 
@@ -82,7 +82,7 @@ public class ReadGraphFromPSV {
 		}
 	}
 	
-	/*
+	/**
 	 * Reads a single 'edge' into the graph where each edge is two vertices (airports) with a weight
 	 * 
 	 * @param graphOfAirports_
@@ -110,7 +110,7 @@ public class ReadGraphFromPSV {
 		}
 	}
 	
-	/*
+	/**
 	 * Finds the distance travelled by converting a passed String to a double
 	 * 
 	 * @param distanceTravelled_

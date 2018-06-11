@@ -1,4 +1,4 @@
-/*
+/**
  * FlightRCPManager class
  *		Calculates the revenue, cost, and overall profit
  *		for a given flight
@@ -21,14 +21,14 @@ import org.jgrapht.graph.DefaultEdge;
 public class FlightRCPManager {
 	private BigDecimal fuelCost;
 	
-	/*
+	/**
 	 * Default constructor
 	 */
 	public FlightRCPManager(Properties modelProperties_) {
 		fuelCost = new BigDecimal(modelProperties_.getProperty("FUEL_COST"));
 	}
 	
-	/*
+	/**
 	 * Calculate and set revenue class variable
 	 * 
 	 * @param flightToCalculate_
@@ -48,7 +48,7 @@ public class FlightRCPManager {
 		return _revenue;
 	}
 
-	/*
+	/**
 	 * Calculate and set cost class variable
 	 * 
 	 * @param flightToCalculate_
@@ -64,7 +64,7 @@ public class FlightRCPManager {
 		return _cost;
 	}
 	
-	/*
+	/**
 	 * Calculate and set profit class variable
 	 * 
 	 * @param flightToCalculate_
@@ -79,7 +79,7 @@ public class FlightRCPManager {
 		return _profit;
 	}
 	
-	/*
+	/**
 	 * Find Revenue, Cost, and Profit for an array
 	 * 
 	 * @param flightToCalculate_
@@ -96,7 +96,7 @@ public class FlightRCPManager {
 		return _flightRCPArray;
 	}
 	
-	/*
+	/**
 	 * Calculate Overall profit for an entire list of flights
 	 * 
 	 * @param listOfFlights_
@@ -127,7 +127,7 @@ public class FlightRCPManager {
 		return _totalFlightRCPArray;
 	}
 
-	/*
+	/**
 	 *  Finds the average profit over all the flights from a source to a destination airport.
 	 *  
 	 * 	@param listOfFlights_

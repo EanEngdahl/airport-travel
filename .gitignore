@@ -25,15 +25,15 @@ tomcat
 #
 # Maven 
 #
-target/
+target/****
 
 
 #
 # X-Platform
 #
-rdat/
-bin/
-log/
+rdat/****
+bin/****
+log/****
 
 #
 # IntelliJ project files 
@@ -41,23 +41,23 @@ log/
 *.iml
 *.iws
 *.ipr
-.idea/
+.idea/****
 
 #
 # eclipse project file
 #
-.settings/
+.settings/****
 .classpath
 .project
 
 #
 # NetBeans specific
 #
-nbproject/private/
-build/
-nbbuild/
-dist/
-nbdist/
+nbproject/****
+build/****
+nbbuild/****
+dist/****
+nbdist/****
 nbactions.xml
 nb-configuration.xml
 
@@ -74,4 +74,5 @@ nb-configuration.xml
 release.properties
 pom.xml.releaseBackup
 pom.xml.tag
-logs/
+logs/****
+/****

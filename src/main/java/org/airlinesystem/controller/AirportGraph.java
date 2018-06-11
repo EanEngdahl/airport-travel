@@ -1,4 +1,4 @@
-/*
+/**
  * AirportGraph class
  *		Creates an undirected weighted graph that allows 
  *		changes to the graph such as adding airports (vertexes),
@@ -25,7 +25,7 @@ public class AirportGraph {
 	private Graph<String, DefaultEdge> graphOfAirports;
 	private HashMap<String, Airport> mapAirportToName;
 
-	/*
+	/**
 	 * Constructor, initializes graph
 	 */
 	public AirportGraph() {
@@ -33,7 +33,7 @@ public class AirportGraph {
 		mapAirportToName = new HashMap<String, Airport>();
 	}
 	
-	/*
+	/**
 	 * Add a new airport by creating a new vertex on the graph
 	 * based on the airport object input
 	 * 
@@ -48,7 +48,7 @@ public class AirportGraph {
 		mapAirportToName.put(airport_.getName(), airport_);
 	}
 	
-	/*
+	/**
 	 * Add a new edge (flight) between vertices (airports) if they are not
 	 * connected, not the same airport, and the distance is positive
 	 * 
@@ -74,7 +74,7 @@ public class AirportGraph {
 		return true;
 	}
 	
-	/*
+	/**
 	 * Finds the distance between two airports based on their names
 	 * 
 	 *  @param source_
@@ -92,7 +92,7 @@ public class AirportGraph {
 		return 0;
 	}
 
-	/*
+	/**
 	 * Remove a connection between two airports
 	 * only if there exists a connection
 	 * 
@@ -107,7 +107,7 @@ public class AirportGraph {
 		graphOfAirports.removeEdge(source_, destination_);
 	}
 
-	/*
+	/**
 	 * Remove an airport from the graph and all connections
 	 * only if it exists
 	 * 
@@ -121,7 +121,7 @@ public class AirportGraph {
 		mapAirportToName.remove(airport_);
 	}
 
-	/*
+	/**
 	 * Find if an airport is present in the graph
 	 * 
 	 * @param airport_
@@ -133,7 +133,7 @@ public class AirportGraph {
 		return graphOfAirports.containsVertex(airport_);
 	}
 	
-	/*
+	/**
 	 * Find if two airports are directly connected
 	 * 
 	 * @param source_
@@ -147,7 +147,7 @@ public class AirportGraph {
 		return graphOfAirports.containsEdge(source_, destination_);
 	}
 	
-	/*
+	/**
 	 * Returns airport object from hash map based on name
 	 * 
 	 * @param airportName_
@@ -160,7 +160,7 @@ public class AirportGraph {
 	}
 
 	
-	/*
+	/**
 	 * 	Sorts edges in ascending order
 	 * 
 	 * @return
@@ -184,7 +184,7 @@ public class AirportGraph {
 		return _sortedEdges;
 	}
 	
-	/*
+	/**
 	 * Prints the current graph of the airports by iterating
 	 * through the set of vertices and each of their edges
 	 * 
@@ -215,7 +215,7 @@ public class AirportGraph {
 		}
 	}
 	
-	/*
+	/**
 	 * Completely empties the graph and any airport mappings
 	 * 
 	 * @return

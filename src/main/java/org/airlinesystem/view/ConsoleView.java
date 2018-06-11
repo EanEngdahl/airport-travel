@@ -1,4 +1,4 @@
-/*
+/**
  * ConsoleView Class
  * 		Contains displays that are shown to the user
  * 		when necessary
@@ -18,7 +18,7 @@ public class ConsoleView {
 	
 	private Logger menuLogger = LoggerFactory.getLogger("menuLogger");
 
-	/*
+	/**
 	 * Prompts a user to choose to input either a new properties or graph file
 	 * uses default files if nothing is entered
 	 * 
@@ -63,7 +63,7 @@ public class ConsoleView {
 		return _fileNames;
 	}	
 
-	/*
+	/**
 	 * Displays main menu where all other options can be accessed from
 	 * 
 	 * @param output_
@@ -115,7 +115,7 @@ public class ConsoleView {
 		}
 	}
 	
-	/*
+	/**
 	 * Prompts a user to choose to input two airport names
 	 * to be used for finding average profit for flights between them
 	 * 
@@ -135,7 +135,7 @@ public class ConsoleView {
 		return _airportNames;
 	}
 	
-	/*
+	/**
 	 * Prompts a user to choose to input either a new data file
 	 * to read from
 	 * 
@@ -149,7 +149,7 @@ public class ConsoleView {
 		return input_.nextLine();
 	}
 	
-	/*
+	/**
 	 * Displays the average profit found between two airports
 	 * that were entered by the user
 	 * 
@@ -164,7 +164,7 @@ public class ConsoleView {
 		menuLogger.info("The average profit is ${}\n\n", _numberFormatter.format(averageProfit_));
 	}
 	
-	/*
+	/**
 	 * Displays general results found from used data
 	 * 
 	 * @param output_

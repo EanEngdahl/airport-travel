@@ -1,4 +1,4 @@
-/*
+/**
  * PilotBuilder class
  *		Creates a new pilot object given specific requirements
  */
@@ -27,7 +27,7 @@ public class PilotBuilder {
     	_seniorCost = new BigDecimal(modelProperties_.getProperty("SENIOR_PILOT_PAY"));
     }
     
-    /*
+    /**
      * Create new pilot based off size of plane they will be flying
      * 
      * @param aircraftSize_

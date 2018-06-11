@@ -9,7 +9,7 @@ import org.jgrapht.graph.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-/*
+/**
  *  Generates the data for the airport system based on the configuration file and 
  *  airport graph provided. This is intended to simulate the data from a basic
  *  POS system.
@@ -23,7 +23,7 @@ public class GenerateModelData {
     private static final char SMALL = 's';
     private static final char NO_SIZE_PREF = 'n';
     
-	/*
+	/**
 	 *  Chooses a random edge from the graph to act as the path for a flight.
 	 *  
 	 *  @param edgeList_ The list of sorted edges returned by the sort method
@@ -64,7 +64,7 @@ public class GenerateModelData {
 		return edgeList_.get(_selection);
 	}
 
-	/*
+	/**
 	 *  Generate the amount of seats filled in each section on an airplane
 	 *  for a certain flight. This depends on the flight size and the information
 	 *  is loaded from the properties file.
@@ -175,7 +175,7 @@ public class GenerateModelData {
 		return genString_;
 	}
 
-	/*
+	/**
 	 *  This ties all of the random information and information from the properties file
 	 *  into a single string to be parsed into a single Flight.
 	 *  
@@ -225,7 +225,7 @@ public class GenerateModelData {
 		return _flight;
 	}
 
-	/*
+	/**
 	 *  Runs through the total number of flights to be created by the current model and
 	 *  reads them into the state.
 	 *  

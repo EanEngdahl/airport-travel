@@ -1,4 +1,4 @@
-/*
+/**
  * RuntimePropertyController class
  *  	Manages the loading of the properties file that are specific
  *  	to this program.
@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 public class RuntimePropertyController {
 
-	/*
+	/**
 	 * Loads the default.properties file and throws exceptions
 	 * if it is unable to.
 	 * 
@@ -41,7 +41,7 @@ public class RuntimePropertyController {
 		return _defaultProperties;
 	}
 
-	/*
+	/**
 	 *  Loads in the runtime properties for a specified properties file and
 	 *  reverts to default if it is not readable
 	 *  
@@ -66,7 +66,7 @@ public class RuntimePropertyController {
 		return _defaultProperties;
 	}
 
-	/*
+	/**
 	 *  Decides whether to load the defaults or use the custom properties 
 	 *  file, then calls the appropriate method for loading.
 	 *  

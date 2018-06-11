@@ -1,4 +1,4 @@
-/*
+/**
  * AirlineSimulationBuilder class
  *		Runs a full simulation with calculations
  */
@@ -20,7 +20,7 @@ public class AirlineSimulationBuilder {
 	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
 	private Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 	
-	/*
+	/**
 	 * Attempts to process a graph file given a name and graph to process it into
 	 * by call on the class for reading graphs
 	 * 
@@ -42,7 +42,7 @@ public class AirlineSimulationBuilder {
 		}
 	}
 	
-	/*
+	/**
 	 * Generates data to fill a flightList with the number of flights taken from properties
 	 * 
 	 * @param modelProperties_
@@ -70,7 +70,7 @@ public class AirlineSimulationBuilder {
 		}
 	}
 	
-	/*
+	/**
 	 * Attempts to find the total revenue, cost, and profit of an entire flight list
 	 * 
 	 * @param listOfFlights_
@@ -95,7 +95,7 @@ public class AirlineSimulationBuilder {
 	
 	}
 	
-	/*
+	/**
 	 * Attempts to simulate by processing graph and properties then generating data
 	 * and finding results from that data
 	 * 
@@ -143,7 +143,7 @@ public class AirlineSimulationBuilder {
 		}
 	}
 	
-	/*
+	/**
 	 * Attempts to find results by using a data file already filled with flight
 	 * information to find results
 	 * 

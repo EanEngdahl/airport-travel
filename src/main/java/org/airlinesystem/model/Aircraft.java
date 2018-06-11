@@ -4,7 +4,7 @@ import java.math.BigDecimal;
 
 public class Aircraft {
 
-	/* will be size of s, m, l */
+	/** will be size of s, m, l */
 	private char aircraftSize;
 	private AircraftSectionList sectionList;
 	private int maxAircraftSeats;

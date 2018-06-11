@@ -1,4 +1,4 @@
-/*
+/**
  * FlightBuilder class
  *		Creates a new flight using given data by adding 
  *		pilots, aircraft, and airports that will be stored
@@ -19,7 +19,7 @@ import java.util.Properties;
 
 public class FlightBuilder {
 	
-    /*
+    /**
      * Create new flight based off requirements passed in
      * 
      * @param aircraftSize_
@@ -67,12 +67,12 @@ public class FlightBuilder {
 		setFlightRCPData(_newFlightFromData, modelProperties_);
 		
 		return _newFlightFromData;
-		/* TODO: newFlightFromData will go to a database/file storing all the flights for 
+		/** TODO: newFlightFromData will go to a database/file storing all the flights for 
 		 * querying etc.
 		 */
 	}
 	
-	/*
+	/**
 	 * Sets a given flight's revenue, cost, and profit data
 	 * 
 	 * @param flightToSet_
@@ -88,7 +88,7 @@ public class FlightBuilder {
 		flightToSet_.setProfit(_flightRCPArray[2]);
 	}
 	
-	/*
+	/**
 	 * Finds the number of passengers that are actually on a flight
 	 * 
 	 * @param seatsFilledPerSection_
@@ -100,7 +100,7 @@ public class FlightBuilder {
 		return IntStream.of(seatsFilledPerSection_).sum();
 	}
 	
-	/*
+	/**
 	 * Find the number of seats on a flight
 	 * 
 	 * @param maxSeatsPerSection_

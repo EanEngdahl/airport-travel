@@ -1,4 +1,4 @@
-/*
+/**
  * AirlineSimulation class
  *		Model class representing the simulation's state
  */

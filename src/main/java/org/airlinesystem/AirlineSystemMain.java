@@ -26,7 +26,7 @@ public class AirlineSystemMain {
 		AirlineSimulation _simulation = new AirlineSimulation();
 		ConsoleViewController _consoleOut = new ConsoleViewController();
 
-		/*
+		/**
 		 *  Handles the parsing of command line arguments passed to the main
 		 */
 		Options _options = new Options();
@@ -66,7 +66,7 @@ public class AirlineSystemMain {
 			_e.getMessage();
 		}
 
-		/*
+		/**
 		 *  Decides whether or not a console menu was requested
 		 */
 		if(!_menuFlag) {
@@ -87,7 +87,7 @@ public class AirlineSystemMain {
 			return;
 		}
 		
-		/*
+		/**
 		 *  Runs the console menu if it is applicable
 		 */
 		String _fileNameList[] = {_propertiesFileName, _graphFileName};

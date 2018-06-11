@@ -1,4 +1,4 @@
-/*
+/**
  * ConsoleViewController class
  *		Controllers user display and input
  *		options available
@@ -16,7 +16,7 @@ import org.slf4j.Logger;
 
 public class ConsoleViewController {
 
-	/*
+	/**
 	 * Main menu controller for user, handles all main menu input
 	 * 
 	 * @param consoleLogger_
