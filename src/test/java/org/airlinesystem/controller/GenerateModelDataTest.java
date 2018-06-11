@@ -6,6 +6,7 @@ import org.junit.Test;
 import org.junit.BeforeClass;
 
 import java.util.Properties;
+import java.io.File;
 
 import org.airlinesystem.model.FlightList;
 
@@ -19,13 +20,13 @@ public class GenerateModelDataTest {
 	@BeforeClass
 	public static void initialize() {
 
-		props = new RuntimePropertyController().loadRuntimeProperties("default.properties");
+		props = new RuntimePropertyController().loadDefaultProperties();
 		gen = new GenerateModelData();
 		airportGraph = new AirportGraph();
 		
 		ReadModelDataIntoState _in = new ReadModelDataIntoState();
 		try {
-		_in.readFileInputIntoFlightList(new FlightList(), "/test-model-data", props, 
+		_in.readFileInputIntoFlightList(new FlightList(), new File("/test-model-data"), props, 
 				airportGraph);
 		} catch(Exception e) {
 		}

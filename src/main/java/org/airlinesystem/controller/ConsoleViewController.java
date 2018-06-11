@@ -9,6 +9,7 @@ package org.airlinesystem.controller;
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.io.File;
 
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.view.*;
@@ -31,11 +32,11 @@ public class ConsoleViewController {
 	 * 		N/A
 	 */
 	public void menuController(Logger consoleLogger_, String [] fileNameList_,
-			AirlineSimulation simulation_, AirlineSimulationBuilder simulator_, String dataFile_) {
+			AirlineSimulation simulation_, AirlineSimulationBuilder simulator_, File dataFile_) {
 
 		int _selection;
-		String _propertiesFileName = fileNameList_[0];
-		String _graphFileName = fileNameList_[1];
+		File _propertiesFile = new File(fileNameList_[0]);
+		File _graphFile = new File(fileNameList_[1]);
 		String[] _airportNames;
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
@@ -51,17 +52,17 @@ public class ConsoleViewController {
 				case 1:
 					fileNameList_ = _consoleOut.promptUserForFileNames(consoleLogger_, _input);
 					if(fileNameList_[0] != null && !(fileNameList_[0].isEmpty())) {
-						_propertiesFileName = fileNameList_[0];
+						_propertiesFile = new File(fileNameList_[0]);
 					}
 					if(fileNameList_[1] != null && !(fileNameList_[1].isEmpty())) {
-						_graphFileName = fileNameList_[1];
+						_graphFile = new File(fileNameList_[1]);
 					}
 					_hasSimBeenRun = false;
 					break;
 				case 2:
 					simulation_.getListOfFlights().clear();
 					simulation_.getGraphOfAirports().clearGraph();
-					simulator_.runSimulation(_propertiesFileName, _graphFileName, simulation_);
+					simulator_.runSimulation(_propertiesFile, _graphFile, simulation_);
 					if(simulation_.getListOfFlights().size() != 0) {
 					_hasSimBeenRun = true;
 					}
@@ -105,13 +106,14 @@ public class ConsoleViewController {
 				case 5:
 					simulation_.getListOfFlights().clear();
 					simulation_.getGraphOfAirports().clearGraph();
-					dataFile_ = _consoleOut.promptForDataFile(_input);
-					if(dataFile_ == (null) || dataFile_.equals("")) {
-						dataFile_ = "/default-data";
+					String _dataFileName = _consoleOut.promptForDataFile(_input);
+					if(_dataFileName == (null) || _dataFileName.equals("")) {
+						dataFile_ = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default-data");
 						consoleLogger_.error("Invalid entry, reverting to default-data file\n");
 					}
+					dataFile_ = new File(_dataFileName);
 					try {
-						simulator_.runFromDataFile(_propertiesFileName, dataFile_, simulation_);
+						simulator_.runFromDataFile(_propertiesFile, dataFile_, simulation_);
 						_hasSimBeenRun = true;
 					}
 					catch (Exception e_) {
