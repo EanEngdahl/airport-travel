@@ -1,7 +1,6 @@
 package org.airlinesystem.helpers;
 
 import static org.junit.Assert.*;
-
 import org.junit.Test;
 import org.junit.BeforeClass;
 
@@ -13,7 +12,6 @@ import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.helpers.GenerateModelData;
 import org.airlinesystem.helpers.ReadModelDataIntoState;
 import org.airlinesystem.model.FlightList;
-
 
 public class GenerateModelDataTest {
 
@@ -30,8 +28,8 @@ public class GenerateModelDataTest {
 		
 		ReadModelDataIntoState _in = new ReadModelDataIntoState();
 		try {
-		_in.readFileInputIntoFlightList(new FlightList(), new File("/test-model-data"), props, 
-				airportGraph);
+			_in.readFileInputIntoFlightList(new FlightList(), new File("/test-model-data"), 
+					props, airportGraph);
 		} catch(Exception e) {
 		}
 

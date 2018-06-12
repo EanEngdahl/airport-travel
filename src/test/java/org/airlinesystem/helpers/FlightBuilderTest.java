@@ -1,6 +1,8 @@
 package org.airlinesystem.helpers;
 
 import static org.junit.Assert.*;
+import org.junit.Test;
+import org.junit.BeforeClass;
 
 import java.math.BigDecimal;
 import java.util.Properties;
@@ -8,18 +10,22 @@ import java.util.Properties;
 import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
-import org.junit.Test;
 
 public class FlightBuilderTest {
 
+	private static FlightBuilder testDispatcher;
+	private static RuntimePropertyController propManager;
+	private static Properties testProps;
+	
+	@BeforeClass
+	public static void initialize() {
+		testDispatcher = new FlightBuilder();
+		propManager = new RuntimePropertyController();
+		testProps = propManager.loadDefaultProperties();
+	}
+	
 	@Test
 	public void testFlightDispatchService() {
-
-		FlightBuilder tester = new FlightBuilder();
-		RuntimePropertyController propManager = new RuntimePropertyController();
-		Properties _testProps = propManager.loadDefaultProperties();
-		
-
 		char _aircraftSize = 'l';
 		int _maxSeats[] = new int[] {150, 100, 100, 50};
 		int _seatsFilled[] = new int[] {73, 42, 10, 5};
@@ -29,8 +35,8 @@ public class FlightBuilderTest {
 		String _dest = "2";
 		double _distanceTravelled = 2500;
 		
-		Flight testDispatch = tester.flightDispatchService(_aircraftSize, _maxSeats, 
-				_seatsFilled, _seatCost, _source, _dest, _distanceTravelled, _testProps);
+		Flight testDispatch = testDispatcher.flightDispatchService(_aircraftSize, _maxSeats, 
+				_seatsFilled, _seatCost, _source, _dest, _distanceTravelled, testProps);
 
 		assertEquals("Plane size should be large", 'l', testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 400", 400, 
@@ -44,7 +50,8 @@ public class FlightBuilderTest {
 		assertEquals("Pilot should be senior level", 2, testDispatch.getPilot().getSeniority());
 		assertEquals("CoPilot should be senior level", 2, testDispatch.getCoPilot().getSeniority());
 		for(int i = 0; i < _seatCost.length; i ++) {
-			assertEquals("Seat cost for this section should be " + _seatCost[i], _seatCost[i], testDispatch.getSeatCostPerSection()[i]);
+			assertEquals("Seat cost for this section should be " + _seatCost[i], 
+					_seatCost[i], testDispatch.getSeatCostPerSection()[i]);
 		}
 		
 		_aircraftSize = 'm';
@@ -56,8 +63,8 @@ public class FlightBuilderTest {
 		_dest = "3";
 		_distanceTravelled = 1237;
 		
-		testDispatch = tester.flightDispatchService(_aircraftSize, _maxSeats, 
-				_seatsFilled, _seatCostMedium, _source, _dest, _distanceTravelled, _testProps);
+		testDispatch = testDispatcher.flightDispatchService(_aircraftSize, _maxSeats, 
+				_seatsFilled, _seatCostMedium, _source, _dest, _distanceTravelled, testProps);
 		assertEquals("Plane size should be medium", 'm', testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 200", 200, 
 				testDispatch.getAircraftAssigned().getMaxAircraftSeats());
@@ -82,8 +89,8 @@ public class FlightBuilderTest {
 		_dest = "1";
 		_distanceTravelled = 232;
 		
-		testDispatch = tester.flightDispatchService(_aircraftSize, _maxSeats, 
-				_seatsFilled, _seatCostSmall, _source, _dest, _distanceTravelled, _testProps);
+		testDispatch = testDispatcher.flightDispatchService(_aircraftSize, _maxSeats, 
+				_seatsFilled, _seatCostSmall, _source, _dest, _distanceTravelled, testProps);
 		assertEquals("Plane size should be small", 's', testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 50", 50, 
 				testDispatch.getAircraftAssigned().getMaxAircraftSeats());
@@ -96,7 +103,8 @@ public class FlightBuilderTest {
 		assertEquals("Pilot should be bottom level", 0, testDispatch.getPilot().getSeniority());
 		assertEquals("CoPilot should be bottom level", 0, testDispatch.getCoPilot().getSeniority());
 		for(int i = 0; i < _seatCost.length; i ++) {
-			assertEquals("Seat cost for this section should be " + _seatCostSmall[i], _seatCostSmall[i], testDispatch.getSeatCostPerSection()[i]);
+			assertEquals("Seat cost for this section should be " + _seatCostSmall[i], 
+					_seatCostSmall[i], testDispatch.getSeatCostPerSection()[i]);
 		}
 	}
 }

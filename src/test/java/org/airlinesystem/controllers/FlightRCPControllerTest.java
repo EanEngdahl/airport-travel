@@ -1,27 +1,39 @@
 package org.airlinesystem.controllers;
 
 import static org.junit.Assert.*;
+import org.junit.BeforeClass;
+import org.junit.Test;
+
+import java.math.BigDecimal;
+import java.util.Properties;
 
 import org.airlinesystem.controllers.FlightRCPController;
 import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
-import org.junit.Test;
-import java.math.BigDecimal;
-import java.util.Properties;
 
 public class FlightRCPControllerTest {
 	
 	private final static int MAX_SEATS[] = {10, 10, 10, 10};
 	private final static int SEATS_FILLED[] = {10, 10, 10, 10};
-	private final static BigDecimal SEAT_COST[] =  {new BigDecimal(10), new BigDecimal(15), new BigDecimal(20),
-			new BigDecimal(25)};
+	private final static BigDecimal SEAT_COST[] =  {new BigDecimal(10), 
+			new BigDecimal(15), new BigDecimal(20), new BigDecimal(25)};
 
-	RuntimePropertyController propManager = new RuntimePropertyController();
-	Properties testProps = propManager.loadDefaultProperties();
-	FlightBuilder fd = new FlightBuilder();
-	Flight testFlight = fd.flightDispatchService('l', MAX_SEATS, SEATS_FILLED, SEAT_COST, "1", "2", 100, testProps);
-	FlightRCPController testRcp = new FlightRCPController(testProps);
+	private static RuntimePropertyController propManager;
+	private static Properties testProps;
+	private static FlightBuilder fd;
+	private static Flight testFlight;
+	private static FlightRCPController testRcp;
+	
+	@BeforeClass
+	public static void initialize() {
+		propManager = new RuntimePropertyController();
+		testProps = propManager.loadDefaultProperties();
+		fd = new FlightBuilder();
+		testFlight = fd.flightDispatchService('l', MAX_SEATS, SEATS_FILLED, 
+				SEAT_COST, "1", "2", 100, testProps);
+		testRcp = new FlightRCPController(testProps);
+	}
 	
 	@Test
 	public void testFindRevenue() {
@@ -40,7 +52,8 @@ public class FlightRCPControllerTest {
 		
 		costTest = testRcp.findCost(testFlight);
 		
-		assertEquals("The value of cost does not match", expectedCost.doubleValue(), costTest.doubleValue(), .01);
+		assertEquals("The value of cost does not match", expectedCost.doubleValue(),
+				costTest.doubleValue(), .01);
 	}
 
 	@Test
@@ -50,7 +63,7 @@ public class FlightRCPControllerTest {
 		
 		profitTest = testRcp.findProfit(testFlight);
 		
-		assertEquals("The value of profit does not match", expectedProfit.doubleValue(), profitTest.doubleValue(), .01);
+		assertEquals("The value of profit does not match", expectedProfit.doubleValue(), 
+				profitTest.doubleValue(), .01);
 	}
-
 }

@@ -70,8 +70,12 @@ public class AirportGraph implements AirportGraphInterface {
 			_debugLogger.debug("Invalid graph input found, input ignored.");
 			return false;
 		}
+		try {
 		graphOfAirports.addEdge(source_, destination_);
 		graphOfAirports.setEdgeWeight(graphOfAirports.getEdge(source_, destination_), distance_);
+		} catch (Exception e_) {
+			return false;
+		}
 		return true;
 	}
 	
