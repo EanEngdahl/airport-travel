@@ -29,7 +29,7 @@ public class PilotBuilder {
      * Create new pilot based off size of plane they will be flying
      * 
      * @param aircraftSize_
-     * 		character that represents the size of plane that will be
+     * 		AircraftSize enum value that represents the size of plane that will be
      * 		passed in and used to determine the pilot assigned
      * @return
      * 		a new pilot to be assigned to the flight

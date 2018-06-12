@@ -25,7 +25,7 @@ public class FlightBuilder {
      * Create new flight based off requirements passed in
      * 
      * @param aircraftSize_
-     * 		character that represents the size of plane that will be
+     * 		enum that represents the size of plane that will be
      * 		passed in and used to determine the pilot assigned
      * @param maxSeatsPerSection_
      * 		integer array used to determine total number of seats on
