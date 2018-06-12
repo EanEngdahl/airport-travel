@@ -200,16 +200,16 @@ public class GenerateModelData {
 		double _distance = airportGraph_.getGraphOfAirports().getEdgeWeight(_randomEdge);
 	
 		if(_distance < Double.parseDouble(modelProperties_.getProperty("SMALL_PLANE_MAX_RANGE"))) {
-			_airplaneSize = 'S';
+			_airplaneSize = 's';
 			_maxSeatsPerSection = modelProperties_.getProperty("SMALL_PLANE_SEAT_MAX_PER_SECTION");
 			_seatPricePerSection = modelProperties_.getProperty("SMALL_PLANE_SEAT_PRICE");
 
 		} else if (_distance < Double.parseDouble(modelProperties_.getProperty("MEDIUM_PLANE_MAX_RANGE"))) {
-			_airplaneSize = 'M';
+			_airplaneSize = 'm';
 			_maxSeatsPerSection = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_MAX_PER_SECTION");
 			_seatPricePerSection = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_PRICE");
 		} else {
-			_airplaneSize = 'L';
+			_airplaneSize = 'l';
 			_maxSeatsPerSection = modelProperties_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION");
 			_seatPricePerSection = modelProperties_.getProperty("LARGE_PLANE_SEAT_PRICE");
 		}
