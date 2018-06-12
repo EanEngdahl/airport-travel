@@ -45,7 +45,7 @@ public class FlightBuilder {
      * @return
      * 		A new flight that has all variables set
      */
-	public Flight flightDispatchService(char aircraftSize_, int maxSeatsPerSection_[], 
+	public Flight flightDispatchService(AircraftSize aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
 			String source_, String destination_, double distanceTravelled_,
 			Properties modelProperties_) {
@@ -56,8 +56,8 @@ public class FlightBuilder {
 		
 		PilotBuilder assignPilots = new PilotBuilder(modelProperties_);
 
-		_pilot = assignPilots.assignPilotToAircraft(AircraftSize.valueOf(String.valueOf(aircraftSize_).toUpperCase()));
-		_coPilot = assignPilots.assignPilotToAircraft(AircraftSize.valueOf(String.valueOf(aircraftSize_).toUpperCase()));	
+		_pilot = assignPilots.assignPilotToAircraft(aircraftSize_);
+		_coPilot = assignPilots.assignPilotToAircraft(aircraftSize_);	
 		_aircraftAssigned = new Aircraft(aircraftSize_, getTotalNumOfPassengers(seatsFilledPerSection_),
 				seatsFilledPerSection_, seatCostPerSection_, getMaxAircraftSeats(maxSeatsPerSection_));
 		Airport source = new Airport(source_);

@@ -11,6 +11,7 @@ import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
 import org.airlinesystem.model.AircraftPilotSeniority;
+import org.airlinesystem.model.AircraftSize;
 
 public class FlightBuilderTest {
 
@@ -27,7 +28,7 @@ public class FlightBuilderTest {
 	
 	@Test
 	public void testFlightDispatchService() {
-		char _aircraftSize = 'l';
+		AircraftSize _aircraftSize = AircraftSize.L;
 		int _maxSeats[] = new int[] {150, 100, 100, 50};
 		int _seatsFilled[] = new int[] {73, 42, 10, 5};
 		BigDecimal _seatCost[] = {new BigDecimal("250"), new BigDecimal("350"), 
@@ -39,7 +40,7 @@ public class FlightBuilderTest {
 		Flight testDispatch = testDispatcher.flightDispatchService(_aircraftSize, _maxSeats, 
 				_seatsFilled, _seatCost, _source, _dest, _distanceTravelled, testProps);
 
-		assertEquals("Plane size should be large", 'l', testDispatch.getAircraftSize());
+		assertEquals("Plane size should be large", AircraftSize.L, testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 400", 400, 
 				testDispatch.getAircraftAssigned().getMaxAircraftSeats());
 		assertEquals("Plane seats filled should be the same as entered", _seatsFilled, 
@@ -55,7 +56,7 @@ public class FlightBuilderTest {
 					_seatCost[i], testDispatch.getSeatCostPerSection()[i]);
 		}
 		
-		_aircraftSize = 'm';
+		_aircraftSize = AircraftSize.M;
 		_maxSeats = new int[] {100, 0, 70, 30};
 		_seatsFilled = new int[] {27, 0, 35, 3};
 		BigDecimal _seatCostMedium[] = {new BigDecimal("150"), new BigDecimal("0"), 
@@ -66,7 +67,7 @@ public class FlightBuilderTest {
 		
 		testDispatch = testDispatcher.flightDispatchService(_aircraftSize, _maxSeats, 
 				_seatsFilled, _seatCostMedium, _source, _dest, _distanceTravelled, testProps);
-		assertEquals("Plane size should be medium", 'm', testDispatch.getAircraftSize());
+		assertEquals("Plane size should be medium", AircraftSize.M, testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 200", 200, 
 				testDispatch.getAircraftAssigned().getMaxAircraftSeats());
 		assertEquals("Plane seats filled should be the same as entered", _seatsFilled, 
@@ -81,7 +82,7 @@ public class FlightBuilderTest {
 			assertEquals("Seat cost for this section should be " + _seatCostMedium[i], _seatCostMedium[i], testDispatch.getSeatCostPerSection()[i]);
 		}
 		
-		_aircraftSize = 's';
+		_aircraftSize = AircraftSize.S;
 		_maxSeats = new int[] {50, 0, 0, 0};
 		_seatsFilled = new int[] {33, 0, 0, 0};
 		BigDecimal _seatCostSmall[] = {new BigDecimal("100"), new BigDecimal("0"), 
@@ -92,7 +93,7 @@ public class FlightBuilderTest {
 		
 		testDispatch = testDispatcher.flightDispatchService(_aircraftSize, _maxSeats, 
 				_seatsFilled, _seatCostSmall, _source, _dest, _distanceTravelled, testProps);
-		assertEquals("Plane size should be small", 's', testDispatch.getAircraftSize());
+		assertEquals("Plane size should be small", AircraftSize.S, testDispatch.getAircraftSize());
 		assertEquals("Max number of seats should be 50", 50, 
 				testDispatch.getAircraftAssigned().getMaxAircraftSeats());
 		assertEquals("Plane seats filled should be the same as entered", _seatsFilled, 

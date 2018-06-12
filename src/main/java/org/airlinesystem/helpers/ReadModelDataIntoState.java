@@ -17,6 +17,7 @@ import java.util.StringTokenizer;
 
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.model.AircraftSize;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -52,7 +53,7 @@ public class ReadModelDataIntoState {
 		String _source;
 		String _destination;
 		double _distanceTravelled;
-		char _aircraftSize;
+		AircraftSize _aircraftSize;
 		int _maxSeatsPerSection[] = new int [4];
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
@@ -73,7 +74,7 @@ public class ReadModelDataIntoState {
 				_source = tokenizer.nextToken();
 				_destination = tokenizer.nextToken();
 				_distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
-				_aircraftSize = setAircraftSize(tokenizer.nextToken());
+				_aircraftSize = AircraftSize.valueOf(tokenizer.nextToken());
 				
 				for (int i = 0; i < 4; i++) {
 					_maxSeatsPerSection[i] = setMaxSeatsPerSection(tokenizer.nextToken());
@@ -125,7 +126,7 @@ public class ReadModelDataIntoState {
 		String _source;
 		String _destination;
 		double _distanceTravelled;
-		char _aircraftSize;
+		AircraftSize _aircraftSize;
 		int _maxSeatsPerSection[] = new int [4];
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
@@ -134,7 +135,7 @@ public class ReadModelDataIntoState {
 		_source = tokenizer.nextToken();
 		_destination = tokenizer.nextToken();
 		_distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
-		_aircraftSize = setAircraftSize(tokenizer.nextToken());
+		_aircraftSize = AircraftSize.valueOf(tokenizer.nextToken());
 		
 		for (int i = 0; i < 4; i++) {
 			_maxSeatsPerSection[i] = setMaxSeatsPerSection(tokenizer.nextToken());
@@ -171,12 +172,13 @@ public class ReadModelDataIntoState {
 	 * @return
 	 * 		character that represented the size of the aircraft to use for the
 	 * 		flight (s, m, l)
-	 */
+	 *
 	public char setAircraftSize(String aircraftSize_) {
 		
 		return aircraftSize_.charAt(0);
 	}
-	
+    */
+
 	/**
 	 * Finds the max seats in a section by converting a passed String to an integer
 	 * 

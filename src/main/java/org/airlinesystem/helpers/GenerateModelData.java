@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.model.AircraftSize;
 import org.jgrapht.graph.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -18,37 +19,31 @@ import org.slf4j.LoggerFactory;
 public class GenerateModelData {
 
 	private Random rand = new Random();
-	
-	private static final char LARGE = 'l';
-    private static final char MEDIUM = 'm';
-    private static final char SMALL = 's';
-    private static final char NO_SIZE_PREF = 'n';
-    
+
 	/**
 	 *  Chooses a random edge from the graph to act as the path for a flight.
 	 *  
 	 *  @param edgeList_ The list of sorted edges returned by the sort method
-	 *  @param preferredAirplaneSize_ Character value of the airplane size to
-	 *                                give preference to certain distance ranges
-	 *                                as on of s, m, l, n
+	 *  @param preferredAirplaneSize_ AirplaneSize enum value indicating the
+	 *  	   size of the airplane to create more of
 	 *  		
 	 *  @return The randomly selected edge
 	 */
-	public DefaultEdge getRandomEdge(ArrayList<DefaultEdge> edgeList_, char preferredAirplaneSize_) {
+	public DefaultEdge getRandomEdge(ArrayList<DefaultEdge> edgeList_, AircraftSize preferredAirplaneSize_) {
 		double _weight = 0.5;
 		int _selection = 0;	
 		
 		switch(preferredAirplaneSize_) {
-			case SMALL:
+			case S:
 				_weight = 0.25;
 				break;
-			case MEDIUM:
+			case M:
 				_weight = 0.5;
 				break;
-			case LARGE:
+			case L:
 				_weight = 0.75;
 				break;
-			case NO_SIZE_PREF:
+			default:
 				return edgeList_.get(rand.nextInt(edgeList_.size()));
 		}
 
@@ -77,7 +72,7 @@ public class GenerateModelData {
 	 *  						 "econ basic seats filled | econ plus seats filled | business
 	 *  						 seats filled | first class seats filled"
 	 */
-	public String generateRandomSeatsFilled(Properties modelProperties_, char airplaneSize_) {
+	public String generateRandomSeatsFilled(Properties modelProperties_, AircraftSize airplaneSize_) {
 		String genString_ = null;
 		String[] _maxSeats;
 
@@ -88,7 +83,7 @@ public class GenerateModelData {
 			int _first;
 		
 			switch(airplaneSize_) {
-				case SMALL:
+				case S:
 					_maxSeats = modelProperties_.getProperty("SMALL_PLANE_SEAT_MAX_PER_SECTION").split("\\|");
 					
 
@@ -116,7 +111,7 @@ public class GenerateModelData {
 					genString_ = String.format("%d|%d|%d|%d", _econBasic, _econPlus, _business, _first);
 					break;
 	
-				case MEDIUM:
+				case M:
 					_maxSeats = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_MAX_PER_SECTION").split("\\|");
 	
 					if(!_maxSeats[0].equals("0")) {
@@ -143,7 +138,7 @@ public class GenerateModelData {
 					genString_ = String.format("%d|%d|%d|%d", _econBasic, _econPlus, _business, _first);
 					break;
 	
-				case LARGE:
+				case L:
 					_maxSeats = modelProperties_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION").split("\\|");
 	
 					if(!_maxSeats[0].equals("0")) {
@@ -187,37 +182,38 @@ public class GenerateModelData {
 	 */
 	public String generateRandomFlight(Properties modelProperties_, AirportGraph airportGraph_, 
 			ArrayList<DefaultEdge> sortedEdges_) {
+
 		String _flight;
-		char _airplaneSize;
+		AircraftSize _aircraftSize;
 		String _maxSeatsPerSection;
 		String _seatPricePerSection;
 		
 		DefaultEdge _randomEdge = getRandomEdge(sortedEdges_, 
-				modelProperties_.getProperty("PREFERRED_AIRCRAFT_SIZE").charAt(0));
+				AircraftSize.valueOf(modelProperties_.getProperty("PREFERRED_AIRCRAFT_SIZE").toUpperCase()));
 		String _source = airportGraph_.getGraphOfAirports().getEdgeSource(_randomEdge);
 		String _dest = airportGraph_.getGraphOfAirports().getEdgeTarget(_randomEdge);
 	
 		double _distance = airportGraph_.getGraphOfAirports().getEdgeWeight(_randomEdge);
 	
 		if(_distance < Double.parseDouble(modelProperties_.getProperty("SMALL_PLANE_MAX_RANGE"))) {
-			_airplaneSize = 's';
+			_aircraftSize = AircraftSize.S;
 			_maxSeatsPerSection = modelProperties_.getProperty("SMALL_PLANE_SEAT_MAX_PER_SECTION");
 			_seatPricePerSection = modelProperties_.getProperty("SMALL_PLANE_SEAT_PRICE");
 
 		} else if (_distance < Double.parseDouble(modelProperties_.getProperty("MEDIUM_PLANE_MAX_RANGE"))) {
-			_airplaneSize = 'm';
+			_aircraftSize = AircraftSize.M;
 			_maxSeatsPerSection = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_MAX_PER_SECTION");
 			_seatPricePerSection = modelProperties_.getProperty("MEDIUM_PLANE_SEAT_PRICE");
 		} else {
-			_airplaneSize = 'l';
+			_aircraftSize = AircraftSize.L;
 			_maxSeatsPerSection = modelProperties_.getProperty("LARGE_PLANE_SEAT_MAX_PER_SECTION");
 			_seatPricePerSection = modelProperties_.getProperty("LARGE_PLANE_SEAT_PRICE");
 		}
 
-		String _seatsFilledPerSection = generateRandomSeatsFilled(modelProperties_, _airplaneSize);
-		
-		_flight = String.format("%s|%s|%f|%c|%s|%s|%s", _source, _dest, 
-				_distance, _airplaneSize, _maxSeatsPerSection, 
+		String _seatsFilledPerSection = generateRandomSeatsFilled(modelProperties_, _aircraftSize);
+				
+		_flight = String.format("%s|%s|%f|%s|%s|%s|%s", _source, _dest, 
+				_distance, _aircraftSize.toString(), _maxSeatsPerSection, 
 				_seatsFilledPerSection, _seatPricePerSection);
 		
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");

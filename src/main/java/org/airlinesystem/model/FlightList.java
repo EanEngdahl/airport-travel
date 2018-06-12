@@ -18,7 +18,7 @@ public class FlightList extends ArrayList<Flight> {
 		mapEdgeToFlights = new HashMap<DefaultEdge, FlightList>();
 	}
 	
-	public void addFlightToList(char aircraftSize_, int maxSeatsPerSection_[], 
+	public void addFlightToList(AircraftSize aircraftSize_, int maxSeatsPerSection_[], 
 		int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
 		String source_, String destination_, double distanceTravelled_, 
 		Properties modelProperties_, AirportGraph airportGraph_) {

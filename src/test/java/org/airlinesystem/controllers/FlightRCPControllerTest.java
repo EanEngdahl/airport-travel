@@ -11,6 +11,7 @@ import org.airlinesystem.controllers.FlightRCPController;
 import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
+import org.airlinesystem.model.AircraftSize;
 
 public class FlightRCPControllerTest {
 	
@@ -30,7 +31,7 @@ public class FlightRCPControllerTest {
 		propManager = new RuntimePropertyController();
 		testProps = propManager.loadDefaultProperties();
 		fd = new FlightBuilder();
-		testFlight = fd.flightDispatchService('l', MAX_SEATS, SEATS_FILLED, 
+		testFlight = fd.flightDispatchService(AircraftSize.L, MAX_SEATS, SEATS_FILLED, 
 				SEAT_COST, "1", "2", 100, testProps);
 		testRcp = new FlightRCPController(testProps);
 	}

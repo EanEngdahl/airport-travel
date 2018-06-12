@@ -3,7 +3,7 @@ package org.airlinesystem.model;
 import java.math.BigDecimal;
 
 public class Flight {
-	private char aircraftSize;
+	private AircraftSize aircraftSize;
 	private AircraftPilot pilot;
 	private AircraftPilot coPilot;
 	private Aircraft aircraftAssigned;
@@ -16,7 +16,7 @@ public class Flight {
 	private BigDecimal revenue;
 	private BigDecimal profit;
 	
-	public Flight(char aircraftSize_, int maxSeatsPerSection_[], 
+	public Flight(AircraftSize aircraftSize_, int maxSeatsPerSection_[], 
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
 			Airport source_, Airport destination_, double distanceTravelled_,
 			AircraftPilot pilot_, AircraftPilot coPilot_, Aircraft aircraftAssigned_) {
@@ -35,7 +35,7 @@ public class Flight {
 		profit = new BigDecimal("0");
 	}
 	
-	public char getAircraftSize() {
+	public AircraftSize getAircraftSize() {
 		return aircraftSize;
 	}
 	

@@ -4,14 +4,13 @@ import java.math.BigDecimal;
 
 public class Aircraft {
 
-	/** will be size of s, m, l */
-	private char aircraftSize;
+	private AircraftSize aircraftSize;
 	private AircraftSectionList sectionList;
 	private int maxAircraftSeats;
 	private int totalNumOfPassengers;
 
 		
-	public Aircraft(char aircraftSize_, int totalNumOfPassengers_, int seatsFilledPerSection_[], 
+	public Aircraft(AircraftSize aircraftSize_, int totalNumOfPassengers_, int seatsFilledPerSection_[], 
 			BigDecimal costOfSeat_[], int maxAircraftSeats_) {
 		aircraftSize = aircraftSize_;
 		sectionList = new AircraftSectionList(aircraftSize_, seatsFilledPerSection_, costOfSeat_);
@@ -19,11 +18,11 @@ public class Aircraft {
 		totalNumOfPassengers = totalNumOfPassengers_;
 	}
 
-	public char getAircraftSize() {
+	public AircraftSize getAircraftSize() {
 		return aircraftSize;
 	}
 
-	public void setAircraftSize(char aircraftSize) {
+	public void setAircraftSize(AircraftSize aircraftSize) {
 		this.aircraftSize = aircraftSize;
 	}
 
