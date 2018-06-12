@@ -9,16 +9,14 @@ import java.math.BigDecimal;
 import java.util.Properties;
 
 import org.airlinesystem.model.AircraftPilot;
+import org.airlinesystem.model.AircraftPilotSeniority;
+import org.airlinesystem.model.AircraftSize;
 
 public class PilotBuilder {
-    
+
     private BigDecimal _juniorCost;
     private BigDecimal _midlevelCost;
     private BigDecimal _seniorCost;
-    
-	private static final char SENIOR = 'l';
-    private static final char MIDLEVEL = 'm';
-    private static final char JUNIOR = 's';
 
     
     public PilotBuilder(Properties modelProperties_) {
@@ -36,23 +34,23 @@ public class PilotBuilder {
      * @return
      * 		a new pilot to be assigned to the flight
      */
-    public AircraftPilot assignPilotToAircraft(char aircraftSize_) {
+    public AircraftPilot assignPilotToAircraft(AircraftSize aircraftSize_) {
         AircraftPilot returnPilot;
         switch (aircraftSize_) {
-            case SENIOR:
+            case L:
                 returnPilot = new AircraftPilot();
-                returnPilot.setSeniority(2);
+                returnPilot.setSeniority(AircraftPilotSeniority.SENIOR);
                 returnPilot.setCostPerFlight(_seniorCost);
                 return returnPilot;
-            case MIDLEVEL:
+            case M:
                 returnPilot = new AircraftPilot();
-                returnPilot.setSeniority(1);
+                returnPilot.setSeniority(AircraftPilotSeniority.MIDLEVEL);
                 returnPilot.setCostPerFlight(_midlevelCost);
                 return returnPilot;
-            case JUNIOR:
+            case S:
             default:
                 returnPilot = new AircraftPilot();
-                returnPilot.setSeniority(0);
+                returnPilot.setSeniority(AircraftPilotSeniority.JUNIOR);
                 returnPilot.setCostPerFlight(_juniorCost);
                 return returnPilot;
         }

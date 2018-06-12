@@ -3,16 +3,17 @@ package org.airlinesystem.model;
 import java.math.BigDecimal;
 
 public class AircraftPilot {
-    private int seniority;
+
     private BigDecimal costPerFlight;
+    private AircraftPilotSeniority seniority;
 
     public AircraftPilot() {}
 
-    public int getSeniority() {
+    public AircraftPilotSeniority getSeniority() {
         return seniority;
     }
 
-    public void setSeniority(int seniority_) {
+    public void setSeniority(AircraftPilotSeniority seniority_) {
         seniority = seniority_;
     }
 

@@ -13,6 +13,7 @@ import java.util.stream.IntStream;
 import org.airlinesystem.controllers.FlightRCPController;
 import org.airlinesystem.model.Aircraft;
 import org.airlinesystem.model.AircraftPilot;
+import org.airlinesystem.model.AircraftSize;
 import org.airlinesystem.model.Airport;
 import org.airlinesystem.model.Flight;
 
@@ -55,8 +56,8 @@ public class FlightBuilder {
 		
 		PilotBuilder assignPilots = new PilotBuilder(modelProperties_);
 
-		_pilot = assignPilots.assignPilotToAircraft(aircraftSize_);
-		_coPilot = assignPilots.assignPilotToAircraft(aircraftSize_);	
+		_pilot = assignPilots.assignPilotToAircraft(AircraftSize.valueOf(String.valueOf(aircraftSize_).toUpperCase()));
+		_coPilot = assignPilots.assignPilotToAircraft(AircraftSize.valueOf(String.valueOf(aircraftSize_).toUpperCase()));	
 		_aircraftAssigned = new Aircraft(aircraftSize_, getTotalNumOfPassengers(seatsFilledPerSection_),
 				seatsFilledPerSection_, seatCostPerSection_, getMaxAircraftSeats(maxSeatsPerSection_));
 		Airport source = new Airport(source_);

@@ -9,7 +9,9 @@ import java.math.BigDecimal;
 
 import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.PilotBuilder;
+import org.airlinesystem.model.AircraftPilotSeniority;
 import org.airlinesystem.model.AircraftPilot;
+import org.airlinesystem.model.AircraftSize;
 
 public class PilotBuilderTest {
 
@@ -26,24 +28,24 @@ public class PilotBuilderTest {
 	
 	@Test
 	public void testAssignPilotToAircraft() {	
-		char _aircraftSize = 'l';
-		AircraftPilot testPilot = testPilotBuilder.assignPilotToAircraft(_aircraftSize);
+		char _aircraftSize = 'L';
+		AircraftPilot testPilot = testPilotBuilder.assignPilotToAircraft(AircraftSize.valueOf(String.valueOf(_aircraftSize)));
 		assertEquals("Pilot for large aircraft should be senior level",
-				2, testPilot.getSeniority());
+				AircraftPilotSeniority.SENIOR, testPilot.getSeniority());
 		assertEquals("Pilot for large aircraft should have senior pay", 
 				new BigDecimal (testProps.getProperty("SENIOR_PILOT_PAY")), testPilot.getCostPerFlight());
 		
-		_aircraftSize = 'm';
-		testPilot = testPilotBuilder.assignPilotToAircraft(_aircraftSize);
+		_aircraftSize = 'M';
+		testPilot = testPilotBuilder.assignPilotToAircraft(AircraftSize.valueOf(String.valueOf(_aircraftSize)));
 		assertEquals("Pilot for medium aircraft should be mid level",
-				1, testPilot.getSeniority());
+				AircraftPilotSeniority.MIDLEVEL, testPilot.getSeniority());
 		assertEquals("Pilot for medium aircraft should have mid level pay",
 				new BigDecimal (testProps.getProperty("MIDLEVEL_PILOT_PAY")), testPilot.getCostPerFlight());
 		
-		_aircraftSize = 's';
-		testPilot = testPilotBuilder.assignPilotToAircraft(_aircraftSize);
+		_aircraftSize = 'S';
+		testPilot = testPilotBuilder.assignPilotToAircraft(AircraftSize.valueOf(String.valueOf(_aircraftSize)));
 		assertEquals("Pilot for small aircraft should be junior level",
-				0, testPilot.getSeniority());
+				AircraftPilotSeniority.JUNIOR, testPilot.getSeniority());
 		assertEquals("Pilot for small aircraft should have junior pay",
 				new BigDecimal(testProps.getProperty("JUNIOR_PILOT_PAY")), testPilot.getCostPerFlight());
 	}
