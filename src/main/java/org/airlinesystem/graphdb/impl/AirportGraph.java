@@ -2,8 +2,8 @@
  * AirportGraph class
  *		Creates an undirected weighted graph that allows 
  *		changes to the graph such as adding airports (vertexes),
- *		adding flights (edges), removing airports or flights.
- *		and finding information about the graph
+ *		adding flights (edges), removing airports or flights
+ *		and finding information about the graph.
  */
 package org.airlinesystem.graphdb.impl;
 
@@ -44,6 +44,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		N/A
 	 */
+	@Override
 	public void addAirport(Airport airport_) {
 		graphOfAirports.addVertex(airport_.getName());
 		mapAirportToName.put(airport_.getName(), airport_);
@@ -62,6 +63,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		true if successfully created, false otherwise
 	 */
+	@Override
 	public boolean createEdge(String source_, String destination_, double distance_) {	
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		
@@ -90,6 +92,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 *  	double of the weight (distance) between two airports \
 	 *  	if they are connected, otherwise 0
 	 */
+	@Override
 	public double getDistance(String source_, String destination_) {
 		if (areAirportsConnected(source_, destination_)) {
 			return graphOfAirports.getEdgeWeight(graphOfAirports.getEdge(source_, destination_));
@@ -108,6 +111,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		N/A
 	 */
+	@Override
 	public void removeEdge(String source_, String destination_) {
 		graphOfAirports.removeEdge(source_, destination_);
 	}
@@ -121,6 +125,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		N/A
 	 */
+	@Override
 	public void removeAirport(String airport_) {
 		graphOfAirports.removeVertex(airport_);
 		mapAirportToName.remove(airport_);
@@ -134,6 +139,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		true if aiprot found, false otherwise
 	 */
+	@Override
 	public boolean isAirportInGraph(String airport_) {
 		return graphOfAirports.containsVertex(airport_);
 	}
@@ -148,6 +154,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		true, if airports are connected, false otherwise
 	 */
+	@Override
 	public boolean areAirportsConnected(String source_, String destination_) {
 		return graphOfAirports.containsEdge(source_, destination_);
 	}
@@ -160,6 +167,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		Airport object that corresponds to the name given
 	 */
+	@Override
 	public Airport getAirport(String airportName_) {
 		return mapAirportToName.get(airportName_);
 	}
@@ -171,6 +179,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		ArrayList<DefaultEdge> that is all edges sorted in ascending order
 	 */
+	@Override
 	public ArrayList<DefaultEdge> getSortedListOfEdges() {
 		ArrayList<DefaultEdge> _sortedEdges = new ArrayList<DefaultEdge>();
 
@@ -196,6 +205,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		N/A
 	 */
+	@Override
 	public void printGraph() {
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		
@@ -226,15 +236,18 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @return
 	 * 		N/A
 	 */
+	@Override
 	public void clearGraph() {
 		mapAirportToName.clear();
 		graphOfAirports = new SimpleWeightedGraph<String, DefaultEdge>(DefaultEdge.class);
 	}
 	
+	@Override
 	public Graph<String, DefaultEdge> getGraphOfAirports() {
 		return graphOfAirports;
 	}
 
+	@Override
 	public HashMap<String, Airport> getMapAirportToName() {
 		return mapAirportToName;
 	}
