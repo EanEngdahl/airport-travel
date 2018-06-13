@@ -9,7 +9,7 @@ import org.jgrapht.graph.DefaultEdge;
 
 public interface AirportGraphInterface {
 
-	/*
+	/**
 	 * Add a new airport by creating a new vertex on the graph
 	 * based on the airport object input
 	 * 
@@ -21,7 +21,7 @@ public interface AirportGraphInterface {
 	 */
 	void addAirport(Airport airport_);
 
-	/*
+	/**
 	 * Add a new edge (flight) between vertices (airports) if they are not
 	 * connected, not the same airport, and the distance is positive
 	 * 
@@ -36,7 +36,7 @@ public interface AirportGraphInterface {
 	 */
 	boolean createEdge(String source_, String destination_, double distance_);
 	
-	/*
+	/**
 	 * Finds the distance between two airports based on their names
 	 * 
 	 *  @param source_
@@ -49,7 +49,7 @@ public interface AirportGraphInterface {
 	 */
 	double getDistance(String source_, String destination_);
 
-	/*
+	/**
 	 * Remove a connection between two airports
 	 * only if there exists a connection
 	 * 
@@ -62,7 +62,7 @@ public interface AirportGraphInterface {
 	 */
 	void removeEdge(String source_, String destination_);
 
-	/*
+	/**
 	 * Remove an airport from the graph and all connections
 	 * only if it exists
 	 * 
@@ -73,7 +73,7 @@ public interface AirportGraphInterface {
 	 */
 	void removeAirport(String airport_);
 
-	/*
+	/**
 	 * Find if an airport is present in the graph
 	 * 
 	 * @param airport_
@@ -83,7 +83,7 @@ public interface AirportGraphInterface {
 	 */
 	boolean isAirportInGraph(String airport_);
 	
-	/*
+	/**
 	 * Find if two airports are directly connected
 	 * 
 	 * @param source_
@@ -95,7 +95,7 @@ public interface AirportGraphInterface {
 	 */
 	boolean areAirportsConnected(String source_, String destination_);
 	
-	/*
+	/**
 	 * Returns airport object from hash map based on name
 	 * 
 	 * @param airportName_
@@ -106,7 +106,7 @@ public interface AirportGraphInterface {
 	Airport getAirport(String airportName_);
 
 	
-	/*
+	/**
 	 * 	Sorts edges in ascending order
 	 * 
 	 * @return
@@ -114,7 +114,7 @@ public interface AirportGraphInterface {
 	 */
 	ArrayList<DefaultEdge> getSortedListOfEdges();
 	
-	/*
+	/**
 	 * Prints the current graph of the airports by iterating
 	 * through the set of vertices and each of their edges
 	 * 
@@ -123,7 +123,7 @@ public interface AirportGraphInterface {
 	 */
 	void printGraph();
 
-	/*
+	/**
 	 * Completely empties the graph and any airport mappings
 	 * 
 	 * @return
