@@ -112,7 +112,9 @@ public class ConsoleViewController {
 						dataFile_ = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default-data");
 						consoleLogger_.error("Invalid entry, reverting to default-data file\n");
 					}
-					dataFile_ = new File(_dataFileName);
+					else {
+						dataFile_ = new File(_dataFileName);
+					}
 					try {
 						simulator_.runFromDataFile(_propertiesFile, dataFile_, simulation_);
 						_hasSimBeenRun = true;

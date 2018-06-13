@@ -45,7 +45,6 @@ public class ReadModelDataIntoState {
 	public void readFileInputIntoFlightList(FlightList listOfFlights_, 
 			File fileToRead_, Properties modelProperties_, AirportGraph airportGraph_)
 			throws IOException, NullPointerException, Exception {
-
 		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		_debugLogger.debug("Reading input file");
 		
@@ -74,7 +73,7 @@ public class ReadModelDataIntoState {
 				_source = tokenizer.nextToken();
 				_destination = tokenizer.nextToken();
 				_distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
-				_aircraftSize = AircraftSize.valueOf(tokenizer.nextToken());
+				_aircraftSize = AircraftSize.valueOf(tokenizer.nextToken().toUpperCase());
 				
 				for (int i = 0; i < 4; i++) {
 					_maxSeatsPerSection[i] = setMaxSeatsPerSection(tokenizer.nextToken());
@@ -98,10 +97,10 @@ public class ReadModelDataIntoState {
 		}
 		catch (NullPointerException e_) {
 			throw new NullPointerException("NullPointerException: data file error,"
-					+ " could not find file- " + fileToRead_);
+					+ " could not find file- " + fileToRead_.getName());
 		}
 		catch (Exception e_) {
-			throw new Exception("Unexpected error occured while reading data file");
+			throw new Exception("Unexpected error occured:" + e_.getStackTrace());
 		}
 	}
 	
