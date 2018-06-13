@@ -25,6 +25,9 @@ public class FlightRCPController {
 	/**
 	 * Default constructor
 	 */
+	public FlightRCPController() {
+	}
+	
 	public FlightRCPController(Properties modelProperties_) {
 		fuelCost = new BigDecimal(modelProperties_.getProperty("FUEL_COST"));
 	}

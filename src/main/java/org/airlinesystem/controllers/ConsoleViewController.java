@@ -81,7 +81,7 @@ public class ConsoleViewController {
 					break;
 				case 4:
 					if(_hasSimBeenRun) {
-						_flightRCPManager = new FlightRCPController(simulation_.getSimulationProperties());
+						_flightRCPManager = new FlightRCPController();
 						_airportNames = _consoleOut.findAverageBetweenAirports(_input);
 						if(simulation_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
 							try {

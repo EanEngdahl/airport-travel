@@ -30,6 +30,7 @@ public class ReadModelDataIntoState {
 	/**
 	 * Read information from the input file then sends that information properly
 	 * formatted to be added to the FlightList line by line
+	 * NOTE: First line ignored (assumed to be outline of data input)
 	 * 
 	 * @param listOfFlights_
 	 * 		FlightList type object that is the list that will have the flights
@@ -63,6 +64,7 @@ public class ReadModelDataIntoState {
 			reader.readLine();
 			StringTokenizer tokenizer;
 			String line = null;
+			READER_LOOP:
 			while ((line = reader.readLine()) != null) {
 				line = line.replaceAll("\\s", "");
 				if ("".equals(line)) {
@@ -80,6 +82,10 @@ public class ReadModelDataIntoState {
 				}
 				for (int i = 0; i < 4; i++) {
 					_seatsFilledPerSection[i] = setSeatsFilledPerSection(tokenizer.nextToken());
+					if (_seatsFilledPerSection[i] > _maxSeatsPerSection[i]) {
+						_debugLogger.debug("Ignored invalid input in data");
+						continue READER_LOOP;
+					}
 				}
 				for (int i = 0; i < 4; i++) {
 					_seatCostPerSection[i] = setSeatCostPerSection(tokenizer.nextToken());
@@ -101,7 +107,7 @@ public class ReadModelDataIntoState {
 		}
 		catch (Exception e_) {
 			throw new Exception("Unexpected error occured:" + e_.getStackTrace());
-		}
+}
 	}
 	
 	/**
@@ -134,7 +140,7 @@ public class ReadModelDataIntoState {
 		_source = tokenizer.nextToken();
 		_destination = tokenizer.nextToken();
 		_distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
-		_aircraftSize = AircraftSize.valueOf(tokenizer.nextToken());
+		_aircraftSize = AircraftSize.valueOf(tokenizer.nextToken().toUpperCase());
 		
 		for (int i = 0; i < 4; i++) {
 			_maxSeatsPerSection[i] = setMaxSeatsPerSection(tokenizer.nextToken());

@@ -186,10 +186,15 @@ public class ConsoleView {
 			BigDecimal revenue_, int totalFlights_, BigDecimal averageFlightProfit_) {
 		NumberFormat _numberFormatter = NumberFormat.getInstance();
 		menuLogger.info("\n\n*****Flight Results*****\n\n");
+		try {
 		menuLogger.info("Total number of flights: {}\nTotal revenue: {}\nTotal cost: {}" 
 				+ "\nTotal Profit: {}\nAverage Profit: {}\n\n", 
 				_numberFormatter.format(totalFlights_), _numberFormatter.format(revenue_),
 				_numberFormatter.format(cost_), _numberFormatter.format(profit_), 
 				_numberFormatter.format(averageFlightProfit_));
+		}
+		catch(Exception e_) {
+			output_.error("Number formatting error: " + e_.getStackTrace());
+		}
 	}
 }
