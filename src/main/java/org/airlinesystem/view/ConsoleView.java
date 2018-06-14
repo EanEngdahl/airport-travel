@@ -35,7 +35,7 @@ public class ConsoleView {
 
 		try {
 			do {
-				menuLogger.info("Input custom file paths. If none are input, use defaults.\n");
+				menuLogger.info("\nInput custom file paths. If none are input, use defaults.\n");
 				menuLogger.info("1. Enter custom properties file path\n"
 						+ "2. Enter custom graph file path\n"
 						+ "3. Return to Main Menu\n\n");
@@ -76,7 +76,7 @@ public class ConsoleView {
 	public int showMainMenu(Logger output_, Scanner input_) {
 		String _selection;
 		
-		menuLogger.info("MAIN MENU:\n");
+		menuLogger.info("\nMAIN MENU:\n");
 		menuLogger.info("1. Input custom files\n"
 				+	 "2. Run simulation\n"
 				+	 "3. Show results\n"
@@ -188,7 +188,7 @@ public class ConsoleView {
 		menuLogger.info("\n\n*****Flight Results*****\n\n");
 		try {
 		menuLogger.info("Total number of flights: {}\nTotal revenue: {}\nTotal cost: {}" 
-				+ "\nTotal Profit: {}\nAverage Profit: {}\n\n", 
+				+ "\nTotal Profit: {}\nAverage Profit: {}\n", 
 				_numberFormatter.format(totalFlights_), _numberFormatter.format(revenue_),
 				_numberFormatter.format(cost_), _numberFormatter.format(profit_), 
 				_numberFormatter.format(averageFlightProfit_));

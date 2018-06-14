@@ -139,7 +139,7 @@ public class AirlineSimulationBuilder {
 
 			NumberFormat _numberFormatter = NumberFormat.getInstance();
 			resultsLogger.info("Total Profit = ${}", _numberFormatter.format(arrayOfRCP[2]));
-			consoleLogger.info("Flights successfully created\n");
+			consoleLogger.info("Flights successfully created");
 		}
 		catch (Exception e_) {
 			consoleLogger.error(e_.getMessage());

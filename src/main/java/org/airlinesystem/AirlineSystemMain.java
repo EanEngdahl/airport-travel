@@ -13,7 +13,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 public class AirlineSystemMain {
-
+	
 	public static void main(String[] args_) {
 		File _propertiesFile = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default.properties");
 		File _graphFile = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default-graph");
@@ -22,6 +22,7 @@ public class AirlineSystemMain {
 		boolean _dataFileFlag = false;
 		
 		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
+		
 		
 		CommandLineParser _parser = new DefaultParser();
 		HelpFormatter _formatter = new HelpFormatter();
