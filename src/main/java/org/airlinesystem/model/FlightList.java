@@ -11,11 +11,11 @@ import org.jgrapht.graph.DefaultEdge;
 
 public class FlightList extends ArrayList<Flight> {
 
-	private HashMap<DefaultEdge, FlightList> mapEdgeToFlights;
+	private HashMap<DefaultEdge, ArrayList<Flight>> mapEdgeToFlights;
 	private static final long serialVersionUID = 4575157870451051348L;
 
 	public FlightList() {
-		mapEdgeToFlights = new HashMap<DefaultEdge, FlightList>();
+		mapEdgeToFlights = new HashMap<DefaultEdge, ArrayList<Flight>>();
 	}
 	
 	public void addFlightToList(AircraftSize aircraftSize_, int maxSeatsPerSection_[], 
@@ -53,7 +53,7 @@ public class FlightList extends ArrayList<Flight> {
 		}
 	}
 	
-	public HashMap<DefaultEdge, FlightList> getFlightMap() {
+	public HashMap<DefaultEdge, ArrayList<Flight>> getFlightMap() {
 		return mapEdgeToFlights;
 	}
 	
