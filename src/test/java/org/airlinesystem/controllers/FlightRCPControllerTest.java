@@ -112,7 +112,7 @@ public class FlightRCPControllerTest {
 		BigDecimal averageProfit = new BigDecimal(0);
 		BigDecimal expectedAverageProfit = new BigDecimal(-2400);
 
-		averageProfit = testRcp.findAverageRCPPerEdge(testFlightList, airportGraph, "1", "2");
+		averageProfit = testRcp.findAverageProfitPerEdge(testFlightList, airportGraph, "1", "2");
 		
 		assertEquals("The value of average profit does not match", expectedAverageProfit.doubleValue(), 
 				averageProfit.doubleValue(), .01);
@@ -121,7 +121,7 @@ public class FlightRCPControllerTest {
 	@Test
 	public void findAverageRCPPerEdgeShouldThrowOnEdgeNotExisting() {
 		try {
-			testRcp.findAverageRCPPerEdge(testFlightList, airportGraph, "NULL", "NULL2");
+			testRcp.findAverageProfitPerEdge(testFlightList, airportGraph, "NULL", "NULL2");
 			fail("findAverageRCPPerEdge did not throw NullPointerException when graph edge does not exist.");
 		} catch(NullPointerException e) {
 		}

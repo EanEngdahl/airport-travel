@@ -85,7 +85,7 @@ public class ConsoleViewController {
 						_airportNames = _consoleOut.findAverageBetweenAirports(_input);
 						if(simulation_.getGraphOfAirports().areAirportsConnected(_airportNames[0], _airportNames[1])) {
 							try {
-								_averageProfit = _flightRCPManager.findAverageRCPPerEdge(simulation_.getListOfFlights(),
+								_averageProfit = _flightRCPManager.findAverageProfitPerEdge(simulation_.getListOfFlights(),
 										simulation_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
 								_consoleOut.displayAverageBetweenAirports(_averageProfit);
 							} catch(NullPointerException _e) {

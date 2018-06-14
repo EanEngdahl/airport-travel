@@ -152,7 +152,7 @@ public class FlightRCPController {
 	 *  	   the BigDecimal value of the average profit for the specific edge requested
 	 */
 	
-	public BigDecimal findAverageRCPPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_,
+	public BigDecimal findAverageProfitPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_,
 			String source_, String destination_) throws NullPointerException, ArithmeticException {
 
 		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
