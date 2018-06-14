@@ -1,7 +1,7 @@
 package org.airlinesystem.controllers;
 
 import static org.junit.Assert.*;
-import org.junit.BeforeClass;
+import org.junit.*;
 import org.junit.Test;
 
 import java.math.BigDecimal;
@@ -11,7 +11,10 @@ import org.airlinesystem.controllers.FlightRCPController;
 import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
+import org.airlinesystem.model.FlightList;
 import org.airlinesystem.model.AircraftSize;
+import org.airlinesystem.graphdb.impl.AirportGraph;
+import org.airlinesystem.helpers.ReadGraphFromPSV;
 
 public class FlightRCPControllerTest {
 	
@@ -25,6 +28,9 @@ public class FlightRCPControllerTest {
 	private static FlightBuilder fd;
 	private static Flight testFlight;
 	private static FlightRCPController testRcp;
+
+	private AirportGraph airportGraph = new AirportGraph();
+	private FlightList testFlightList = new FlightList();
 	
 	@BeforeClass
 	public static void initialize() {
@@ -33,9 +39,26 @@ public class FlightRCPControllerTest {
 		fd = new FlightBuilder();
 		testFlight = fd.flightDispatchService(AircraftSize.L, MAX_SEATS, SEATS_FILLED, 
 				SEAT_COST, "1", "2", 100, testProps);
+		
 		testRcp = new FlightRCPController(testProps);
 	}
 	
+	@Before
+	public void initializeFlightListAndGraph() {
+		ReadGraphFromPSV loadGraph = new ReadGraphFromPSV();
+		loadGraph.readEdgeIntoGraph(airportGraph, "1", "2", 100);
+		testFlightList.addFlightToList(AircraftSize.L, MAX_SEATS, SEATS_FILLED, SEAT_COST,
+				"1", "2", 100, testProps, airportGraph);
+		testFlightList.addFlightToList(AircraftSize.L, MAX_SEATS, SEATS_FILLED, SEAT_COST,
+				"1", "2", 100, testProps, airportGraph);
+	}
+/*	
+	@After
+	public void clearFlightListAndGraphAfterTest() {
+		testFlightList.clear();
+		airportGraph.clearGraph();
+	}
+	*/
 	@Test
 	public void testFindRevenue() {
 		BigDecimal revenueTest = new BigDecimal(0);
@@ -66,5 +89,32 @@ public class FlightRCPControllerTest {
 		
 		assertEquals("The value of profit does not match", expectedProfit.doubleValue(), 
 				profitTest.doubleValue(), .01);
+	}
+	
+	@Test
+	public void testFindTotalRCPOfFlightList() {
+		BigDecimal [] totalRCP;
+		BigDecimal expectedRevenue = new BigDecimal(1400);
+		BigDecimal expectedCost = new BigDecimal(6200);
+		BigDecimal expectedProfit = new BigDecimal(-4800);
+		
+		totalRCP = testRcp.findTotalRCPOfFlightList(testFlightList);
+		
+		assertEquals("The value of revenue does not match", expectedRevenue, totalRCP[0]);
+		assertEquals("The value of cost does not match", expectedCost.doubleValue(),
+				totalRCP[1].doubleValue(), .01);
+		assertEquals("The value of profit does not match", expectedProfit.doubleValue(), 
+				totalRCP[2].doubleValue(), .01);
+	}
+	
+	@Test
+	public void testFindAverageRCPPerEdge() {
+		BigDecimal averageProfit = new BigDecimal(0);
+		BigDecimal expectedAverageProfit = new BigDecimal(-2400);
+
+		averageProfit = testRcp.findAverageRCPPerEdge(testFlightList, airportGraph, "1", "2");
+		
+		assertEquals("The value of average profit does not match", expectedAverageProfit.doubleValue(), 
+				averageProfit.doubleValue(), .01);
 	}
 }

@@ -153,9 +153,10 @@ public class FlightRCPController {
 	 */
 	
 	public BigDecimal findAverageRCPPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_,
-			String source_, String destination_) throws NullPointerException {
+			String source_, String destination_) throws NullPointerException, ArithmeticException {
 
 		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
+		BigDecimal _totalProfit = new BigDecimal(0);
 		BigDecimal _averageProfit = new BigDecimal(0);
 		int _counter = 0;
 	
@@ -164,9 +165,12 @@ public class FlightRCPController {
 		}
 		
 		for(Flight _f : listOfFlights_.getFlightMap().get(_testEdge)) {
-			_averageProfit = _averageProfit.add(_f.getProfit());
+			_totalProfit = _totalProfit.add(_f.getProfit());
 			_counter++;
 		}
-		return _averageProfit.divide(new BigDecimal(_counter), 2, RoundingMode.FLOOR);
-	}	
+		
+		_averageProfit = _totalProfit.divide(new BigDecimal(_counter), 2, RoundingMode.FLOOR);
+		
+		return _averageProfit;
+	}
 }

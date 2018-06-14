@@ -30,13 +30,12 @@ public class FlightList extends ArrayList<Flight> {
 				seatsFilledPerSection_, seatCostPerSection_, 
 				source_, destination_, distanceTravelled_, modelProperties_);
 
-		addFlightToList(_addedFlight);
-
-		mapFlight(airportGraph_, _addedFlight, source_, destination_);
+		addFlightToList(_addedFlight, airportGraph_);
 	}
 
-	public void addFlightToList(Flight flight_) {
+	public void addFlightToList(Flight flight_, AirportGraph graph_) {
 		add(flight_);
+		mapFlight(graph_, flight_, flight_.getSource().getName(), flight_.getDestination().getName());
 	}
 	
 	public void mapFlight(AirportGraph airportGraph_, Flight addedFlight_, 
@@ -45,11 +44,11 @@ public class FlightList extends ArrayList<Flight> {
 		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
 
 		if(mapEdgeToFlights.containsKey(_testEdge)) {
-			mapEdgeToFlights.get(_testEdge).addFlightToList(addedFlight_);
+			mapEdgeToFlights.get(_testEdge).add(addedFlight_);
 
 		} else {
 			FlightList _list = new FlightList();
-			_list.addFlightToList(addedFlight_);
+			_list.add(addedFlight_);
 			mapEdgeToFlights.put(_testEdge, _list);
 		}
 	}
