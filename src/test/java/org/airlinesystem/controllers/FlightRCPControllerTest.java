@@ -117,4 +117,13 @@ public class FlightRCPControllerTest {
 		assertEquals("The value of average profit does not match", expectedAverageProfit.doubleValue(), 
 				averageProfit.doubleValue(), .01);
 	}
+	
+	@Test
+	public void findAverageRCPPerEdgeShouldThrowOnEdgeNotExisting() {
+		try {
+			testRcp.findAverageRCPPerEdge(testFlightList, airportGraph, "NULL", "NULL2");
+			fail("findAverageRCPPerEdge did not throw NullPointerException when graph edge does not exist.");
+		} catch(NullPointerException e) {
+		}
+	}
 }
