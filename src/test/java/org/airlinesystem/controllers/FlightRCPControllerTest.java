@@ -1,8 +1,10 @@
 package org.airlinesystem.controllers;
 
 import static org.junit.Assert.*;
-import org.junit.*;
+import org.junit.BeforeClass;
+import org.junit.Before;
 import org.junit.Test;
+import org.junit.After;
 
 import java.math.BigDecimal;
 import java.util.Properties;
@@ -52,13 +54,13 @@ public class FlightRCPControllerTest {
 		testFlightList.addFlightToList(AircraftSize.L, MAX_SEATS, SEATS_FILLED, SEAT_COST,
 				"1", "2", 100, testProps, airportGraph);
 	}
-/*	
+
 	@After
 	public void clearFlightListAndGraphAfterTest() {
 		testFlightList.clear();
 		airportGraph.clearGraph();
 	}
-	*/
+	
 	@Test
 	public void testFindRevenue() {
 		BigDecimal revenueTest = new BigDecimal(0);
@@ -118,12 +120,8 @@ public class FlightRCPControllerTest {
 				averageProfit.doubleValue(), .01);
 	}
 	
-	@Test
-	public void findAverageRCPPerEdgeShouldThrowOnEdgeNotExisting() {
-		try {
-			testRcp.findAverageProfitPerEdge(testFlightList, airportGraph, "NULL", "NULL2");
-			fail("findAverageRCPPerEdge did not throw NullPointerException when graph edge does not exist.");
-		} catch(NullPointerException e) {
-		}
+	@Test (expected = NullPointerException.class)
+	public void testNullPointerException() {
+		testRcp.findAverageProfitPerEdge(testFlightList, airportGraph, "NULL", "NULL2");
 	}
 }

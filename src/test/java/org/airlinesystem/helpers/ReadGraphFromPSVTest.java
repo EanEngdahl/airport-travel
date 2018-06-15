@@ -25,7 +25,7 @@ public class ReadGraphFromPSVTest {
 		exception = ExpectedException.none();
 	}
 	
-	@Test
+	@Test 
 	public void testIOException() throws IOException, Exception {
 		exception.expect(IOException.class);
 		readGraphTester.readFileInputIntoGraph(airportGraph, graphFile);
