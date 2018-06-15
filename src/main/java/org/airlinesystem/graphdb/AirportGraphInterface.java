@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.airlinesystem.model.Airport;
+import org.airlinesystem.exceptions.IllegalGraphAdditionException;
 import org.jgrapht.Graph;
 import org.jgrapht.graph.DefaultEdge;
 
@@ -34,7 +35,7 @@ public interface AirportGraphInterface {
 	 * @return
 	 * 		true if successfully created, false otherwise
 	 */
-	boolean createEdge(String source_, String destination_, double distance_);
+	void createEdge(String source_, String destination_, double distance_) throws IllegalGraphAdditionException;
 	
 	/**
 	 * Finds the distance between two airports based on their names

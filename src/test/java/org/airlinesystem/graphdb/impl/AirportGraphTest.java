@@ -8,6 +8,7 @@ import java.util.ArrayList;
 
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.Airport;
+import org.airlinesystem.exceptions.IllegalGraphAdditionException;
 import org.jgrapht.graph.DefaultEdge;
 
 public class AirportGraphTest {
@@ -24,24 +25,51 @@ public class AirportGraphTest {
 	}
 	@Test
 	public void testEdgeFunctions() {
-		assertTrue("Should create edge from A to B", 
-				graphOfAirports.createEdge("A", "B", 7));
-		assertFalse("Should not create edge from A to B again", 
-				graphOfAirports.createEdge("A", "B", 300));
-		assertFalse("Should not create edge from B to A again", 
-				graphOfAirports.createEdge("B", "A", 450));
-		assertFalse("Should not create edge from B to D with negative distance", 
-				graphOfAirports.createEdge("B", "D", -20));
-		assertTrue("Should create edge from B to D", 
-				graphOfAirports.createEdge("B", "D", 500));
-		assertFalse("Should not create edge from B to C when C doesn't exist",
-				graphOfAirports.createEdge("B", "C", 250));
-		assertFalse("Should not create edge from E to A with distance of 0",
-				graphOfAirports.createEdge("E", "A", 0));
-		assertFalse("Should not create edge from A to A",
-				graphOfAirports.createEdge("A", "A", 340));
-		assertTrue("Should create edge from D to A",
-				graphOfAirports.createEdge("D", "A", 237));
+		try {
+			graphOfAirports.createEdge("A", "B", 7);
+		} catch(IllegalGraphAdditionException _e) {
+			fail("Should have created edge between A and B");
+		}
+		try {
+			graphOfAirports.createEdge("A", "B", 300);
+			fail("Should not create edge from A to B again");
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try { 
+			graphOfAirports.createEdge("B", "A", 450);
+			fail("Should not create edge from B to A again");
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try { 
+			graphOfAirports.createEdge("B", "D", -20);
+			fail("Should not create edge from B to D with negative distance");
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try { 
+			graphOfAirports.createEdge("B", "D", 500);
+		} catch(IllegalGraphAdditionException _e) {
+			fail("Should create edge from B to D");
+		}
+		try {
+			graphOfAirports.createEdge("B", "C", 250);
+			fail("Should not create edge from B to C when C doesn't exist");
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try {
+			graphOfAirports.createEdge("E", "A", 0);
+			fail("Should not create edge from E to A with distance of 0");
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try {
+			graphOfAirports.createEdge("A", "A", 340);
+			fail("Should not create edge from A to A");
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try {
+			graphOfAirports.createEdge("D", "A", 237);
+		} catch(IllegalGraphAdditionException _e) {
+			fail("Should create edge from D to A");
+		}
 		
 		assertTrue("Should be an edge from A to B", graphOfAirports.areAirportsConnected("A", "B"));
 		assertTrue("Should be an edge from B to A", graphOfAirports.areAirportsConnected("B", "A"));
@@ -90,11 +118,26 @@ public class AirportGraphTest {
 	
 	@Test
 	public void testGetSortedListOfEdges() {
-		graphOfAirports.createEdge("A", "B", 5);
-		graphOfAirports.createEdge("A", "D", 3);
-		graphOfAirports.createEdge("B", "D", 4);
-		graphOfAirports.createEdge("A", "E", 1);
-		graphOfAirports.createEdge("D", "E", 2);
+		try {
+			graphOfAirports.createEdge("A", "B", 5);
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try {
+			graphOfAirports.createEdge("A", "D", 3);
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try {
+			graphOfAirports.createEdge("B", "D", 4);
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try {
+			graphOfAirports.createEdge("A", "E", 1);
+		} catch(IllegalGraphAdditionException _e) {
+		}
+		try {
+			graphOfAirports.createEdge("D", "E", 2);
+		} catch(IllegalGraphAdditionException _e) {
+		}
 		
 		ArrayList<DefaultEdge>	_sortedEdges;
 		

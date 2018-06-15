@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
 import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.Airport;
+import org.airlinesystem.exceptions.IllegalGraphAdditionException;
 
 public class ReadGraphFromPSV {
 
@@ -64,9 +65,16 @@ public class ReadGraphFromPSV {
 				_destinationAirport = new Airport(_destination);
 				graphOfAirports_.addAirport(_sourceAirport);
 				graphOfAirports_.addAirport(_destinationAirport);
+				try {
+					graphOfAirports_.createEdge(_source, _destination, _distanceTravelled);
+				} catch(IllegalGraphAdditionException _e) {
+					readGraphLog.debugDebug("Ignored at line " + Integer.toString(_counter) + " in file");
+				}
+				/*
 				if (!graphOfAirports_.createEdge(_source, _destination, _distanceTravelled)) {
 					readGraphLog.debugDebug("Ignored at line " + Integer.toString(_counter) + " in file");
 				}
+				*/
 			}
 			readGraphLog.debugDebug("Successfully read graph file");
 			reader.close();
@@ -76,7 +84,7 @@ public class ReadGraphFromPSV {
 		}
 		catch (NullPointerException e_) {
 			throw new NullPointerException("NullPointerException: Graph file error,"
-					+ " could not find file on path- " + graphFile_.getAbsolutePath());
+					+ " could not find file on path- " + graphFile_.getAbsolutePath() + e_.getStackTrace());
 		}
 		catch (Exception e_) {
 			throw new Exception("Unexpected error occured while reading graph file");
@@ -105,9 +113,16 @@ public class ReadGraphFromPSV {
 		
 		graphOfAirports_.addAirport(_sourceAirport);
 		graphOfAirports_.addAirport(_destinationAirport);
+		try {
+			graphOfAirports_.createEdge(source_, destination_, distanceTravelled_);
+		} catch(IllegalGraphAdditionException _e) {
+			readGraphLog.debugDebug("Ignored edge input");
+		}
+		/*
 		if (!graphOfAirports_.createEdge(source_, destination_, distanceTravelled_)) {
 			readGraphLog.debugDebug("Ignored edge input");
 		}
+		*/
 	}
 	
 	/**
