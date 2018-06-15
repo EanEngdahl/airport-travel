@@ -49,10 +49,8 @@ public class FlightRCPControllerTest {
 	public void initializeFlightListAndGraph() {
 		ReadGraphFromPSV loadGraph = new ReadGraphFromPSV();
 		loadGraph.readEdgeIntoGraph(airportGraph, "1", "2", 100);
-		testFlightList.addFlightToList(AircraftSize.L, MAX_SEATS, SEATS_FILLED, SEAT_COST,
-				"1", "2", 100, testProps, airportGraph);
-		testFlightList.addFlightToList(AircraftSize.L, MAX_SEATS, SEATS_FILLED, SEAT_COST,
-				"1", "2", 100, testProps, airportGraph);
+		testFlightList.addFlightToList(testFlight, airportGraph);
+		testFlightList.addFlightToList(testFlight, airportGraph);
 	}
 
 	@After

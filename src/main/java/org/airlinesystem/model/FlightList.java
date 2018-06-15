@@ -1,12 +1,9 @@
 package org.airlinesystem.model;
 
 import java.util.ArrayList;
-import java.util.Properties;
-import java.math.BigDecimal;
 import java.util.HashMap;
 
 import org.airlinesystem.graphdb.impl.AirportGraph;
-import org.airlinesystem.helpers.FlightBuilder;
 import org.jgrapht.graph.DefaultEdge;
 
 public class FlightList extends ArrayList<Flight> {
@@ -17,21 +14,7 @@ public class FlightList extends ArrayList<Flight> {
 	public FlightList() {
 		mapEdgeToFlights = new HashMap<DefaultEdge, ArrayList<Flight>>();
 	}
-	
-	public void addFlightToList(AircraftSize aircraftSize_, int maxSeatsPerSection_[], 
-		int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
-		String source_, String destination_, double distanceTravelled_, 
-		Properties modelProperties_, AirportGraph airportGraph_) {
-		
-		Flight _addedFlight;
-		FlightBuilder _createFlight = new FlightBuilder();
 
-		_addedFlight = _createFlight.flightDispatchService(aircraftSize_, maxSeatsPerSection_, 
-				seatsFilledPerSection_, seatCostPerSection_, 
-				source_, destination_, distanceTravelled_, modelProperties_);
-
-		addFlightToList(_addedFlight, airportGraph_);
-	}
 
 	public void addFlightToList(Flight flight_, AirportGraph graph_) {
 		add(flight_);

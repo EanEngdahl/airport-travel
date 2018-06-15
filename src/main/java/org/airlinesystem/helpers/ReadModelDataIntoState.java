@@ -18,6 +18,8 @@ import java.util.StringTokenizer;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
 import org.airlinesystem.model.AircraftSize;
+import org.airlinesystem.helpers.FlightBuilder;
+import org.airlinesystem.model.Flight;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,6 +52,8 @@ public class ReadModelDataIntoState {
 		_debugLogger.debug("Reading input file");
 		
 		ReadGraphFromPSV _addEdgeToGraph = new ReadGraphFromPSV();
+		FlightBuilder _flightBuilder = new FlightBuilder();
+		Flight _flight;
 		String _source;
 		String _destination;
 		double _distanceTravelled;
@@ -91,9 +95,9 @@ public class ReadModelDataIntoState {
 					_seatCostPerSection[i] = setSeatCostPerSection(tokenizer.nextToken());
 				}
 				_addEdgeToGraph.readEdgeIntoGraph(airportGraph_, _source, _destination, _distanceTravelled);
-				listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
-						_seatsFilledPerSection, _seatCostPerSection, _source,
-						_destination, _distanceTravelled, modelProperties_, airportGraph_);
+				_flight = _flightBuilder.flightDispatchService(_aircraftSize, _maxSeatsPerSection, 
+						_seatsFilledPerSection, _seatCostPerSection, _source, _destination, _distanceTravelled, modelProperties_);
+				listOfFlights_.addFlightToList(_flight, airportGraph_);
 			}
 			_debugLogger.debug("Successfully read file");
 			reader.close();
@@ -128,6 +132,8 @@ public class ReadModelDataIntoState {
 			String flightInformation_, Properties modelProperties_, AirportGraph airportGraph_) {
 		
 		flightInformation_ = flightInformation_.replaceAll("\\s", "");
+		FlightBuilder _flightBuilder = new FlightBuilder();
+		Flight _flight;
 		String _source;
 		String _destination;
 		double _distanceTravelled;
@@ -151,9 +157,9 @@ public class ReadModelDataIntoState {
 		for (int i = 0; i < 4; i++) {
 			_seatCostPerSection[i] = setSeatCostPerSection(tokenizer.nextToken());
 		}
-		listOfFlights_.addFlightToList(_aircraftSize, _maxSeatsPerSection,
-				_seatsFilledPerSection, _seatCostPerSection, _source,
-				_destination, _distanceTravelled, modelProperties_, airportGraph_);
+		_flight = _flightBuilder.flightDispatchService(_aircraftSize, _maxSeatsPerSection,
+				_seatsFilledPerSection, _seatCostPerSection, _source, _destination, _distanceTravelled, modelProperties_);
+		listOfFlights_.addFlightToList(_flight, airportGraph_);
 	}
 	
 	/**
