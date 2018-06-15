@@ -15,6 +15,7 @@ import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.helpers.AirlineSimulationBuilder;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.view.*;
+import org.airlinesystem.exceptions.*;
 
 public class ConsoleViewController {
 
@@ -90,7 +91,7 @@ public class ConsoleViewController {
 								_averageProfit = _flightRCPManager.findAverageProfitPerEdge(simulation_.getListOfFlights(),
 										simulation_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
 								_consoleOut.displayAverageBetweenAirports(_averageProfit);
-							} catch(NullPointerException _e) {
+							} catch(AirlineSystemException _e) {
 								viewControllerLog.consoleError("There are no flights between the two airports");
 							}
 						}

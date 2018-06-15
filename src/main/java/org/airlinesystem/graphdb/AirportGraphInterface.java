@@ -33,7 +33,7 @@ public interface AirportGraphInterface {
 	 * @param distance_
 	 * 		double that represents distance between airports (weight)
 	 * @return
-	 * 		true if successfully created, false otherwise
+	 * 		n/a
 	 */
 	void createEdge(String source_, String destination_, double distance_) throws IllegalGraphAdditionException;
 	

@@ -2,7 +2,9 @@ package org.airlinesystem.exceptions;
 
 public class IllegalGraphAdditionException extends Exception {
 
-    public IllegalGraphAdditionException(String message) {
+	private static final long serialVersionUID = 6234124611862832035L;
+
+	public IllegalGraphAdditionException(String message) {
     	super(message);
     }
 

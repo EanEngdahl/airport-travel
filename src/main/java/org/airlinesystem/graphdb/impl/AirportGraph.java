@@ -47,7 +47,9 @@ public class AirportGraph implements AirportGraphInterface {
 	@Override
 	public void addAirport(Airport airport_) { 
 		graphOfAirports.addVertex(airport_.getName());
-		mapAirportToName.put(airport_.getName(), airport_);
+		if(!mapAirportToName.containsKey(airport_.getName())) {
+			mapAirportToName.put(airport_.getName(), airport_);			
+		}
 	}
 	
 	/**
@@ -60,8 +62,9 @@ public class AirportGraph implements AirportGraphInterface {
 	 * 		String that represents name of second airport
 	 * @param distance_
 	 * 		double that represents distance between airports (weight)
+	 * @throws IllegalGraphAdditionException
 	 * @return
-	 * 		true if successfully created, false otherwise
+	 * 		n/a
 	 */
 	@Override
 	public void createEdge(String source_, String destination_, double distance_) throws IllegalGraphAdditionException {
@@ -79,20 +82,6 @@ public class AirportGraph implements AirportGraphInterface {
 		} catch(IllegalArgumentException|NullPointerException _e) {
 			throw new IllegalGraphAdditionException("Cannot create addition to AirportGraph", _e);
 		}
-	/*	
-		if (source_.equals(destination_) || areAirportsConnected(source_, destination_)
-				|| distance_ <= 0) {
-			airportGraphLog.debugDebug("Invalid graph input found, input ignored.");
-			return false;
-		}
-		try {
-			graphOfAirports.addEdge(source_, destination_);
-			graphOfAirports.setEdgeWeight(graphOfAirports.getEdge(source_, destination_), distance_);
-		} catch (Exception e_) {
-			return false;
-		}
-		return true;
-	*/
 	}
 	
 	/**
@@ -180,6 +169,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * 		name of the airport wanted
 	 * @return
 	 * 		Airport object that corresponds to the name given
+	 * 		or null if it does not exist
 	 */
 	@Override
 	public Airport getAirport(String airportName_) {

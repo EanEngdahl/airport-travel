@@ -16,6 +16,7 @@ import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.Flight;
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.exceptions.AirlineSystemException;
 import org.jgrapht.graph.DefaultEdge;
 
 public class FlightRCPController {
@@ -57,7 +58,7 @@ public class FlightRCPController {
 	 * 
 	 * @param flightToCalculate_
 	 * 		flight with information to use for finding cost
-	 * @ return
+	 * @return
 	 * 		BigDecimal type cost to be used for profit calculations
 	 */
 	public BigDecimal findCost(Flight flightToCalculate_) {
@@ -152,14 +153,14 @@ public class FlightRCPController {
 	 */
 	
 	public BigDecimal findAverageProfitPerEdge(FlightList listOfFlights_, AirportGraph airportGraph_,
-			String source_, String destination_) throws NullPointerException, ArithmeticException {
+			String source_, String destination_) throws AirlineSystemException {
 
 		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
 		BigDecimal _totalProfit = new BigDecimal(0);
 		int _counter = 0;
 	
 		if(!listOfFlights_.getFlightMap().containsKey(_testEdge)) {
-			throw new NullPointerException();
+			throw new AirlineSystemException("Edge is not contained in the map");
 		}
 		
 		for(Flight _f : listOfFlights_.getFlightMap().get(_testEdge)) {
