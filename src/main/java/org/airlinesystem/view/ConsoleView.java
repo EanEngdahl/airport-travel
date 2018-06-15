@@ -6,17 +6,16 @@
 
 package org.airlinesystem.view;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 
+import org.airlinesystem.controllers.logging.FullLogging;
 
 public class ConsoleView {
 	
-	private Logger menuLogger = LoggerFactory.getLogger("menuLogger");
+	//private Logger menuLogger = LoggerFactory.getLogger("menuLogger");
+	private FullLogging viewLog = FullLogging.getInstance();
 
 	/**
 	 * Prompts a user to choose to input either a new properties or graph file
@@ -29,14 +28,14 @@ public class ConsoleView {
 	 * @return
 	 * 		String array containing input file names
 	 */
-	public String[] promptUserForFileNames(Logger output_, Scanner input_) {
+	public String[] promptUserForFileNames(Scanner input_) {
 		String _fileNames[] = new String [2];
 		String _selection;
 
 		try {
 			do {
-				menuLogger.info("\nInput custom file paths. If none are input, use defaults.\n");
-				menuLogger.info("1. Enter custom properties file path\n"
+				viewLog.menuInfo("\nInput custom file paths. If none are input, use defaults.\n");
+				viewLog.menuInfo("1. Enter custom properties file path\n"
 						+ "2. Enter custom graph file path\n"
 						+ "3. Return to Main Menu\n\n");
 			
@@ -45,20 +44,20 @@ public class ConsoleView {
 				switch(_selection) {
 					case "1":
 					case "2":
-						menuLogger.info("Input file path: ");
+						viewLog.menuInfo("Input file path: ");
 						_fileNames[Integer.parseInt(_selection) - 1] = input_.nextLine();
 						break;
 					case "3":
-						menuLogger.info("Running program\n");
+						viewLog.menuInfo("Running program\n");
 						break;
 					default:
-						menuLogger.info("Input a valid option\n\n");
+						viewLog.menuInfo("Input a valid option\n\n");
 				}
 
 			} while(!_selection.equals("3"));
 
 		} catch(Exception e_) {
-			output_.error("Prompt input error");
+			viewLog.consoleError("Prompt input error");
 		}
 		return _fileNames;
 	}	
@@ -73,11 +72,11 @@ public class ConsoleView {
 	 * @return
 	 * 		integer representing user choice
 	 */
-	public int showMainMenu(Logger output_, Scanner input_) {
+	public int showMainMenu(Scanner input_) {
 		String _selection;
 		
-		menuLogger.info("\nMAIN MENU:\n");
-		menuLogger.info("1. Input custom files\n"
+		viewLog.menuInfo("\nMAIN MENU:\n");
+		viewLog.menuInfo("1. Input custom files\n"
 				+	 "2. Run simulation\n"
 				+	 "3. Show results\n"
 				+	 "4. Find average profit between airports\n"
@@ -105,12 +104,12 @@ public class ConsoleView {
 						case "6":
 							return 6;
 						default:
-							menuLogger.info("Input a valid option\n");
+							viewLog.menuInfo("Input a valid option\n");
 							break;
 				}
 			}
 		} catch(Exception e_) {
-			output_.error("Menu input error");
+			viewLog.consoleError("Menu input error");
 			return 0;
 		}
 	}
@@ -127,9 +126,9 @@ public class ConsoleView {
 	public String[] findAverageBetweenAirports(Scanner input_) {
 		String[] _airportNames = new String[2];
 		
-		menuLogger.info("Input first airport name: ");
+		viewLog.menuInfo("Input first airport name: ");
 		_airportNames[0] = input_.nextLine().toUpperCase();
-		menuLogger.info("Input second airport name: ");
+		viewLog.menuInfo("Input second airport name: ");
 		_airportNames[1] = input_.nextLine().toUpperCase();
 		
 		return _airportNames;
@@ -145,7 +144,7 @@ public class ConsoleView {
 	 * 		String of the data file name input
 	 */
 	public String promptForDataFile(Scanner input_) {
-		menuLogger.info("Input data file to read: ");
+		viewLog.menuInfo("Input data file to read: ");
 		return input_.nextLine();
 	}
 	
@@ -161,7 +160,7 @@ public class ConsoleView {
 	 */
 	public void displayAverageBetweenAirports(BigDecimal averageProfit_) {
 		NumberFormat _numberFormatter = NumberFormat.getInstance();
-		menuLogger.info("The average profit is ${}\n\n", _numberFormatter.format(averageProfit_));
+		viewLog.menuInfo("The average profit is $" + _numberFormatter.format(averageProfit_) + "\n\n");
 	}
 	
 	/**
@@ -182,19 +181,19 @@ public class ConsoleView {
 	 * @return
 	 * 		N/A
 	 */
-	public void resultsView(Logger output_, BigDecimal profit_, BigDecimal cost_, 
+	public void resultsView(BigDecimal profit_, BigDecimal cost_, 
 			BigDecimal revenue_, int totalFlights_, BigDecimal averageFlightProfit_) {
 		NumberFormat _numberFormatter = NumberFormat.getInstance();
-		menuLogger.info("\n\n*****Flight Results*****\n\n");
+		viewLog.menuInfo("\n\n*****Flight Results*****\n\n");
 		try {
-		menuLogger.info("Total number of flights: {}\nTotal revenue: {}\nTotal cost: {}" 
-				+ "\nTotal Profit: {}\nAverage Profit: {}\n", 
-				_numberFormatter.format(totalFlights_), _numberFormatter.format(revenue_),
-				_numberFormatter.format(cost_), _numberFormatter.format(profit_), 
-				_numberFormatter.format(averageFlightProfit_));
+		viewLog.menuInfo("Total number of flights: " + _numberFormatter.format(totalFlights_)
+				+ "\nTotal revenue: " + _numberFormatter.format(revenue_) 
+				+ "\nTotal cost: " +  _numberFormatter.format(cost_)
+				+ "\nTotal Profit: " + _numberFormatter.format(profit_)
+				+ "\nAverage Profit: " + _numberFormatter.format(averageFlightProfit_) + "\n");
 		}
 		catch(Exception e_) {
-			output_.error("Number formatting error: " + e_.getStackTrace());
+			viewLog.consoleError("Number formatting error: " + e_.getStackTrace());
 		}
 	}
 }

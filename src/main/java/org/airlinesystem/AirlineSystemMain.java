@@ -5,12 +5,11 @@ import java.io.File;
 import java.io.IOException;
 
 import org.airlinesystem.controllers.ConsoleViewController;
+import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.helpers.AirlineSimulationBuilder;
 import org.airlinesystem.helpers.DefaultsLoader;
 import org.airlinesystem.model.AirlineSimulation;
 import org.apache.commons.cli.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class AirlineSystemMain {
 	
@@ -21,8 +20,7 @@ public class AirlineSystemMain {
 		boolean _menuFlag = false;
 		boolean _dataFileFlag = false;
 		
-		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
-		
+		FullLogging _mainLog = FullLogging.getInstance();
 		
 		CommandLineParser _parser = new DefaultParser();
 		HelpFormatter _formatter = new HelpFormatter();
@@ -86,7 +84,7 @@ public class AirlineSystemMain {
 					_simulator.runFromDataFile(_propertiesFile, _dataFile, _simulation);
 				} 
 				catch (Exception e_) {
-					_consoleLogger.error("Error reading data, cannot run simulation\n");
+					_mainLog.consoleError("Error reading data, cannot run simulation\n");
 					return;
 				}
 			}
@@ -94,7 +92,7 @@ public class AirlineSystemMain {
 			_simulator.runSimulation(_propertiesFile, _graphFile, _simulation);
 			}
 			NumberFormat _numberFormatter = NumberFormat.getInstance();
-			_consoleLogger.info("Total Profit = $" + _numberFormatter.format(_simulation.getTotalProfit()));
+			_mainLog.menuInfo("Total Profit = $" + _numberFormatter.format(_simulation.getTotalProfit()));
 			return;
 		}
 		
@@ -102,6 +100,6 @@ public class AirlineSystemMain {
 		 *  Runs the console menu if it is applicable
 		 */
 		String _fileNameList[] = {_propertiesFile.getAbsolutePath(), _graphFile.getAbsolutePath()};
-		_consoleOut.menuController(_consoleLogger, _fileNameList, _simulation, _simulator, _dataFile);
+		_consoleOut.menuController(_fileNameList, _simulation, _simulator, _dataFile);
 	}
 }

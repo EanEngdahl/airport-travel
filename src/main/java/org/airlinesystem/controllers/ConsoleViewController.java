@@ -11,12 +11,14 @@ import java.math.BigDecimal;
 import java.math.RoundingMode;
 import java.io.File;
 
+import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.helpers.AirlineSimulationBuilder;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.view.*;
-import org.slf4j.Logger;
 
 public class ConsoleViewController {
+
+	private FullLogging viewControllerLog = FullLogging.getInstance();
 
 	/**
 	 * Main menu controller for user, handles all main menu input
@@ -32,7 +34,7 @@ public class ConsoleViewController {
 	 * @return
 	 * 		N/A
 	 */
-	public void menuController(Logger consoleLogger_, String [] fileNameList_,
+	public void menuController(String [] fileNameList_,
 			AirlineSimulation simulation_, AirlineSimulationBuilder simulator_, File dataFile_) {
 
 		int _selection;
@@ -47,11 +49,11 @@ public class ConsoleViewController {
 		Scanner _input = new Scanner(System.in);
 		
 		do {
-			_selection = _consoleOut.showMainMenu(consoleLogger_, _input);
+			_selection = _consoleOut.showMainMenu(_input);
 			
 			switch(_selection) {
 				case 1:
-					fileNameList_ = _consoleOut.promptUserForFileNames(consoleLogger_, _input);
+					fileNameList_ = _consoleOut.promptUserForFileNames(_input);
 					if(fileNameList_[0] != null && !(fileNameList_[0].isEmpty())) {
 						_propertiesFile = new File(fileNameList_[0]);
 					}
@@ -70,13 +72,13 @@ public class ConsoleViewController {
 					break;
 				case 3:
 					if(_hasSimBeenRun) {
-					_consoleOut.resultsView(consoleLogger_, simulation_.getTotalProfit(), simulation_.getTotalCost(), 
+					_consoleOut.resultsView(simulation_.getTotalProfit(), simulation_.getTotalCost(), 
 							simulation_.getTotalRevenue(), simulation_.getListOfFlights().size(), 
 							simulation_.getTotalProfit().divide(new BigDecimal(simulation_.getListOfFlights().size()),
 									2, RoundingMode.FLOOR));
 					}
 					else {
-						consoleLogger_.error("No simulation run, unable to show results");
+						viewControllerLog.consoleError("No simulation run, unable to show results");
 					}
 					break;
 				case 4:
@@ -89,19 +91,19 @@ public class ConsoleViewController {
 										simulation_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
 								_consoleOut.displayAverageBetweenAirports(_averageProfit);
 							} catch(NullPointerException _e) {
-								consoleLogger_.error("There are no flights between the two airports");
+								viewControllerLog.consoleError("There are no flights between the two airports");
 							}
 						}
 						else if(!(simulation_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[0]))
 								|| !(simulation_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[1]))) {
-							consoleLogger_.error("Airport input not present in graph, cannot find average");
+							viewControllerLog.consoleError("Airport input not present in graph, cannot find average");
 						}
 						else {
-							consoleLogger_.error("Airports are not connected, cannot find average");
+							viewControllerLog.consoleError("Airports are not connected, cannot find average");
 						}
 					} 
 					else {
-						consoleLogger_.error("No simulation run, unable to find profit");
+						viewControllerLog.consoleError("No simulation run, unable to find profit");
 					}
 					break;
 				case 5:
@@ -110,7 +112,7 @@ public class ConsoleViewController {
 					String _dataFileName = _consoleOut.promptForDataFile(_input);
 					if(_dataFileName == (null) || _dataFileName.equals("")) {
 						dataFile_ = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default-data");
-						consoleLogger_.error("Invalid entry, reverting to default-data file");
+						viewControllerLog.consoleError("Invalid entry, reverting to default-data file");
 					}
 					else {
 						dataFile_ = new File(_dataFileName);
@@ -121,7 +123,7 @@ public class ConsoleViewController {
 					}
 					catch (Exception e_) {
 						_hasSimBeenRun = false;
-						consoleLogger_.error("Error reading data, cannot run simulation");
+						viewControllerLog.consoleError("Error reading data, cannot run simulation");
 					}
 					break;
 				case 6:
@@ -129,7 +131,7 @@ public class ConsoleViewController {
 						simulation_.getGraphOfAirports().printGraph();
 					}
 					else {
-						consoleLogger_.error("No simulation run, unable to display graph");
+						viewControllerLog.consoleError("No simulation run, unable to display graph");
 					}
 					break;
 				case 0:
