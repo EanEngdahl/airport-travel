@@ -23,7 +23,7 @@ public class GenerateModelDataTest {
 	@BeforeClass
 	public static void initialize() {
 
-		props = new RuntimePropertyController().loadDefaultProperties();
+		props = new RuntimePropertyController().loadRuntimeProperties(new File("default.properties"));
 		gen = new GenerateModelData();
 		airportGraph = new AirportGraph();
 		

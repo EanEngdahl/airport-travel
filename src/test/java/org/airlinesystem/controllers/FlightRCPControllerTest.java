@@ -38,7 +38,11 @@ public class FlightRCPControllerTest {
 	@BeforeClass
 	public static void initialize() {
 		propManager = new RuntimePropertyController();
-		testProps = propManager.loadDefaultProperties();
+		try {
+			testProps = propManager.loadDefaultProperties();
+		} catch(AirlineSystemException _e) {
+			System.exit(0);
+		}
 		fd = new FlightBuilder();
 		testFlight = fd.flightDispatchService(AircraftSize.L, MAX_SEATS, SEATS_FILLED, 
 				SEAT_COST, "1", "2", 100, testProps);

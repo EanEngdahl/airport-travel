@@ -6,6 +6,7 @@ import org.junit.BeforeClass;
 
 import java.math.BigDecimal;
 import java.util.Properties;
+import java.io.File;
 
 import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
@@ -23,7 +24,7 @@ public class FlightBuilderTest {
 	public static void initialize() {
 		testDispatcher = new FlightBuilder();
 		propManager = new RuntimePropertyController();
-		testProps = propManager.loadDefaultProperties();
+		testProps = propManager.loadRuntimeProperties(new File("default.properties"));
 	}
 	
 	@Test
