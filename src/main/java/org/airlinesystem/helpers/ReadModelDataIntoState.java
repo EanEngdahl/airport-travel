@@ -51,11 +51,6 @@ public class ReadModelDataIntoState {
 		
 		ReadGraphFromPSV _addEdgeToGraph = new ReadGraphFromPSV();
 		FlightBuilder _flightBuilder = new FlightBuilder();
-		Flight _flight;
-		String _source;
-		String _destination;
-		double _distanceTravelled;
-		AircraftSize _aircraftSize;
 		int _maxSeatsPerSection[] = new int [4];
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
@@ -66,6 +61,11 @@ public class ReadModelDataIntoState {
 			reader.readLine();
 			StringTokenizer tokenizer;
 			String line = null;
+			String _source;
+			String _destination;
+			double _distanceTravelled;
+			Flight _flight;
+			AircraftSize _aircraftSize;
 			READER_LOOP:
 			while ((line = reader.readLine()) != null) {
 				line = line.replaceAll("\\s", "");
@@ -131,20 +131,15 @@ public class ReadModelDataIntoState {
 		
 		flightInformation_ = flightInformation_.replaceAll("\\s", "");
 		FlightBuilder _flightBuilder = new FlightBuilder();
-		Flight _flight;
-		String _source;
-		String _destination;
-		double _distanceTravelled;
-		AircraftSize _aircraftSize;
 		int _maxSeatsPerSection[] = new int [4];
 		int _seatsFilledPerSection[] = new int [4];
 		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
 		StringTokenizer tokenizer = new StringTokenizer(flightInformation_, DELIM);
 		
-		_source = tokenizer.nextToken();
-		_destination = tokenizer.nextToken();
-		_distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
-		_aircraftSize = AircraftSize.valueOf(tokenizer.nextToken().toUpperCase());
+		String _source = tokenizer.nextToken();
+		String _destination = tokenizer.nextToken();
+		double _distanceTravelled = setDistanceTravelled(tokenizer.nextToken());
+		AircraftSize _aircraftSize = AircraftSize.valueOf(tokenizer.nextToken().toUpperCase());
 		
 		for (int i = 0; i < 4; i++) {
 			_maxSeatsPerSection[i] = setMaxSeatsPerSection(tokenizer.nextToken());
@@ -155,7 +150,7 @@ public class ReadModelDataIntoState {
 		for (int i = 0; i < 4; i++) {
 			_seatCostPerSection[i] = setSeatCostPerSection(tokenizer.nextToken());
 		}
-		_flight = _flightBuilder.flightDispatchService(_aircraftSize, _maxSeatsPerSection,
+		Flight _flight = _flightBuilder.flightDispatchService(_aircraftSize, _maxSeatsPerSection,
 				_seatsFilledPerSection, _seatCostPerSection, _source, _destination, _distanceTravelled, modelProperties_);
 		listOfFlights_.addFlightToList(_flight, airportGraph_);
 	}

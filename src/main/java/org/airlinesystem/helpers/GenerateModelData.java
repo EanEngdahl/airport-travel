@@ -183,7 +183,6 @@ public class GenerateModelData {
 	public String generateRandomFlight(Properties modelProperties_, AirportGraph airportGraph_, 
 			ArrayList<DefaultEdge> sortedEdges_) {
 
-		String _flight;
 		AircraftSize _aircraftSize;
 		String _maxSeatsPerSection;
 		String _seatPricePerSection;
@@ -212,7 +211,7 @@ public class GenerateModelData {
 
 		String _seatsFilledPerSection = generateRandomSeatsFilled(modelProperties_, _aircraftSize);
 				
-		_flight = String.format("%s|%s|%f|%s|%s|%s|%s", _source, _dest, 
+		String _flight = String.format("%s|%s|%f|%s|%s|%s|%s", _source, _dest, 
 				_distance, _aircraftSize.toString(), _maxSeatsPerSection, 
 				_seatsFilledPerSection, _seatPricePerSection);
 		

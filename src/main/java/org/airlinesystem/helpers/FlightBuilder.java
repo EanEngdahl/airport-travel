@@ -49,16 +49,12 @@ public class FlightBuilder {
 			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
 			String source_, String destination_, double distanceTravelled_,
 			Properties modelProperties_) {
-	
-		AircraftPilot _pilot;
-		AircraftPilot _coPilot;
-		Aircraft _aircraftAssigned;
 		
 		PilotBuilder assignPilots = new PilotBuilder(modelProperties_);
 
-		_pilot = assignPilots.assignPilotToAircraft(aircraftSize_);
-		_coPilot = assignPilots.assignPilotToAircraft(aircraftSize_);	
-		_aircraftAssigned = new Aircraft(aircraftSize_, getTotalNumOfPassengers(seatsFilledPerSection_),
+		AircraftPilot _pilot = assignPilots.assignPilotToAircraft(aircraftSize_);
+		AircraftPilot _coPilot = assignPilots.assignPilotToAircraft(aircraftSize_);	
+		Aircraft _aircraftAssigned = new Aircraft(aircraftSize_, getTotalNumOfPassengers(seatsFilledPerSection_),
 				seatsFilledPerSection_, seatCostPerSection_, getMaxAircraftSeats(maxSeatsPerSection_));
 		Airport source = new Airport(source_);
 		Airport destination = new Airport(destination_);
@@ -69,7 +65,6 @@ public class FlightBuilder {
 		setFlightRCPData(_newFlightFromData, modelProperties_);
 		
 		return _newFlightFromData;
-
 	}
 	
 	/**
@@ -110,6 +105,5 @@ public class FlightBuilder {
 	 */
 	public int getMaxAircraftSeats(int maxSeatsPerSection_[]) {
 		return IntStream.of(maxSeatsPerSection_).sum();
-				
 	}
 }

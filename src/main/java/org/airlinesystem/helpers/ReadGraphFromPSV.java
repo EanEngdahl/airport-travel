@@ -39,9 +39,6 @@ public class ReadGraphFromPSV {
 			throws IOException, NullPointerException, Exception{
 		readGraphLog.debugDebug("Reading graph input file");
 		
-		String _source;
-		String _destination;
-		double _distanceTravelled;
 		int _counter = 1;
 		try (FileInputStream _is = new FileInputStream(graphFile_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
@@ -51,6 +48,9 @@ public class ReadGraphFromPSV {
 			String line = null;
 			Airport _sourceAirport;
 			Airport _destinationAirport;
+			String _source;
+			String _destination;
+			double _distanceTravelled;
 			while ((line = reader.readLine()) != null) {
 				_counter++;
 				if ("".equals(line)) {

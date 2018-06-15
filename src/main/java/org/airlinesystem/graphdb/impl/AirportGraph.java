@@ -136,7 +136,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * @param airport_
 	 * 		String of the name of the airport to search for
 	 * @return
-	 * 		true if aiprot found, false otherwise
+	 * 		true if airport found, false otherwise
 	 */
 	@Override
 	public boolean isAirportInGraph(String airport_) {

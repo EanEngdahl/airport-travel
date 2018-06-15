@@ -156,7 +156,6 @@ public class FlightRCPController {
 
 		DefaultEdge _testEdge = airportGraph_.getGraphOfAirports().getEdge(source_, destination_);
 		BigDecimal _totalProfit = new BigDecimal(0);
-		BigDecimal _averageProfit = new BigDecimal(0);
 		int _counter = 0;
 	
 		if(!listOfFlights_.getFlightMap().containsKey(_testEdge)) {
@@ -168,7 +167,7 @@ public class FlightRCPController {
 			_counter++;
 		}
 		
-		_averageProfit = _totalProfit.divide(new BigDecimal(_counter), 2, RoundingMode.FLOOR);
+		BigDecimal _averageProfit = _totalProfit.divide(new BigDecimal(_counter), 2, RoundingMode.FLOOR);
 		
 		return _averageProfit;
 	}
