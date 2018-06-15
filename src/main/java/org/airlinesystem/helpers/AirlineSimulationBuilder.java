@@ -7,11 +7,10 @@ package org.airlinesystem.helpers;
 
 import org.airlinesystem.controllers.FlightRCPController;
 import org.airlinesystem.controllers.RuntimePropertyController;
+import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.model.FlightList;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
@@ -20,9 +19,7 @@ import java.io.File;
 
 public class AirlineSimulationBuilder {
 
-	private Logger resultsLogger = LoggerFactory.getLogger("resultsLogger");
-	private Logger consoleLogger = LoggerFactory.getLogger("consoleLogger");
-	private Logger debugLogger = LoggerFactory.getLogger("debugLogger");
+	private FullLogging simulationBuilderLog = FullLogging.getInstance();
 	
 	/**
 	 * Attempts to process a graph file given a name and graph to process it into
@@ -39,7 +36,7 @@ public class AirlineSimulationBuilder {
 		ReadGraphFromPSV _graphInput = new ReadGraphFromPSV();
 		try {
 			_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFile_);
-			debugLogger.debug("Graph successfully read");
+			simulationBuilderLog.debugDebug("Graph successfully read");
 		}
 		catch(Exception e_) {
 			throw new Exception(e_.getMessage());
@@ -67,7 +64,7 @@ public class AirlineSimulationBuilder {
 		try {
 			_dataCreator.generateCurrentStateModel(modelProperties_, graphOfAirports_,
 					listOfFlights_, _flightInput);
-			debugLogger.debug("Generated data");
+			simulationBuilderLog.debugDebug("Generated data");
 		}
 		catch (Exception e_) {
 			throw new Exception("Error, cannot generate data");
@@ -119,14 +116,14 @@ public class AirlineSimulationBuilder {
 		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFile_);
 		simulation_.setSimulationProperties(_modelProperties);
 
-		consoleLogger.info("Calculating flight results...");
-		debugLogger.debug("runSimulation");
+		simulationBuilderLog.consoleInfo("Calculating flight results...");
+		simulationBuilderLog.debugDebug("runSimulation");
 				
 		try {
 			processGraph(simulation_.getGraphOfAirports(), graphFile_);
 		}
 		catch (Exception e_) {
-			consoleLogger.error(e_.getMessage());
+			simulationBuilderLog.consoleError(e_.getMessage());
 		}
 
 		try {
@@ -138,12 +135,13 @@ public class AirlineSimulationBuilder {
 			simulation_.setTotalProfit(arrayOfRCP[2]);
 
 			NumberFormat _numberFormatter = NumberFormat.getInstance();
-			resultsLogger.info("Total Profit = ${}", _numberFormatter.format(arrayOfRCP[2]));
-			consoleLogger.info("Flights successfully created");
+			simulationBuilderLog.resultsInfo("Total Profit = $" + 
+			_numberFormatter.format(arrayOfRCP[2]));
+			simulationBuilderLog.consoleInfo("Flights successfully created");
 		}
 		catch (Exception e_) {
-			consoleLogger.error(e_.getMessage());
-			resultsLogger.error(e_.getMessage());
+			simulationBuilderLog.consoleError(e_.getMessage());
+			simulationBuilderLog.consoleError(e_.getMessage());
 		}
 	}
 	
@@ -178,7 +176,7 @@ public class AirlineSimulationBuilder {
 			simulation_.setTotalProfit(_arrayOfRCP[2]);
 		}
 		catch (Exception e_) {
-			consoleLogger.error(e_.getMessage());
+			simulationBuilderLog.consoleError(e_.getMessage());
 			throw new Exception();
 		}
 	}

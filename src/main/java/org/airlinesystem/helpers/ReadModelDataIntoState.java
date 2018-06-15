@@ -15,19 +15,18 @@ import java.math.BigDecimal;
 import java.util.Properties;
 import java.util.StringTokenizer;
 
+import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
 import static org.airlinesystem.model.Aircraft.AircraftSize;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.io.IOException;
 
 public class ReadModelDataIntoState {
 	
 	private static final String DELIM = "|";
+	private FullLogging readDataLog = FullLogging.getInstance();
 	
 	/**
 	 * Read information from the input file then sends that information properly
@@ -48,8 +47,7 @@ public class ReadModelDataIntoState {
 	public void readFileInputIntoFlightList(FlightList listOfFlights_, 
 			File fileToRead_, Properties modelProperties_, AirportGraph airportGraph_)
 			throws IOException, NullPointerException, Exception {
-		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
-		_debugLogger.debug("Reading input file");
+		readDataLog.debugDebug("Reading input file");
 		
 		ReadGraphFromPSV _addEdgeToGraph = new ReadGraphFromPSV();
 		FlightBuilder _flightBuilder = new FlightBuilder();
@@ -87,7 +85,7 @@ public class ReadModelDataIntoState {
 				for (int i = 0; i < 4; i++) {
 					_seatsFilledPerSection[i] = setSeatsFilledPerSection(tokenizer.nextToken());
 					if (_seatsFilledPerSection[i] > _maxSeatsPerSection[i]) {
-						_debugLogger.debug("Ignored invalid input in data");
+						readDataLog.debugDebug("Ignored invalid input in data");
 						continue READER_LOOP;
 					}
 				}
@@ -99,7 +97,7 @@ public class ReadModelDataIntoState {
 						_seatsFilledPerSection, _seatCostPerSection, _source, _destination, _distanceTravelled, modelProperties_);
 				listOfFlights_.addFlightToList(_flight, airportGraph_);
 			}
-			_debugLogger.debug("Successfully read file");
+			readDataLog.debugDebug("Successfully read file");
 			reader.close();
 		}
 		catch (IOException e_) {

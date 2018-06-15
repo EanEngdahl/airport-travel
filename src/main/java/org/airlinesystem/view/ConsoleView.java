@@ -14,7 +14,6 @@ import org.airlinesystem.controllers.logging.FullLogging;
 
 public class ConsoleView {
 	
-	//private Logger menuLogger = LoggerFactory.getLogger("menuLogger");
 	private FullLogging viewLog = FullLogging.getInstance();
 
 	/**

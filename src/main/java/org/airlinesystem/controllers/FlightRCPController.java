@@ -12,8 +12,7 @@ import java.text.NumberFormat;
 import java.util.Iterator;
 import java.util.Properties;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.Flight;
 import org.airlinesystem.model.FlightList;
@@ -21,6 +20,7 @@ import org.jgrapht.graph.DefaultEdge;
 
 public class FlightRCPController {
 	private BigDecimal fuelCost;
+	private FullLogging flightRCPControllerLog = FullLogging.getInstance();
 	
 	/**
 	 * Default constructor
@@ -111,7 +111,6 @@ public class FlightRCPController {
 	 * 		may be positive or negative depending on flights input
 	 */
 	public BigDecimal[] findTotalRCPOfFlightList (FlightList listOfFlights_) {
-		Logger _resultsLogger = LoggerFactory.getLogger("resultsLogger");
 		Iterator<Flight> _flightListItr = listOfFlights_.iterator();
 		BigDecimal _totalProfit = new BigDecimal("0");
 		BigDecimal _totalCost = new BigDecimal("0");
@@ -124,7 +123,7 @@ public class FlightRCPController {
 			_totalCost = _totalCost.add(_currentFlight.getCost());
 			_totalRevenue = _totalRevenue.add(_currentFlight.getRevenue());
 			_totalProfit = _totalProfit.add(_currentFlight.getProfit());
-			_resultsLogger.info("Individual flight profit = ${}", 
+			flightRCPControllerLog.resultsInfo("Individual flight profit = $" + 
 			_numberFormatter.format(_currentFlight.getProfit()));
 		}
 		BigDecimal[] _totalFlightRCPArray = {_totalRevenue, _totalCost, _totalProfit};

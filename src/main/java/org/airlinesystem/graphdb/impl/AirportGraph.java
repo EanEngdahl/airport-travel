@@ -7,13 +7,12 @@
  */
 package org.airlinesystem.graphdb.impl;
 
+import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.AirportGraphInterface;
 
 import org.airlinesystem.model.Airport;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.HashMap;
 import java.util.ArrayList;
@@ -25,6 +24,7 @@ public class AirportGraph implements AirportGraphInterface {
 	
 	private Graph<String, DefaultEdge> graphOfAirports;
 	private HashMap<String, Airport> mapAirportToName;
+	private FullLogging airportGraphLog = FullLogging.getInstance();
 
 	/**
 	 * Constructor, initializes graph
@@ -65,11 +65,10 @@ public class AirportGraph implements AirportGraphInterface {
 	 */
 	@Override
 	public boolean createEdge(String source_, String destination_, double distance_) {	
-		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 		
 		if (source_.equals(destination_) || areAirportsConnected(source_, destination_)
 				|| distance_ <= 0) {
-			_debugLogger.debug("Invalid graph input found, input ignored.");
+			airportGraphLog.debugDebug("Invalid graph input found, input ignored.");
 			return false;
 		}
 		try {
@@ -207,7 +206,6 @@ public class AirportGraph implements AirportGraphInterface {
 	 */
 	@Override
 	public void printGraph() {
-		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		
 		Iterator<String> _vertexItr = graphOfAirports.vertexSet().iterator();
 		Iterator<DefaultEdge> _edgeItr;
@@ -216,7 +214,7 @@ public class AirportGraph implements AirportGraphInterface {
 		DefaultEdge _edgeTracker;
 		while(_vertexItr.hasNext()) {
 			_vertex = _vertexItr.next();
-			_consoleLogger.info("Vertex: {}", _vertex);
+			airportGraphLog.menuInfo("\nVertex: " + _vertex + "\n");
 			_edgeItr = graphOfAirports.edgesOf(_vertex).iterator();
 			while (_edgeItr.hasNext()) {
 				_edgeTracker = _edgeItr.next();
@@ -224,8 +222,8 @@ public class AirportGraph implements AirportGraphInterface {
 				if(_destinationVertex.equals(_vertex)) {
 					_destinationVertex = graphOfAirports.getEdgeSource(_edgeTracker);
 				}
-				_consoleLogger.info("-> {}({})", _destinationVertex, 
-						graphOfAirports.getEdgeWeight(_edgeTracker));
+				airportGraphLog.menuInfo("-> " + _destinationVertex + "(" 
+				+ graphOfAirports.getEdgeWeight(_edgeTracker) + ")\n");
 			}
 		}
 	}

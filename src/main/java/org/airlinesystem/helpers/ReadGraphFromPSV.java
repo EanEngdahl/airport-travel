@@ -15,14 +15,14 @@ import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.StringTokenizer;
 
+import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.Airport;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 public class ReadGraphFromPSV {
 
 	private static final String DELIM = "|";
+	private FullLogging readGraphLog = FullLogging.getInstance();
 
 	/**
 	 * Reads a given file where each line contains two vertices (airports) that have an edge
@@ -37,8 +37,7 @@ public class ReadGraphFromPSV {
 	 */
 	public void readFileInputIntoGraph(AirportGraph graphOfAirports_, File graphFile_) 
 			throws IOException, NullPointerException, Exception{
-		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
-		_debugLogger.debug("Reading graph input file");
+		readGraphLog.debugDebug("Reading graph input file");
 		
 		String _source;
 		String _destination;
@@ -66,10 +65,10 @@ public class ReadGraphFromPSV {
 				graphOfAirports_.addAirport(_sourceAirport);
 				graphOfAirports_.addAirport(_destinationAirport);
 				if (!graphOfAirports_.createEdge(_source, _destination, _distanceTravelled)) {
-					_debugLogger.debug("Ignored at line " + Integer.toString(_counter) + " in file");
+					readGraphLog.debugDebug("Ignored at line " + Integer.toString(_counter) + " in file");
 				}
 			}
-			_debugLogger.debug("Successfully read graph file");
+			readGraphLog.debugDebug("Successfully read graph file");
 			reader.close();
 		}
 		catch (IOException e_) {
@@ -100,7 +99,6 @@ public class ReadGraphFromPSV {
 	 */
 	public void readEdgeIntoGraph(AirportGraph graphOfAirports_, String source_,
 			String destination_, double distanceTravelled_) {
-		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
 
 		Airport _sourceAirport = new Airport(source_);
 		Airport _destinationAirport = new Airport(destination_);
@@ -108,7 +106,7 @@ public class ReadGraphFromPSV {
 		graphOfAirports_.addAirport(_sourceAirport);
 		graphOfAirports_.addAirport(_destinationAirport);
 		if (!graphOfAirports_.createEdge(source_, destination_, distanceTravelled_)) {
-			_debugLogger.debug("Ignored edge input");
+			readGraphLog.debugDebug("Ignored edge input");
 		}
 	}
 	

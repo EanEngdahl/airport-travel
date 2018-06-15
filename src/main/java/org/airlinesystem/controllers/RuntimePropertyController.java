@@ -12,10 +12,11 @@ import java.io.FileInputStream;
 import java.io.File;
 import java.io.IOException;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.airlinesystem.controllers.logging.FullLogging;
 
 public class RuntimePropertyController {
+
+	private FullLogging propertyControllerLog = FullLogging.getInstance();
 
 	/**
 	 * Loads the default.properties file and throws exceptions
@@ -25,18 +26,16 @@ public class RuntimePropertyController {
 	 */
 	public Properties loadDefaultProperties() {
 		Properties _defaultProperties = new Properties();
-		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
-		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
 
 		try (InputStream _is = this.getClass().getResourceAsStream("/default.properties")) {
 			_defaultProperties.load(_is);
-			_debugLogger.debug("defaults loaded...");
+			propertyControllerLog.debugDebug("defaults loaded...");
 		} catch(NullPointerException e_){
-			_consoleLogger.error("Could not find default.properties file");
+			propertyControllerLog.consoleError("Could not find default.properties file");
 		} catch(IOException e_) {
-			_consoleLogger.error("Error reading default.properties file");
+			propertyControllerLog.consoleError("Error reading default.properties file");
 		} catch (Exception e_) {
-			_consoleLogger.error("Error reading default.properties file");
+			propertyControllerLog.consoleError("Error reading default.properties file");
 
 		}	
 		return _defaultProperties;
@@ -52,15 +51,15 @@ public class RuntimePropertyController {
 	public Properties createRuntimeProperties(File file_) {
 		Properties _properties = new Properties();
 
-		Logger _consoleLogger = LoggerFactory.getLogger("consoleLogger");
-
 		try (InputStream _is = new FileInputStream(file_)) {
 			_properties.load(_is);
 		} catch(IOException e_){
 			_properties = loadDefaultProperties();
-			_consoleLogger.error("Unable to use {}, reverting to default properties. {}", file_, e_.getMessage());
+			propertyControllerLog.consoleError("Unable to use " + file_ + 
+					", reverting to default properties. " + e_.getMessage());
 		} catch(NullPointerException e_) {
-			_consoleLogger.error("Unable to use {}, reverting to default properties. {}", file_, e_.getMessage());
+			propertyControllerLog.consoleError("Unable to use " + file_ +
+					", reverting to default properties. " + e_.getMessage());
 			_properties = loadDefaultProperties();	
 		}
 		

@@ -4,12 +4,11 @@ import java.util.Random;
 import java.util.Properties;
 import java.util.ArrayList;
 
+import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
 import static org.airlinesystem.model.Aircraft.AircraftSize;
 import org.jgrapht.graph.*;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 /**
  *  Generates the data for the airport system based on the configuration file and 
@@ -19,6 +18,7 @@ import org.slf4j.LoggerFactory;
 public class GenerateModelData {
 
 	private Random rand = new Random();
+	private FullLogging generateDataLog = FullLogging.getInstance();
 
 	/**
 	 *  Chooses a random edge from the graph to act as the path for a flight.
@@ -216,8 +216,7 @@ public class GenerateModelData {
 				_distance, _aircraftSize.toString(), _maxSeatsPerSection, 
 				_seatsFilledPerSection, _seatPricePerSection);
 		
-		Logger _debugLogger = LoggerFactory.getLogger("debugLogger");
-		_debugLogger.debug("Model gen string output: {}", _flight);		
+		generateDataLog.debugDebug("Model gen string output: " + _flight);		
 		
 		return _flight;
 	}

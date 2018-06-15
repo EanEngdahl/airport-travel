@@ -40,6 +40,9 @@ public class FullLogging {
 		consoleLogger.error(message_);
 	}
 	
+	public void consoleInfo(String message_) {
+		consoleLogger.info(message_);
+	}
 	public void debugDebug(String message_) {
 		debugLogger.debug(message_);
 	}
