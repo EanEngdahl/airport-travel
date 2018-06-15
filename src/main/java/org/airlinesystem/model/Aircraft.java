@@ -4,9 +4,26 @@ import java.math.BigDecimal;
 
 public class Aircraft {
 
+	/**
+	 * Possible sizes of aircraft
+	 * <li>{@link #S}/<li>
+	 * <li>{@link #M}/<li>
+	 * <li>{@link #L}/<li>
+	 */
 	public static enum AircraftSize {
+		/**
+		 * Small plane
+		 */
 		S,
+		
+		/**
+		 * Medium plane
+		 */
 		M,
+		
+		/**
+		 * Large plane
+		 */
 		L;
 	}
 	private AircraftSize aircraftSize;

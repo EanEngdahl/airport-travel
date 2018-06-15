@@ -5,9 +5,27 @@ import java.math.BigDecimal;
 
 
 public class AircraftPilot {
+	
+	/**
+	 * Possible ranks of pilots
+	 * <li>{@link #SENIOR}/<li>
+	 * <li>{@link #MIDLEVEL}/<li>
+	 * <li>{@link #JUNIOR}/<li>
+	 */
 	public static enum AircraftPilotSeniority {
+		/**
+		 * Senior ranking pilot
+		 */
 		SENIOR,
+		
+		/**
+		 * Middle ranking pilot
+		 */
 		MIDLEVEL,
+		
+		/**
+		 * Junior ranking pilot
+		 */
 		JUNIOR
 	};
 
