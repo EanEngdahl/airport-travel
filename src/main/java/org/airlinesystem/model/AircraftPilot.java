@@ -2,9 +2,17 @@ package org.airlinesystem.model;
 
 import java.math.BigDecimal;
 
+
+
 public class AircraftPilot {
+	public static enum AircraftPilotSeniority {
+		SENIOR,
+		MIDLEVEL,
+		JUNIOR
+	};
 
     private BigDecimal costPerFlight;
+
     private AircraftPilotSeniority seniority;
 
     public AircraftPilot() {}

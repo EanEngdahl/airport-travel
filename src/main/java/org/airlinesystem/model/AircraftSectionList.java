@@ -3,6 +3,8 @@ package org.airlinesystem.model;
 import java.util.ArrayList;
 import java.math.BigDecimal;
 
+import static org.airlinesystem.model.Aircraft.AircraftSize;
+
 public class AircraftSectionList extends ArrayList<AircraftSection> {
 
     private static final long serialVersionUID = 5534735606050325939L;

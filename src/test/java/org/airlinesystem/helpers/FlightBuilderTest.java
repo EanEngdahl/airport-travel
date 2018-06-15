@@ -10,8 +10,8 @@ import java.util.Properties;
 import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
-import org.airlinesystem.model.AircraftPilotSeniority;
-import org.airlinesystem.model.AircraftSize;
+import static org.airlinesystem.model.AircraftPilot.AircraftPilotSeniority;
+import static org.airlinesystem.model.Aircraft.AircraftSize;
 
 public class FlightBuilderTest {
 

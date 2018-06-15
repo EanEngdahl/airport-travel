@@ -4,6 +4,11 @@ import java.math.BigDecimal;
 
 public class Aircraft {
 
+	public static enum AircraftSize {
+		S,
+		M,
+		L;
+	}
 	private AircraftSize aircraftSize;
 	private AircraftSectionList sectionList;
 	private int maxAircraftSeats;

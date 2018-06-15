@@ -12,7 +12,7 @@ import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.helpers.GenerateModelData;
 import org.airlinesystem.helpers.ReadModelDataIntoState;
 import org.airlinesystem.model.FlightList;
-import org.airlinesystem.model.AircraftSize;
+import static org.airlinesystem.model.Aircraft.AircraftSize;
 
 public class GenerateModelDataTest {
 

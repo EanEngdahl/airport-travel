@@ -17,7 +17,7 @@ import java.util.StringTokenizer;
 
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
-import org.airlinesystem.model.AircraftSize;
+import static org.airlinesystem.model.Aircraft.AircraftSize;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
 import org.slf4j.Logger;

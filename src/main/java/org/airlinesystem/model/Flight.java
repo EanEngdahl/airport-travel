@@ -2,6 +2,8 @@ package org.airlinesystem.model;
 
 import java.math.BigDecimal;
 
+import static org.airlinesystem.model.Aircraft.AircraftSize;
+
 public class Flight {
 	private AircraftSize aircraftSize;
 	private AircraftPilot pilot;

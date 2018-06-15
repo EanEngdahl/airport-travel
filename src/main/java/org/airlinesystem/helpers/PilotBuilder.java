@@ -9,8 +9,8 @@ import java.math.BigDecimal;
 import java.util.Properties;
 
 import org.airlinesystem.model.AircraftPilot;
-import org.airlinesystem.model.AircraftPilotSeniority;
-import org.airlinesystem.model.AircraftSize;
+import static org.airlinesystem.model.AircraftPilot.AircraftPilotSeniority;
+import static org.airlinesystem.model.Aircraft.AircraftSize;
 
 public class PilotBuilder {
 

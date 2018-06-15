@@ -13,7 +13,7 @@ import java.util.stream.IntStream;
 import org.airlinesystem.controllers.FlightRCPController;
 import org.airlinesystem.model.Aircraft;
 import org.airlinesystem.model.AircraftPilot;
-import org.airlinesystem.model.AircraftSize;
+import static org.airlinesystem.model.Aircraft.AircraftSize;
 import org.airlinesystem.model.Airport;
 import org.airlinesystem.model.Flight;
 

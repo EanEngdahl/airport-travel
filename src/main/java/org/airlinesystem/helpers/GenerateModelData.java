@@ -6,7 +6,7 @@ import java.util.ArrayList;
 
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
-import org.airlinesystem.model.AircraftSize;
+import static org.airlinesystem.model.Aircraft.AircraftSize;
 import org.jgrapht.graph.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

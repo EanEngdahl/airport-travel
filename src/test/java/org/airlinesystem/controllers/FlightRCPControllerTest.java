@@ -14,7 +14,7 @@ import org.airlinesystem.controllers.RuntimePropertyController;
 import org.airlinesystem.helpers.FlightBuilder;
 import org.airlinesystem.model.Flight;
 import org.airlinesystem.model.FlightList;
-import org.airlinesystem.model.AircraftSize;
+import static org.airlinesystem.model.Aircraft.AircraftSize;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.helpers.ReadGraphFromPSV;
 
