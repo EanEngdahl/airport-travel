@@ -39,7 +39,7 @@ public class AirlineSimulationBuilder {
 			simulationBuilderLog.debugDebug("Graph successfully read");
 		}
 		catch(Exception e_) {
-			throw new Exception(e_.getMessage());
+			throw e_;
 		}
 	}
 	
@@ -91,7 +91,8 @@ public class AirlineSimulationBuilder {
 			return _totalRCP;
 		}
 		catch (Exception e_) {
-			throw new Exception("Error, cannot find total profit");
+			throw e_;
+			//throw new Exception("Error, cannot find total profit");
 		}
 	
 	}
@@ -123,11 +124,14 @@ public class AirlineSimulationBuilder {
 			processGraph(simulation_.getGraphOfAirports(), graphFile_);
 		}
 		catch (Exception e_) {
-			simulationBuilderLog.consoleError(e_.getMessage());
+			StackTraceElement l = e_.getStackTrace()[0];
+			simulationBuilderLog.consoleError(e_.getMessage() + "\n" + l.getClassName() 
+					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
 		}
 
 		try {
-			generateData(_modelProperties, simulation_.getGraphOfAirports(), simulation_.getListOfFlights());
+			generateData(_modelProperties, simulation_.getGraphOfAirports(), 
+					simulation_.getListOfFlights());
 			BigDecimal arrayOfRCP[];
 			arrayOfRCP = findTotalRCP(simulation_.getListOfFlights(), _modelProperties);
 			simulation_.setTotalRevenue(arrayOfRCP[0]);
@@ -140,8 +144,9 @@ public class AirlineSimulationBuilder {
 			simulationBuilderLog.consoleInfo("Flights successfully created");
 		}
 		catch (Exception e_) {
-			simulationBuilderLog.consoleError(e_.getMessage());
-			simulationBuilderLog.consoleError(e_.getMessage());
+			StackTraceElement l = e_.getStackTrace()[0];
+			simulationBuilderLog.consoleError(e_.getMessage() + "\n" + l.getClassName() 
+			+ "/" + l.getMethodName() + ":" + l.getLineNumber());
 		}
 	}
 	
@@ -176,7 +181,9 @@ public class AirlineSimulationBuilder {
 			simulation_.setTotalProfit(_arrayOfRCP[2]);
 		}
 		catch (Exception e_) {
-			simulationBuilderLog.consoleError(e_.getMessage());
+			StackTraceElement l = e_.getStackTrace()[0];
+			simulationBuilderLog.consoleError(e_.getMessage() + "\n" + l.getClassName() 
+			+ "/" + l.getMethodName() + ":" + l.getLineNumber());
 			throw new Exception();
 		}
 	}
