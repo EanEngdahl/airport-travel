@@ -9,14 +9,15 @@ import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.helpers.AirlineSimulationBuilder;
 import org.airlinesystem.helpers.DefaultsLoader;
 import org.airlinesystem.model.AirlineSimulation;
+import org.airlinesystem.model.AirlineSystemFileConstants;
 import org.apache.commons.cli.*;
 
 public class AirlineSystemMain {
 	
 	public static void main(String[] args_) {
-		File _propertiesFile = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default.properties");
-		File _graphFile = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default-graph");
-		File _dataFile = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default-data");
+		File _propertiesFile = new File(System.getProperty("user.dir") + AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_PROPERTIES);
+		File _graphFile = new File(System.getProperty("user.dir") + AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_GRAPH);
+		File _dataFile = new File(System.getProperty("user.dir") + AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_DATA);
 		boolean _menuFlag = false;
 		boolean _dataFileFlag = false;
 		
@@ -92,7 +93,7 @@ public class AirlineSystemMain {
 			_simulator.runSimulation(_propertiesFile, _graphFile, _simulation);
 			}
 			NumberFormat _numberFormatter = NumberFormat.getInstance();
-			_mainLog.menuInfo("Total Profit = $" + _numberFormatter.format(_simulation.getTotalProfit()));
+			_mainLog.menuInfo("Total Profit = $" + _numberFormatter.format(_simulation.getTotalProfit()) + "\n");
 			return;
 		}
 		

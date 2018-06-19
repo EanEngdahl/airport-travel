@@ -47,7 +47,7 @@ public class ConsoleView {
 						_fileNames[Integer.parseInt(_selection) - 1] = input_.nextLine();
 						break;
 					case "3":
-						viewLog.menuInfo("Running program\n");
+						viewLog.menuInfo("\nReturning to main menu\n");
 						break;
 					default:
 						viewLog.menuInfo("Input a valid option\n\n");

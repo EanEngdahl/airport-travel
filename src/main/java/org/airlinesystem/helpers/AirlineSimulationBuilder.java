@@ -117,7 +117,7 @@ public class AirlineSimulationBuilder {
 		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFile_);
 		simulation_.setSimulationProperties(_modelProperties);
 
-		simulationBuilderLog.consoleInfo("Calculating flight results...");
+		simulationBuilderLog.menuInfo("Calculating flight results...\n");
 		simulationBuilderLog.debugDebug("runSimulation");
 				
 		try {
@@ -141,7 +141,7 @@ public class AirlineSimulationBuilder {
 			NumberFormat _numberFormatter = NumberFormat.getInstance();
 			simulationBuilderLog.resultsInfo("Total Profit = $" + 
 			_numberFormatter.format(arrayOfRCP[2]));
-			simulationBuilderLog.consoleInfo("Flights successfully created");
+			simulationBuilderLog.menuInfo("Flights successfully created\n");
 		}
 		catch (Exception e_) {
 			StackTraceElement l = e_.getStackTrace()[0];
@@ -166,6 +166,8 @@ public class AirlineSimulationBuilder {
 	public void runFromDataFile(File propertiesFile_, File dataFile_, AirlineSimulation simulation_) 
 		throws Exception {
 
+		simulationBuilderLog.menuInfo("Reading data file...\n");
+
 		ReadModelDataIntoState _readData = new ReadModelDataIntoState();
 		RuntimePropertyController _propertyController = new RuntimePropertyController();
 		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFile_);
@@ -179,6 +181,7 @@ public class AirlineSimulationBuilder {
 			simulation_.setTotalRevenue(_arrayOfRCP[0]);
 			simulation_.setTotalCost(_arrayOfRCP[1]);
 			simulation_.setTotalProfit(_arrayOfRCP[2]);
+			simulationBuilderLog.menuInfo("Flights successfully created\n");
 		}
 		catch (Exception e_) {
 			StackTraceElement l = e_.getStackTrace()[0];

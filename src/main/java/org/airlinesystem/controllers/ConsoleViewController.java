@@ -9,11 +9,14 @@ package org.airlinesystem.controllers;
 import java.util.Scanner;
 import java.math.BigDecimal;
 import java.math.RoundingMode;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.io.File;
 
 import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.helpers.AirlineSimulationBuilder;
 import org.airlinesystem.model.AirlineSimulation;
+import org.airlinesystem.model.AirlineSystemFileConstants;
 import org.airlinesystem.view.*;
 import org.airlinesystem.exceptions.*;
 
@@ -38,9 +41,11 @@ public class ConsoleViewController {
 	public void menuController(String [] fileNameList_,
 			AirlineSimulation simulation_, AirlineSimulationBuilder simulator_, File dataFile_) {
 
+		Path _pathToFile = Paths.get(fileNameList_[0]);
+		File _propertiesFile = _pathToFile.toFile();
+		_pathToFile = Paths.get(fileNameList_[1]);
+		File _graphFile = _pathToFile.toFile();
 		int _selection;
-		File _propertiesFile = new File(fileNameList_[0]);
-		File _graphFile = new File(fileNameList_[1]);
 		String[] _airportNames;
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
@@ -56,10 +61,12 @@ public class ConsoleViewController {
 				case 1:
 					fileNameList_ = _consoleOut.promptUserForFileNames(_input);
 					if(fileNameList_[0] != null && !(fileNameList_[0].isEmpty())) {
-						_propertiesFile = new File(fileNameList_[0]);
+						_pathToFile = Paths.get(fileNameList_[0]);
+						_propertiesFile = _pathToFile.toFile();
 					}
 					if(fileNameList_[1] != null && !(fileNameList_[1].isEmpty())) {
-						_graphFile = new File(fileNameList_[1]);
+						_pathToFile = Paths.get(fileNameList_[1]);
+						_graphFile = _pathToFile.toFile();
 					}
 					_hasSimBeenRun = false;
 					break;
@@ -112,11 +119,13 @@ public class ConsoleViewController {
 					simulation_.getGraphOfAirports().clearGraph();
 					String _dataFileName = _consoleOut.promptForDataFile(_input);
 					if(_dataFileName == (null) || _dataFileName.equals("")) {
-						dataFile_ = new File(System.getProperty("user.dir") + "/airlinesystem-defaults/default-data");
+						dataFile_ = new File(System.getProperty("user.dir") + 
+								AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_DATA);
 						viewControllerLog.consoleError("Invalid entry, reverting to default-data file");
 					}
 					else {
-						dataFile_ = new File(_dataFileName);
+						_pathToFile = Paths.get(_dataFileName);
+						dataFile_ = _pathToFile.toFile();
 					}
 					try {
 						simulator_.runFromDataFile(_propertiesFile, dataFile_, simulation_);
