@@ -36,8 +36,8 @@ public class FullLogging {
 		menuLogger.info(message_);
 	}
 	
-	public void consoleError(String message_) {
-		consoleLogger.error(message_);
+	public void menuError(String message_) {
+		menuLogger.info(message_);
 	}
 	
 	public void consoleInfo(String message_) {

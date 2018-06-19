@@ -86,7 +86,7 @@ public class ConsoleViewController {
 									2, RoundingMode.FLOOR));
 					}
 					else {
-						viewControllerLog.consoleError("No simulation run, unable to show results");
+						viewControllerLog.menuError("No simulation run, unable to show results\n");
 					}
 					break;
 				case 4:
@@ -99,19 +99,19 @@ public class ConsoleViewController {
 										simulation_.getGraphOfAirports(), _airportNames[0], _airportNames[1]);
 								_consoleOut.displayAverageBetweenAirports(_averageProfit);
 							} catch(AirlineSystemException _e) {
-								viewControllerLog.consoleError("There are no flights between the two airports");
+								viewControllerLog.menuError("There are no flights between the two airports\n");
 							}
 						}
 						else if(!(simulation_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[0]))
 								|| !(simulation_.getGraphOfAirports().getGraphOfAirports().containsVertex(_airportNames[1]))) {
-							viewControllerLog.consoleError("Airport input not present in graph, cannot find average");
+							viewControllerLog.menuError("Airport input not present in graph, cannot find average\n");
 						}
 						else {
-							viewControllerLog.consoleError("Airports are not connected, cannot find average");
+							viewControllerLog.menuError("Airports are not connected, cannot find average\n");
 						}
 					} 
 					else {
-						viewControllerLog.consoleError("No simulation run, unable to find profit");
+						viewControllerLog.menuError("No simulation run, unable to find profit\n");
 					}
 					break;
 				case 5:
@@ -121,7 +121,7 @@ public class ConsoleViewController {
 					if(_dataFileName == (null) || _dataFileName.equals("")) {
 						dataFile_ = new File(System.getProperty("user.dir") + 
 								AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_DATA);
-						viewControllerLog.consoleError("Invalid entry, reverting to default-data file");
+						viewControllerLog.menuError("Invalid entry, reverting to default-data file\n");
 					}
 					else {
 						_pathToFile = Paths.get(_dataFileName);
@@ -133,7 +133,7 @@ public class ConsoleViewController {
 					}
 					catch (Exception e_) {
 						_hasSimBeenRun = false;
-						viewControllerLog.consoleError("Error reading data, cannot run simulation");
+						viewControllerLog.menuError("\nError reading data, cannot run simulation\n");
 					}
 					break;
 				case 6:
@@ -141,7 +141,7 @@ public class ConsoleViewController {
 						simulation_.getGraphOfAirports().printGraph();
 					}
 					else {
-						viewControllerLog.consoleError("No simulation run, unable to display graph");
+						viewControllerLog.menuError("No simulation run, unable to display graph\n");
 					}
 					break;
 				case 0:

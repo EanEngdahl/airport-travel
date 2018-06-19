@@ -1,3 +1,8 @@
+/**
+ * AirlineSystemFileConstants class
+ * 		Contains the default file names to be used.
+ * 		Changing names here changes that default for all other classes.
+ */
 package org.airlinesystem.model;
 
 public class AirlineSystemFileConstants {

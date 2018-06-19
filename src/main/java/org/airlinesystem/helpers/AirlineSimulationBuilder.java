@@ -41,7 +41,7 @@ public class AirlineSimulationBuilder {
 			simulationBuilderLog.debugDebug("Graph successfully read");
 		}
 		catch(IOException e_) {
-			throw new AirlineSystemException("Error processing graph", e_);
+			throw new AirlineSystemException(e_);
 		}
 	}
 	
@@ -69,7 +69,7 @@ public class AirlineSimulationBuilder {
 			simulationBuilderLog.debugDebug("Generated data");
 		}
 		catch (Exception e_) {
-			throw new AirlineSystemException("Error, cannot generate data", e_);
+			throw new AirlineSystemException("Error, cannot generate data.", e_);
 		}
 	}
 	
@@ -125,9 +125,12 @@ public class AirlineSimulationBuilder {
 			processGraph(simulation_.getGraphOfAirports(), graphFile_);
 		}
 		catch (Exception e_) {
+			simulationBuilderLog.menuError(e_.getMessage());
+			/*
 			StackTraceElement l = e_.getStackTrace()[0];
-			simulationBuilderLog.consoleError(e_.getMessage() + "\n" + l.getClassName() 
+			simulationBuilderLog.menuError(e_.getMessage() + "\n" + l.getClassName() 
 					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
+			*/
 		}
 
 		try {
@@ -145,9 +148,12 @@ public class AirlineSimulationBuilder {
 			simulationBuilderLog.menuInfo("Flights successfully created\n");
 		}
 		catch (Exception e_) {
+			simulationBuilderLog.menuError(e_.getMessage());
+			/*
 			StackTraceElement l = e_.getStackTrace()[0];
-			simulationBuilderLog.consoleError(e_.getMessage() + "\n" + l.getClassName() 
-			+ "/" + l.getMethodName() + ":" + l.getLineNumber());
+			simulationBuilderLog.menuError(e_.getMessage() + "\n" + l.getClassName() 
+					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
+			*/
 		}
 	}
 	
@@ -185,10 +191,13 @@ public class AirlineSimulationBuilder {
 			simulationBuilderLog.menuInfo("Flights successfully created\n");
 		}
 		catch (Exception e_) {
+			simulationBuilderLog.menuError(e_.getMessage());
+			/*
 			StackTraceElement l = e_.getStackTrace()[0];
-			simulationBuilderLog.consoleError(e_.getMessage() + "\n" + l.getClassName() 
-			+ "/" + l.getMethodName() + ":" + l.getLineNumber());
-			throw new AirlineSystemException("Error running simulation from file");
+			simulationBuilderLog.menuError(e_.getMessage() + "\n" + l.getClassName() 
+					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
+			*/
+			throw new AirlineSystemException(e_);
 		}
 	}
 }

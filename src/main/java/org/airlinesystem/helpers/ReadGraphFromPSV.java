@@ -70,18 +70,12 @@ public class ReadGraphFromPSV {
 				} catch(IllegalGraphAdditionException _e) {
 					readGraphLog.debugDebug("Ignored at line " + Integer.toString(_counter) + " in file");
 				}
-				/*
-				if (!graphOfAirports_.createEdge(_source, _destination, _distanceTravelled)) {
-					readGraphLog.debugDebug("Ignored at line " + Integer.toString(_counter) + " in file");
-				}
-				*/
 			}
 			readGraphLog.debugDebug("Successfully read graph file");
 			reader.close();
 		}
 		catch (IOException e_) {
-			//throw e_;
-			throw new IOException("IOException: could not read graph.");
+			throw new IOException("could not read graph.");
 		}
 		catch (NullPointerException e_) {
 			throw new NullPointerException("NullPointerException: Graph file error,"
@@ -117,11 +111,6 @@ public class ReadGraphFromPSV {
 		} catch(IllegalGraphAdditionException _e) {
 			readGraphLog.debugDebug("Ignored edge input");
 		}
-		/*
-		if (!graphOfAirports_.createEdge(source_, destination_, distanceTravelled_)) {
-			readGraphLog.debugDebug("Ignored edge input");
-		}
-		*/
 	}
 	
 	/**

@@ -12,4 +12,7 @@ public class AirlineSystemException extends Exception {
     	super(message, throwable);
     }
 
+    public AirlineSystemException(Throwable throwable) {
+    	super(throwable);
+    }
 }

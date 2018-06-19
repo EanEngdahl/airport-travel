@@ -50,13 +50,13 @@ public class ConsoleView {
 						viewLog.menuInfo("\nReturning to main menu\n");
 						break;
 					default:
-						viewLog.menuInfo("Input a valid option\n\n");
+						viewLog.menuInfo("Input a valid option\n");
 				}
 
 			} while(!_selection.equals("3"));
 
 		} catch(Exception e_) {
-			viewLog.consoleError("Prompt input error");
+			viewLog.menuError("Prompt input error\n");
 		}
 		return _fileNames;
 	}	
@@ -108,7 +108,7 @@ public class ConsoleView {
 				}
 			}
 		} catch(Exception e_) {
-			viewLog.consoleError("Menu input error");
+			viewLog.menuError("Menu input error\n");
 			return 0;
 		}
 	}
@@ -192,7 +192,7 @@ public class ConsoleView {
 				+ "\nAverage Profit: " + _numberFormatter.format(averageFlightProfit_) + "\n");
 		}
 		catch(Exception e_) {
-			viewLog.consoleError("Number formatting error: " + e_.getStackTrace());
+			viewLog.menuError("Number formatting error: " + e_.getStackTrace());
 		}
 	}
 }

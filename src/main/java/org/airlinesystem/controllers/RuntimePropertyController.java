@@ -62,7 +62,7 @@ public class RuntimePropertyController {
 	 *  @param the string filename/path of the properties file
 	 *  @return the loaded Properties object
 	 */
-	public Properties loadRuntimeProperties(File file_) throws AirlineSystemException {
+	public Properties loadRuntimeProperties(File file_) {
 		Properties _returnProperties = new Properties();
 
 		if(file_.getName().matches("default.properties")) {
@@ -76,7 +76,7 @@ public class RuntimePropertyController {
 			try {
 				_returnProperties = createRuntimeProperties(file_);
 			} catch(AirlineSystemException _e){
-				propertyControllerLog.consoleInfo(_e.getLocalizedMessage() + "Reverting to default.properties");
+				propertyControllerLog.menuInfo(_e.getLocalizedMessage() + "\nReverting to default.properties");
 				try {
 					_returnProperties = loadDefaultProperties();
 				} catch(AirlineSystemException _e2) {

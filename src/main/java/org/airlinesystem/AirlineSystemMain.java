@@ -85,7 +85,7 @@ public class AirlineSystemMain {
 					_simulator.runFromDataFile(_propertiesFile, _dataFile, _simulation);
 				} 
 				catch (Exception e_) {
-					_mainLog.consoleError("Error reading data, cannot run simulation\n");
+					_mainLog.menuError("Error reading data, cannot run simulation\n");
 					return;
 				}
 			}
