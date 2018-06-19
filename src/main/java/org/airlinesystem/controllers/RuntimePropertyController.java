@@ -13,6 +13,7 @@ import java.io.File;
 import java.io.IOException;
 
 import org.airlinesystem.controllers.logging.FullLogging;
+import org.airlinesystem.exceptions.AirlineSystemException;
 
 public class RuntimePropertyController {
 
@@ -24,43 +25,31 @@ public class RuntimePropertyController {
 	 * 
 	 * @return the Properties object with the defaults loaded
 	 */
-	public Properties loadDefaultProperties() {
+	public Properties loadDefaultProperties() throws AirlineSystemException {
 		Properties _defaultProperties = new Properties();
 
 		try (InputStream _is = this.getClass().getResourceAsStream("/default.properties")) {
 			_defaultProperties.load(_is);
 			propertyControllerLog.debugDebug("defaults loaded...");
-		} catch(NullPointerException e_){
-			propertyControllerLog.consoleError("Could not find default.properties file");
-		} catch(IOException e_) {
-			propertyControllerLog.consoleError("Error reading default.properties file");
 		} catch (Exception e_) {
-			propertyControllerLog.consoleError("Error reading default.properties file");
-
+			throw new AirlineSystemException("Error reading default.properties file", e_);
 		}	
 		return _defaultProperties;
 	}
 
 	/**
-	 *  Loads in the runtime properties for a specified properties file and
-	 *  reverts to default if it is not readable
+	 *  Attempts to load in the runtime properties for a specified properties file
 	 *  
 	 *  @param the string filename/path of the custom properties file
 	 *  @return the loaded properties file, default or custom
 	 */
-	public Properties createRuntimeProperties(File file_) {
+	public Properties createRuntimeProperties(File file_) throws AirlineSystemException {
 		Properties _properties = new Properties();
 
 		try (InputStream _is = new FileInputStream(file_)) {
 			_properties.load(_is);
 		} catch(IOException e_){
-			_properties = loadDefaultProperties();
-			propertyControllerLog.consoleError("Unable to use " + file_ + 
-					", reverting to default properties. " + e_.getMessage());
-		} catch(NullPointerException e_) {
-			propertyControllerLog.consoleError("Unable to use " + file_ +
-					", reverting to default properties. " + e_.getMessage());
-			_properties = loadDefaultProperties();	
+			throw new AirlineSystemException("Unable to load specified properties file", e_);
 		}
 		
 		return _properties;
@@ -74,12 +63,27 @@ public class RuntimePropertyController {
 	 *  @return the loaded Properties object
 	 */
 	public Properties loadRuntimeProperties(File file_) {
-		Properties _returnProperties;
+		Properties _returnProperties = new Properties();
 
 		if(file_.getName().matches("default.properties")) {
-			_returnProperties = loadDefaultProperties();
+			try {
+				_returnProperties = loadDefaultProperties();
+			} catch(AirlineSystemException _e) {
+				propertyControllerLog.debugDebug(_e.getLocalizedMessage() + "Error loading default.properties, exiting...");
+				System.exit(0);
+			}
 		} else {
-			_returnProperties = createRuntimeProperties(file_);
+			try {
+				_returnProperties = createRuntimeProperties(file_);
+			} catch(AirlineSystemException _e){
+				propertyControllerLog.debugDebug(_e.getLocalizedMessage() + "Reverting to default.properties");
+				try {
+					_returnProperties = loadDefaultProperties();
+				} catch(AirlineSystemException _e2) {
+					propertyControllerLog.debugDebug(_e2.getLocalizedMessage() + "Error loading default.properties, exiting...");
+					System.exit(0);
+				};
+			}
 		}
 		return _returnProperties;
 	}

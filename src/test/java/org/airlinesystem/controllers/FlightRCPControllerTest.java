@@ -17,6 +17,7 @@ import org.airlinesystem.model.FlightList;
 import static org.airlinesystem.model.Aircraft.AircraftSize;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.helpers.ReadGraphFromPSV;
+import org.airlinesystem.exceptions.*;
 
 public class FlightRCPControllerTest {
 	
@@ -37,7 +38,11 @@ public class FlightRCPControllerTest {
 	@BeforeClass
 	public static void initialize() {
 		propManager = new RuntimePropertyController();
-		testProps = propManager.loadDefaultProperties();
+		try {
+			testProps = propManager.loadDefaultProperties();
+		} catch(AirlineSystemException _e) {
+			System.exit(0);
+		}
 		fd = new FlightBuilder();
 		testFlight = fd.flightDispatchService(AircraftSize.L, MAX_SEATS, SEATS_FILLED, 
 				SEAT_COST, "1", "2", 100, testProps);
@@ -112,14 +117,18 @@ public class FlightRCPControllerTest {
 		BigDecimal averageProfit = new BigDecimal(0);
 		BigDecimal expectedAverageProfit = new BigDecimal(-2400);
 
-		averageProfit = testRcp.findAverageProfitPerEdge(testFlightList, airportGraph, "1", "2");
+		try {
+			averageProfit = testRcp.findAverageProfitPerEdge(testFlightList, airportGraph, "1", "2");
+		} catch (AirlineSystemException _e) {
+			_e.printStackTrace();
+		}
 		
 		assertEquals("The value of average profit does not match", expectedAverageProfit.doubleValue(), 
 				averageProfit.doubleValue(), .01);
 	}
 	
-	@Test (expected = NullPointerException.class)
-	public void testNullPointerException() {
+	@Test (expected = AirlineSystemException.class)
+	public void testNullPointerException() throws AirlineSystemException {
 		testRcp.findAverageProfitPerEdge(testFlightList, airportGraph, "NULL", "NULL2");
 	}
 }

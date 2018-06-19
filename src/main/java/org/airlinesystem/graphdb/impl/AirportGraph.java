@@ -8,8 +8,8 @@
 package org.airlinesystem.graphdb.impl;
 
 import org.airlinesystem.controllers.logging.FullLogging;
+import org.airlinesystem.exceptions.IllegalGraphAdditionException;
 import org.airlinesystem.graphdb.AirportGraphInterface;
-
 import org.airlinesystem.model.Airport;
 import org.jgrapht.*;
 import org.jgrapht.graph.*;
@@ -45,9 +45,11 @@ public class AirportGraph implements AirportGraphInterface {
 	 * 		N/A
 	 */
 	@Override
-	public void addAirport(Airport airport_) {
+	public void addAirport(Airport airport_) { 
 		graphOfAirports.addVertex(airport_.getName());
-		mapAirportToName.put(airport_.getName(), airport_);
+		if(!mapAirportToName.containsKey(airport_.getName())) {
+			mapAirportToName.put(airport_.getName(), airport_);			
+		}
 	}
 	
 	/**
@@ -60,24 +62,26 @@ public class AirportGraph implements AirportGraphInterface {
 	 * 		String that represents name of second airport
 	 * @param distance_
 	 * 		double that represents distance between airports (weight)
+	 * @throws IllegalGraphAdditionException
 	 * @return
-	 * 		true if successfully created, false otherwise
+	 * 		n/a
 	 */
 	@Override
-	public boolean createEdge(String source_, String destination_, double distance_) {	
-		
-		if (source_.equals(destination_) || areAirportsConnected(source_, destination_)
-				|| distance_ <= 0) {
-			airportGraphLog.debugDebug("Invalid graph input found, input ignored.");
-			return false;
+	public void createEdge(String source_, String destination_, double distance_) throws IllegalGraphAdditionException {
+	
+		if(distance_ <= 0) {
+			throw new IllegalGraphAdditionException("Cannot create addition to AirportGraph: negative value for distance");
 		}
 		try {
-		graphOfAirports.addEdge(source_, destination_);
-		graphOfAirports.setEdgeWeight(graphOfAirports.getEdge(source_, destination_), distance_);
-		} catch (Exception e_) {
-			return false;
+			DefaultEdge _testEdge = new DefaultEdge();
+			_testEdge = graphOfAirports.addEdge(source_, destination_);
+			if(_testEdge.equals(null)) {
+				throw new IllegalGraphAdditionException("Cannot create addition to AirportGraph: source and destination are the same.");
+			}
+			graphOfAirports.setEdgeWeight(_testEdge, distance_);
+		} catch(IllegalArgumentException|NullPointerException _e) {
+			throw new IllegalGraphAdditionException("Cannot create addition to AirportGraph", _e);
 		}
-		return true;
 	}
 	
 	/**
@@ -165,6 +169,7 @@ public class AirportGraph implements AirportGraphInterface {
 	 * 		name of the airport wanted
 	 * @return
 	 * 		Airport object that corresponds to the name given
+	 * 		or null if it does not exist
 	 */
 	@Override
 	public Airport getAirport(String airportName_) {
