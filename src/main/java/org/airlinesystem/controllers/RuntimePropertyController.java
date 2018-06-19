@@ -76,7 +76,7 @@ public class RuntimePropertyController {
 			try {
 				_returnProperties = createRuntimeProperties(file_);
 			} catch(AirlineSystemException _e){
-				propertyControllerLog.menuInfo(_e.getLocalizedMessage() + "\nReverting to default.properties");
+				propertyControllerLog.menuInfo(_e.getLocalizedMessage() + "\nReverting to default.properties\n");
 				try {
 					_returnProperties = loadDefaultProperties();
 				} catch(AirlineSystemException _e2) {

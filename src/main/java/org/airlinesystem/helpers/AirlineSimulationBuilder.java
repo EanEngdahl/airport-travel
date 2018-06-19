@@ -69,7 +69,7 @@ public class AirlineSimulationBuilder {
 			simulationBuilderLog.debugDebug("Generated data");
 		}
 		catch (Exception e_) {
-			throw new AirlineSystemException("Error, cannot generate data.", e_);
+			throw new AirlineSystemException("Error, cannot generate data.\n", e_);
 		}
 	}
 	
