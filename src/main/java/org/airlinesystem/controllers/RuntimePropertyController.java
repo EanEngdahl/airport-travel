@@ -62,7 +62,7 @@ public class RuntimePropertyController {
 	 *  @param the string filename/path of the properties file
 	 *  @return the loaded Properties object
 	 */
-	public Properties loadRuntimeProperties(File file_) {
+	public Properties loadRuntimeProperties(File file_) throws AirlineSystemException {
 		Properties _returnProperties = new Properties();
 
 		if(file_.getName().matches("default.properties")) {
@@ -70,18 +70,18 @@ public class RuntimePropertyController {
 				_returnProperties = loadDefaultProperties();
 			} catch(AirlineSystemException _e) {
 				propertyControllerLog.debugDebug(_e.getLocalizedMessage() + "Error loading default.properties, exiting...");
-				System.exit(0);
+				System.exit(1);
 			}
 		} else {
 			try {
 				_returnProperties = createRuntimeProperties(file_);
 			} catch(AirlineSystemException _e){
-				propertyControllerLog.debugDebug(_e.getLocalizedMessage() + "Reverting to default.properties");
+				propertyControllerLog.consoleInfo(_e.getLocalizedMessage() + "Reverting to default.properties");
 				try {
 					_returnProperties = loadDefaultProperties();
 				} catch(AirlineSystemException _e2) {
 					propertyControllerLog.debugDebug(_e2.getLocalizedMessage() + "Error loading default.properties, exiting...");
-					System.exit(0);
+					System.exit(1);
 				};
 			}
 		}

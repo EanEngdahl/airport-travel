@@ -37,7 +37,7 @@ public class ReadGraphFromPSV {
 	 * 		N/A
 	 */
 	public void readFileInputIntoGraph(AirportGraph graphOfAirports_, File graphFile_) 
-			throws IOException, NullPointerException, Exception{
+			throws IOException, NullPointerException {
 		readGraphLog.debugDebug("Reading graph input file");
 		
 		int _counter = 1;
@@ -87,9 +87,7 @@ public class ReadGraphFromPSV {
 			throw new NullPointerException("NullPointerException: Graph file error,"
 					+ " could not find file on path- " + graphFile_.getAbsolutePath() + e_.getStackTrace());
 		}
-		catch (Exception e_) {
-			throw new Exception("Unexpected error occured while reading graph file");
-		}
+
 	}
 	
 	/**

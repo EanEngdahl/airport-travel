@@ -11,11 +11,13 @@ import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.model.FlightList;
+import org.airlinesystem.exceptions.AirlineSystemException;
 
 import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Properties;
 import java.io.File;
+import java.io.IOException;
 
 public class AirlineSimulationBuilder {
 
@@ -32,14 +34,14 @@ public class AirlineSimulationBuilder {
 	 * @return
 	 * 		N/A
 	 */
-	public void processGraph(AirportGraph graphOfAirports_, File graphFile_) throws Exception {
+	public void processGraph(AirportGraph graphOfAirports_, File graphFile_) throws AirlineSystemException {
 		ReadGraphFromPSV _graphInput = new ReadGraphFromPSV();
 		try {
 			_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFile_);
 			simulationBuilderLog.debugDebug("Graph successfully read");
 		}
-		catch(Exception e_) {
-			throw e_;
+		catch(IOException e_) {
+			throw new AirlineSystemException("Error processing graph", e_);
 		}
 	}
 	
@@ -56,7 +58,7 @@ public class AirlineSimulationBuilder {
 	 * 		N/A
 	 */
 	public void generateData(Properties modelProperties_, AirportGraph graphOfAirports_,
-			FlightList listOfFlights_) throws Exception{
+			FlightList listOfFlights_) throws AirlineSystemException{
 
 		ReadModelDataIntoState _flightInput = new ReadModelDataIntoState();
 		GenerateModelData _dataCreator = new GenerateModelData();
@@ -67,7 +69,7 @@ public class AirlineSimulationBuilder {
 			simulationBuilderLog.debugDebug("Generated data");
 		}
 		catch (Exception e_) {
-			throw new Exception("Error, cannot generate data");
+			throw new AirlineSystemException("Error, cannot generate data", e_);
 		}
 	}
 	
@@ -81,7 +83,7 @@ public class AirlineSimulationBuilder {
 	 * @return
 	 * 		BigDecimal array holding calculated total revenue, cost and profit of flights
 	 */
-	public BigDecimal[] findTotalRCP(FlightList listOfFlights_, Properties modelProperties_) throws Exception {
+	public BigDecimal[] findTotalRCP(FlightList listOfFlights_, Properties modelProperties_) throws AirlineSystemException {
 
 		FlightRCPController _flightProfitManager = new FlightRCPController(modelProperties_);
 		BigDecimal[] _totalRCP;
@@ -91,8 +93,7 @@ public class AirlineSimulationBuilder {
 			return _totalRCP;
 		}
 		catch (Exception e_) {
-			throw e_;
-			//throw new Exception("Error, cannot find total profit");
+			throw new AirlineSystemException("Error calculating total RCP", e_);
 		}
 	
 	}
@@ -164,7 +165,7 @@ public class AirlineSimulationBuilder {
 	 * 		N/A
 	 */
 	public void runFromDataFile(File propertiesFile_, File dataFile_, AirlineSimulation simulation_) 
-		throws Exception {
+		throws AirlineSystemException {
 
 		simulationBuilderLog.menuInfo("Reading data file...\n");
 
@@ -187,7 +188,7 @@ public class AirlineSimulationBuilder {
 			StackTraceElement l = e_.getStackTrace()[0];
 			simulationBuilderLog.consoleError(e_.getMessage() + "\n" + l.getClassName() 
 			+ "/" + l.getMethodName() + ":" + l.getLineNumber());
-			throw new Exception();
+			throw new AirlineSystemException("Error running simulation from file");
 		}
 	}
 }
