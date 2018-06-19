@@ -20,9 +20,35 @@ import org.airlinesystem.model.AirlineSystemFileConstants;
 import org.airlinesystem.view.*;
 import org.airlinesystem.exceptions.*;
 
+
+
+
 public class ConsoleViewController {
 
 	private FullLogging viewControllerLog = FullLogging.getInstance();
+
+	/*
+	 *  Console menu options
+	 */
+	enum Options {
+		QUIT_PROGRAM(0),
+		INPUT_CUSTOM_FILES(1),
+		RUN_SIMULATION(2),
+		SHOW_RESULTS(3),
+		FIND_AVG_RCP_BETWEEN_AIRPORTS(4),
+		READ_FROM_DATA_FILE(5),
+		DISPLAY_GRAPH(6);
+		
+		int selection;
+		
+		Options(int selection) {
+			this.selection = selection;
+		}
+		
+		int getSelection() {
+			return selection;
+		}
+	}
 
 	/**
 	 * Main menu controller for user, handles all main menu input
@@ -45,7 +71,7 @@ public class ConsoleViewController {
 		File _propertiesFile = _pathToFile.toFile();
 		_pathToFile = Paths.get(fileNameList_[1]);
 		File _graphFile = _pathToFile.toFile();
-		int _selection;
+		Options _selection;
 		String[] _airportNames;
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
@@ -55,10 +81,10 @@ public class ConsoleViewController {
 		Scanner _input = new Scanner(System.in);
 		
 		do {
-			_selection = _consoleOut.showMainMenu(_input);
+			_selection = Options.valueOf(String.valueOf(_consoleOut.showMainMenu(_input)));
 			
 			switch(_selection) {
-				case 1:
+				case INPUT_CUSTOM_FILES:
 					fileNameList_ = _consoleOut.promptUserForFileNames(_input);
 					if(fileNameList_[0] != null && !(fileNameList_[0].isEmpty())) {
 						_pathToFile = Paths.get(fileNameList_[0]);
@@ -70,7 +96,7 @@ public class ConsoleViewController {
 					}
 					_hasSimBeenRun = false;
 					break;
-				case 2:
+				case RUN_SIMULATION:
 					simulation_.getListOfFlights().clear();
 					simulation_.getGraphOfAirports().clearGraph();
 					simulator_.runSimulation(_propertiesFile, _graphFile, simulation_);
@@ -78,7 +104,7 @@ public class ConsoleViewController {
 					_hasSimBeenRun = true;
 					}
 					break;
-				case 3:
+				case SHOW_RESULTS:
 					if(_hasSimBeenRun) {
 					_consoleOut.resultsView(simulation_.getTotalProfit(), simulation_.getTotalCost(), 
 							simulation_.getTotalRevenue(), simulation_.getListOfFlights().size(), 
@@ -89,7 +115,7 @@ public class ConsoleViewController {
 						viewControllerLog.menuError("No simulation run, unable to show results\n");
 					}
 					break;
-				case 4:
+				case FIND_AVG_RCP_BETWEEN_AIRPORTS:
 					if(_hasSimBeenRun) {
 						_flightRCPManager = new FlightRCPController();
 						_airportNames = _consoleOut.findAverageBetweenAirports(_input);
@@ -114,7 +140,7 @@ public class ConsoleViewController {
 						viewControllerLog.menuError("No simulation run, unable to find profit\n");
 					}
 					break;
-				case 5:
+				case READ_FROM_DATA_FILE:
 					simulation_.getListOfFlights().clear();
 					simulation_.getGraphOfAirports().clearGraph();
 					String _dataFileName = _consoleOut.promptForDataFile(_input);
@@ -136,7 +162,7 @@ public class ConsoleViewController {
 						viewControllerLog.menuError("\nError reading data, cannot run simulation\n");
 					}
 					break;
-				case 6:
+				case DISPLAY_GRAPH:
 					if(_hasSimBeenRun) {
 						simulation_.getGraphOfAirports().printGraph();
 					}
@@ -144,10 +170,10 @@ public class ConsoleViewController {
 						viewControllerLog.menuError("No simulation run, unable to display graph\n");
 					}
 					break;
-				case 0:
+				case QUIT_PROGRAM:
 					return;		
 			}
-		} while(_selection != 0);
+		} while(!_selection.equals(Options.QUIT_PROGRAM));
 		_input.close();
 	}
 }
