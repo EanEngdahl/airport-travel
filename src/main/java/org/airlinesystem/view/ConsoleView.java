@@ -12,9 +12,23 @@ import java.text.NumberFormat;
 
 import org.airlinesystem.controllers.logging.FullLogging;
 
+
 public class ConsoleView {
 	
 	private FullLogging viewLog = FullLogging.getInstance();
+
+	/*
+	 *  Console menu options
+	 */
+	public static enum MenuOption {
+		QUIT_PROGRAM,
+		INPUT_CUSTOM_FILES,
+		RUN_SIMULATION,
+		SHOW_RESULTS,
+		FIND_AVG_RCP_BETWEEN_AIRPORTS,
+		READ_FROM_DATA_FILE,
+		DISPLAY_GRAPH;
+	}
 
 	/**
 	 * Prompts a user to choose to input either a new properties or graph file
@@ -73,7 +87,7 @@ public class ConsoleView {
 	 * @return
 	 * 		integer representing user choice
 	 */
-	public int showMainMenu(Scanner input_) {
+	public MenuOption showMainMenu(Scanner input_) {
 		String _selection;
 		
 		viewLog.menuInfo("\nMAIN MENU:\n");
@@ -91,19 +105,19 @@ public class ConsoleView {
 
 				switch(_selection) {
 						case "0":
-							return 0;
+							return MenuOption.QUIT_PROGRAM;
 						case "1":
-							return 1;
+							return MenuOption.INPUT_CUSTOM_FILES;
 						case "2":
-							return 2;
+							return MenuOption.RUN_SIMULATION;
 						case "3":
-							return 3;
+							return MenuOption.SHOW_RESULTS;
 						case "4":
-							return 4;
+							return MenuOption.FIND_AVG_RCP_BETWEEN_AIRPORTS;
 						case "5":
-							return 5;
+							return MenuOption.READ_FROM_DATA_FILE;
 						case "6":
-							return 6;
+							return MenuOption.DISPLAY_GRAPH;
 						default:
 							viewLog.menuInfo("Input a valid option\n");
 							break;
@@ -111,7 +125,7 @@ public class ConsoleView {
 			}
 		} catch(Exception e_) {
 			viewLog.menuError("Menu input error\n");
-			return 0;
+			return MenuOption.QUIT_PROGRAM;
 		}
 	}
 	

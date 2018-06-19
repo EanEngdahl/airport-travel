@@ -18,6 +18,7 @@ import org.airlinesystem.helpers.AirlineSimulationBuilder;
 import org.airlinesystem.model.AirlineSimulation;
 import org.airlinesystem.model.AirlineSystemFileConstants;
 import org.airlinesystem.view.*;
+import org.airlinesystem.view.ConsoleView.MenuOption;
 import org.airlinesystem.exceptions.*;
 
 
@@ -27,28 +28,6 @@ public class ConsoleViewController {
 
 	private FullLogging viewControllerLog = FullLogging.getInstance();
 
-	/*
-	 *  Console menu options
-	 */
-	enum MenuOptions {
-		QUIT_PROGRAM(0),
-		INPUT_CUSTOM_FILES(1),
-		RUN_SIMULATION(2),
-		SHOW_RESULTS(3),
-		FIND_AVG_RCP_BETWEEN_AIRPORTS(4),
-		READ_FROM_DATA_FILE(5),
-		DISPLAY_GRAPH(6);
-		
-		int selection;
-		
-		MenuOptions(int selection) {
-			this.selection = selection;
-		}
-		
-		int getSelection() {
-			return selection;
-		}
-	}
 
 	/**
 	 * Main menu controller for user, handles all main menu input
@@ -72,7 +51,7 @@ public class ConsoleViewController {
 		File _graphFile = _pathToFile.toFile();
 		_pathToFile = Paths.get(fileNameList_[2]);
 		File _dataFile = _pathToFile.toFile();
-		MenuOptions _selection;
+		MenuOption _selection;
 		String[] _airportNames;
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
@@ -82,7 +61,7 @@ public class ConsoleViewController {
 		Scanner _input = new Scanner(System.in);
 		
 		do {
-			_selection = MenuOptions.valueOf(String.valueOf(_consoleOut.showMainMenu(_input)));
+			_selection = MenuOption.valueOf(String.valueOf(_consoleOut.showMainMenu(_input)));
 			
 			switch(_selection) {
 				case INPUT_CUSTOM_FILES:
@@ -181,7 +160,7 @@ public class ConsoleViewController {
 				case QUIT_PROGRAM:
 					return;		
 			}
-		} while(!_selection.equals(MenuOptions.QUIT_PROGRAM));
+		} while(!_selection.equals(MenuOption.QUIT_PROGRAM));
 		_input.close();
 	}
 }
