@@ -100,7 +100,8 @@ public class AirlineSystemMain {
 		/*
 		 *  Runs the console menu if it is applicable
 		 */
-		String _fileNameList[] = {_propertiesFile.getAbsolutePath(), _graphFile.getAbsolutePath()};
-		_consoleOut.menuController(_fileNameList, _simulation, _simulator, _dataFile);
+		String _fileNameList[] = {_propertiesFile.getAbsolutePath(), 
+				_graphFile.getAbsolutePath(), _dataFile.getAbsolutePath()};
+		_consoleOut.menuController(_fileNameList, _simulation, _simulator);
 	}
 }

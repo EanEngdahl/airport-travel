@@ -30,7 +30,7 @@ public class ConsoleViewController {
 	/*
 	 *  Console menu options
 	 */
-	enum Options {
+	enum MenuOptions {
 		QUIT_PROGRAM(0),
 		INPUT_CUSTOM_FILES(1),
 		RUN_SIMULATION(2),
@@ -41,7 +41,7 @@ public class ConsoleViewController {
 		
 		int selection;
 		
-		Options(int selection) {
+		MenuOptions(int selection) {
 			this.selection = selection;
 		}
 		
@@ -59,19 +59,20 @@ public class ConsoleViewController {
 	 * 		String array that contains list of file names to be used
 	 * @param sim_
 	 * 		AirlineSimulation object used to run the simulation
-	 * @param dataFile_
-	 * 		String of data file to be used
 	 * @return
 	 * 		N/A
 	 */
 	public void menuController(String [] fileNameList_,
-			AirlineSimulation simulation_, AirlineSimulationBuilder simulator_, File dataFile_) {
+			AirlineSimulation simulation_, AirlineSimulationBuilder simulator_) {
+
 
 		Path _pathToFile = Paths.get(fileNameList_[0]);
 		File _propertiesFile = _pathToFile.toFile();
 		_pathToFile = Paths.get(fileNameList_[1]);
 		File _graphFile = _pathToFile.toFile();
-		Options _selection;
+		_pathToFile = Paths.get(fileNameList_[2]);
+		File _dataFile = _pathToFile.toFile();
+		MenuOptions _selection;
 		String[] _airportNames;
 		BigDecimal _averageProfit;
 		ConsoleView _consoleOut = new ConsoleView();
@@ -81,7 +82,7 @@ public class ConsoleViewController {
 		Scanner _input = new Scanner(System.in);
 		
 		do {
-			_selection = Options.valueOf(String.valueOf(_consoleOut.showMainMenu(_input)));
+			_selection = MenuOptions.valueOf(String.valueOf(_consoleOut.showMainMenu(_input)));
 			
 			switch(_selection) {
 				case INPUT_CUSTOM_FILES:
@@ -89,11 +90,28 @@ public class ConsoleViewController {
 					if(fileNameList_[0] != null && !(fileNameList_[0].isEmpty())) {
 						_pathToFile = Paths.get(fileNameList_[0]);
 						_propertiesFile = _pathToFile.toFile();
-					}
+					} else {
+						_propertiesFile = new File(System.getProperty("user.dir") + 
+								AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_PROPERTIES);
+					}					
 					if(fileNameList_[1] != null && !(fileNameList_[1].isEmpty())) {
 						_pathToFile = Paths.get(fileNameList_[1]);
 						_graphFile = _pathToFile.toFile();
+					} else {
+						_graphFile = new File(System.getProperty("user.dir") + 
+								AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_GRAPH);
 					}
+					
+					if(fileNameList_[2] != null && !(fileNameList_[2].isEmpty())) {
+						_pathToFile = Paths.get(fileNameList_[2]);
+						_dataFile = _pathToFile.toFile();
+					}
+					else {
+						_dataFile = new File(System.getProperty("user.dir") + 
+								AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_DATA);
+					}
+						_dataFile = _pathToFile.toFile();
+
 					_hasSimBeenRun = false;
 					break;
 				case RUN_SIMULATION:
@@ -143,18 +161,8 @@ public class ConsoleViewController {
 				case READ_FROM_DATA_FILE:
 					simulation_.getListOfFlights().clear();
 					simulation_.getGraphOfAirports().clearGraph();
-					String _dataFileName = _consoleOut.promptForDataFile(_input);
-					if(_dataFileName == (null) || _dataFileName.equals("")) {
-						dataFile_ = new File(System.getProperty("user.dir") + 
-								AirlineSystemFileConstants.AIRLINESYSTEM_DEFAULT_DATA);
-						viewControllerLog.menuError("Invalid entry, reverting to default-data file\n");
-					}
-					else {
-						_pathToFile = Paths.get(_dataFileName);
-						dataFile_ = _pathToFile.toFile();
-					}
 					try {
-						simulator_.runFromDataFile(_propertiesFile, dataFile_, simulation_);
+						simulator_.runFromDataFile(_propertiesFile, _dataFile, simulation_);
 						_hasSimBeenRun = true;
 					}
 					catch (Exception e_) {
@@ -173,7 +181,7 @@ public class ConsoleViewController {
 				case QUIT_PROGRAM:
 					return;		
 			}
-		} while(!_selection.equals(Options.QUIT_PROGRAM));
+		} while(!_selection.equals(MenuOptions.QUIT_PROGRAM));
 		_input.close();
 	}
 }

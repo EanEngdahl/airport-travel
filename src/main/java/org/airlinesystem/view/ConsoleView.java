@@ -28,32 +28,34 @@ public class ConsoleView {
 	 * 		String array containing input file names
 	 */
 	public String[] promptUserForFileNames(Scanner input_) {
-		String _fileNames[] = new String [2];
+		String _fileNames[] = new String [3];
 		String _selection;
 
 		try {
 			do {
-				viewLog.menuInfo("\nInput custom file paths. If none are input, use defaults.\n");
+				viewLog.menuInfo("\nInput custom file paths. If none are input, uses defaults.\n");
 				viewLog.menuInfo("1. Enter custom properties file path\n"
 						+ "2. Enter custom graph file path\n"
-						+ "3. Return to Main Menu\n\n");
+						+ "3. Enter custom data file path\n"
+						+ "4. Return to Main Menu\n\n");
 			
 				_selection = input_.nextLine();
 				
 				switch(_selection) {
 					case "1":
 					case "2":
+					case "3":
 						viewLog.menuInfo("Input file path: ");
 						_fileNames[Integer.parseInt(_selection) - 1] = input_.nextLine();
 						break;
-					case "3":
+					case "4":
 						viewLog.menuInfo("\nReturning to main menu\n");
 						break;
 					default:
 						viewLog.menuInfo("Input a valid option\n");
 				}
 
-			} while(!_selection.equals("3"));
+			} while(!_selection.equals("4"));
 
 		} catch(Exception e_) {
 			viewLog.menuError("Prompt input error\n");
@@ -79,7 +81,7 @@ public class ConsoleView {
 				+	 "2. Run simulation\n"
 				+	 "3. Show results\n"
 				+	 "4. Find average profit between airports\n"
-				+	 "5. Read flights from file and simulate\n"
+				+	 "5. Read flights from data file and simulate\n"
 				+	 "6. Display graph\n"
 				+	 "0. Quit\n\n");
 
@@ -131,20 +133,6 @@ public class ConsoleView {
 		_airportNames[1] = input_.nextLine().toUpperCase();
 		
 		return _airportNames;
-	}
-	
-	/**
-	 * Prompts a user to choose to input either a new data file
-	 * to read from
-	 * 
-	 * @param input_
-	 * 		scanner for reading user input
-	 * @return
-	 * 		String of the data file name input
-	 */
-	public String promptForDataFile(Scanner input_) {
-		viewLog.menuInfo("Input data file to read: ");
-		return input_.nextLine();
 	}
 	
 	/**

@@ -75,7 +75,7 @@ public class ReadGraphFromPSV {
 			reader.close();
 		}
 		catch (IOException e_) {
-			throw new IOException("could not read graph.");
+			throw new IOException("could not read graph.\n");
 		}
 		catch (NullPointerException e_) {
 			throw new NullPointerException("NullPointerException: Graph file error,"
