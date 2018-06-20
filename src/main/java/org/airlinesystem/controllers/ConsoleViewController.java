@@ -34,12 +34,12 @@ public class ConsoleViewController {
 	/**
 	 * Main menu controller for user, handles all main menu input
 	 * 
-	 * @param consoleLogger_
-	 * 		logger that will be used for error displays
 	 * @param fileNameList_
 	 * 		String array that contains list of file names to be used
-	 * @param sim_
-	 * 		AirlineSimulation object used to run the simulation
+	 * @param simulation_
+	 * 		AirlineSimulation object holding information for simulator to use
+	 * @param simulator_
+	 * 		AirlineSimulationBuilder object used to run simulation
 	 * @return
 	 * 		N/A
 	 */
@@ -85,6 +85,14 @@ public class ConsoleViewController {
 		input.close();
 	}
 	
+	/**
+	 * Call prompt for user to input their own file paths.
+	 * Check returned paths and if empty use defaults, 
+	 * otherwise use user's path
+	 * 
+	 * @return
+	 * 		N/A
+	 */
 	public void getCustomFilePathsFromUser() {
 		
 		Path _pathToFile;
@@ -116,6 +124,18 @@ public class ConsoleViewController {
 		hasSimBeenRun = false;
 	}
 	
+	/**
+	 * Clear out any existing flights and graph, then
+	 * run the simulator using properties and graph file
+	 * for a simulation
+	 * 
+	 * @param simulation_
+	 * 		AirlineSimulation object containing data to be used by simulator
+	 * @param simulator_
+	 * 		AirlineSimulationBuilder object used to run simulation
+	 * @return
+	 * 		N/A
+	 */
 	public void runSimulation(AirlineSimulation simulation_, AirlineSimulationBuilder simulator_) {
 		
 		simulation_.getListOfFlights().clear();
@@ -126,7 +146,16 @@ public class ConsoleViewController {
 		}
 	}
 	
+	/**
+	 * Display results only after a simulation has been run correctly
+	 * 
+	 * @param simulation_
+	 * 		AirlineSimulation object containing data to be displayed
+	 * @return
+	 * 		N/A
+	 */
 	public void showResults(AirlineSimulation simulation_) {
+		
 		if(hasSimBeenRun) {
 			consoleOut.resultsView(simulation_.getTotalProfit(), simulation_.getTotalCost(), 
 					simulation_.getTotalRevenue(), simulation_.getListOfFlights().size(), 
@@ -138,7 +167,17 @@ public class ConsoleViewController {
 			}
 	}
 	
+	/**
+	 * Call prompt for user to input airports and then find the average 
+	 * revenue, cost, and profit between two airports and display it
+	 * 
+	 * @param simulation_
+	 * 		AirlineSimulation object containing data to be used
+	 * @return
+	 * 		N/A
+	 */
 	public void findAverageRCPForAirports(AirlineSimulation simulation_) {
+		
 		if(hasSimBeenRun) {
 			FlightRCPController _flightRCPManager = new FlightRCPController();
 			String[] _airportNames = consoleOut.findAverageBetweenAirports(input);
@@ -164,7 +203,18 @@ public class ConsoleViewController {
 		}
 	}
 	
+	/**
+	 * Read from data file for information then use it to run a full simulation
+	 * 
+	 * @param simulation_
+	 * 		AirlineSimulation object to be filled with data and used by simulator
+	 * @param simulator_
+	 * 		AirlineSimulationBuilder object used to run simulation
+	 * @return
+	 * 		N/A
+	 */
 	public void readFromDataFile(AirlineSimulation simulation_, AirlineSimulationBuilder simulator_) {
+		
 		simulation_.getListOfFlights().clear();
 		simulation_.getGraphOfAirports().clearGraph();
 		try {
@@ -177,7 +227,17 @@ public class ConsoleViewController {
 		}
 	}
 	
+	/**
+	 * Display graph of the simulation if it has been run.
+	 * Shows list of all airports and their connections.
+	 * 
+	 * @param simulation_
+	 * 		AirlineSimulation object containing graph to be displayed
+	 * @return
+	 * 		N/A
+	 */
 	public void displayGraph(AirlineSimulation simulation_) {
+		
 		if(hasSimBeenRun) {
 			simulation_.getGraphOfAirports().printGraph();
 		}

@@ -8,10 +8,33 @@ import static org.airlinesystem.model.Aircraft.AircraftSize;
 public class AircraftSectionList extends ArrayList<AircraftSection> {
 
     private static final long serialVersionUID = 5534735606050325939L;
+    
+    /**
+	 *  Section class options
+	 *  <li>{@link #FIRST}/<li>
+	 * <li>{@link #BUSINESS}/<li>
+	 * <li>{@link #ECON_PLUS}/<li>
+	 * <li>{@link #ECON_BASIC}/<li>
+	 */
 	private enum sectionClassTypes {
+		/**
+		 * First Class
+		 */
 		FIRST,
+		
+		/**
+		 * Business Class
+		 */
 		BUSINESS,
+		
+		/**
+		 * Economy Plus Class
+		 */
 		ECON_PLUS,
+		
+		/**
+		 * Economy Basic Class
+		 */
 		ECON_BASIC;
 	}
 
