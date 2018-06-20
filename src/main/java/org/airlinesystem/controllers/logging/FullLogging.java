@@ -12,7 +12,7 @@ public class FullLogging {
 	private Logger debugLogger = LoggerFactory.getLogger("debugLogger");
 	private Logger menuLogger = LoggerFactory.getLogger("menuLogger");
 	
-	public FullLogging() {
+	private FullLogging() {
 		//TODO add here if needed
 	}
 	
