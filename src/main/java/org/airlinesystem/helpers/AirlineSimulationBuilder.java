@@ -126,11 +126,9 @@ public class AirlineSimulationBuilder {
 		}
 		catch (Exception e_) {
 			simulationBuilderLog.menuError(e_.getMessage());
-			/*
 			StackTraceElement l = e_.getStackTrace()[0];
-			simulationBuilderLog.menuError(e_.getMessage() + "\n" + l.getClassName() 
+			simulationBuilderLog.debugError(e_.getMessage() + "\n" + l.getClassName() 
 					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
-			*/
 		}
 
 		try {
@@ -149,11 +147,9 @@ public class AirlineSimulationBuilder {
 		}
 		catch (Exception e_) {
 			simulationBuilderLog.menuError(e_.getMessage());
-			/*
 			StackTraceElement l = e_.getStackTrace()[0];
-			simulationBuilderLog.menuError(e_.getMessage() + "\n" + l.getClassName() 
+			simulationBuilderLog.debugError(e_.getMessage() + "\n" + l.getClassName() 
 					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
-			*/
 		}
 	}
 	
@@ -192,11 +188,9 @@ public class AirlineSimulationBuilder {
 		}
 		catch (Exception e_) {
 			simulationBuilderLog.menuError(e_.getMessage());
-			/*
 			StackTraceElement l = e_.getStackTrace()[0];
-			simulationBuilderLog.menuError(e_.getMessage() + "\n" + l.getClassName() 
+			simulationBuilderLog.debugError(e_.getMessage() + "\n" + l.getClassName() 
 					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
-			*/
 			throw new AirlineSystemException(e_);
 		}
 	}

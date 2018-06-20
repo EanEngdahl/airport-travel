@@ -80,7 +80,7 @@ public class RuntimePropertyController {
 				try {
 					_returnProperties = loadDefaultProperties();
 				} catch(AirlineSystemException _e2) {
-					propertyControllerLog.debugDebug(_e2.getLocalizedMessage() + "Error loading default.properties, exiting...");
+					propertyControllerLog.debugError(_e2.getLocalizedMessage() + "Error loading default.properties, exiting...");
 					System.exit(1);
 				};
 			}

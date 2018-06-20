@@ -43,10 +43,14 @@ public class FullLogging {
 	public void consoleInfo(String message_) {
 		consoleLogger.info(message_);
 	}
+	
 	public void debugDebug(String message_) {
 		debugLogger.debug(message_);
 	}
 	
+	public void debugError(String message_) {
+		debugLogger.error(message_);
+	}
 	public void resultsInfo(String message_) {
 		resultsLogger.info(message_);
 	}

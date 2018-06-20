@@ -69,8 +69,8 @@ public class ConsoleViewController {
 				case SHOW_RESULTS:
 					showResults(simulation_);
 					break;
-				case FIND_AVG_RCP_BETWEEN_AIRPORTS:
-					findAverageRCPForAirports(simulation_);
+				case FIND_AVG_PROFIT_BETWEEN_AIRPORTS:
+					findAverageProfitForAirports(simulation_);
 					break;
 				case READ_FROM_DATA_FILE:
 					readFromDataFile(simulation_, simulator_);
@@ -169,14 +169,14 @@ public class ConsoleViewController {
 	
 	/**
 	 * Call prompt for user to input airports and then find the average 
-	 * revenue, cost, and profit between two airports and display it
+	 * profit between two airports and display it
 	 * 
 	 * @param simulation_
 	 * 		AirlineSimulation object containing data to be used
 	 * @return
 	 * 		N/A
 	 */
-	public void findAverageRCPForAirports(AirlineSimulation simulation_) {
+	public void findAverageProfitForAirports(AirlineSimulation simulation_) {
 		
 		if(hasSimBeenRun) {
 			FlightRCPController _flightRCPManager = new FlightRCPController();

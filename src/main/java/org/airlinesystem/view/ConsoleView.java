@@ -100,7 +100,7 @@ public class ConsoleView {
 						case "3":
 							return MenuOption.SHOW_RESULTS;
 						case "4":
-							return MenuOption.FIND_AVG_RCP_BETWEEN_AIRPORTS;
+							return MenuOption.FIND_AVG_PROFIT_BETWEEN_AIRPORTS;
 						case "5":
 							return MenuOption.READ_FROM_DATA_FILE;
 						case "6":
@@ -112,6 +112,9 @@ public class ConsoleView {
 			}
 		} catch(Exception e_) {
 			viewLog.menuError("Menu input error\n");
+			StackTraceElement l = e_.getStackTrace()[0];
+			viewLog.debugError(e_.getMessage() + "\n" + l.getClassName() 
+					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
 			return MenuOption.QUIT_PROGRAM;
 		}
 	}
@@ -182,6 +185,9 @@ public class ConsoleView {
 		}
 		catch(Exception e_) {
 			viewLog.menuError("Number formatting error: " + e_.getStackTrace());
+			StackTraceElement l = e_.getStackTrace()[0];
+			viewLog.debugError(e_.getMessage() + "\n" + l.getClassName() 
+					+ "/" + l.getMethodName() + ":" + l.getLineNumber());
 		}
 	}
 	
@@ -191,7 +197,7 @@ public class ConsoleView {
 	 * <li>{@link #INPUT_CUSTOM_FILES}/<li>
 	 * <li>{@link #RUN_SIMULATION}/<li>
 	 * <li>{@link #SHOW_RESULTS}/<li>
-	 * <li>{@link #FIND_AVG_RCP_BETWEEN_AIRPORTS}/<li>
+	 * <li>{@link #FIND_AVG_PROFIT_BETWEEN_AIRPORTS}/<li>
 	 * <li>{@link #READ_FROM_DATA_FILE}/<li>
 	 * <li>{@link #DISPLAY_GRAPH}/<li>
 	 */
@@ -219,7 +225,7 @@ public class ConsoleView {
 		/**
 		 * Find the average profit between two user input airports
 		 */
-		FIND_AVG_RCP_BETWEEN_AIRPORTS,
+		FIND_AVG_PROFIT_BETWEEN_AIRPORTS,
 		
 		/**
 		 * Use preset data file to find results
