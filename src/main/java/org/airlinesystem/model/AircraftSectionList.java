@@ -9,7 +9,10 @@ public class AircraftSectionList extends ArrayList<AircraftSection> {
 
     private static final long serialVersionUID = 5534735606050325939L;
 	private enum sectionClassTypes {
-		FIRST, BUSINESS, ECON_PLUS, ECON_BASIC;
+		FIRST,
+		BUSINESS,
+		ECON_PLUS,
+		ECON_BASIC;
 	}
 
 	public AircraftSectionList(AircraftSize aircraftSize_, int seatsFilledPerSection_[], BigDecimal costOfSeat_[]) {
