@@ -17,16 +17,50 @@ public class ConsoleView {
 	
 	private FullLogging viewLog = FullLogging.getInstance();
 
-	/*
+	/**
 	 *  Console menu options
+	 *  <li>{@link #QUIT_PROGRAM}/<li>
+	 * <li>{@link #INPUT_CUSTOM_FILES}/<li>
+	 * <li>{@link #RUN_SIMULATION}/<li>
+	 * <li>{@link #SHOW_RESULTS}/<li>
+	 * <li>{@link #FIND_AVG_RCP_BETWEEN_AIRPORTS}/<li>
+	 * <li>{@link #READ_FROM_DATA_FILE}/<li>
+	 * <li>{@link #DISPLAY_GRAPH}/<li>
 	 */
 	public static enum MenuOption {
+		/**
+		 * Exit the program
+		 */
 		QUIT_PROGRAM,
+		
+		/**
+		 * Add custom file inputs
+		 */
 		INPUT_CUSTOM_FILES,
+		
+		/**
+		 * Run simulation builder to find generated results
+		 */
 		RUN_SIMULATION,
+		
+		/**
+		 * Display general results of simulation
+		 */
 		SHOW_RESULTS,
+		
+		/**
+		 * Find the average profit between two user input airports
+		 */
 		FIND_AVG_RCP_BETWEEN_AIRPORTS,
+		
+		/**
+		 * Use preset data file to find results
+		 */
 		READ_FROM_DATA_FILE,
+		
+		/**
+		 * Display graph to console
+		 */
 		DISPLAY_GRAPH;
 	}
 
