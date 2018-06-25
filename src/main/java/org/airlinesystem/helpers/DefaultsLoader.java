@@ -6,7 +6,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-
 /**
  * DefaultsLoader
  * 		Loads the default files into a user directory created where the program

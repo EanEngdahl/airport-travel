@@ -18,6 +18,7 @@ import java.util.StringTokenizer;
 import org.airlinesystem.controllers.logging.FullLogging;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.Airport;
+import org.airlinesystem.exceptions.AirlineSystemException;
 import org.airlinesystem.exceptions.IllegalGraphAdditionException;
 
 public class ReadGraphFromPSV {
@@ -37,7 +38,7 @@ public class ReadGraphFromPSV {
 	 * 		N/A
 	 */
 	public void readFileInputIntoGraph(AirportGraph graphOfAirports_, File graphFile_) 
-			throws IOException, NullPointerException {
+			throws AirlineSystemException, NullPointerException {
 		readGraphLog.debugDebug("Reading graph input file");
 		
 		int _counter = 1;
@@ -75,10 +76,10 @@ public class ReadGraphFromPSV {
 			reader.close();
 		}
 		catch (IOException e_) {
-			throw new IOException("could not read graph.\n");
+			throw new AirlineSystemException("could not read graph.\n");
 		}
 		catch (NullPointerException e_) {
-			throw new NullPointerException("NullPointerException: Graph file error,"
+			throw new AirlineSystemException("NullPointerException: Graph file error,"
 					+ " could not find file on path- " + graphFile_.getAbsolutePath() + e_.getStackTrace());
 		}
 

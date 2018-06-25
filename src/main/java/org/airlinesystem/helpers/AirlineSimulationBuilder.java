@@ -17,7 +17,6 @@ import java.math.BigDecimal;
 import java.text.NumberFormat;
 import java.util.Properties;
 import java.io.File;
-import java.io.IOException;
 
 public class AirlineSimulationBuilder {
 
@@ -40,7 +39,7 @@ public class AirlineSimulationBuilder {
 			_graphInput.readFileInputIntoGraph(graphOfAirports_, graphFile_);
 			simulationBuilderLog.debugDebug("Graph successfully read");
 		}
-		catch(IOException e_) {
+		catch(AirlineSystemException e_) {
 			throw new AirlineSystemException(e_);
 		}
 	}
@@ -186,7 +185,7 @@ public class AirlineSimulationBuilder {
 			simulation_.setTotalProfit(_arrayOfRCP[2]);
 			simulationBuilderLog.menuInfo("Flights successfully created\n");
 		}
-		catch (Exception e_) {
+		catch (AirlineSystemException e_) {
 			simulationBuilderLog.menuError(e_.getMessage());
 			StackTraceElement l = e_.getStackTrace()[0];
 			simulationBuilderLog.debugError(e_.getMessage() + "\n" + l.getClassName() 

@@ -16,6 +16,7 @@ import java.util.Properties;
 import java.util.StringTokenizer;
 
 import org.airlinesystem.controllers.logging.FullLogging;
+import org.airlinesystem.exceptions.AirlineSystemException;
 import org.airlinesystem.graphdb.impl.AirportGraph;
 import org.airlinesystem.model.FlightList;
 import static org.airlinesystem.model.Aircraft.AircraftSize;
@@ -46,7 +47,7 @@ public class ReadModelDataIntoState {
 	 */
 	public void readFileInputIntoFlightList(FlightList listOfFlights_, 
 			File fileToRead_, Properties modelProperties_, AirportGraph airportGraph_)
-			throws IOException, NullPointerException, Exception {
+			throws AirlineSystemException {
 		readDataLog.debugDebug("Reading input file");
 		
 		ReadGraphFromPSV _addEdgeToGraph = new ReadGraphFromPSV();
@@ -101,15 +102,15 @@ public class ReadModelDataIntoState {
 			reader.close();
 		}
 		catch (IOException e_) {
-			throw new IOException("IOException: could not read data");
+			throw new AirlineSystemException("IOException: could not read data");
 		}
 		catch (NullPointerException e_) {
-			throw new NullPointerException("NullPointerException: data file error,"
+			throw new AirlineSystemException("NullPointerException: data file error,"
 					+ " could not find file- " + fileToRead_.getName());
 		}
 		catch (Exception e_) {
-			throw new Exception("Unexpected error occured:" + e_.getStackTrace());
-}
+			throw new AirlineSystemException("Unexpected error occured:" + e_.getStackTrace());
+		}
 	}
 	
 	/**
