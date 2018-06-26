@@ -177,11 +177,11 @@ public class ConsoleView {
 		NumberFormat _numberFormatter = NumberFormat.getInstance();
 		viewLog.menuInfo("\n\n*****Flight Results*****\n\n");
 		try {
-		viewLog.menuInfo("Total number of flights: " + _numberFormatter.format(totalFlights_)
-				+ "\nTotal revenue: " + _numberFormatter.format(revenue_) 
-				+ "\nTotal cost: " +  _numberFormatter.format(cost_)
-				+ "\nTotal Profit: " + _numberFormatter.format(profit_)
-				+ "\nAverage Profit: " + _numberFormatter.format(averageFlightProfit_) + "\n");
+		viewLog.menuInfo("Total number of flights: $" + _numberFormatter.format(totalFlights_)
+				+ "\nTotal revenue: $" + _numberFormatter.format(revenue_) 
+				+ "\nTotal cost: $" +  _numberFormatter.format(cost_)
+				+ "\nTotal Profit: $" + _numberFormatter.format(profit_)
+				+ "\nAverage Profit: $" + _numberFormatter.format(averageFlightProfit_) + "\n");
 		}
 		catch(Exception e_) {
 			viewLog.menuError("Number formatting error: " + e_.getStackTrace());
