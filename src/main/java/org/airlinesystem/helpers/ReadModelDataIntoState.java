@@ -52,9 +52,9 @@ public class ReadModelDataIntoState {
 		
 		ReadGraphFromPSV _addEdgeToGraph = new ReadGraphFromPSV();
 		FlightBuilder _flightBuilder = new FlightBuilder();
-		int _maxSeatsPerSection[] = new int [4];
-		int _seatsFilledPerSection[] = new int [4];
-		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
+		int[] _maxSeatsPerSection = new int [4];
+		int[] _seatsFilledPerSection = new int [4];
+		BigDecimal[] _seatCostPerSection = new BigDecimal [4];
 		
 		try (InputStream _is = new FileInputStream(fileToRead_)) {
 			InputStreamReader _sr = new InputStreamReader(_is);
@@ -132,9 +132,9 @@ public class ReadModelDataIntoState {
 		
 		flightInformation_ = flightInformation_.replaceAll("\\s", "");
 		FlightBuilder _flightBuilder = new FlightBuilder();
-		int _maxSeatsPerSection[] = new int [4];
-		int _seatsFilledPerSection[] = new int [4];
-		BigDecimal _seatCostPerSection[] = new BigDecimal [4];
+		int[] _maxSeatsPerSection = new int [4];
+		int[] _seatsFilledPerSection = new int [4];
+		BigDecimal[] _seatCostPerSection = new BigDecimal [4];
 		StringTokenizer tokenizer = new StringTokenizer(flightInformation_, DELIM);
 		
 		String _source = tokenizer.nextToken();

@@ -21,9 +21,9 @@ import org.airlinesystem.exceptions.*;
 
 public class FlightRCPControllerTest {
 	
-	private final static int MAX_SEATS[] = {10, 10, 10, 10};
-	private final static int SEATS_FILLED[] = {10, 10, 10, 10};
-	private final static BigDecimal SEAT_COST[] =  {new BigDecimal(10), 
+	private final static int[] MAX_SEATS = {10, 10, 10, 10};
+	private final static int[] SEATS_FILLED = {10, 10, 10, 10};
+	private final static BigDecimal[] SEAT_COST =  {new BigDecimal(10), 
 			new BigDecimal(15), new BigDecimal(20), new BigDecimal(25)};
 
 	private static RuntimePropertyController propManager;
@@ -98,7 +98,7 @@ public class FlightRCPControllerTest {
 	
 	@Test
 	public void testFindTotalRCPOfFlightList() {
-		BigDecimal [] totalRCP;
+		BigDecimal[] totalRCP;
 		BigDecimal expectedRevenue = new BigDecimal(1400);
 		BigDecimal expectedCost = new BigDecimal(6200);
 		BigDecimal expectedProfit = new BigDecimal(-4800);

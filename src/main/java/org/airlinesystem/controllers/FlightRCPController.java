@@ -43,8 +43,8 @@ public class FlightRCPController {
 	 */
 	public BigDecimal findRevenue(Flight flightToCalculate_) {
 		BigDecimal _revenue = new BigDecimal("0");
-		int seatsFilledPerSection_[] = flightToCalculate_.getSeatsFilledPerSection();
-		BigDecimal seatCostPerSection_[] = flightToCalculate_.getSeatCostPerSection();
+		int[] seatsFilledPerSection_ = flightToCalculate_.getSeatsFilledPerSection();
+		BigDecimal[] seatCostPerSection_ = flightToCalculate_.getSeatCostPerSection();
 		
 		for (int i = 0; i < flightToCalculate_.getSeatsFilledPerSection().length; i++) {
 			BigDecimal _numberOfPeopleInClass = new BigDecimal(seatsFilledPerSection_[i]);

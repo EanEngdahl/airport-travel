@@ -1,3 +1,9 @@
+/**
+ * AirlineSystemMain class
+ *		Entrance into program, selects action to take
+ *		based on input command line arguments
+ */
+
 package org.airlinesystem;
 
 import java.text.NumberFormat;
@@ -78,6 +84,7 @@ public class AirlineSystemMain {
 
 		/*
 		 *  Decides whether or not a console menu was requested
+		 *  If not then run based on whether or not a data file was input
 		 */
 		if(!_menuFlag) {
 			if(_dataFileFlag) {
@@ -100,7 +107,7 @@ public class AirlineSystemMain {
 		/*
 		 *  Runs the console menu if it is applicable
 		 */
-		String _fileNameList[] = {_propertiesFile.getAbsolutePath(), 
+		String[] _fileNameList = {_propertiesFile.getAbsolutePath(), 
 				_graphFile.getAbsolutePath(), _dataFile.getAbsolutePath()};
 		_consoleOut.menuController(_fileNameList, _simulation, _simulator);
 	}

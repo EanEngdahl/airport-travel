@@ -21,14 +21,12 @@ public class FullLogging {
 	 * Default constructor
 	 */
 	private FullLogging() {
-		//TODO add here if needed
 	}
 	
 	/**
-	 * Initialize
+	 * Initialize loggers
 	 */
 	private void init() {
-		//TODO Not sure if below needed at all
 		resultsLogger = LoggerFactory.getLogger("resultsLogger");
 		consoleLogger = LoggerFactory.getLogger("consoleLogger");
 		debugLogger = LoggerFactory.getLogger("debugLogger");

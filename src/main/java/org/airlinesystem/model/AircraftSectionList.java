@@ -38,11 +38,13 @@ public class AircraftSectionList extends ArrayList<AircraftSection> {
 		ECON_BASIC;
 	}
 
-	public AircraftSectionList(AircraftSize aircraftSize_, int seatsFilledPerSection_[], BigDecimal costOfSeat_[]) {
+	public AircraftSectionList(AircraftSize aircraftSize_, 
+			int[] seatsFilledPerSection_, BigDecimal[] costOfSeat_) {
 		createSections(aircraftSize_, seatsFilledPerSection_, costOfSeat_);
 	}
 	
-	public void createSections(AircraftSize aircraftSize_, int seatsFilledPerSection_[], BigDecimal costOfSeat_[]) {
+	public void createSections(AircraftSize aircraftSize_, 
+			int[] seatsFilledPerSection_, BigDecimal[] costOfSeat_) {
 		String _classSectionName;
 		
 		switch(aircraftSize_) {

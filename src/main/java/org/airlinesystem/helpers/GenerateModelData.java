@@ -1,3 +1,11 @@
+/**
+ * GenerateModelData class
+ * 
+ *  Generates the data for the airport system based on the configuration file and 
+ *  airport graph provided. This is intended to simulate the data from a basic
+ *  POS system.
+ */
+
 package org.airlinesystem.helpers;
 
 import java.util.Random;
@@ -10,13 +18,6 @@ import org.airlinesystem.model.FlightList;
 import static org.airlinesystem.model.Aircraft.AircraftSize;
 import org.jgrapht.graph.*;
 
-/**
- * GenerateModelData class
- * 
- *  Generates the data for the airport system based on the configuration file and 
- *  airport graph provided. This is intended to simulate the data from a basic
- *  POS system.
- */
 public class GenerateModelData {
 
 	private Random rand = new Random();

@@ -30,9 +30,9 @@ public class FlightBuilderTest {
 	@Test
 	public void testFlightDispatchService() {
 		AircraftSize _aircraftSize = AircraftSize.L;
-		int _maxSeats[] = new int[] {150, 100, 100, 50};
-		int _seatsFilled[] = new int[] {73, 42, 10, 5};
-		BigDecimal _seatCost[] = {new BigDecimal("250"), new BigDecimal("350"), 
+		int[] _maxSeats = new int[] {150, 100, 100, 50};
+		int[] _seatsFilled = new int[] {73, 42, 10, 5};
+		BigDecimal[] _seatCost = {new BigDecimal("250"), new BigDecimal("350"), 
 				new BigDecimal("450"), new BigDecimal("650")};
 		String _source = "1";
 		String _dest = "2";
@@ -60,7 +60,7 @@ public class FlightBuilderTest {
 		_aircraftSize = AircraftSize.M;
 		_maxSeats = new int[] {100, 0, 70, 30};
 		_seatsFilled = new int[] {27, 0, 35, 3};
-		BigDecimal _seatCostMedium[] = {new BigDecimal("150"), new BigDecimal("0"), 
+		BigDecimal[] _seatCostMedium = {new BigDecimal("150"), new BigDecimal("0"), 
 				new BigDecimal("250"), new BigDecimal("400")};
 		_source = "2";
 		_dest = "3";
@@ -86,7 +86,7 @@ public class FlightBuilderTest {
 		_aircraftSize = AircraftSize.S;
 		_maxSeats = new int[] {50, 0, 0, 0};
 		_seatsFilled = new int[] {33, 0, 0, 0};
-		BigDecimal _seatCostSmall[] = {new BigDecimal("100"), new BigDecimal("0"), 
+		BigDecimal[] _seatCostSmall = {new BigDecimal("100"), new BigDecimal("0"), 
 				new BigDecimal("0"), new BigDecimal("0")};
 		_source = "3";
 		_dest = "1";

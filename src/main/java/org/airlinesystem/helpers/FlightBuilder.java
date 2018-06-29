@@ -45,8 +45,8 @@ public class FlightBuilder {
      * @return
      * 		A new flight that has all variables set
      */
-	public Flight flightDispatchService(AircraftSize aircraftSize_, int maxSeatsPerSection_[], 
-			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
+	public Flight flightDispatchService(AircraftSize aircraftSize_, int[] maxSeatsPerSection_, 
+			int[] seatsFilledPerSection_, BigDecimal[] seatCostPerSection_, 
 			String source_, String destination_, double distanceTravelled_,
 			Properties modelProperties_) {
 		
@@ -91,7 +91,7 @@ public class FlightBuilder {
 	 * @return
 	 * 		total number of passengers as an integer
 	 */
-	public int getTotalNumOfPassengers(int seatsFilledPerSection_[]) {
+	public int getTotalNumOfPassengers(int[] seatsFilledPerSection_) {
 		return IntStream.of(seatsFilledPerSection_).sum();
 	}
 	
@@ -103,7 +103,7 @@ public class FlightBuilder {
 	 * @return
 	 * 		total number of seats as an integer
 	 */
-	public int getMaxAircraftSeats(int maxSeatsPerSection_[]) {
+	public int getMaxAircraftSeats(int[] maxSeatsPerSection_) {
 		return IntStream.of(maxSeatsPerSection_).sum();
 	}
 }

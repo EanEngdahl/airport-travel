@@ -1,3 +1,9 @@
+/**
+ * DefaultsLoader class
+ * 		Loads the default files into a user directory created where the program
+ * 		is ran
+ */
+
 package org.airlinesystem.helpers;
 
 import java.io.File;
@@ -6,11 +12,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-/**
- * DefaultsLoader
- * 		Loads the default files into a user directory created where the program
- * 		is ran
- */
 public class DefaultsLoader {
 
 	/**
@@ -26,7 +27,7 @@ public class DefaultsLoader {
 		 *  Delete the directory if it already exists
 		 */
 		if(_outputDirectory.exists()) {
-			File [] _directoryContents = _outputDirectory.listFiles();
+			File[] _directoryContents = _outputDirectory.listFiles();
 			if(_directoryContents != null) {
 				for(File _f : _directoryContents) {
 					_f.delete();

@@ -43,7 +43,7 @@ public class ConsoleViewController {
 	 * @return
 	 * 		N/A
 	 */
-	public void menuController(String [] fileNameList_,
+	public void menuController(String[] fileNameList_,
 			AirlineSimulation simulation_, AirlineSimulationBuilder simulator_) {
 
 		Path _pathToFile = Paths.get(fileNameList_[0]);

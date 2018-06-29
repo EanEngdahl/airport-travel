@@ -133,7 +133,7 @@ public class AirlineSimulationBuilder {
 		try {
 			generateData(_modelProperties, simulation_.getGraphOfAirports(), 
 					simulation_.getListOfFlights());
-			BigDecimal arrayOfRCP[];
+			BigDecimal[] arrayOfRCP;
 			arrayOfRCP = findTotalRCP(simulation_.getListOfFlights(), _modelProperties);
 			simulation_.setTotalRevenue(arrayOfRCP[0]);
 			simulation_.setTotalCost(arrayOfRCP[1]);
@@ -174,7 +174,7 @@ public class AirlineSimulationBuilder {
 		RuntimePropertyController _propertyController = new RuntimePropertyController();
 		Properties _modelProperties = _propertyController.loadRuntimeProperties(propertiesFile_);
 
-		BigDecimal _arrayOfRCP[];
+		BigDecimal[] _arrayOfRCP;
 
 		try {
 			_readData.readFileInputIntoFlightList(simulation_.getListOfFlights(), dataFile_,

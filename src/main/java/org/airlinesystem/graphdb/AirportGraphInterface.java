@@ -1,3 +1,8 @@
+/**
+ * AirportGraphInterface
+ * 		Setup for graph interface to be implemented
+ */
+
 package org.airlinesystem.graphdb;
 
 import java.util.ArrayList;

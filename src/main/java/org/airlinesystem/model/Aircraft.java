@@ -32,8 +32,8 @@ public class Aircraft {
 	private int totalNumOfPassengers;
 
 		
-	public Aircraft(AircraftSize aircraftSize_, int totalNumOfPassengers_, int seatsFilledPerSection_[], 
-			BigDecimal costOfSeat_[], int maxAircraftSeats_) {
+	public Aircraft(AircraftSize aircraftSize_, int totalNumOfPassengers_, int[] seatsFilledPerSection_, 
+			BigDecimal[] costOfSeat_, int maxAircraftSeats_) {
 		aircraftSize = aircraftSize_;
 		sectionList = new AircraftSectionList(aircraftSize_, seatsFilledPerSection_, costOfSeat_);
 		maxAircraftSeats = maxAircraftSeats_;

@@ -9,8 +9,8 @@ public class Flight {
 	private AircraftPilot pilot;
 	private AircraftPilot coPilot;
 	private Aircraft aircraftAssigned;
-	private int seatsFilledPerSection[];
-	private BigDecimal seatCostPerSection[];
+	private int[] seatsFilledPerSection;
+	private BigDecimal[] seatCostPerSection;
 	private double distanceTravelled;
 	private Airport source;
 	private Airport destination;
@@ -18,8 +18,8 @@ public class Flight {
 	private BigDecimal revenue;
 	private BigDecimal profit;
 	
-	public Flight(AircraftSize aircraftSize_, int maxSeatsPerSection_[], 
-			int seatsFilledPerSection_[], BigDecimal seatCostPerSection_[], 
+	public Flight(AircraftSize aircraftSize_, int[] maxSeatsPerSection_, 
+			int[] seatsFilledPerSection_, BigDecimal[] seatCostPerSection_, 
 			Airport source_, Airport destination_, double distanceTravelled_,
 			AircraftPilot pilot_, AircraftPilot coPilot_, Aircraft aircraftAssigned_) {
 

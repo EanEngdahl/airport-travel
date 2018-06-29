@@ -12,7 +12,6 @@ import java.text.NumberFormat;
 
 import org.airlinesystem.controllers.logging.FullLogging;
 
-
 public class ConsoleView {
 	
 	private FullLogging viewLog = FullLogging.getInstance();
@@ -29,7 +28,7 @@ public class ConsoleView {
 	 * 		String array containing input file names
 	 */
 	public String[] promptUserForFileNames(Scanner input_) {
-		String _fileNames[] = new String [3];
+		String[] _fileNames = new String [3];
 		String _selection;
 
 		try {
